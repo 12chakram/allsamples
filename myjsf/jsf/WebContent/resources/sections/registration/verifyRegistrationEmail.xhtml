@@ -1,0 +1,185 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:comp="http://www.dece.com/jsf"
+	xmlns:rich="http://richfaces.org/rich">	
+	<f:subview id="createHouseholdId" rendered="#{householdRegistrationBean.errorValueMap.emailError ne null}">
+		<script type="text/javascript">
+			window.onload = function() {
+				 document.getElementById('frmVerifyEmail:submitEmail').focus();
+		 	}
+</script>
+	</f:subview>
+	<script type="text/javascript">
+		function myKeyPressed(e){
+			e = e || window.event;
+			var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			if (unicode == 13){
+				if(navigator.appName=='Microsoft Internet Explorer'){
+					document.getElementById('frmVerifyEmail:submitEmail').click();
+					return false;
+				}else{
+					return true;
+				}
+			}
+		}
+		function submitEmailAddress(){
+        	document.getElementById('frmVerifyEmail:submitEmail').click();
+        }
+		function changeHashOnLoad() {
+		    window.location.href += "#";
+		    setTimeout("changeHashAgain()", 1); 
+		}
+
+		function changeHashAgain() {
+		window.location.href += "1";
+		}
+
+		var storedHash = window.location.hash;
+
+		var int=window.setInterval(function () {
+		   if (window.location.hash != storedHash) {
+		        window.location.hash = storedHash;
+		        if (navigator.appName=='Microsoft Internet Explorer')
+		        {
+
+		            window.clearInterval(int);
+		        }
+		   }
+
+		}, 1);
+
+		changeHashOnLoad();	
+	
+        
+	</script>
+	<h:form id="frmVerifyEmail"> 
+		<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.dobMonthValue}"/> 
+		<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.dobDateValue}"/> 
+		<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.dobYearValue}"/>
+		<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.countryName}" />
+	<!-- Begin of Main body -->   
+	        <div class="main_body">
+	        	<div class="create_h_hold_heading">
+	        		<h1><span class="Fleft">
+		        		<h:outputLabel value="#{labelMsgs.householdHeading1}"/> 		        		
+		        	<span class="content_standard_color">
+		        		<h:outputLabel value="#{labelMsgs.householdHeading2}"/> 		        		
+		        	</span>
+			        </span></h1>		        		
+	        	<div class="Cancel_Registration">
+	        		<h:commandLink id="cancelId" tabindex="2" title="#{labelMsgs.cancelRegistration}" value="#{labelMsgs.cancelRegistration}" onclick="return handleSaveChangesPopup(this.id);" action="#{loginNavigationBean.navigationToUnauthHomePage}"/>
+	        	</div>
+	        	</div>
+	        </div>	        
+	        <div class="body_container_above_gradiant">
+       			<div class="gradiant_box_left">
+  			    </div>
+               <div class="gradiant_box_middle">
+          	    	<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="White_Gray_Gradiant" />
+          	    </div>
+               <div class="gradiant_box_right">
+               	</div>            
+            </div>
+<!-- End of Main body -->  
+<!-- Begin of household menu step1 VerifyEmail -->
+
+            <div class="h_hold_menu_step1_active">
+             <div class="menu_bar_top_shadow"></div>
+             <div class="menu_bar_steps">
+            	<div class="create_h_hold_step_1">
+                	<div class="step_1_icon"></div>
+                    <div class="step_1_menu_text">
+                    	<table class="table" cellpadding="0" cellspacing="0">
+                            <tr>
+                            	<td>
+                            		<h:outputLabel id="regsStep1MessageId" value="#{labelMsgs.regsStep1Message}"/>
+                            	</td>
+                            </tr>
+                       	</table> 
+                    </div>
+                </div>
+                <div class="create_h_hold_step_2_left"></div>
+            	<div class="create_h_hold_step_2">
+                <div class="step_2_icon"></div>
+                	<div class="step_2_menu_text">
+                		<table class="table" cellpadding="0" cellspacing="0">
+                        	<tr>
+                        		<td>
+                            		<h:outputLabel value="#{labelMsgs.regsStep3Message}"/>
+                            	</td>
+                            </tr>
+                      	</table>  
+                    </div>
+                </div>
+                <div class="create_h_hold_step_3_left">
+                </div>
+              </div>
+              <div class="menu_bar_bottom_shadow">
+                		<div class="menu_bar_bottom_shadow_left">
+                        </div>
+                        <div class="menu_bar_bottom_shadow_middle">
+                        </div>
+                        <div class="menu_bar_bottom_shadow_right">
+                        </div>
+                </div>  
+            </div>
+
+<!-- End of household menu step1 VerifyEmail -->  
+<!-- Begin of Body content step1 VerifyEmail --> 
+		<div class="body_wrapper">
+        	    <div class="body_wrapper_left_shadow">
+        		</div>
+				<div class="body_wrapper_container">
+                    <div class="h_hold_email">
+                       	<div class="email_18_message">
+                          	<div class="icon_18_plus">
+                            </div>
+                               <div class="h_hold_content_18_plus">
+	                                <div class="msg_heading_text"><h:outputLabel value="#{labelMsgs.reg18ContentInfo}"/></div>
+									<div class="msg_content_text"><h:outputLabel value="#{labelMsgs.reg18Content1}"/></div>
+									<div class="msg_bottom_text"><h:outputLabel value="#{labelMsgs.reg18Content2}"/></div>
+                               </div>
+                        </div>
+	                 		<div class="household_InputArea" style="padding-left: 6px;">
+	                   		<strong><h:outputLabel value="#{labelMsgs.parentOrGuardianEmailLabel}:" for="frmVerifyEmail:parentEmail"/></strong><br />
+	                       	 <div class="household_InputField"> 
+	                           	   <h:inputText styleClass="input" id="parentEmail" autocomplete="off" tabindex="4" title="#{labelMsgs.parentOrGuardianEmailLabel}" value="#{householdRegistrationBean.registrationValueMap.guardianEmail}" maxlength="100" onfocus="toggleHintMsg('emailErrorHint','none');toggleHintMsg('mail_hint','block');" onblur="toggleHintMsg('mail_hint','none');" onkeydown="javascript:return myKeyPressed(event);"/>
+	                            </div>
+	                            <div class="msg_hint" id="mail_hint">
+	                            	<h:outputLabel value="#{labelMsgs.parentOrGuardianEmailHint}"/> 
+	                            </div>
+	                            <div  id="emailErrorHint">
+									<h:outputLabel style="width:500px;" rendered="#{householdRegistrationBean.errorValueMap.emailError ne null}" id="VerifyEmailErrorId" value="#{householdRegistrationBean.errorValueMap.emailError}" styleClass="#{householdRegistrationBean.errorValueMap.emailError ne null?'err_msg':'err_msg_hide' }"/>
+		                        </div>
+	                  		</div> 
+                   	 <!--   <c:if test="#{householdRegistrationBean.errorValueMap.emailError ne null}">
+		                       <div class="email_warning_box" >                            
+		                            <div class="household_InputArea" style="padding-left: 6px;">
+		                                   <strong><h:outputLabel value="#{labelMsgs.parentOrGuardianEmailLabel}:" for="frmVerifyEmail:parentEmail1"/></strong><br />
+		                                   <div class="household_InputField">
+		                                   		<h:inputText title="#{labelMsgs.parentOrGuardianEmailLabel}" autocomplete="off" tabindex="5" styleClass="input" id="parentEmail1" value="#{householdRegistrationBean.registrationValueMap.guardianEmail}" onfocus="toggleHintMsg('emailErrorHint','none');toggleHintMsg('mailHint','block');" onblur="toggleHintMsg('mailHint','none');" onkeydown="javascript:return myKeyPressed(event);"/>
+		                                   </div>
+		                                   
+		                                   <div class="msg_hint" id="mailHint">
+	                            			 	<h:outputLabel value="#{labelMsgs.parentOrGuardianEmailHint}"/> 
+	                           			  </div>
+		                            </div>
+		                       </div>                        
+                   </c:if> --> 	
+                 </div>                     
+                    <div class="h_hold_continue_btn">
+                    	<div class="button_input">
+							<h:commandButton id="submitEmail" tabindex="6" title="#{labelMsgs.submitEmail}" styleClass="image_button" value="#{labelMsgs.submitEmail}" action="#{householdRegistrationBean.submitEmailAction}"/>
+						</div>                    			
+                    </div>                    
+                </div>  
+                <div class="body_wrapper_right_shadow">
+                </div>
+         </div>	
+<!-- End of Body content step1 VerifyEmail --> 
+</h:form>
+</ui:composition>	

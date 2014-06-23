@@ -1,0 +1,275 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:comp="http://www.dece.com/jsf"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="images/favicon.ico"
+			type="image/x-icon" />
+		<title>ULTRAVIOLET</title>
+		<link rel="stylesheet" type="text/css" href="css/custom_style.css" />
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/popup.js"></script>
+		<script type="text/javascript">
+			rC = function(radioButton) {
+				if (radioButton.checked == true) {
+					radioButton.checked = false;
+					return false;
+				} else {
+					radioButton.checked = true;
+					return true;
+				}
+			}
+
+			function toggleMemberListDiv(divID) {
+				var currStatus = document.getElementById('AccList' + divID).style.display;
+				if (currStatus == 'none') {
+					document.getElementById('AccList' + divID).style.display = 'block';
+					document.getElementById('switchEle' + divID).className = 'MemberCount_title_Expand';
+				} else {
+					document.getElementById('AccList' + divID).style.display = 'none';
+					document.getElementById('switchEle' + divID).className = 'MemberCount_title_Collapse';
+				}
+			}
+
+			function isMergeAccChecked() {
+				var checkboxMerge = document.getElementById('MergeAccCheck').checked;
+				if (checkboxMerge == true) {
+					document.getElementById('ErrMsg').style.display = "none";
+				} else {
+					document.getElementById('ErrMsg').style.display = "block";
+				}
+				return checkboxMerge;
+			}
+		</script>
+	</h:head>
+
+	<h:form id="frmAccountMergeStep3">
+
+		<h:inputHidden id="mergedMediaCount"
+			value="#{accountMergeBean.mergedAccountMediaCount}" />
+		<h:inputHidden id="mergedAccMemberCount"
+			value="#{accountMergeBean.mergedAccountMemberCount}" />
+
+		<div class="main_body">
+			<div class="create_h_hold_heading">
+				<span class="Fleft"><h:outputLabel
+						value="#{labelMsgs.accountMergPageHeading}" /></span>
+			</div>
+			<div class="body_container_above_gradiant">
+				<div class="gradiant_box_left"></div>
+				<div class="gradiant_box_middle">
+					<img height="2" width="978" align="top" alt=""
+						src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg"
+						class="gradiant_img" />
+				</div>
+				<div class="gradiant_box_right"></div>
+			</div>
+
+			<!-- household menu step-1 active start    -->
+			<div class="h_hold_menu_Add_step3_active">
+				<div class="menu_bar_top_shadow"></div>
+				<div class="menu_bar_steps">
+					<div class="create_h_hold_step_1" style="cursor: default;">
+						<div class="step_1_icon"></div>
+						<div class="step_1_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel
+											value="#{labelMsgs.signInToOtherAccount}" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_2_left"></div>
+					<div class="create_h_hold_step_2" style="cursor: default;">
+						<div class="step_2_icon"></div>
+						<div class="step_2_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel value="#{labelMsgs.verifyMergeDetals}" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_3_left"></div>
+					<div class="create_h_hold_step_3">
+						<div class="step_3_icon"></div>
+						<div class="step_3_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel value="#{labelMsgs.confirmMerge}" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_3_right"></div>
+				</div>
+				<div class="menu_bar_bottom_shadow">
+					<div class="menu_bar_bottom_shadow_left"></div>
+					<div class="menu_bar_bottom_shadow_middle"></div>
+					<div class="menu_bar_bottom_shadow_right"></div>
+				</div>
+			</div>
+			<!-- household menu step-1 active end -->
+
+			<!-- Begin of Body content -->
+
+			<div class="body_wrapper">
+				<div class="body_wrapper_left_shadow"></div>
+				<div class="body_wrapper_container">
+
+					<div class="MergeAccountsContainer">
+						<div class="LeftPanel">
+							<div class="BodyHeading">
+								<h:outputLabel value="#{labelMsgs.mergeAccConfirmMsg}" />
+								<br />
+								<h:outputLabel value="#{labelMsgs.mergeAccRenameMsg}" />
+							</div>
+							<div class="userfield_input">
+								<b><h:outputLabel value="#{labelMsgs.mergeAccNameLabel}:" /></b>
+								<br />
+								<div class="form_inputfield">
+									<div>
+										<h:inputText id="accountName" styleClass="input"
+											value="#{sessionScope.DispName}" />
+									</div>
+								</div>
+
+								<div class="RadioMsg">
+									<div class="RadioInput">
+										<input type="checkbox" id="MergeAccCheck" />
+									</div>
+									<div class="RadioInputMsg">
+										<h:outputFormat value="#{labelMsgs.mergeAccCheckBoxLabel1}">
+											<f:param value="#{sessionScope.DispName}" />
+											<f:param value="#{sessionScope.MergeAccountDisplayName}" />
+										</h:outputFormat>
+										<br />
+										<h:outputLabel value="#{labelMsgs.mergeAccCheckBoxLabel2}" />
+										<br />
+										<h:outputLabel value="#{labelMsgs.mergeAccCheckBoxLabel3}" />
+									</div>
+								</div>
+								<div class="err_msg" id="ErrMsg" style="display: none;">
+									<h:outputLabel value="#{labelMsgs.mergeAccCheckBoxAlert}" />
+								</div>
+								<div class="button_input MarginTop20">
+									<h:commandButton id="submitId"
+										title="#{labelMsgs.confirmMerge}" styleClass="image_button"
+										value="#{labelMsgs.confirmMerge}"
+										onclick="return isMergeAccChecked();"
+										action="#{accountMergeBean.mergeAccounts}">
+									</h:commandButton>
+								</div>
+								<div class="cancel MarginTop20" style="padding-top: 4px;">
+									<h:commandLink title="#{labelMsgs.cancel}" id="cancelChanges"
+										value="#{labelMsgs.cancel}"
+										action="householdAccountSettingsPage" />
+								</div>
+							</div>
+						</div>
+						<div class="RightPanel">
+							<div class="RightPanelTopCurveImg"></div>
+							<div class="RightPanelMidCurveImg">
+								<div class="MergedAccountDetailsContainer">
+
+									<div class="MemberDetails">
+										<div class="AccountTitle">
+											<h:outputLabel value="#{labelMsgs.mergeAccountPreview}" />
+										</div>
+										<div class="MoviesCount">
+											<h:outputLabel
+												value="#{accountMergeBean.mergedAccountMediaCount} #{labelMsgs.moviesAndTVShows}" />
+										</div>
+										<div class="MovieList">
+											<div class="MovieTitle">
+												<h:outputLabel value="#{labelMsgs.mergePreviewMediaMsg}" />
+											</div>
+										</div>
+									</div>
+									<div class="MergedMember">
+										<div class="MemberCount_title_Expand"
+											onclick="toggleMemberListDiv('001');" id="switchEle001">
+											<h:outputLabel
+												value="#{accountMergeBean.mergedAccountMemberCount} #{labelMsgs.memberSmall}" />
+										</div>
+										<div class="MembersList" id="AccList001"
+											style="display: block;">
+											<c:forEach items="#{accountMergeBean.mergedAccountMemberMap}"
+												var="mergedAccountMember">
+												<c:set var="memberDetails"
+													value="#{mergedAccountMember.value}" />
+												<div class="MemberDiv">
+													<span class="Name"><h:outputLabel
+															value="#{memberDetails.parentName}" /></span>
+													<c:forEach items="#{memberDetails.childDetails}"
+														var="childMember">
+														<div class="ChildMemberDiv">
+															<span class="Name"> <h:outputLabel
+																	value="#{childMember.value}" />...(<h:outputLabel
+																	value="#{labelMsgs.underageText}" />)
+															</span>
+														</div>
+													</c:forEach>
+												</div>
+											</c:forEach>
+										</div>
+										<c:if
+											test="#{accountMergeBean.mergedAccountMemberCount ne (accountMergeBean.ownAccountMemberCount+accountMergeBean.mergingAccountMemberCount)}">
+											<div class="WarningMsg">
+												<h:outputLabel value="#{labelMsgs.mergeMemberDltwarning}" />
+											</div>
+										</c:if>
+									</div>
+									<div class="MergedPlayers">
+										<div class="MemberCount_title_Expand"
+											onclick="toggleMemberListDiv('004');" id="switchEle004">
+											<h:outputLabel
+												value="#{sessionScope.mergedAccountDeviceCount} #{labelMsgs.uvPlayers}" />
+										</div>
+										<div class="
+												PlayersList" id="AccList004"
+											style="display: block;">
+											<c:if
+												test="#{accountMergeBean.mergedAccountDeviceList ne null}">
+												<c:forEach
+													items="#{accountMergeBean.mergedAccountDeviceList}"
+													var="mergedAccountDevice">
+													<div class="PlayerDiv">
+														<span class="Name"><h:outputLabel
+																value="#{mergedAccountDevice.displayName}" /></span>
+													</div>
+												</c:forEach>
+											</c:if>
+										</div>
+										<div class="WarningMsg">
+											<h:outputFormat value="#{labelMsgs.mergeAccDeviceWarningMsg}">
+												<f:param value="#{sessionScope.deviceAccDisplayName}" />
+											</h:outputFormat>
+											<h:commandLink id="howDoIAddPlayer"
+												styleClass="RegisterLinks" target="_blank"
+												value="#{labelMsgs.howDoIAddPlayer}" action="authHelpPage">
+												<f:param value="ourDevices" name="topicVal" />
+												<f:param value="1" name="questionId" />
+											</h:commandLink>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="RightPanelBottomCurveImg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="body_wrapper_right_shadow"></div>
+			</div>
+
+			<!-- End of Body content -->
+		</div>
+	</h:form>
+</ui:composition>

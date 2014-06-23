@@ -1,0 +1,18 @@
+
+.contentpage{
+	
+	padding-left: 5px;
+	min-height: 76px;
+	
+	
+}
+
+.table {
+    border-collapse: collapse;
+    border-color: #C4C0C9;
+    border-style: solid;
+    border-width: 1px;
+    empty-cells: show;
+    height: 56px;
+    width: 952px;
+}

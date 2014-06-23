@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+  <!-- IMPLEMENTATION -->          
+    <ui:composition>
+   	<h:form>
+    <h:inputHidden value="#{category}"/>
+    <div class="content_heading">
+		<div class="cont_box1">
+			<div class="content_box">
+				<div style="margin:6px 6px 6px 13px; height:18px; font-weight:bold;">
+				<h:outputText value="#{title}"/>
+					<div style="float:right;">
+					</div>
+				</div>
+				<h:outputText id="faqText" value="#{faqComponent.topFAQText}" escape="false"/>  
+			</div>
+			<div class="box_btm" style="clear:both;"></div>
+		</div>
+	</div>
+	<div class="more_faq">
+		<a4j:commandLink value="#{moreTitle}" action="#{faqComponent.doMoreFaqs}" reRender="faqText"/> 
+		 | 
+		<a4j:commandLink value="#{allTitle}" action="#{faqComponent.doAllFaqs}" reRender="faqText"/>
+	</div>
+	</h:form>	  
+  </ui:composition>
+</html>

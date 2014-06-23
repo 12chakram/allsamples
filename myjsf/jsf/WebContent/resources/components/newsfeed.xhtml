@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+  <!-- IMPLEMENTATION -->          
+    <ui:composition>
+   	<h:form><!--
+    <div class="Box3Header" style="visible:true">
+		<h:commandLink value="#{cc.attrs.householdNews}" >
+		</h:commandLink> 		 | 
+		<h:commandLink value="#{cc.attrs.myNews}" >
+		</h:commandLink>
+	</div>
+   -->
+   <div id="newfeed_wrapper">
+        <div id="NewsFeedDiv">
+          <div class="NewsFeedBg">
+            <div style="padding:5px 0 0 0"><a href="#"  class="NewsFeed">NEWS FEED</a> <a href="#Top10Div" onClick="Display();" class="Top10">TOP 10</a></div>
+          </div>
+          <div class='Box3Middle'>
+            <div class='flt'><img src="Images/news_ltline.gif" width="2" height="281" border="0" alt=""></img></div>
+            <div class='Box3submiddle'>
+              <div class='Box3Header'>
+                <ul>
+                  <li style='width:110px'>Household News<br/>
+                    My News</li>
+                  <li class='LIPadding'><a href="#"><img src="images/idea_icon.jpg" alt="" width="19" height="19" border="0"></img></a></li>
+                  <li class='LIPadding'><a href="#"><img src="images/rss_icon.jpg" alt="" width="19" height="19" border="0"></img></a></li>
+				  <li class='LIPadding'><div class="manage_btn"> <a href="ourDevices.html">Manage</a> </div></li>
+                </ul>
+              </div>
+              <div class='Box3Gradient'>
+                <div class='Newsflt1'>
+                  <!-- news -->
+                  <div id="scrollholder" class="scrollholder" style="overflow: hidden;">
+                    <div id="scroll" class="scroll">
+                      <!-- Scroll --> 
+					  <!-- pagenation width -->
+                      <div style="width: 220px; overflow-x: hidden;">
+                       <!-- Start : Scroll Area -->
+                        <div class="TxtStyle" >
+                          
+                          	<div class="flexcroll">
+                            	<div class="content_container">
+								  <div  class="content_c">
+									<ul>
+									  <li><em>2/20/2010</em> - Alice Smith joined the Smith household account </li>
+									  <li><em>2/20/2010</em> - Jackson purchased the film, Transformers on Blu Ray from BestBuy.com </li>
+									  <li><em>2/20/2010</em> - Alice created an SD copy of episode 1 season 3 of Desperate Housewives to her Ipod Touch </li>
+									  <li><em>2/20/2010</em> - Jackson purchased the film, Transformers on Blu Ray from </li>
+									  <li><em>2/20/2010</em> - Alice created an SD copy of episode 1 season 3 of Desperate Housewives to her Ipod Touch </li>
+									  <li><em>2/20/2010</em> - Alice Smith joined the Smith household account </li>
+									  <li><em>2/20/2010</em> - Jackson purchased the film, Transformers on Blu Ray from BestBuy.com </li>
+									  <li><em>2/20/2010</em> - Alice created an SD copy of episode 1 season 3 of Desperate Housewives to her Ipod Touch </li>
+									  <li><em>2/20/2010</em> - Jackson purchased the film, Transformers on Blu Ray from </li>
+									</ul>
+								  </div>
+							  	</div>
+                        	</div>
+					    </div>
+						 	
+						<!-- End : Scroll Area -->
+                      </div>
+                      <!-- pagenation width ends-->
+					  
+                    </div>
+                    
+                  </div>
+                  <!-- Scroll ends -->
+                </div>
+                <!-- news ends-->
+              </div>
+            </div>
+            <div class='rgt'><img src="Images/news_rtline.gif" alt=""/></div>
+          </div>
+          <!-- page ends-->
+        </div>
+      </div>
+	</h:form>	  
+  </ui:composition>
+</html>

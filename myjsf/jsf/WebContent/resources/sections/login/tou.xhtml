@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<script type="text/javascript">
+		
+		function disableButton(){
+			document.getElementById('frmtermsAndConditions:acceptButtonOfUser').style.color="#999";
+			document.getElementById('frmtermsAndConditions:acceptButtonOfUser').style.cursor="default";
+		}
+		
+	</script>
+   <h:form id="frmtermsAndConditions"> 
+    <div class="main_body" style="width:500px;">
+        	<div class="ourMedia_heading" style="font-size:15pt; padding-left:10px; padding-top:5px;">
+        		<span class="Fleft">#{labelMsgs.termsOfUseLabel}</span>
+            </div>
+            <div class="body_container_above_gradiant" style="width:500px;">
+            		<div class="gradiant_box_left"/>
+                    <div class="gradiant_box_middle" style="width:475px;">
+	               	    <img class="gradiant_img" src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="475" height="2" align="top" alt="White_Gray_Gradiant" />
+	               	</div>
+                    <div class="gradiant_box_right"/>
+            </div>
+            
+	<!--  body content start   --> 
+      		<div class="body_wrapper" style="width:500px;">
+            	<div class="body_wrapper_left_shadow" style="min-height:250px;"/>
+           		<div class="body_wrapper_container" style="width:475px; min-height:250px;">
+           			<c:set var="country" value="#{sessionScope.country eq 'US'?'US':sessionScope.country eq 'GB'?'GB':geoProfileBean.country eq 'GB'?'GB':'US'}"/>
+           			<iframe src="#{applicationScope.consentBaseUrl}#{country}#{applicationScope.TOU_URL}rsaml" id="printable_area" style="width:445px; margin:0 10px; height:170px; overflow:visible; display:-moz-stack; display:-webkit-stack; display:-khtml-stack; display:stack; overflow-x:hidden; overflow-y:visible;"  frameborder="0" scrolling="yes" class="PageIframe" />
+           			<c:if test="#{sessionScope.touAvailableFlag == 'YES'}">
+           			<div class="anchor_LinkImage" style="margin:5px 8px 25px 15px; float:left;">
+		           		<span>
+		           			<h:commandLink id="acceptButtonOfUser" action="#{termsOfUseBean.termsAndConditionAcceptAction}" onclick="javascript:disableButton();this.onclick=null;" value="#{labelMsgs.acceptButton}"/>
+		           		</span>
+	           		</div>
+	           		<div class="DonotAccept" style="float:left; margin-top:8px;" >
+	           			<span>
+	           				<h:commandLink id="declineButtonOfUser" style="color:#fff;"  action="#{termsOfUseBean.termsAndConditionDeclineAction}" value="#{labelMsgs.donotAccept}"/>
+	           			</span>
+	           		</div>
+	           		</c:if>
+	           		<c:if test="#{sessionScope.touAvailableFlag ne 'YES'}">
+	           		<div class="DonotAccept" style="float:left; margin:8px 0pt 0pt 18px;" >
+	           			<span>
+	           				<h:commandLink id="continueButtonOfUser" style="color:#fff;"  action="#{termsOfUseBean.termsAndConditionDeclineAction}" value="#{labelMsgs.continue}"/>
+	           			</span>
+	           		</div>
+	           		</c:if>
+           		</div>
+                <div class="body_wrapper_right_shadow" style="min-height:250px;"/>
+            </div>
+    <!--  body content end  --> 
+	</div>
+	</h:form>
+</ui:composition>

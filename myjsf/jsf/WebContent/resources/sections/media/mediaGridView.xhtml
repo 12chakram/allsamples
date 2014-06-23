@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:comp="http://www.dece.com/jsf">			
+	
+	<div class="MediaIconAll">
+		<div class="left_tvIcon">
+			<a tabindex="#{byretailerVal}" class="ListViewIconDull" href="#"  onclick="setVal(this,'pageView','LIST','');"><img title="#{labelMsgs.listViewIcon}" src="#{applicationScope.staticContentBaseUrl}/images/listIcon_Active.png" width="16" height="15" /></a>
+			<a href="#" class="GridViewIcon"><img title="#{labelMsgs.gridViewIcon}" src="#{applicationScope.staticContentBaseUrl}/images/GridIconDull.png" width="16" height="15" /></a>
+		</div>
+		<div class="left_sortAll">
+			#{labelMsgs.sortby}
+			<select tabindex="#{byretailerVal+1}" id="viewSort" onchange="setVal(this,'sortViewBy',this.value,'');" title="#{labelMsgs.sortby}">
+			   <option value="ALPHA">#{labelMsgs.titleLbl}</option>
+				<option value="RECENT">#{labelMsgs.mediaSortBy}</option>
+			</select>
+		</div>
+	</div>
+	<div class="border_line"></div>
+	<div class="MediaPagenation">
+			<ui:include src="mediaSectionGridViewPagination.xhtml"/>
+	</div>
+	<c:set var="itr" value="0"/>
+	<c:set var="gridViewMediaTabIndex" value="#{byretailerVal+10}"/>
+	<c:forEach items="#{ourMediaBean.uiMediaList}" var="uiMediaItem">
+	<c:set var="itr" value="#{itr+1}"/>
+	<c:if test="#{itr eq '1' || (itr % 4) eq '1'}">
+							<h:outputText escape="false" value="&lt;div style=&quot;float:left&quot; &gt;"/>
+						</c:if>	 						
+		<c:if test="#{(itr % 4) eq '0'}">
+							<h:outputText escape="false" value="&lt;div class=&quot;MediagridDetailRight&quot; &gt;"/>
+						</c:if>	
+		<c:if test="#{itr &lt; '4' || (itr % 4) ne '0'}">
+							<h:outputText escape="false" value="&lt;div class=&quot;MediagridDetail&quot; &gt;"/>
+						</c:if>	
+		
+			<div class="MediaGridImg">
+				<span>				
+					<img  title="#{uiMediaItem.displayName}" src="#{uiMediaItem.imageUrl}" width="110" height="163" onclick="setVal(this,'viewMediaTitle','#{itr}','');"/>
+				</span>				
+			</div>
+			<a tabindex="#{gridViewMediaTabIndex}" id="GridViewFavIcon" title="#{uiMediaItem.favMediaFlag?labelMsgs.addtoFav:labelMsgs.remFromFav}" class="MediaFavImg#{uiMediaItem.favMediaFlag?'Active':'Dull'}" onclick="setVal(this,'#{uiMediaItem.favMediaFlag?'Rem':'Add'}Fav','#{uiMediaItem.mediaId}','');"></a>
+			<div class="MediaGridMovieTitle" onclick="setVal(this,'viewMediaTitle','#{itr}','');">
+						 <c:if test="#{fn:length(uiMediaItem.displayName) gt 48}">
+		 								#{fn:substring(uiMediaItem.displayName,0,44)}...
+		 						<span  class="ShowMore">
+		 							<a  id="GridViewToDetail" title="#{uiMediaItem.displayName}" >#{labelMsgs.mediaGridMore} </a>
+		 	 					</span>	
+		 				</c:if>
+		 				<c:if test="#{fn:length(uiMediaItem.displayName) lt 48}">
+		 			      	 <label title="#{uiMediaItem.displayName}">#{uiMediaItem.displayName}</label>
+		 			      	 <c:set var="episodies" value="0"/> 
+		 			   			 <c:forEach items="#{uiMediaItem.episodicMedia}" var="episodicTitle">
+		 			   			 <c:set var="episodies" value="#{episodies+1}"/>
+		 			   			 		<c:if test="#{episodies eq '1'}">
+		 			   			 			<span>...</span>
+		 			      				 	<span  class="ShowMore">
+		 										<a id="GridViewToEpisodicDetail" title="#{uiMediaItem.displayName}" >#{labelMsgs.mediaGridMore} </a>
+		 	 								</span>
+		 	 							</c:if>
+		 	 					</c:forEach>
+		 				</c:if>
+					
+		  </div>	
+           
+			<h:outputText escape="false" value="&lt;/div&gt;"/>
+	
+			<c:if test="#{itr &gt; '3' &amp;&amp; (itr % 4) eq '0'}">
+						<h:outputText escape="false"  value="&lt;/div&gt;"/>
+			</c:if>				
+				<c:set var="gridViewMediaTabIndex" value="#{gridViewMediaTabIndex+1}"/>	
+	</c:forEach>
+	<c:if test="#{itr &lt; '4' }">
+		<h:outputText escape="false"  value="&lt;/div&gt;"/>
+	</c:if>
+    <div class="MediaPagenation">
+		<ui:include src="mediaSectionGridViewFtrPagination.xhtml"/>
+	</div>                          	
+   
+</ui:composition>

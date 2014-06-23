@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<script type="text/javascript">
+	var prevElementID='frstDivID';
+		function resendLink(){
+			document.getElementById('hostageForm:resendLink').style.color="#999";
+			document.getElementById('hostageForm:resendLink').style.cursor="default";
+			document.getElementById('hostageForm:resendLink').title="";
+		}
+		function errorMsgSuppress(){
+			document.getElementById('errorMsgDiv').className="MarginTop20";
+			document.getElementById('errorMsgDiv').style.height="0px";
+			document.getElementById('emailUpdateForm:errorMessageId').innerHTML="";
+			document.getElementById('emailUpdateForm:errorMessageId').className="";
+			document.getElementById('emailUpdateForm:pageErrorMessage').innerHTML="";
+			document.getElementById('emailUpdateForm:pageErrorMessage').className="";
+		}
+		function forButtonToggle(){
+			if(prevElementID=='frstDivID'){
+				document.getElementById('buttonCheckId2').className="DisplayNone";
+				document.getElementById('buttonCheckId').className="button_input";
+			}
+			if(prevElementID=='forAjaxButton'){
+				document.getElementById('buttonCheckId').className="button_input";
+				document.getElementById('buttonCheckId2').className="DisplayNone";
+			}
+		}
+		function toInsertHtmlButton(id,frmId,forResendStatus){
+			if(forResendStatus == true){
+				document.getElementById('buttonCheckId2').className="button_input";
+				document.getElementById('buttonCheckId').className="DisplayNone";
+				document.getElementById('inputTypebutton').focus();
+				prevElementID=frmId;
+			}
+			else
+				document.getElementById('emailUpdateForm:forAjaxButton').focus();
+		}
+		function myKeyPressed(e){
+			e = e || window.event;
+			var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			if (unicode == 13){
+					document.getElementById('emailUpdateForm:forAjaxButton').click();
+					return false;
+				}else{
+					return true;
+				}
+		}
+	</script>
+
+	<h:form id="emailUpdateForm">
+	<!-- Update Email popup starts here -->
+		<div id="CONFIRMEMAIL" class="popupContact" style="z-index:10003;">
+			<div class="popup_textarea">
+				<h3><h:outputLabel value="#{labelMsgs.emailVerification}"/></h3>
+				<div class="VerifyEmailText" style="min-height: 135px;">
+					<h4><h:outputLabel value="#{labelMsgs.emailAddrLabel}:" for="emailUpdateForm:email"/></h4>
+					<h:inputText id="email" styleClass="input" title="#{labelMsgs.emailAddrLabel}" value="#{hostageBean.emailUpdate}" onclick="javascript:forButtonToggle();" onkeydown="javascript:return myKeyPressed(event);" autocomplete="off" onfocus="errorMsgSuppress();" maxlength="100"/>  
+					<h:panelGroup id="updateEmail">
+						<div id="errorMsgDiv" class="#{hostageBean.errorMessage ne null &amp;&amp; hostageBean.errorMessage ne '' || hostageBean.errorValueMap.pageError ne null &amp;&amp; hostageBean.errorValueMap.pageError ne ''?'MarginTop5':'MarginTop20'}">
+							<h:outputLabel  id="errorMessageId" styleClass="#{hostageBean.errorMessage ne null &amp;&amp; hostageBean.errorMessage ne ''?'EmailError':'DisplayNone'}" value="#{hostageBean.errorMessage}"/>
+							<h:outputLabel id="pageErrorMessage"  styleClass="#{hostageBean.errorValueMap.pageError ne null &amp;&amp; hostageBean.errorValueMap.pageError ne ''?'EmailError':'DisplayNone'}" value="#{hostageBean.errorValueMap.pageError}"/>
+						</div>
+                    </h:panelGroup>
+					<div id="forToggleDivId">
+						<div class="button_input" id="buttonCheckId">
+							<a4j:commandButton id="forAjaxButton"  styleClass="image_button" style="clear:both; display:block;" title="#{labelMsgs.emailChangeButton}" value="#{labelMsgs.emailChangeButton}" action="#{hostageBean.updateUserEmail}" render="errorMessageId,updateEmail,emailAddress,errMsgId,pageErrorMessage,cancelId,forStatusOfSuccessId" oncomplete="toInsertHtmlButton(this,'forAjaxButton',#{hostageBean.forResendStatus});"/>
+						</div>
+						<div  class="DisplayNone" id="buttonCheckId2">
+							<input type="button" id="inputTypebutton" title="#{labelMsgs.emailChangeButton}" value="#{labelMsgs.emailChangeButton}" class="image_button" style="cursor:default;"></input>
+						</div>
+						<div class="button_input" style="padding-left: 15px;">
+							<a4j:commandButton id="cancelId"  styleClass="image_button" style="clear:both; display:block;" value="#{hostageBean.forResendStatus eq 'true'?labelMsgs.closeLabel:labelMsgs.cancel}" title="#{hostageBean.forResendStatus eq 'true'?'CLOSE':'CANCEL'}" action="#{hostageBean.closePopUp}" oncomplete="disablePopup1('CONFIRMEMAIL', 'backgroundPopup');"  />
+						</div>
+					</div>
+				</div>
+				<div class="successMsg_AtPagetitle" id="sucessStatusId">
+            		<h:outputLabel id="forStatusOfSuccessId"   value="#{labelMsgs.forSuccessResendmail}"   styleClass="#{hostageBean.forResendStatus eq 'true'?'SuccessMsg':'SuccessMsgDull'}"/>
+            		<h:outputLabel  id="errMsgId" styleClass="#{hostageBean.emailErrMsg ne null &amp;&amp; hostageBean.emailErrMsg ne ''?'EmailError':'DisplayNone'}" value="#{hostageBean.emailErrMsg}"/>
+            	</div>
+			</div>
+		</div>
+		
+	<!-- Update Email popup ends here -->
+	</h:form>	
+		
+     <!--  main body start   --> 
+     <h:form id="hostageForm">  
+        <div class="main_body">
+        	<div class="PageMain_heading">
+        		<span class="Fleft"><h:outputLabel value="#{labelMsgs.accountInfo1}"/></span>
+                 <span class="HavingTrouble">
+                 	<h:outputLabel value="#{labelMsgs.havingTrouble}"/>
+                 	<h:commandLink styleClass="Common_pointer" style="padding-left: 5px;" value="#{labelMsgs.helpNfaq}" action="#{loginNavigationBean.navigateToUnAuthHelpPage}" id="helpLink">
+						<f:setPropertyActionListener value="profile" target="#{help.helpNav}"/>
+			     	</h:commandLink>
+			     </span>
+            </div>
+            <div class="body_container_above_gradiant">
+            		<div class="gradiant_box_left">
+                    </div>
+                    <div class="gradiant_box_middle">
+	               	    <img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="" />
+	               	</div>
+                    <div class="gradiant_box_right">
+                    </div>
+            </div>
+    <!--  body content start    --> 
+       	<div class="body_wrapper">
+			<div class="body_wrapper_left_shadow"></div>
+       		<div class="body_wrapper_container">
+	            <div class="UserBodyVioletBox">
+	            	<h3 style="color: #000000;"><h:outputLabel value="#{labelMsgs.reActiveInfo1}"/></h3>
+                   	<div class="MsgIconImage"> 
+	   					<img src="#{applicationScope.staticContentBaseUrl}/images/mail_icon.png" width="94" height="93" />
+      				</div>
+	                   	<div class="AccountText">
+							<h:outputLabel value="#{labelMsgs.reActiveEmailInfo} "/><h:outputLabel value="#{hostageBean.userDVO.email}." id="emailAddress"/><h:outputLabel value="#{labelMsgs.reActiveEmailInfo1}"/>
+							<br /><br />
+							<h:outputLabel value="#{labelMsgs.regSuccJunkEmail}"/>&#160;
+							<a4j:region id="forResendRegionId">
+								<a4j:commandLink styleClass="violet_color_link FontSize10" id="resendLink" action="#{hostageBean.resendEmail}" render="forResendLinkStatusOfSuccessId,forResendLinkerrMsgId" onclick="javascript: resendLink(); this.onclick='null';" title="#{labelMsgs.regSuccSendMail_hostage}" value="#{labelMsgs.regSuccSendMail_hostage}"/>
+							</a4j:region>
+							<h:outputLabel value="#{labelMsgs.orLabel} we can"/> <a class="violet_color_link FontSize10" title="#{labelMsgs.confDiffEmail}" onclick="openPopup('CONFIRMEMAIL', 'backgroundPopup');" href="#">#{labelMsgs.confDiffEmail}</a>
+	            	</div>   
+	            	   <div class="AccountText" id="ReSendsucessStatusId" style="padding-top:5px;">
+	            	   				<span style="float:left;">
+		            	   				<a4j:status for="forResendRegionId" id="resendStatusid" style="float:left;" >
+											<f:facet name="start">
+											      <h:graphicImage styleClass="Spinner"  value="#{applicationScope.staticContentBaseUrl}/images/processing-spinner1.gif"/>
+											</f:facet>
+									    </a4j:status>
+					            		<h:outputLabel id="forResendLinkStatusOfSuccessId"   value="#{labelMsgs.forSucessEmailSent}" style="margin-left:0px;font-size:100%"  styleClass="#{hostageBean.validateForm eq 'true'?'SuccessMsg':'SuccessMsgDull'}"/>
+					            		<h:outputLabel  id="forResendLinkerrMsgId" style="margin-left:0px;margin-bottom:0px;" styleClass="#{hostageBean.emailErrMsg ne null &amp;&amp; hostageBean.emailErrMsg ne '' &amp;&amp; hostageBean.validateForm eq 'false' ?'EmailError':'DisplayNone'}" value="#{hostageBean.emailErrMsg}"/>
+				            		</span>
+				            	</div>
+				    
+                 </div>
+                	<div class=" Fleft UserAccountSkipLink">
+                		<span class="violet_color_link">&lt;&#160;</span>
+                    	<h:commandLink styleClass="violet_color_link" title="#{labelMsgs.backToHome}" value="#{labelMsgs.backToHome}" action="#{loginNavigationBean.navigationToUnauthHomePage}"/>
+                    </div>
+       		 </div>
+             <div class="body_wrapper_right_shadow"></div>
+          </div>
+             <!--  body content end    --> 
+        </div>
+       <!--  main body end    -->
+    </h:form>     
+</ui:composition>

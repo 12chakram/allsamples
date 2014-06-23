@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">			
+	
+	<!--  AddDevicePopUp popup start -->
+	<div id="AddDevicePopUp" class="popupContact" style="z-index:10003;">
+		<div class="popup_textarea">
+			<span class="h3tag"><strong>#{labelMsgs.addDeviceTitle}</strong></span>
+			<br /><br /><br />
+			<div id="AddAccountMsg"><span class="h4tag"><strong>#{labelMsgs.addDeviceMsg}</strong></span></div>
+			<div class="DisplayNone" id="ConnectionCodeMsg"><span class="h4tag"><strong>#{labelMsgs.addDeviceMsg2}</strong></span></div>
+			<div id="deviceAddCode" class="PopUpButton Fleft" style="padding-left:40px; margin-top:40px;">
+				<a4j:commandLink  style="padding-top:10px;"  title="#{labelMsgs.alt_addDeviceCodeLbl}" styleClass="CommonBtn_Link" action="#{householdDevicesBean.getAddDeviceCode}" oncomplete="chgAddDeviceDivs('GETCODE');" render="deviceCodeId">
+					<div>#{labelMsgs.addDeviceCodeLbl}</div>				
+				</a4j:commandLink> 
+			
+				<a href="#" style="padding-top:10px;" title="#{labelMsgs.title_addDeviceClose}" class="CommonBtn_Link_Gray" onclick="javascript:disablePopup1('AddDevicePopUp', 'backgroundPopup');">
+					<div>#{labelMsgs.addDeviceClose}</div>				
+				</a>
+			</div>
+			<div id="deviceClose" class="PopUpButton Fleft" style="padding-left:5px; margin-top:10px;display:none;">
+				<h:inputText id="deviceCodeId" title="#{labelMsgs.alt_deviceCode}" style="width:95%;padding 0 5px; margin:10px 15px 0 0; clear:both; float:left; min-height:20px;" value="#{householdDevicesBean.deviceCode}"/>
+				<br/>
+				<br/>
+				<div style="margin-left:175px;margin-top:30px;padding-top:10px;">
+					<h:commandLink style="padding-top:10px;" title="#{labelMsgs.title_closeLabel}" styleClass="CommonBtn_Link" action="addDeviceSuccessPage">
+						<div>#{labelMsgs.closeLabel}</div>				
+					</h:commandLink>
+				</div>                                                   
+			</div>
+		</div>
+	</div>			 
+                                        
+<!--  AddDevicePopUp popup end -->	
+	
+	<div class="DevicesBoxDiv">	
+		
+		<div class="DevicesAvailable DevicesComingSoon">
+			<div class="ComingSoonWrapper">
+             	<div class="ComingsoonTitle">#{labelMsgs.devicesComing}</div>
+                <div class="InsideContent">
+	                <div class="UvLogo">
+	                	<img height="99" width="100" src="#{applicationScope.staticContentBaseUrl}/images/Uvvu80.png" alt="#{labelMsgs.deviceComing}"/>
+	                </div>
+                	<div class="RightContent">#{labelMsgs.devicesComingMsg1}<br/><br/>#{labelMsgs.devicesComingMsg2}</div>
+                </div>
+			</div>
+	   </div>
+	</div>	                          	
+ </ui:composition>

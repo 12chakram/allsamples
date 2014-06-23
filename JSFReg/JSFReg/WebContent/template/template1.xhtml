@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head>
+ 
+<h:outputStylesheet name="template.css" library="css" />
+
+</h:head> 
+<h:body> 
+
+<div id="main" style="width: 100%; height:auto; border: green 2px solid;"  >
+
+<div align="center" style="background-image: url('./images/logo.png');">
+<h1><h:outputLabel value="JSF Templating Example...." /></h1>
+</div>
+
+<div id="content" style="border: 2px solid red;float: left; min-height: 500px; width:100%;">
+
+<div class="sidebar">
+<h2><ui:insert name="sidebar">Component Name</ui:insert></h2> 
+</div>
+
+ <div class="body" >
+ <ui:insert name="body">
+  </ui:insert>
+ </div>
+ 
+ 
+</div>
+<div id="footer" class="footer">
+ <h2><ui:insert name="footer">Default footer</ui:insert></h2>	
+ </div>
+ 
+
+
+</div>
+</h:body> 
+</html>

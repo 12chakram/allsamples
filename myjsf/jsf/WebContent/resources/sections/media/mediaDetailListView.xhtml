@@ -1,0 +1,173 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j">	
+		<div class="MediaIconAll">
+		<c:set var="DetailviewPageTab" value="#{byretailerVal}"/>
+					<div class="left_tvIcon">
+						<a tabindex="#{DetailviewPageTab}" class="ListViewIconDull" href="#" onclick="setVal(this,'pageView','LIST','');"><img title="#{labelMsgs.listViewIcon}" src="#{applicationScope.staticContentBaseUrl}/images/listIcon_Active.png" width="16" height="15" /></a>
+						<a tabindex="#{DetailviewPageTab+1}" href="#" class="GridViewIconDull" onclick="setVal(this,'pageView','GRID','');"><img title="#{labelMsgs.gridViewIcon}" src="#{applicationScope.staticContentBaseUrl}/images/GridIconActive.png" width="16" height="15" /></a>
+					</div>
+			<div class="left_sortAll">
+				#{labelMsgs.sortby}
+				<select tabindex="#{DetailviewPageTab+2}" id="viewSort" onchange="setVal(this,'sortViewBy',this.value,'');" title="#{labelMsgs.sortby}">
+				<option value="ALPHA">#{labelMsgs.titleLbl}</option>
+				<option value="RECENT">#{labelMsgs.mediaSortBy}</option>
+				</select>
+			</div>
+		</div>
+		<div class="border_line"></div>
+	  	<div class="MediaPagenation">
+             	<ui:include src="mediaSectionDetailViewPagination.xhtml"/>
+           </div>
+	
+	<c:set var="itr" value="0"/>
+	<c:set var="detailviewMediaContentTab" value="#{byretailerVal+7}"/>
+	 <c:forEach	items="#{ourMediaBean.uiMediaList}" var="uiMediaItem">
+	 	<c:set var="itr" value="#{itr+1}"/>
+	  <div class="MovieListDetailes BorderNone">
+        	<div class="MediaDetailView">
+		  			<span class="DetailImg">
+		  				<img title="#{uiMediaItem.displayName}" src="#{uiMediaItem.imageUrl}" width="190" height="269" />   
+                	</span>    
+               	<a tabindex="#{detailviewMediaContentTab}" id="DetailViewFavIcon" title="#{uiMediaItem.favMediaFlag?labelMsgs.addtoFav:labelMsgs.remFromFav}" style="cursor:pointer;" class="MovieFavorites_#{uiMediaItem.favMediaFlag?'Active':'Dull'}" onclick="setVal(this,'#{uiMediaItem.favMediaFlag?'Rem':'Add'}Fav','#{uiMediaItem.mediaId}','');"></a>
+               	<div class="MovieCopyRight" style="display:none;">&#169;#{labelMsgs.copyRightsBelowFav}</div>
+            </div>
+             <div class="MovieInformationContainer DetailWidth">
+              		<div class="MovieTitle"><h:outputLabel style="cursor:default;" title="#{uiMediaItem.displayName}"  value="#{uiMediaItem.displayName}"/></div>
+                    <div class="MovieDescription">
+		                    <c:set var="checkSummary4000" value="false"/>
+		                    <c:set var="mediaDescription" value="#{ourMediaBean.itemFmt}"/>
+		                    <c:if test="#{uiMediaItem.mediaDescription4000 ne null &amp;&amp; uiMediaItem.mediaDescription4000 ne ''}">
+		                    	<c:set var="mediaDescription" value="#{uiMediaItem.mediaDescription4000}"/>
+		                    	<c:set var="checkSummary4000" value="true"/>
+		                    </c:if>
+                    		<c:if test="#{checkSummary4000 eq 'false' &amp;&amp;( uiMediaItem.mediaDescription4000 eq null || uiMediaItem.mediaDescription4000 eq '')}">
+                    			<c:set var="mediaDescription" value="#{uiMediaItem.mediaDescription400}"/>
+                    		</c:if>
+                    
+							 	<c:if test="#{fn:length(mediaDescription) gt 186}">
+							 		<div id="mediaListDetailViewMoreId" style="display:block;">
+							 				#{fn:substring(mediaDescription,0,184)} ...
+						 						<span  class="ShowMore">
+						 							<a  id="mediaDviewId" onclick="toggleMediaDescription('mediaListDetailViewMoreId','mediaListDetailViewLessId','block');">#{labelMsgs.mediaGridMore} </a>
+						 	 					</span>	
+						 	 		</div>
+						 	 		<div id="mediaListDetailViewLessId" style="display:none;">
+						 				#{mediaDescription}...
+					 						<span  class="ShowMore">
+					 							<a  id="mediaDviewLessId" onclick="toggleMediaDescription('mediaListDetailViewLessId','mediaListDetailViewMoreId','block');">#{labelMsgs.lessLabel}</a>
+					 	 					</span>	
+					 				</div>
+						 	 	</c:if>
+					 	<c:if test="#{fn:length(mediaDescription) lt 186}">
+					 			#{mediaDescription}
+					 	</c:if>
+                    </div>
+              </div>
+         </div>
+         <div class="MovieListDetailes MovieInformationContainer DetailWidthEpisode">
+              	<c:set var="episodeItr" value="1"/>
+              	<c:set var="episodePresentInDetail" value="#{ourMediaBean.itemFmt}"/>
+	              <c:forEach items="#{uiMediaItem.episodicMedia}" var="episodicTitle">
+	              		<c:set var="episodePresentInDetail" value="true"/>
+	              		<c:if test="#{episodeItr eq '1'}">
+	              			<div class="clearBoth">
+	              			<h:outputLabel style="color: #9AA2DC;" value="#{labelMsgs.lowerCaseEpisodes}"/>
+	              			</div>
+	              		</c:if>
+	              		<div class="EpisodeQuestion">
+			              <div id="expand#{episodeItr}" class="expand" style="cursor:pointer;">
+			              		<a onclick="javascript:toggleEpisodes('#{episodeItr}');"><img src="#{applicationScope.staticContentBaseUrl}/images/CollapseMode.png" /></a>
+			              </div>
+				          <div id="collapse#{episodeItr}"  style="display:none;cursor:pointer;" class="collapse">
+				              		<a onclick="javascript:toggleEpisodes('#{episodeItr}');"><img src="#{applicationScope.staticContentBaseUrl}/images/ExpandMode.png" /></a>
+				          </div>
+			              <div class="EpisodeNo">#{episodeItr} .</div>
+	              		  <div class="MediaTitle_Episode" id="episodeTitle#{episodeItr}"  onclick="javascript:toggleEpisodes('#{episodeItr}');" >
+	              					<div id="WhiteTxt#{episodeItr}">#{episodicTitle.originalTitle}</div> 
+	              		  </div>
+		            		<div id="episodeDesc#{episodeItr}" class="MediaDetails" style="display:none;">
+		            			<c:if test="#{fn:length(episodicTitle.mediaDescription) gt 50}">
+			            			<div id="episodeShowMoreID#{episodeItr}" style="display:block;">
+			            				#{fn:substring(episodicTitle.mediaDescription,0,44)}...
+			            				<span  class="ShowMore">
+							 							<a  id="episodesMore#{episodeItr}" onclick="showMoreEpisodeData('#{episodeItr}','block','episodeShowMoreID');">#{labelMsgs.mediaGridMore} </a>
+							 	 		</span>
+							 	 	</div>
+							 	 	<div id="episodeFullView#{episodeItr}" style="display:none;">
+						 	 				#{episodicTitle.mediaDescription}
+						 	 				<span  class="ShowMore">
+					 							<a  id="episodesLess#{episodeItr}" onclick="showMoreEpisodeData('#{episodeItr}','none','episodeFullView');">#{labelMsgs.lessLabel}</a>
+					 	 					</span>	
+		            				</div>
+							 	 </c:if>
+						 	 	<c:if test="#{fn:length(episodicTitle.mediaDescription) lt 50}">
+						 	 		#{episodicTitle.mediaDescription}
+						 	 	</c:if>
+	              		  	</div>
+	              		  </div>	
+	              <c:set var="episodeItr" value="#{episodeItr+1}"/>
+	              </c:forEach> 
+	              <c:if test="#{episodePresentInDetail eq '' &amp;&amp; episodePresentInDetail ne 'true'}">
+	                <div class="MovieRating">#{uiMediaItem.releaseYear}&#160;<img class="Dot" src="#{applicationScope.staticContentBaseUrl}/images/WhiteDot.png"/>&#160; #{uiMediaItem.runningTime}&#160;<img class="Dot" src="#{applicationScope.staticContentBaseUrl}/images/WhiteDot.png"/> &#160;#{uiMediaItem.ratings} </div>
+                    <div class="MovieType">#{uiMediaItem.genre}</div>
+                    
+                    <div class="AcquiredRetailer margin_top12">
+                    	<span class="AcquiredDate">#{labelMsgs.mediaAcquired} #{uiMediaItem.addedDate} #{uiMediaItem.website ne null &amp;&amp; uiMediaItem.website ne ''?labelMsgs.acquiredFrom:''}</span>
+                     	<c:if test="#{uiMediaItem.website ne null &amp;&amp; uiMediaItem.website ne ''}">
+	                    	<c:set var="toAppendHttp" value="http://#{uiMediaItem.website}"/>
+	                    		<a href="#{fn:contains(uiMediaItem.website,'http')?uiMediaItem.website:toAppendHttp}" target="_blank">
+	                    			<img class="RetailerLogo" src="#{uiMediaItem.retailerLogo}" width="80" height="50"  title="#{labelMsgs.visitRetailerSite}" />
+	                    		</a>
+	                    	</c:if>
+                    </div>
+                    <c:set var="frmtItemValue" value="#{ourMediaBean.itemFmt}"/>
+	                    <c:set var="HdValue" value="false"/>
+	                    <c:set var="SdValue" value="false"/>
+	                    <c:forEach	items="#{uiMediaItem.purchasedFormat}" var="uiMediaItemFormat">
+	                    	<c:if test="#{uiMediaItemFormat.mediaFormat ne 'PORTABLE_DEFINITION'}">
+	                    		<c:if test="#{uiMediaItemFormat.mediaFormat eq 'HIGH_DEFINITION'}">
+	                    			<c:set var="HdValue" value="true"/> 
+	                    		</c:if>
+	                    		<c:if test="#{uiMediaItemFormat.mediaFormat eq 'STANDARD_DEFINITION'}">
+	                    			 <c:set var="SdValue" value="true"/>
+	                    		</c:if>
+	                    	</c:if>
+	                    </c:forEach>
+	                      <c:set var="frmtItemValue" value="#{HdValue eq 'true' &amp;&amp; SdValue eq 'true' ?'2' : HdValue eq 'false' &amp;&amp; SdValue eq 'true' ? '3': HdValue eq 'true' &amp;&amp; SdValue eq 'false' ? '1':'0'}"/> 
+	                    <div class="#{frmtItemValue eq '0'?'':'SD_HD_Right'}">#{frmtItemValue eq '1'?labelMsgs.highDefLabel:frmtItemValue eq '2'?labelMsgs.standardAndHighDefLabel: frmtItemValue eq '3'?labelMsgs.standardDefLabel:''}</div>
+                     		<div class="#{uiMediaItem.consumedFlag eq 'false'?'PhysicalCopy_Available':'PhysicalCopy_NotAvailable'}">#{uiMediaItem.consumedFlag eq 'false' ? labelMsgs.physicalCopyAvailable : labelMsgs.physicalCopyUsed}&#160;#{uiMediaItem.consumedFlag eq 'false' ?uiMediaItem.retailer:''}</div>
+	                    <div class="ExactTypeofMedia"><img src="#{applicationScope.staticContentBaseUrl}/images/DiscIcon.png" width="23" height="23" /> <img src="#{applicationScope.staticContentBaseUrl}/images/FloppyIcon.png" width="19" height="18" />
+	                    </div>
+		                    <div class="AccessFromProvider">
+		                    	<div class="ProviderText">#{labelMsgs.AcessFromprovider}</div>
+		                        <div class="ProviderLinks">
+		                        <c:set var="streamUrl" value="#{uiMediaItem.streamWebLoc eq null || uiMediaItem.streamWebLoc eq ''?'true':'false'}"/>
+		                        <c:set var="toAppendStreamUrl" value="http://#{uiMediaItem.streamWebLoc}"/>
+		                        <c:set var="toAppendFullfillmentUrl" value="http://#{uiMediaItem.fulfillmentLoc}"/>
+		                        <div class="button_Link">
+		                        	<span>
+				                         <a  id="DetailListwatchId"  target="_blank" title="#{labelMsgs.watchTitleMsg}"  href="#{streamUrl eq 'false' ? fn:contains(uiMediaItem.streamWebLoc,'http') ? uiMediaItem.streamWebLoc: toAppendStreamUrl : fn:contains(uiMediaItem.fulfillmentLoc,'http')?uiMediaItem.fulfillmentLoc:toAppendFullfillmentUrl}">
+			 									<span>#{labelMsgs.watchLabel}</span>  
+									     </a>
+								     </span>
+								 </div>
+								 <div class="#{uiMediaItem.fulfillmentLoc ne null &amp;&amp; uiMediaItem.fulfillmentLoc ne '' ? 'button_Link MarginLeft10' : 'button_Link_Dull MarginLeft10'}">
+								 	<span>
+									     <a  id="DetailListdownloadId"  target="_blank" title="#{uiMediaItem.fulfillmentLoc ne null &amp;&amp; uiMediaItem.fulfillmentLoc ne '' ?labelMsgs.downloadLabel:labelMsgs.downloadNotavilable}"  href="#{uiMediaItem.fulfillmentLoc ne null &amp;&amp; uiMediaItem.fulfillmentLoc ne '' ? fn:contains(uiMediaItem.fulfillmentLoc,'http') ? uiMediaItem.fulfillmentLoc:toAppendFullfillmentUrl :'#'}">
+			 									<span>#{labelMsgs.downloadLabel}</span>  
+									     </a>
+								     </span>
+								</div>
+		                        </div>
+		                    </div>   
+		             </c:if>          
+   		</div>
+   		<c:set var="detailviewMediaContentTab" value="#{forTabIndexContinue eq 'false'?detailViewDownloadTab+1:detailViewDownloadTab}"/>
+         	</c:forEach>  
+</ui:composition>

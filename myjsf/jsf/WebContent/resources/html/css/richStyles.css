@@ -1,0 +1,102 @@
+/*Slider CSS*/
+.rich-inslider-handler  {
+background:url("../images/slider.png") no-repeat scroll left top transparent;
+height:11px;
+margin-top:-3px;
+width:18px;
+}
+.rich-inslider-handler-selected  {
+background:url("../images/slider.png") no-repeat scroll left top transparent;
+height:11px;
+margin-top:-3px;
+width:18px;
+}
+.rich-inslider-track-decor-2  {
+border-color:#FFFFFF;	
+}
+.rich-inslider-track-decor-2 {
+cursor:pointer;
+border:0;
+}
+.rich-inslider-track {
+background-position:left top;
+background-repeat:repeat-x;
+font-size:1px;
+height:4px;
+}
+.rich-inslider-track {
+background-color:#CCCCCC;
+}
+.slider_outer{	
+padding:0 10px;
+margin-bottom:25px;
+}
+.slider_outer2{	
+padding:0 10px;
+margin-bottom:25px;	
+}
+.slider_outer3{	
+padding:0 10px;
+margin-bottom:25px;	
+}
+.slider_outer3EditMode{
+padding:0 0;
+margin-bottom:25px;
+}
+.slider_outer .RatingTitlespan{
+color:#fff;
+float:left;
+width:100px;
+text-align:left;
+}
+.slider_outer2 .RatingTitlespan{
+color:#fff;
+float:left;
+width:91px;
+text-align:center;
+padding:0 0px 0 0;
+text-decoration:none;
+}
+.slider_outer3 .RatingTitlespan{
+color:#fff;
+float:left;
+width:86px;
+text-align:center;
+padding:0 0 0 9px;
+text-decoration:none;
+}
+.slider_outer3EditMode .RatingTitlespan{
+color:#fff;
+float:left;
+width:83px;
+text-align:center;
+padding:0 0 0 2.5px;
+text-decoration:none;
+}
+.slider_outer .RatingTitlespan label{
+	text-decoration:none;
+	}
+.slider_outer2 .RatingTitlespan label{
+	text-decoration:none;
+	}
+.slider_outer3 .RatingTitlespan label{
+	text-decoration:none;
+	}
+.slider_outer2 .RatingTitlespan a{
+	text-decoration:none;
+	cursor: pointer;
+	color:#fff;
+	}
+.slider_outer3 .RatingTitlespan a{
+	text-decoration:none;
+	cursor: pointer;
+	color:#fff;
+	}
+.slider_outer .RatingTitlespan a{
+	text-decoration:none;
+	cursor: pointer;
+	color:#fff;
+	}
+
+
+

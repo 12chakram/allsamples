@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/resources/templates/authenticatedTemplate.xhtml">
+	<ui:define name="authMenu">
+		<ui:include src="/resources/sections/addUser/addUserMenu.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+		<c:if test="#{accountMergeBean.stepRender eq 'stepOne'}">
+			<ui:include
+				src="/resources/sections/accountMerge/accountMergeStep1.xhtml" />
+		</c:if>
+		<c:if test="#{accountMergeBean.stepRender eq 'stepOneError'}">
+			<ui:include
+				src="/resources/sections/accountMerge/accountMergeStep1Error.xhtml" />
+		</c:if>
+		<c:if test="#{accountMergeBean.stepRender eq 'stepTwo'}">
+			<ui:include
+				src="/resources/sections/accountMerge/accountMergeStep2.xhtml" />
+		</c:if>
+		<c:if test="#{accountMergeBean.stepRender eq 'stepThree'}">
+			<ui:include
+				src="/resources/sections/accountMerge/accountMergeStep3.xhtml" />
+		</c:if>
+		<c:if test="#{accountMergeBean.stepRender eq 'accountMergeSuccess'}">
+			<ui:include
+				src="/resources/sections/accountMerge/accountMergeSuccess.xhtml" />
+		</c:if>
+	</ui:define>
+</ui:composition>

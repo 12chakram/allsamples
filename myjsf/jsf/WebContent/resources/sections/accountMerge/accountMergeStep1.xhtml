@@ -1,0 +1,279 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:comp="http://www.dece.com/jsf"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:truncate="http://www.dece.com/jsf">
+
+	<h:head>
+		<script type="text/javascript">
+			window.onload = function() {
+				var errCode = "#{accountMergeBean.errorValueMap.pageError}";
+				if (null == errCode || errCode == '') {
+					document.getElementById('frmAccountMergeStep1:inputUName')
+							.focus();
+				}
+				if ('TOU_NOT_ACCEPTED_BY_CLG' == errCode
+						|| 'COPPA_NOT_ACCEPTED_BY_CLG' == errCode
+						|| 'ACCOUNT_USER_STATUS_BLOCKED_CLG' == errCode) {
+					buttonFireEvent('pending');
+				}
+			}
+
+			function buttonFireEvent(toPage) {
+				var fireOnThis;
+				if (toPage == 'pending') {
+					fireOnThis = document
+							.getElementById('frmAccountMergeStep1:hiddenPending');
+				} else if (toPage == 'noPending') {
+					fireOnThis = document
+							.getElementById('frmAccountMergeStep1:hiddenLink');
+				}
+				if (document.createEvent) {
+					var eventObj = document.createEvent('MouseEvents');
+					eventObj.initEvent('click', true, false);
+					fireOnThis.dispatchEvent(eventObj);
+				} else if (document.createEventObject) {
+					fireOnThis.fireEvent('onclick');
+				}
+			}
+			function assignValueForCaptcha(refreshId) {
+				document
+						.getElementById('frmAccountMergeStep1:exceededAtttemptsId').value = 'true';
+				if (refreshId == 'yes') {
+					Recaptcha.reload();
+					document.getElementById('CaptchaPanel').style.display = 'block';
+					return true;
+				}
+
+			}
+			function hideRecapthca() {
+				document.getElementById('CaptchaPanel').style.display = 'none';
+			}
+
+			function myKeyPressed(e) {
+				e = e || window.event;
+				var unicode = e.charCode ? e.charCode : e.keyCode ? e.keyCode
+						: 0;
+				if (unicode == 13) {
+					FireEventonthis();
+				}
+			}
+
+			function FireEventonthis() {
+				var fireOnThis = document
+						.getElementById('frmAccountMergeStep1:signInButton');
+				if (document.createEvent) {
+					var evObj = document.createEvent('MouseEvents');
+					evObj.initEvent('click', true, false);
+					fireOnThis.dispatchEvent(evObj);
+				} else if (document.createEventObject) {
+					fireOnThis.fireEvent('onclick');
+				}
+			}
+
+			function validateFields() {
+				var isFormValid = true;
+				var username = document
+						.getElementById('frmAccountMergeStep1:inputUName');
+				var password = document
+						.getElementById('frmAccountMergeStep1:inputPassword');
+				if (null == username || username.value == "") {
+					document
+							.getElementById('frmAccountMergeStep1:userNameError').style.display = "block";
+					document
+							.getElementById('frmAccountMergeStep1:userNameError').innerHTML = "#{errorMsgs.username_required}";
+					document
+							.getElementById('frmAccountMergeStep1:userNameError').className = "err_msg";
+					isFormValid = false;
+				} else {
+					document
+							.getElementById('frmAccountMergeStep1:userNameError').innerHTML = "";
+					document
+							.getElementById('frmAccountMergeStep1:userNameError').className = "DisplayNone";
+				}
+				if (null == password || password.value == "") {
+					document
+							.getElementById('frmAccountMergeStep1:passwordError').style.display = "block";
+					document
+							.getElementById('frmAccountMergeStep1:passwordError').innerHTML = "#{errorMsgs.password_mandatory}";
+					document
+							.getElementById('frmAccountMergeStep1:passwordError').className = "err_msg";
+					isFormValid = false;
+				} else {
+					document
+							.getElementById('frmAccountMergeStep1:passwordError').innerHTML = "";
+					document
+							.getElementById('frmAccountMergeStep1:passwordError').className = "DisplayNone";
+				}
+				return isFormValid;
+			}
+		</script>
+	</h:head>
+
+	<h:form id="frmAccountMergeStep1">
+		<div class="main_body">
+			<div class="create_h_hold_heading">
+				<span class="Fleft"><h:outputLabel
+						value="#{labelMsgs.accountMergPageHeading}" /></span>
+			</div>
+			<div class="body_container_above_gradiant">
+				<div class="gradiant_box_left"></div>
+				<div class="gradiant_box_middle">
+					<img height="2" width="978" align="top" alt=""
+						src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg"
+						class="gradiant_img" />
+				</div>
+				<div class="gradiant_box_right"></div>
+			</div>
+
+			<!-- Merge Account step-1 active start -->
+			<div class="h_hold_menu_Add_step1_active">
+				<div class="menu_bar_top_shadow"></div>
+				<div class="menu_bar_steps">
+					<div class="create_h_hold_step_1">
+						<div class="step_1_icon"></div>
+						<div class="step_1_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel
+											value="#{labelMsgs.signInToOtherAccount}" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_2_left"></div>
+					<div class="create_h_hold_step_2" style="cursor: default;">
+						<div class="step_2_icon"></div>
+						<div class="step_2_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel value="#{labelMsgs.verifyMergeDetals}" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_3_left"></div>
+					<div class="create_h_hold_step_3">
+						<div class="step_3_icon"></div>
+						<div class="step_3_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel value="#{labelMsgs.confirmMerge}" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_3_right"></div>
+				</div>
+				<div class="menu_bar_bottom_shadow">
+					<div class="menu_bar_bottom_shadow_left"></div>
+					<div class="menu_bar_bottom_shadow_middle"></div>
+					<div class="menu_bar_bottom_shadow_right"></div>
+				</div>
+			</div>
+			<!-- Merge Account step-1 active end -->
+
+			<!-- Body content start-->
+			<div class="body_wrapper">
+				<div class="body_wrapper_left_shadow"></div>
+				<div class="body_wrapper_container">
+					<div class="MergeUserContent">
+						<div class="mergecontentText">
+							<h:outputLabel value="#{labelMsgs.accountMergeStep1Msg1}" />
+							<br /> <br />
+							<h:outputFormat value="#{labelMsgs.accountMergeStep1Msg2Part1}">
+								<f:param value="#{sessionScope.DispName}" />
+							</h:outputFormat>
+							<br />
+							<h:outputLabel
+								value="#{labelMsgs.accountMergeStep1Msg2Part2}
+								#{sessionScope.DispName}
+								#{labelMsgs.accountLabelSmall}." />
+						</div>
+						<div class="Mergeuserfield_input">
+							<b><h:outputLabel value="#{labelMsgs.usernameLabel}" /></b><br />
+							<div class="Mergeform_inputfield">
+								<h:inputText styleClass="Mergeinput"
+									title="#{labelMsgs.usernameLabel}" size="20" id="inputUName"
+									alt="#{labelMsgs.usernameLabel}" tabindex="7"
+									value="#{accountMergeBean.userName}" maxlength="64"
+									onfocus="toggleHintMsg('frmAccountMergeStep1:userNameError','none');toggleHintMsg('frmAccountMergeStep1:signInPanelError','none');" />
+							</div>
+							<h:outputLabel id="userNameError"
+								style="display:none; margin-top:2px; margin-left:10px;" />
+							<div
+								style="left: 570px; padding-top: 0px; *padding-top: 0px; position: absolute; clear: both;">
+								<h:panelGroup id="signInPanelError"
+									style="float: left; height: 25px; margin:30px 0 0 20px; *margin-top:15px;"
+									styleClass="#{accountMergeBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || accountMergeBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG' || accountMergeBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'DisplayNone':accountMergeBean.errorValueMap.pageError ne null?'err_msg':'DisplayNone'}">
+									<span class="Fleft"> <h:outputLabel id="signInError1"
+											rendered="#{accountMergeBean.errorValueMap.pageError ne null}"
+											value="#{accountMergeBean.errorValueMap.pageError}"
+											styleClass="#{accountMergeBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || accountMergeBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG' || accountMergeBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'DisplayNone' : accountMergeBean.forErrStatus eq 'ExceededAttempts'?'UserPasswordFields':accountMergeBean.forErrStatus eq 'locked'?'UserPasswordFields':accountMergeBean.forErrStatus eq 'accountLocked'?'UserPasswordFields':accountMergeBean.errorValueMap.pageError ne null?'UserPasswordFields':'DisplayNone'}"></h:outputLabel>
+									</span>
+								</h:panelGroup>
+							</div>
+						</div>
+						<div class="Mergeuserfield_input">
+							<b><h:outputLabel value="#{labelMsgs.passwordLabel1}" /> </b><br />
+							<div class="Mergeform_inputfield">
+								<h:inputSecret styleClass="Mergeinput" tabindex="8"
+									title="#{labelMsgs.passwordLabel1}"
+									value="#{accountMergeBean.password}" redisplay="true"
+									id="inputPassword" alt="#{labelMsgs.passwordLabel1}"
+									autocomplete="off" maxlength="64"
+									onfocus="toggleHintMsg('frmAccountMergeStep1:passwordError','none');toggleHintMsg('frmAccountMergeStep1:signInPanelError','none');" />
+							</div>
+							<h:outputLabel id="passwordError"
+								style="display:none; margin-top:2px; margin-left:10px;" />
+						</div>
+
+						<div class="forgetPassword">
+							<h:link tabindex="9" title="#{labelMsgs.needHelpSignIn}"
+								styleClass="violet_color_link textDecorationNone"
+								value="#{labelMsgs.needHelpSignIn}"
+								outcome="recoveringSignInNamePage" />
+						</div>
+
+						<div class="WarningMsg">
+							<h:outputLabel>#{labelMsgs.cannotUndoMerge}</h:outputLabel>
+						</div>
+					</div>
+					<div class="h_hold_continue_btn" style="padding-left: 26px;">
+						<div class="button_input">
+							<a4j:commandButton id="signInButton" tabindex="10"
+								styleClass="image_button" onclick="return validateFields();"
+								title="#{labelMsgs.signIn}" value="#{labelMsgs.signIn}"
+								action="#{accountMergeBean.doLogin}"
+								render="signInPanelError,signInError1,pendingAction"
+								oncomplete="#{accountMergeBean.forCaptchaRefresh eq 'no' &amp;&amp; 
+									(accountMergeBean.errorValueMap.pageError eq null || accountMergeBean.errorValueMap.pageError eq '')?'buttonFireEvent(\'noPending\');':''}" />
+							<h:commandLink id="hiddenLink" style="display:none;"
+								tabindex="11" action="#{accountMergeBean.getAccountsDetail}"
+								target="_top" />
+						</div>
+						<div class="mergeCancel">
+							<h:commandLink tabindex="12" title="#{labelMsgs.cancel}"
+								styleClass="violet_color_link textDecorationNone"
+								id="cancelChanges" value="#{labelMsgs.cancel}"
+								action="householdAccountSettingsPage" />
+						</div>
+						<a4j:outputPanel id="pendingAction">
+							<h:commandLink id="hiddenPending" style="dispaly:none;"
+								action="pendingUser" target="_top">
+								<f:param value="#{accountMergeBean.errorValueMap.pageError}"
+									name="dispFor" />
+							</h:commandLink>
+						</a4j:outputPanel>
+					</div>
+				</div>
+				<div class="body_wrapper_right_shadow"></div>
+			</div>
+			<!-- ************************   End of Body Content   ************************ -->
+		</div>
+		<!-- End of Body -->
+	</h:form>
+</ui:composition>

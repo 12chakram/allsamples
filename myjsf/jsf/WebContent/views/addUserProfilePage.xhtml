@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/authenticatedTemplate.xhtml">
+    <ui:define name="authPortalHeader">
+     	<ui:include src="/resources/sections/common/authenticatedHeader.xhtml"/>
+    </ui:define> 
+    <ui:define name="authMenu">
+     	<ui:include src="/resources/sections/common/ourAccountMenu.xhtml"/>
+    </ui:define>           
+	<ui:define name="content">
+		<h:form id="frmCancelAddUser">
+		    <div id="accountNameUnsavedChanges" class="popupContact" style="z-index:10003;">
+		        <div class="popup_textarea">
+		            <h3>#{labelMsgs.saveChanges}</h3>
+					<div class="PopupBody">
+						<div class="PopupLeftContent">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" alt="#{labelMsgs.warningIcon}"/>
+						</div>
+						<div class="PopupRightContent">
+							#{labelMsgs.UnsavedChangesProfile}<br />
+						</div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<div class="CommonBtn_Link" id="cancelButton" title="#{labelMsgs.cancelPop}" onclick="javascript:disablePopup1('accountNameUnsavedChanges', 'backgroundPopup');">
+							<div> #{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+						</div> 
+						<div id="continueButton" title="#{labelMsgs.continue}" class="CommonBtn_Link_Gray" onclick="handleNavigationFromPopup();">
+							<div> #{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+						</div>
+					</div>
+		        </div>
+			</div>
+		</h:form>
+  		<c:if test="#{addUserBean.stepsRender eq 'step1Page'}">
+	  		<ui:include src="/resources/sections/addUser/addUserProfile.xhtml"/>
+		</c:if> 
+		<c:if test="#{addUserBean.stepsRender eq 'step2Page'}"> 
+	   		<ui:include src="/resources/sections/addUser/addUserSecurityPermissions.xhtml"/> 
+		</c:if>
+		<c:if test="#{addUserBean.stepsRender eq 'step3Page'}"> 
+	   		<ui:include src="/resources/sections/addUser/addUserParentalControls.xhtml"/> 
+		</c:if>
+		<c:if test="#{addUserBean.stepsRender eq 'SAUstep3Page'}"> 
+	   		<ui:include src="/resources/sections/addUser/addUserPCForSAU.xhtml"/> 
+		</c:if>
+	</ui:define>
+	<ui:define name="authPortalFooter">
+		    <ui:include src="/resources/sections/common/authenticatedFooter.xhtml"/>
+	</ui:define>
+ </ui:composition>

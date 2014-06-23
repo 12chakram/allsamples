@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/authenticatedTemplate.xhtml">
+    
+    <ui:define name="authPortalHeader">
+    	<c:if test="#{userProfileBean.renderEditPage eq 'true'}">
+     		<ui:include src="/resources/sections/common/authenticatedHeader.xhtml"/>
+     	</c:if>
+     	<c:if test="#{userProfileBean.renderEditPage ne 'true'}">
+     		<ui:include src="/resources/sections/common/authHeader.xhtml"/>
+     	</c:if>
+    </ui:define>
+    
+    <ui:define name="authMenu">
+    	<c:if test="#{userProfileBean.renderEditPage eq 'true'}">
+     		<ui:include src="/resources/sections/common/ourAccountMenu.xhtml"/>
+     	</c:if>
+     	<c:if test="#{userProfileBean.renderEditPage ne 'true'}">
+     		<ui:include src="/resources/sections/addUser/addUserMenu.xhtml"/>
+     	</c:if>
+    </ui:define>
+       
+	<ui:define name="content">
+		<c:if test="#{userProfileBean.renderEditPage eq 'true'}">
+	  		<ui:include src="/resources/sections/myhousehold/editUserProfile.xhtml"/>
+		</c:if>
+		<c:if test="#{userProfileBean.userProfileValueMap.age eq 'CHILD' &amp;&amp; userProfileBean.renderEditPage ne 'true'}">
+			<ui:include src="/resources/sections/myhousehold/viewChildProfile.xhtml"/> 
+		</c:if>
+		<c:if test="#{userProfileBean.userProfileValueMap.age eq 'YOUTH' &amp;&amp; userProfileBean.renderEditPage ne 'true'}">
+			<ui:include src="/resources/sections/myhousehold/viewYouthProfile.xhtml"/> 
+		</c:if>
+		<c:if test="#{userProfileBean.userProfileValueMap.age eq 'ADULT' &amp;&amp; userProfileBean.renderEditPage ne 'true'}">
+			<ui:include src="/resources/sections/myhousehold/viewUserProfile.xhtml"/>
+		</c:if>
+	</ui:define>
+	
+	<ui:define name="authPortalFooter">
+		<c:if test="#{userProfileBean.renderEditPage eq 'true'}">
+			<ui:include src="/resources/sections/common/authenticatedFooter.xhtml"/>
+		</c:if>
+		<c:if test="#{userProfileBean.renderEditPage ne 'true'}">
+			<ui:include src="/resources/sections/common/authFooter.xhtml"/>
+		</c:if>
+	</ui:define>
+	
+</ui:composition>

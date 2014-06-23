@@ -1,0 +1,208 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"	
+	xmlns:truncate="http://www.dece.com/jsf" template="/resources/templates/unAuthenticatedTemplate.xhtml">
+	<ui:define name="unAuthContent">
+<h:head>
+<script type="text/javascript">
+		window.onload = function() {
+			var errCode="#{loginUserBean.errorValueMap.pageError}";
+			if(null==errCode || errCode==''){
+				document.getElementById('frmHomePageIframe:inputUName').focus();
+			}
+			if('TOU_NOT_ACCEPTED_BY_CLG'==errCode || 'COPPA_NOT_ACCEPTED_BY_CLG'==errCode || 'ACCOUNT_USER_STATUS_BLOCKED_CLG'==errCode)
+				 buttonFireEvent('pending'); 
+			}
+			function buttonFireEvent(toPage){
+				var fireOnThis;
+				if(toPage=='pending'){
+					fireOnThis=document.getElementById('frmHomePageIframe:hiddenPending');
+				}
+				else if(toPage=='noPending')
+					fireOnThis = document.getElementById('frmHomePageIframe:hiddenLink');
+				if(document.createEvent) {
+				  var evObj = document.createEvent('MouseEvents');
+				  evObj.initEvent( 'click', true, false );
+				  fireOnThis.dispatchEvent(evObj);
+				} else if( document.createEventObject ) {
+				  fireOnThis.fireEvent('onclick');
+				}
+			}
+			function assignValueForCaptcha(refreshId)
+			{
+				document.getElementById('frmHomePageIframe:exceededAtttemptsId').value='true';
+				if(refreshId=='yes')
+				{
+					Recaptcha.reload();
+					document.getElementById('CaptchaPanel').style.display='block';
+					return true;
+				}
+				
+			}
+			function hideRecapthca()
+			{
+				document.getElementById('CaptchaPanel').style.display='none';
+			}
+			function hideRecaptchaTxt(type)
+			{
+				if(type=='yes')
+					document.getElementById('frmHomePageIframe:captchaLabelID').style.display="none";
+				if(type=='no')
+					document.getElementById('frmHomePageIframe:captchaLabelID').style.display="block";
+			}
+			function myKeyPressed(e){
+				e = e || window.event;
+				var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+				if (unicode == 13){
+					FireEventonthis();
+				}
+			}
+
+			function FireEventonthis(){
+				var fireOnThis = document.getElementById('frmHomePageIframe:signInButton');
+				if(document.createEvent) {
+				  var evObj = document.createEvent('MouseEvents');
+				  evObj.initEvent( 'click', true, false );
+				  fireOnThis.dispatchEvent(evObj);
+				} else if( document.createEventObject ) {
+				  fireOnThis.fireEvent('onclick');
+				}
+			}
+			
+			function validateFields(){
+				var isFormValid = true;
+				var username = document.getElementById('frmHomePageIframe:inputUName');
+				var password = document.getElementById('frmHomePageIframe:inputPassword');
+				if(null==username || username.value=="")
+    			{
+					document.getElementById('frmHomePageIframe:userNameError').style.display="block";
+    				document.getElementById('frmHomePageIframe:userNameError').innerHTML="#{errorMsgs.username_required}";
+    				document.getElementById('frmHomePageIframe:userNameError').className="err_msg";
+    				isFormValid=false;
+    			}
+				else{
+					document.getElementById('frmHomePageIframe:userNameError').innerHTML="";
+    				document.getElementById('frmHomePageIframe:userNameError').className="DisplayNone";
+				}
+				if(null==password || password.value=="")
+    			{
+					document.getElementById('frmHomePageIframe:passwordError').style.display="block";
+    				document.getElementById('frmHomePageIframe:passwordError').innerHTML="#{errorMsgs.password_mandatory}";
+    				document.getElementById('frmHomePageIframe:passwordError').className="err_msg";
+    				isFormValid=false;
+    			}else{
+    				document.getElementById('frmHomePageIframe:passwordError').innerHTML="";
+    				document.getElementById('frmHomePageIframe:passwordError').className="DisplayNone";
+    			}
+				
+				return isFormValid;
+			}
+			
+	</script>
+</h:head>
+	
+	<h:form id="frmHomePageIframe">
+	
+	<h:inputHidden id="exceededAtttemptsId" value="#{loginUserBean.exceededAtttempts}"/>
+        	<div class="main_body">
+        		<div class="Page_heading">
+	            	<span class="Fleft paddingRight"> <h:outputLabel value="#{labelMsgs.signAccntMsg}"/> </span>
+	               	<div class="HavingTrouble">#{labelMsgs.havingTrouble}
+						<h:commandLink styleClass="Common_pointer" title="#{labelMsgs.helpNfaq2}" value="#{labelMsgs.helpNfaq2}" action="#{loginNavigationBean.navigateToUnAuthHelpPage}" id="helpLink">
+							<f:setPropertyActionListener value="account" target="#{help.helpNav}"/>
+				      	</h:commandLink>
+				    </div>
+            	</div>
+            	<div class="body_container_above_gradiant">
+            		<div class="gradiant_box_left"></div>
+                    <div class="gradiant_box_middle">
+               	    	<img height="2" width="978" align="top" alt="" src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" class="gradiant_img"/>
+               	    </div>
+                    <div class="gradiant_box_right"></div>
+            	</div>
+		            <div class="body_wrapper">
+		            	<div class="body_wrapper_left_shadow"></div>
+		             <!-- //////////////// body content start //////////////////////////   --> 
+		             	<div class="body_wrapper_container">
+		                    <div class="HomePageSignIn">
+		                       <div class="IframeBody">
+			                       	<div class="LoginPageLeftPanel">
+				                        <div class="InputField" style="position:relative;">
+				                            <div class="InputFieldName"><h:outputLabel value="#{labelMsgs.usernameLabel}"/></div>
+				                            <h:inputText styleClass="input" title="#{labelMsgs.usernameLabel}" size="20" id="inputUName" alt="#{labelMsgs.usernameLabel}" tabindex="3" value="#{loginUserBean.userName}" maxlength="64" onfocus="toggleHintMsg('frmHomePageIframe:userNameError','none');toggleHintMsg('frmHomePageIframe:signInPanelError','none');toggleHintMsg('frmHomePageIframe:captchaLabelID','block');toggleHintMsg('frmHomePageIframe:captchaErrorPanel','none');"/>
+				                            <h:outputLabel id="userNameError" style="display:none; margin-top:2px; margin-left:10px;"/>
+				                        	 <div style="left:380px; padding-top:10px; *padding-top:0px; position:absolute; clear:both;">
+								          		 <h:panelGroup id="signInPanelError" style="float: left; height: 25px; margin:30px 0 0 20px; *margin-top:15px;" styleClass="#{loginUserBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'DisplayNone':loginUserBean.errorValueMap.pageError ne null?'err_msg':'DisplayNone'}">
+													<span class="Fleft">
+														<h:outputLabel id="signInError1" rendered="#{loginUserBean.errorValueMap.pageError ne null}" value="#{loginUserBean.errorValueMap.pageError}" styleClass="#{loginUserBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'DisplayNone' : loginUserBean.forErrStatus eq 'ExceededAttempts'?'UserPasswordFields':loginUserBean.forErrStatus eq 'locked'?'UserPasswordFields':loginUserBean.forErrStatus eq 'accountLocked'?'UserPasswordFields':loginUserBean.errorValueMap.pageError ne null?'UserPasswordFields':'DisplayNone'}"></h:outputLabel>
+													</span>
+												</h:panelGroup>
+												</div>
+				                        </div>
+				                        <div class="InputField">
+				                            <div class="InputFieldName"><h:outputLabel value="#{labelMsgs.passwordLabel1}"/></div>
+				                            <h:inputSecret tabindex="4" title="#{labelMsgs.passwordLabel1}" value="#{loginUserBean.password}" redisplay="true" id="inputPassword" alt="#{labelMsgs.passwordLabel1}" styleClass="input" autocomplete="off" maxlength="64" onfocus="toggleHintMsg('frmHomePageIframe:passwordError','none');toggleHintMsg('frmHomePageIframe:signInPanelError','none');toggleHintMsg('frmHomePageIframe:captchaLabelID','block');toggleHintMsg('frmHomePageIframe:captchaErrorPanel','none');" />
+				                            <h:outputLabel id="passwordError" style="display:none; margin-top:2px; margin-left:10px;" />
+				                        </div>
+				                        <div class="checkBoxMsg">
+					                        <div class="MsgInputCheck">
+					                        	<h:link styleClass="HelpMsg" tabindex="8" title="#{labelMsgs.needHelpSignIn}" value="#{labelMsgs.needHelpSignIn}" outcome="recoveringSignInNamePage" target="_top"/>
+					                            </div>
+                        				</div>
+										<div class="checkBoxMsg">
+							         		<div class="MsgInputCheck">
+							         			<h:selectBooleanCheckbox id="remembermeCheckBox" tabindex="5" value="#{loginUserBean.rememberMe}"/>
+							         	   		<span class="RememberMe"><h:outputLabel value="#{labelMsgs.rememberMe}" for="frmHomePageIframe:remembermeCheckBox"/></span>
+							        		</div>
+							        	</div>
+			                        </div>
+			                        <f:view contentType="text/html">
+		                        		 <div style="display:none;" id="CaptchaPanel">
+				                                <div style="margin:10px 0 0 0; border:0px; background:none; padding-left:4px;" class="reg_form">
+				                                <div class="reg_form_details"> 
+				                                    
+				                                    <div style="width:375px;" class="form_field">
+				                                        <div style="float:left;">
+				                                                  <h:outputLabel id= "recaptchaid" value="#{recaptchBean.recaptchaHtml}" escape="false"/>                       
+				                                        </div>
+				                                        
+				                                    </div>
+				                                    <div class="InputFieldName" style="float:left; width:auto; padding-top:60px;"><h:outputLabel id="captchaLabelID" value="#{labelMsgs.captchaMsg}"/></div>
+				                                    <h:panelGroup id="captchaErrorPanel" style="float: left; height: 25px; margin:60px 0 0 20px;" styleClass="#{loginUserBean.errorValueMap.captchaError ne null &amp;&amp; loginUserBean.errorValueMap.captchaError ne ''?'err_msg':'DisplayNone'}">
+														<span class="Fleft">
+															<h:outputLabel id="captchaError1" rendered="#{loginUserBean.errorValueMap.captchaError ne null}" value="#{loginUserBean.errorValueMap.captchaError}" styleClass="#{loginUserBean.errorValueMap.captchaError ne null?'UserPasswordFields':'DisplayNone'}"></h:outputLabel>
+														</span>
+													</h:panelGroup>
+				                                </div>
+				                            </div>
+                            			</div>
+		                        	</f:view>
+			                        <div class="SignInButton">
+								       		<div class="button_input">
+								  				<a4j:commandButton id="signInButton" tabindex="6" styleClass="image_button" onclick="return validateFields();"
+						  						  title="#{labelMsgs.signIn}" value="#{labelMsgs.signIn}" action="#{loginUserBean.doLogin}" render="signInPanelError,signInError1,captchaErrorPanel,captchaError1,pendingAction"
+						  					     oncomplete="#{loginUserBean.forCaptchaRefresh eq 'no' &amp;&amp; (loginUserBean.errorValueMap.pageError eq null || loginUserBean.errorValueMap.pageError eq '')?'hideRecapthca(),buttonFireEvent(\'noPending\')': (loginUserBean.errorValueMap.captchaError ne null &amp;&amp; loginUserBean.errorValueMap.captchaError ne '')?'assignValueForCaptcha(\'yes\'),hideRecaptchaTxt(\'yes\')':((loginUserBean.errorValueMap.pageError eq null || loginUserBean.errorValueMap.pageError eq '') &amp;&amp; (loginUserBean.errorValueMap.captchaError eq null || loginUserBean.errorValueMap.captchaError eq ''))? 'buttonFireEvent(\'noPending\')' : (loginUserBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'buttonFireEvent(\'pending\')' : loginUserBean.forCaptchaRefresh eq 'doRefresh'? 'assignValueForCaptcha(\'yes\'),hideRecaptchaTxt(\'no\')' : loginUserBean.forErrStatus eq 'ExceededAttempts' ? 'assignValueForCaptcha(\'yes\'),hideRecaptchaTxt(\'no\')' :loginUserBean.forCaptchaRefresh eq 'yes' ?'assignValueForCaptcha(\'yes\')':'')}"/>
+						  				        <h:commandLink id="hiddenLink" style="display:none;" tabindex="-2" action="#{loginNavigationBean.loginAction}" target="_top"/>
+								  			</div>
+											<h:commandLink styleClass="cancel FontSize10" tabindex="7" title="#{labelMsgs.cancel}"  id="cancelChanges" value="#{labelMsgs.cancel}" action="#{loginNavigationBean.navigationToUnauthHomePage}"/>
+												<a4j:outputPanel id="pendingAction">
+										  			<h:commandLink id="hiddenPending" style="dispaly:none;" tabindex="-1" action="pendingUser" target="_top">
+										  				<f:param value="#{loginUserBean.errorValueMap.pageError}" name="dispFor" />
+										  			</h:commandLink>  		
+					  			 				</a4j:outputPanel>
+					          		</div>
+					          	</div>
+					          	<div class="SignUp clearBoth"><h:outputLabel value="#{labelMsgs.dontHaveUV}"/> 
+					          			<strong><h:link outcome="registrationStep1Page"  title="#{labelMsgs.signUp}" value="#{labelMsgs.signUp}"/></strong>
+					          		</div>
+		                	</div>
+		                </div>
+		         	    <div class="body_wrapper_right_shadow"></div>
+		            </div>
+        </div>
+    </h:form>
+</ui:define>
+</ui:composition>

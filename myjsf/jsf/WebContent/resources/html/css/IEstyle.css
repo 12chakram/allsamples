@@ -1,0 +1,128 @@
+.RememberMe{padding-top:3px; padding-left:0px; *padding-left:4px; *padding-top:4px;}
+.RememberMeTxt{float:left; padding-top:2px; *padding-top:7px;}
+.CheckBoxDiv{padding-top:3px; *padding-top:0px; font-size:8pt;}
+.CheckBoxDiv .checkbox{*margin-top:3px;}
+.signInBox{width:357px; min-height:85px; background:#000; padding-left:2px;}
+.button_input input[type=submit].image_button{background:url(../images/button_bg.png) left top no-repeat; min-width:0px; padding:0px 14px 0px 16px; height:31px; *padding-left:7px; *padding-right:7px;}
+.button_input input[type=button].image_button{min-width:0px; *padding:6px 5px 7px 6px; padding-top:9px\9; padding-bottom:9px\9; *padding-top:6px;}
+.button_input_Dull input[type=submit].image_button{background:url(../images/button_bg_dull.png) left top no-repeat; min-width:0px; padding:0px 14px 0px 16px; height:31px; *padding-left:7px; *padding-right:7px;}
+.button_input_Dull input[type=button].image_button{min-width:0px; *padding:6px 5px 7px 6px; padding-top:9px\9; padding-bottom:9px\9; *padding-top:6px;}
+.BrandDetailsView input{background:none; border:0px;}
+.AccessLevels input{background:none; border:0px;}
+.DropDownText{background:#fff; color:#333; padding:7px 17px; position:absolute; display:none; *margin:0px 0px 0px 0px; right:0px; float:right; clear:both; z-index:99;}
+.DropDownText a{color:#fff; float:left; clear:both; *width:100%; *text-align:right;}
+.menu_search_input{*padding-left:10px;}
+.menu_search_input input[type=text]{ *padding:6px 5px 0px 5px; *border:0px; *margin-top:-1px; padding-top: 8px; height: 15px;  *height:18px;}
+.menu_search_input .SearchFieldDiv input[type=text]{*height:19px; *padding-top:6px; *padding-bottom:0px;}
+.menu_go{*padding-left:5px;}
+.Security_Permissions .create_Access_Controls .levelOfAccess .access_permitions_title .Media_Permissions{*width:77px;}
+.TouWarningMsg{*float:left; *width:700px;}
+.userfield_input .select_month{*height:35px;}
+.iePaddingLeft5{padding-left:5px;*padding-left:9px;*padding-top:3px;}
+.Popup_readonly{position: absolute; width: 750px; height:715px; *height:775px; background: none repeat scroll 0% 0% rgb(0, 0, 0); z-index: 999; opacity: 0.7; display: none; top:0px; left:0px; filter: alpha(opacity=70); }
+.PaddingTop10ie7{*padding-top:10px;}
+.AddDullMember_div140 .memberImage140 img{display:none;}
+.UserBodyVioletBox .AccountText{*word-wrap:normal;}
+.normaltext{*word-wrap:normal; color:#ccc;}
+.userfield_textarea .form_input_checkbox input{margin-left:0px; *margin-left:2px;}
+.popup_textarea .EditMemberPhoto .UploadImageField .FileUpload input[type=file]{border:1px solid #555; font-size:9pt; margin:4px 0 0 10px; padding:2px 0px 2px 5px; background:#fff; cursor:pointer;}
+.popup_textarea .form_input_checkbox input{*margin-left:5px;}
+.popup_textarea .form_input_checkbox .teatarea_field{overflow:visible;}
+.DevicesContainerWrapper .DevicesBoxDiv{*border-color:#212121; *border-width:1px; *border-style:solid; border:1px solid #212121;}
+.OrText{ *width:100%;}
+.HrTag{*width:135px;}
+.CopyButton{*padding-bottom:0px;}
+.successMsg_AtPagetitle{ *clear:both; *width:auto;}
+.button_input .image_button{ *min-width:none;}
+.button_input_Dull .image_button{ *min-width:none;}
+#Mouse{*z-index:99;}
+.MergeAccountsContainer .AccountDetailsContainer .MergeEqualSymbol_2{margin-top:12px;}
+.MergeAccountsContainer .AccountDetailsContainer .PlayerDetails .MemberPlayers_Final .PlayersList{*float:none;}
+.PendingUser_div103 .PendingText{*left:0px; *width:104px;}
+.mediaBody_Container .mediaBody_left .BrowseMediaBox .Media_fields .Field_All{ *white-space:nowrap; float:left; clear:both; color:#fff; background:url(../images/Next-RightIconWhite.png) no-repeat right; padding-right:10px; margin-top:5px; font-size:8pt; font-weight:bold;}
+.DeviceImg{text-align:center; height:67px; padding:2px; width:85px; position:relative;*cursor:pointer;}
+.trueCopyButton {*padding-bottom:0px;}
+.trueCopyButton span{*padding-top:4px; *padding-bottom:4px}
+.RemoveThisMember{*padding-right:20px;}
+.borderWidth680{*width:680px;}
+.width720{*width:720px;}
+.width290{*width:290px; width:auto \0/;}
+.width290 a{margin-right:20px;}
+.DevicesContainerWrapper .DevicesBoxDiv .AddNewDeviceDull .DeviceImg{*cursor:default;}
+.DevicesBoxhomepage .DevicesBoxDiv .AddNewDeviceDull .DeviceImg{*cursor:default;}
+.DashboardBodyLeft .HeadingTitle h1{*font-size:20pt;}
+.OrText .Or{*margin-top:-8px;}
+.BodyPage_heading .MembersTitleName{*min-width:515px;}
+.BodyPage_heading .RightHeadLink{*min-width:190px;}
+.popup_textarea .EditMemberPhoto .UploadImageField .SelectTheImagesBelow{ *padding-top:0px;}
+.EditImage_SuccessMsg{*min-height:0px;}
+.ReadOnlyDivViewParental{height:684px;}
+.FavoritesContainer .FavoritesList{*height:auto; *min-height:625px;}
+.AnotherMember_div140 img{max-height:111px; *max-width:137px;}
+.parental_controls .movie_ratings{*margin-top:5px;}
+.parental_controls .CountrysMovieRatings .movie_ratings{*padding-top:0px;}
+.slider_outer{*padding-top:0px;}
+.slider_outer2{*margin-bottom:0px;}
+.slider_outer3{*margin-bottom:0px;}
+.sliderLeftGap{*clear:none;}
+.parental_controlsAdd .sliderLeftGap{*clear:both;}
+.parental_controls_Hide .sliderLeftGap{*float:none; margin-top:0px;}
+.parental_controlsAdd .movie_ratings{*float:none;}
+.deviceInputText{*width:95%;}
+.HomePageSignIn .IframeBody .checkBoxMsg{*float:none;}
+.CredentialsRecovery .SignInButton{*padding-top:10px;}
+.HomePageSignIn .IframeBody .SignInButton{*padding-top:14px;}
+.CredentialsRecovery .InputField .InputFieldName{*width:auto; *padding:6px 0 0 0px; *float:left;}
+.emailErrorRecoveringSignin{*padding:40px 0px 0px 10px;}
+.button_Link a{padding-top:7px; padding-top:8px\0/; padding-right:18px;}
+:root .marginright9{margin-right:9px;}
+.DevicesContainerWrapper .DevicesBoxDiv .RemovePlayer_Help{*float:none;}
+.DevicesContainerWrapper .DevicesBoxDiv .Maxplayer_Msg{*float:none;}
+.DevicesContainerWrapper .DevicesBoxDiv .Maxplayer_Msg .Max_PlayersMsg{*float:none;}
+.abondonmentText h4 label{*float:none;}
+.WarningMsg a.RegisterLinks{*margin-left:30px;}
+.mediaBody_Container .mediaBody_right .MovieListDetailes .SD_HD_Right{*float:none; *width:100%;}
+.mediaBody_Container .mediaBody_right .MovieListDetailes .SD_HD_Wrong{*float:none; *width:100%;}
+.mediaBody_Container .mediaBody_right .MovieInformationContainer .PhysicalCopy_Available{*float:none; *width:100%;}
+.mediaBody_Container .mediaBody_right .MovieInformationContainer .PhysicalCopy_NotAvailable{*float:none; *width:100%;}
+.MergeAccountsContainer .AccountDetailsContainer .PlayerDetails .MemberPlayers_First .MemberCount_title_Collapse{*margin-top:-3px; margin-top:-3px\9;}
+.MergeAccountsContainer .AccountDetailsContainer .PlayerDetails .MemberPlayers_Second .MemberCount_title_Collapse{*margin-top:-3px; margin-top:-3px\9;}
+
+.DevicesContainerWrapper .DevicesBoxDiv .DevicesHeading{*float:none;}
+.DevicesBoxhomepage .DevicesBoxDiv .DevicesAvailable{*margin-left:25px;}
+/*.DevicesBoxhomepage .DevicesBoxDiv .DevicesAvailable .ComingSoonWrapper{margin-left:25px;}*/
+.MergeAccountsContainer .AccountDetailsContainer input[type=checkbox], .MergeAccountsContainer .AccountDetailsContainer input[type=radio]{background:none;}
+.MergeAccountsContainer .AccountDetailsContainer .MemberDetails .AccountMembers_First .MembersList{*float:none;}
+.MergeAccountsContainer .AccountDetailsContainer .MemberDetails .AccountMembers_Second .MembersList{*float:none;}
+.MergeAccountsContainer .AccountDetailsContainer .MemberDetails .AccountMembers_Merge .MembersList{*float:none;}
+.MergeAccountsContainer .LeftPanel .RadioMsg .RadioInput input{background:none; margin-left:0px; *margin-left:-3px;}
+.MergeAccountsContainer .LeftPanel .RadioMsg{float:none; *padding:0 5px 0 0;}
+.MergeAccountsContainer .AccountDetailsContainer .MemberDetails .AccountMembers_First .MembersList .MemberDiv input[type=checkbox]{background:none; margin:-3px 5px 0 0; width:15px;}
+.MergeAccountsContainer .AccountDetailsContainer .MemberDetails .AccountMembers_Second .MembersList .MemberDiv input[type=checkbox]{background:none; margin:-3px 5px 0 0; width:15px;}
+.MergeAccountsContainer .AccountDetailsContainer .PlayerDetails .MemberPlayers_First .InputRadio{background:none; width:15px; margin:-3px 5px 0 0;}
+.MergeAccountsContainer .AccountDetailsContainer .PlayerDetails .MemberPlayers_Second .InputRadio{background:none; width:15px; margin:-3px 5px 0 0;}
+.MergeAccountsContainer .AccountDetailsContainer .PlayerDetails .MemberPlayers_Second .PlayersList{*float:none;}
+.WarningMsg{*float:none; *clear:both;}
+.InformationMsg{*float:none; *clear:both;}
+.MergeAccountsContainer .MergeAccountBottomCurve{float:none;}
+.MergeAccountsContainer .AccountDetailsContainer .FirstMemberDetails .MovieList .MovieTitle{*width:64%;}
+.MergeAccountsContainer .AccountDetailsContainer .SecondMemberDetails .MovieList .MovieTitle{*width:64%;}
+.MergeAccount{padding-right:7px\9; *padding-right:10px;}
+
+.MemberCount_title_Collapse{*background-position: 0 3px no-repeat;}
+
+
+
+.DevicesContainerWrapper .activationCodeInput input{width:87px !important;}
+.mediaBody_Container .mediaBody_right .AccessFromProvider .ProviderText{*width:auto;}
+.DevicesContainerWrapper .activationCodeInput{*padding-top:0px; *min-height:31px;}
+
+.userfield_textarea .form_input_checkbox .teatarea_field iframe{overflow:auto;}
+.falseCopyButton{*padding-bottom:0px;}
+.MemberEmailTitle{*height:30px;}
+.MemberImg140ie7{*left:0px;}
+.width145{*width:145px;}
+.falseCopyButton{*padding-bottom:0px;}
+.SignoutMsg{*clear:left;*width:160px;*position:relative;*left:102px;*margin-top:26px;}
+.SigninMsg{*clear:left;*width:178px;*left:80px;}
+.Ok_Report_Button{*padding-bottom:5px;*margin-bottom:5px;}

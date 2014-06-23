@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+		<h:form id="frmTroubleSignInHelp">  
+			<div class="container">
+		<!--  main body start   -->
+				<div class="main_body">
+        			<div class="ForgotPass_heading">
+            			<span class="signIn"><h:commandLink id="signinId" tabindex="3" title="#{labelMsgs.signIn}" value="#{labelMsgs.signIn}" action="#{loginNavigationBean.navigateToLoginPage}"/></span>
+        				<span class="Fleft">
+        					<h1>
+        						<h:outputLabel value="#{labelMsgs.helpPageMessage}"/>
+        					</h1>
+        				</span>
+                 		<div class="HavingTrouble">
+                 			<h:outputLabel value="#{labelMsgs.havingTrouble}"/>
+                 			<h:commandLink id="helpLink" tabindex="4" title="#{labelMsgs.helpNfaq}" styleClass="Common_pointer"  value="#{labelMsgs.helpNfaq}" action="#{loginNavigationBean.navigateToUnAuthHelpPage}" >
+								<f:setPropertyActionListener value="profile" target="#{help.helpNav}"/>
+			      			</h:commandLink>
+                 		</div>
+            		</div>
+            		<div class="body_container_above_gradiant">
+            			<div class="gradiant_box_left"></div>
+                    	<div class="gradiant_box_middle">
+               	    		<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt=""/>
+               	    	</div>
+                    	<div class="gradiant_box_right"></div>
+            		</div>
+        			<div class="body_wrapper">
+	        			<div class="body_wrapper_left_shadow"> </div>
+	        			<div class="body_wrapper_container">
+          				<div class="ReactivateAccount_body">
+          				<!-- starting of forgot my password  -->
+          					<div class="AccountText" style="width:780px;">
+          							<span class="FontWeight">#{labelMsgs.iForgotMyPassword}</span><br/>
+                         			<h:link id="forgotPasswordId" tabindex="5" title="#{labelMsgs.forgotPasswordHelp}" styleClass="violet_color_link Heading" value="#{labelMsgs.forgotPasswordHelp}" outcome="recoveringSignInNamePage"/>
+                              		<br/><br/><br/>
+                              		<span class="FontWeight">#{labelMsgs.activationCode}</span><br/>  
+
+                              		<h:link id="siginNameId" tabindex="7" title="#{labelMsgs.helpCode}" styleClass="violet_color_link Heading" value="#{labelMsgs.helpCode}" outcome="confirmMyDetailsPage">
+                              		</h:link>
+                              		<br/><br/><br/>
+                              		<span class="FontWeight">#{labelMsgs.accountAccidentllyDeleted}</span><br/>  
+                              		<h:link id="reactivateMyAccount" tabindex="7" title="#{labelMsgs.myAccountHelp}" styleClass="violet_color_link Heading" value="#{labelMsgs.myAccountHelp}" outcome="reactivateHouseholdAccountPage"/>
+                              		<br/><br/><br/>
+                              		
+                         	</div>
+                         </div>
+                         <div class="Fleft UserReopenAccountSkipLink">
+                          		<h:commandLink id="cancelHelp" tabindex="7" title="#{labelMsgs.cancelHelp}"  styleClass="violet_color_link"  value="#{labelMsgs.cancelHelp}" action="#{loginNavigationBean.navigateToUnAuthHelpPage}" >
+									<f:setPropertyActionListener value="account" target="#{help.helpNav}"/>
+			      				</h:commandLink>
+                      	</div>
+                      	</div>
+                   	  		<div class="body_wrapper_right_shadow"/> 
+               			</div>
+                		             			
+          			</div>			
+       			</div>
+		<!--  main body end  -->    
+			 
+		</h:form>  
+</ui:composition>

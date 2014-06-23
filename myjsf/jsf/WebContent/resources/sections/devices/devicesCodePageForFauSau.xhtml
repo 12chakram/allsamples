@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf">
+	<script type="text/javascript">
+		function renderDeviceCode(){
+			var pageError = '#{householdPlayersBean.errorValueMap.pageError}';
+				document.getElementById('getCodeDiv').style.display='none';
+        }
+	</script>
+	<div class="DevicesBoxDiv">
+		<div class="DevicesInformationText">
+	    	<h:outputLabel value="#{labelMsgs.ultraVioletPlayersInfo1}"/>
+	    </div>
+	    <a4j:outputPanel id="deviceCodePanel">
+        <div class="DevicesAddTextPoints">
+        	<c:set var="devicesCountValue" value="#{householdPlayersBean.deviceCount}"/>
+	        <h:outputLabel value="#{devicesCountValue eq '12' ? labelMsgs.youHaveReachedMaxLimit : labelMsgs.ultraVioletPlayersInfo2}"/> 
+			<div class="AddplayerPointsTitle">
+				<h:outputLabel value="#{devicesCountValue eq '12' ? labelMsgs.toUnregisterAPlayer : labelMsgs.toAddPlayer}"/>
+			</div>
+			<c:if test="#{householdPlayersBean.deviceCount ne 12}">
+				<div class="Points">
+					<div class="PointsList">
+						<h:outputLabel value="#{labelMsgs.playersPoint1}"/>
+					</div>
+			        <div class="PointsList"> 
+			        	<div class="Fleft">
+			        		<h:outputLabel value="#{labelMsgs.playersPoint2}"/>
+			        	</div> 
+			            <div class="Fleft">
+			            <div id="getCodeDiv" class="button_input MarginLeft10" style="float:none;">
+			            	<a4j:commandButton id="addDeviceCode" type="button" title="#{labelMsgs.getCodeLabel}" styleClass="image_button" value="#{labelMsgs.getCodeLabel}" action="#{householdPlayersBean.getAddDeviceCode}" render="deviceCode,playerPageError,deviceButtonPanel" oncomplete="renderDeviceCode();"/>
+			            </div>
+			            </div>
+			            <h:panelGroup id="deviceButtonPanel">
+			            <div class="Fleft">
+				            <div id="deviceButtonDiv" style="float:none;" class="#{householdPlayersBean.errorValueMap.pageError ne null &amp;&amp; householdPlayersBean.errorValueMap.pageError ne ''?'button_input MarginLeft10':'DisplayNone'}">
+				            	<input type="button" class="image_button" id="addDeviceButton" title="#{labelMsgs.getCodeLabel}" value="#{labelMsgs.getCodeLabel}"/>
+				            </div>
+				         </div>
+			            </h:panelGroup>
+			            <div class="Fleft">
+			            <div class="activationCodeInput" style="float:none;">
+			            	<h:inputText id="deviceCode" style="width:92px;" readonly="true" styleClass="#{householdPlayersBean.deviceCode ne null &amp;&amp; householdPlayersBean.deviceCode ne ''?'':'DisplayNone'}" value="#{householdPlayersBean.deviceCode}"/>
+			            </div>
+			            </div>
+			            <h:panelGroup id="playerPageError" style="float:left; width:470px;">
+			          		<h:outputLabel id="pageError" style="width:470px; line-height: 20px; margin-top:5px; padding-top: 0;" value="#{householdPlayersBean.errorValueMap.pageError}"
+			          		 rendered="#{householdPlayersBean.errorValueMap.pageError ne null &amp;&amp; householdPlayersBean.errorValueMap.pageError ne ''}"
+			          		 styleClass="#{householdPlayersBean.errorValueMap.pageError ne null &amp;&amp; householdPlayersBean.errorValueMap.pageError ne ''?'err_msg':'DisplayNone'}"/>
+						</h:panelGroup>
+			      	</div>
+			      	<div class="PointsList">
+			      		<h:outputLabel value="#{labelMsgs.playersPoint3}"/>
+			      		<span class="violet_link">
+			      			<h:commandLink id="reloadThisPage" title="#{labelMsgs.reloadThisPage}" value="#{labelMsgs.reloadThisPage}" action="#{householdPlayersBean.reloadThisPageAction}"/>
+			      		</span>
+			      		<h:outputLabel value="#{labelMsgs.playersPoint3End}"/>
+			      	</div>
+				</div>
+				<h:commandLink id="whatIsAnUltraVioletId" title="#{labelMsgs.whatIsAnUltraVioletPlr}" styleClass="violet_link" target="_blank" value="#{labelMsgs.whatIsAnUltraVioletPlr}" action="authHelpPage">
+					<f:param value="ourDevices" name="topicVal"/>
+					<f:param value="1" name="questionId"/>
+				</h:commandLink><br/>
+				<h:commandLink id="howToFindPlayerId" title="#{labelMsgs.howDoIFindPlayerLabel}" styleClass="violet_link" target="_blank" value="#{labelMsgs.howDoIFindPlayerLabel}" action="authHelpPage">
+					<f:param value="ourDevices" name="topicVal"/>
+					<f:param value="2" name="questionId"/>
+				</h:commandLink>
+			</c:if>
+			<c:if test="#{householdPlayersBean.deviceCount eq 12}">
+				<div class="Points">
+					<div class="PointsList">
+						<h:outputLabel value="#{labelMsgs.goToPlayerAndLookForLabel}"/>
+					</div>
+			      	<div class="PointsList">
+			      		<h:outputLabel value="#{labelMsgs.afterYouHaveUnregisteredThePlayer1}"/>
+			      		<span class="violet_link">
+			      			<h:commandLink id="reloadThisPage" title="#{labelMsgs.reloadThisPage}" value="#{labelMsgs.reloadThisPage}" action="#{householdPlayersBean.reloadThisPageAction}"/>
+			      		</span>
+			      		<h:outputLabel value="#{labelMsgs.afterYouHaveUnregisteredThePlayer2}"/>
+			      	</div>
+				</div>
+				<h:commandLink id="whatIsAnUltraVioletId" title="#{labelMsgs.whatIsAnUltraVioletPlr}" styleClass="violet_link" target="_blank" value="#{labelMsgs.whatIsAnUltraVioletPlr}" action="authHelpPage">
+					<f:param value="ourDevices" name="topicVal"/>
+					<f:param value="3" name="questionId"/>
+				</h:commandLink><br/>
+				<h:commandLink id="howUnregisteredId" title="#{labelMsgs.howDoIUnregisterAnPlayer}" styleClass="violet_link" target="_blank" value="#{labelMsgs.howDoIUnregisterAnPlayer}" action="authHelpPage">
+					<f:param value="ourDevices" name="topicVal"/>
+					<f:param value="4" name="questionId"/>
+				</h:commandLink><br/>
+				<h:commandLink id="howAndWhyLimitedPlayersId" title="#{labelMsgs.howAndWhyLimitedPlayers}" styleClass="violet_link" target="_blank" value="#{labelMsgs.howAndWhyLimitedPlayers}" action="authHelpPage">
+					<f:param value="ourDevices" name="topicVal"/>
+					<f:param value="5" name="questionId"/>
+				</h:commandLink>
+			</c:if>
+        </div>
+        </a4j:outputPanel>
+    </div>
+</ui:composition>

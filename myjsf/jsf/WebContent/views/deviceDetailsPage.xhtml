@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" 
+	template="/resources/templates/authenticatedTemplate.xhtml">
+	
+	<ui:define name="authMenu">
+     	<ui:include src="/resources/sections/devices/devicesMenu.xhtml"/>     	
+    </ui:define>   
+		 
+	<ui:define name="content">
+	<h:form id="deviceDetailsFormId">
+	
+	<!--  Remove Device Popup Start  -->  
+			<div id="removeDevice" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+					<span class="h3tag"><strong>#{labelMsgs.removeDevicePop}</strong></span>
+					<div class="PopupBody">
+						<div class="PopupLeftContent"><img alt="#{labelMsgs.alt_img_removeIcon}" src="#{applicationScope.staticContentBaseUrl}/images/RemoveIcon.png" width="81" height="81" /></div>
+							<div class="PopupRightContent paddingTop40">
+								<span class="h4tag"><strong>#{labelMsgs.removeDeviceInfo}</strong></span>
+								<br />
+					        </div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<div class="CommonBtn_Link" title="#{labelMsgs.title_donotremoveDevice}" onclick="document.getElementById('deviceDetailsFormId:removeDeviceError').className='err_msg_hide';javascript:disablePopup1('removeDevice', 'backgroundPopup');">
+							<div>#{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.dontRemoveDevice}</div>
+						</div> 
+						<a4j:commandLink title="#{labelMsgs.title_removeDevice}" styleClass="CommonBtn_Link_Gray" action="#{viewDeviceInfoBean.removeDevice}" render="removeDeviceError"
+										 oncomplete="#{(viewDeviceInfoBean.errorValueMap.pageError eq null || viewDeviceInfoBean.errorValueMap.pageError eq '')?'javascript:disablePopup1(\'removeDevice\',\'backgroundPopup\');fireEvent(document.getElementById(\'deviceDetailsFormId:navigateToDevicesDashboard\'),\'click\');':''}">							
+							<div>#{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.removeDevice}</div>
+						</a4j:commandLink>
+						<h:commandLink id="navigateToDevicesDashboard" style="display: none;" tabindex="-1" action="ourDevicesPage"/>						
+					</div>
+					<div>
+						<h:outputLabel value="#{viewDeviceInfoBean.errorValueMap.pageError}" id="removeDeviceError"						
+								styleClass="#{viewDeviceInfoBean.errorValueMap.pageError ne null?'err_msg':'err_msg_hide'}"/>
+                    </div>
+				</div>
+			</div>
+    <!--  Remove Device Popup End  -->
+	
+	<h:inputHidden value="#{viewDeviceInfoBean.deviceId}" id="deviceId2"/>
+	<h:inputHidden value="#{viewDeviceInfoBean.deviceType}" id="deviceType"/>
+	<h:inputHidden value="#{viewDeviceInfoBean.playerId}" id="playerId"/>
+	<h:inputHidden value="#{viewDeviceInfoBean.renderPage}" id="renderPage"/>
+	<c:if test="#{viewDeviceInfoBean.renderPage=='DECE'}"> 
+			<ui:include src="/resources/sections/devices/uvDeviceDetails.xhtml"/>
+	</c:if>
+	<c:if test="#{viewDeviceInfoBean.renderPage=='LEGACY'}"> 
+		<ui:include src="/resources/sections/devices/uvCompatibleDeviceDetails.xhtml"/>
+	</c:if>
+	<c:if test="#{viewDeviceInfoBean.renderPage=='PLAYER'}"> 
+		<ui:include src="/resources/sections/devices/uvPlayerDetails.xhtml"/>
+	</c:if>
+	
+	</h:form>
+	</ui:define>	
+</ui:composition>

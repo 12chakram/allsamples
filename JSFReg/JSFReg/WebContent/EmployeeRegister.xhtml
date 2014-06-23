@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"> 
+
+<h:head>
+ <title>A Simple Java Server Faces Registration Application</title>
+ 
+</h:head>
+ 
+<body> 
+	<h:form>
+		<h2>JSF Registration App</h2>
+		<h4>Registration Form</h4>
+		
+			
+			First Name:
+				
+					<h:inputText label="First Name:" id="fname" value="#{emp.firstName}" />
+					
+				
+			Last Name:
+				
+					<h:inputText label="Last Name:" id="lname" value="#{emp.lastName}" />
+						
+			gender:
+				
+					<h:selectOneRadio label="gender" id="gender"  value="#{emp.gender}"  >
+					 <f:selectItem itemLabel="Male" itemValue="male"/>
+					 <f:selectItem itemLabel="Female" itemValue="female"/>
+					</h:selectOneRadio>
+					
+			
+					
+			 Email Address:
+			 
+			 	<h:inputText label="Email" id="email"  value="#{emp.email}"  />
+			 		
+			 	
+			Service Level:
+				
+					<h:selectOneMenu label="Service level" value="#{emp.serviceLevel}" id="serverl">
+						
+						<f:selectItem  itemLabel="select service" itemValue=""/>
+						<f:selectItem itemLabel="Medium" itemValue="medium"/>
+						<f:selectItem  itemLabel="Basic" itemValue="basic"/>
+						<f:selectItem itemLabel="Premium" itemValue="premium"/>
+					</h:selectOneMenu>
+		<p><h:commandButton value="Register" action="#{emp.addEmployee}" /></p>
+	</h:form>
+</body> 
+</html>

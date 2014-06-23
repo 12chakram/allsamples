@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"> 
+
+
+<h:head>
+
+
+	
+	<h:outputStylesheet name="datatable.css" library="css"  />
+
+</h:head> 
+<h:body> 
+
+<div id="main" >
+ 	<div class="contentpage">
+<h:panelGrid title="H:link tag" bgcolor="gold" frame="below"  >
+
+	<h:outputLabel value="h:commandLink" />
+	<h:outputLabel value="New in JSF2.0"/>
+	<h:outputText value="very use ful to when page navigate another page without perfome any application logic:" />
+	
+</h:panelGrid>
+</div>
+
+<h:panelGrid  frame="box" bgcolor="lightgreen">
+ 	<h:outputLabel value="The “h:link” tag is a new tag in JSF 2.0, the “value” attribute is 
+ 	rendered as the anchor text, “outcome” attribute is determined the target URL of
+	the HTML “href” attribute. See examples :" />
+</h:panelGrid>
+   
+	<h:form id="hcommandlinkform">
+	
+	<h:commandButton value="id">
+	    <rich:componentControl target="idpopup" operation="show"/>
+	</h:commandButton>
+	
+	<rich:popupPanel id="idpopup" modal="true" resizeable="false" onmaskclick="#{rich:component('idpopup')}.hide()" width="1145" height="650">
+		<f:facet name="header">
+		   <h:outputText value="commandLink" />
+	  </f:facet>
+	<f:facet name="controls">
+	<h:outputLink value="#" onclick="#{rich:component('idpopup')}.hide(); return false;">close</h:outputLink>
+	</f:facet>
+				
+			
+				<rich:dataTable value="#{order.orderList}" var="o">
+				
+					<f:facet name="header" ><h:outputText value="H:commandLink Attributes" /></f:facet>
+				
+				 <rich:column  >
+					    <f:facet name="header"><h:outputText value="Name" /></f:facet>
+					    	<h:outputText value="#{o.attributeName}" />
+					</rich:column>
+				
+				 	<rich:column >
+					    <f:facet name="header"><h:outputText value="Required" /></f:facet>
+					     <h:outputText value="#{o.required}" />
+					</rich:column>
+					
+					<rich:column >
+					    <f:facet name="header"><h:outputText value="Request time" /></f:facet>
+					     <h:outputText value="#{o.realtime_Required}" />
+					</rich:column>
+					
+					<rich:column >
+					    <f:facet name="header"><h:outputText value="Type" /></f:facet>
+					     <h:outputText value="#{o.type}" />
+					</rich:column>
+					
+					<rich:column >
+					    <f:facet name="header"><h:outputText value="Description" /></f:facet>
+					     <h:outputText value="#{o.description}" />
+					</rich:column>
+				
+				</rich:dataTable>
+	
+		</rich:popupPanel>
+	</h:form>
+ </div>
+</h:body> 
+</html>
+
+

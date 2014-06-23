@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<title>Bank of Baroda</title>
+</h:head>
+
+<h:body>
+            <h:form>
+            	 <h:outputLabel value="Email"/>  <br/> 
+                <h:inputText name="" id ="email" value="#{bankloginBean.email}" required="true"  requiredMessage="Email is required"
+                validator="#{bankloginBean.validateEmail}">
+                	<f:validateLength minimum="5" maximum="39" />
+                	<!-- <f:validateRegex pattern="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" /> -->
+                	
+                	<f:ajax event="blur"  render="emailmessage" />
+                 </h:inputText>
+                   <h:message for="email" id="emailmessage" style="font-family:arial;color:red;font-size:10px;" /> <br/>
+                   
+                	 <h:outputLabel value="Password"/> <br/>
+               <h:inputSecret  name="" id = "pass" styleClass=""  value="#{bankloginBean.passWord}"  required="true" >
+               		<f:validateLength minimum="5" maximum="10" />
+               		<f:ajax event="blur"  render="passmessage" />
+                </h:inputSecret>
+                   <h:message for="pass" id="passmessage" style="font-family:arial;color:red;font-size:10px;" /> <br/>
+              
+               <h:commandLink id="but_login" value="Login" action="#{bankloginBean.doLogin}"/>
+     			 </h:form>
+     			 </h:body>
+</html>

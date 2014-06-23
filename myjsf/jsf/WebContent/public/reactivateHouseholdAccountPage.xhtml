@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/unAuthenticatedTemplate.xhtml">
+	<ui:define name="unAuthContent">
+		<h:form id="frmReopenCancelReg">
+		    <div id="cancelRegistration" class="popupContact" style="z-index:10003;">
+		        <div class="popup_textarea">
+		            <h3>#{labelMsgs.saveChanges}</h3>
+					<div class="PopupBody">
+						<div class="PopupLeftContent">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" alt="#{labelMsgs.warningIcon}"/>
+						</div>
+						<div class="PopupRightContent">
+							#{labelMsgs.UnsavedChangesProfile}<br />
+						</div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<div class="CommonBtn_Link" id="cancelButton" title="#{labelMsgs.cancelPop}" onclick="javascript:disablePopup1('cancelRegistration', 'backgroundPopup');">
+							<div> #{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+						</div> 
+						<h:commandLink id="continueButton" title="#{labelMsgs.continue}" styleClass="CommonBtn_Link_Gray" action="#{loginNavigationBean.navigationToUnauthHomePage}">
+							<div> #{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+						</h:commandLink>
+					</div>
+		        </div>
+			</div>
+	</h:form>
+
+		<c:if test="#{reactivateHouseHold.step1Render eq 'step1FirstPage'}">
+	  		<ui:include src="/resources/sections/common/reopenAccountStep1.xhtml"/>
+		</c:if> 
+		<c:if test="#{reactivateHouseHold.step1Render eq 'regStep2Page'}"> 
+			<ui:include src="/resources/sections/common/reopenAccountStep2.xhtml"/> 
+		</c:if>	
+		<c:if test="#{reactivateHouseHold.step1Render eq 'regStep3Page'}"> 		
+			<ui:include src="/resources/sections/common/reopenAccountStep3.xhtml"/>
+		</c:if>
+  	</ui:define>
+</ui:composition>

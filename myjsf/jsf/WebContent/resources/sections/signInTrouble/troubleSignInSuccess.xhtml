@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+		<h:form id="frmTroubleSignInSuccess">  
+			<div class="container">
+       <!--  main body start   -->   
+        		<div class="main_body">
+        			<div class="ForgotPass_heading">
+        				<span class="Fleft">
+        					<h1>
+        						<h:outputLabel value="#{labelMsgs.forgotPasswordSuccessHeading}"/>
+        					</h1>
+        				</span>
+                		<div class="HavingTrouble">
+                			<h:outputLabel value="#{labelMsgs.havingTrouble}"/>
+                			<h:commandLink title="#{labelMsgs.helpNfaq}"  styleClass="Common_pointer"  value="#{labelMsgs.helpNfaq}" action="#{loginNavigationBean.navigateToUnAuthHelpPage}" id="helpLink">
+								<f:setPropertyActionListener value="profile" target="#{help.helpNav}"/>
+			      			</h:commandLink>
+                		</div>
+            		</div>
+            		<div class="body_container_above_gradiant">
+            			<div class="gradiant_box_left"/>       			   
+                    	<div class="gradiant_box_middle">
+               	    		<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt=""/></div>
+                   		 <div class="gradiant_box_right"/> 
+            		</div>
+             	<div class="body_wrapper">
+				<div class="body_wrapper_left_shadow"></div>
+	       		<div class="body_wrapper_container">
+		            <div class="UserBodyVioletBox">
+	                   	<div class="MsgIconImage"> 
+		   					<img src="#{applicationScope.staticContentBaseUrl}/images/mail_icon.png" width="94" height="93" alt="#{labelMsgs.mailIcon}"/>
+	      				</div>
+	                   	<div class="AccountText" style="padding-top: 25px;">
+						<h4><h:outputLabel value="#{labelMsgs.SuccessInfo1}"/></h4>
+						<br />
+							<p><h:outputLabel value="#{labelMsgs.SuccessInfo2}"/></p>
+	                     </div>
+	                 </div>
+	                	<div class="button_input" style="margin: 10px 0 0 20px;">
+	                    	<h:commandButton id="okButton" title="#{labelMsgs.okButton}" styleClass="image_button" value="#{labelMsgs.okButton}" action="#{loginNavigationBean.navigationFromErrorPage}"/>
+	                    </div>
+	       		 </div>
+	             <div class="body_wrapper_right_shadow"></div>
+	          </div>
+        		</div>
+       <!-- main body end --> 
+  			</div> 
+		</h:form>  
+</ui:composition>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+<h:head>
+<title>Bank of Baroda</title>
+<link href="styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<h:body>
+<div id="wrapper">
+	<div id="header">
+    	<div class="logo">
+       	 <a href="#">Bank of Baroda</a>
+       	</div>
+       <div class="toplinks">
+        	<h2>eLearning Portal</h2>
+        </div>
+        <div class="clear"></div>
+        <div id="menu">
+        	<ul>
+            	<li><a href="#" class="selected">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Instructors</a></li>
+             </ul>	
+             <div class="login_btn">
+             	<a href="register.jsf">Register</a>
+             </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="content">    	
+            <h:form>
+        <div id="logintab">
+        <div class="innercontent_text">
+        	<h2>Login to eLearning Portal</h2>
+            	<div class="userdiv">
+            	 <h:outputLabel value="Email"/>  <br/> 
+                <h:inputText name="" id = "email" styleClass="" value="#{bankloginBean.email}">
+                	<f:ajax event="blur"  render="emailmessage" />
+                 </h:inputText>
+                  <div> <h:message for="email" id="emailmessage" style="font-family:arial;color:red;font-size:10px;" /></div>
+                </div>
+                <div class="userdiv">
+            	 <h:outputLabel value="Password"/> <br/>
+               <h:inputSecret  name="" id = "pass" styleClass=""  value="#{bankloginBean.passWord}">
+               		<f:ajax event="blur"  render="passmessage" />
+                </h:inputSecret>
+                  <div> <h:message for="pass" id="passmessage" style="font-family:arial;color:red;font-size:10px;" /></div>
+               
+                </div>
+            <div class="clear"></div>
+            <center><font color="red"><h:outputLabel value="#{bankloginBean.loginErrorMsg}"/></font></center>
+           </div>
+             <div class="sidebar_tabbottom">
+             <div class="regiLink"><a href="#">Forgot your password ?</a></div>
+        
+                  <div class="tell_btn login">
+            			 <h:commandLink id="but_login" value="Login" action="#{bankloginBean.doLogin}"/>
+     			   </div>
+              </div>
+              <div class="clear"></div>
+        </div>        
+            </h:form>
+      <div class="clear"></div> 
+         
+    </div>
+	
+    <div class="clear"></div>
+    <div id="footer">
+    	<div class="footerleft">
+    		<p><span>All Rights Reserved @2012 | </span>  <a href="#" class="twitter">twitter</a> <a href="#" class="facebook">facebook</a> <a href="#" class="myspace">Myspace</a> <a href="#" class="google">Google</a></p>
+      	</div>
+        <div class="footerright">
+    		<ul>
+            	<li><a href="#">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Sitemap</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+             </ul>
+      	</div>
+        
+    </div>
+</div>
+</h:body>
+</html>

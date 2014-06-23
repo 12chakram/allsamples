@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/unAuthenticatedTemplate.xhtml" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+	<ui:define name="unAuthPortalHeader">
+		<c:if test="#{householdRegistrationBean.step1Render ne 'step1ThirdPage'}">
+		    <ui:include src="/resources/sections/common/createHouseholdHeader.xhtml"/>
+		</c:if>
+		<c:if test="#{householdRegistrationBean.step1Render eq 'step1ThirdPage'}">
+			<ui:include src="/resources/sections/common/unAuthHeader.xhtml"/>
+		</c:if>
+	</ui:define>
+	<ui:define name="unAuthContent">
+		<h:form id="frmCancelReg">
+		    <div id="accountNameUnsavedChanges" class="popupContact" style="z-index:10003;">
+		        <div class="popup_textarea">
+		            <h3>#{labelMsgs.saveChanges}</h3>
+					<div class="PopupBody">
+						<div class="PopupLeftContent">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" alt="#{labelMsgs.warningIcon}"/>
+						</div>
+						<div class="PopupRightContent">
+							#{labelMsgs.UnsavedChangesProfile}<br />
+						</div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<div class="CommonBtn_Link" id="cancelButton" title="#{labelMsgs.cancelPop}" onclick="javascript:disablePopup1('accountNameUnsavedChanges', 'backgroundPopup');">
+							<div> #{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+						</div> 
+						<div id="continueButton" title="#{labelMsgs.continue}" class="CommonBtn_Link_Gray" onclick="handleNavigationFromPopup();">
+							<div> #{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+						</div>
+					</div>
+		        </div>
+			</div>
+		</h:form>
+  		<c:if test="#{householdRegistrationBean.step1Render eq 'step1FirstPage'}">
+	  		<ui:include src="/resources/sections/registration/verifyRegistrationDOB.xhtml"/>
+		</c:if> 
+		<c:if test="#{householdRegistrationBean.step1Render eq 'step1SecondPage'}"> 
+	   		<ui:include src="/resources/sections/registration/verifyRegistrationEmail.xhtml"/> 
+		</c:if>
+		<c:if test="#{householdRegistrationBean.step1Render eq 'step1ThirdPage'}"> 
+	   		<ui:include src="/resources/sections/registration/confirmEmail.xhtml"/> 
+		</c:if>
+		<c:if test="#{householdRegistrationBean.step1Render eq 'regStep2Page'}"> 
+			<ui:include src="/resources/sections/registration/createHousehold.xhtml"/> 
+		</c:if>	
+	</ui:define>
+	<ui:define name="unAuthPortalFooter">
+			<c:if test="#{householdRegistrationBean.step1Render ne 'step1ThirdPage'}">
+		   		 <ui:include src="/resources/sections/common/unAuthCreateFooter.xhtml"/>
+		   	</c:if>
+		   	<c:if test="#{householdRegistrationBean.step1Render eq 'step1ThirdPage'}">
+		   		<ui:include src="/resources/sections/common/unAuthFooter.xhtml"/>
+		   	</c:if>
+	</ui:define>
+ </ui:composition>

@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf">
+	
+	<!--  AddDevicePopUp popup start -->
+	<div id="AddDevicePopUp" class="popupContact" style="z-index:10003;">
+		<div class="popup_textarea">
+			<span class="h3tag"><strong>#{labelMsgs.addDeviceTitle}</strong></span>
+			<br /><br /><br />
+			<div id="AddAccountMsg">
+				<span class="h4tag"><strong>#{labelMsgs.addDeviceMsg}</strong></span>
+			</div>
+			<div class="DisplayNone" id="ConnectionCodeMsg">
+				<span class="h4tag"><strong>#{labelMsgs.addDeviceMsg2}</strong></span>
+			</div>
+			<a4j:outputPanel id="devicePageError" styleClass="DisplayNone">
+				<h:outputLabel id="devicePageError1" value="#{householdDevicesBean.errorValueMap.pageError}" rendered="#{householdDevicesBean.errorValueMap.pageError ne null &amp;&amp; householdDevicesBean.errorValueMap.pageError ne ''}"
+				styleClass="#{householdDevicesBean.errorValueMap.pageError ne null &amp;&amp; householdDevicesBean.errorValueMap.pageError ne ''?'err_msg':'DisplayNone'}"/>
+			</a4j:outputPanel>
+			<div id="deviceAddCode" class="PopUpButton Fleft" style="padding-left:40px; margin-top:20px;">
+				<a4j:commandLink id="addDeviceCode" style="padding-top:10px;"  title="#{labelMsgs.alt_addDeviceCodeLbl}" styleClass="CommonBtn_Link" action="#{householdDevicesBean.getAddDeviceCode}" oncomplete="#{householdDevicesBean.errorValueMap.pageError ne null &amp;&amp; householdDevicesBean.errorValueMap.pageError ne ''?'ShowErrMsg();':'javascript:chgAddDeviceDivs(\'GETCODE\');'}" render="devicePageError,devicePageError1,deviceCodeId">
+					<div>#{labelMsgs.addDeviceCodeLbl}</div>				
+				</a4j:commandLink>
+				<div id="addDeviceClose"  style="padding-top:10px;" class="CommonBtn_Link_Gray" title="#{labelMsgs.title_addDeviceClose}" onclick="cancelErrMsg();disablePopup1('AddDevicePopUp', 'backgroundPopup');">
+					<div>#{labelMsgs.addDeviceClose}</div>
+				</div>
+			</div>
+			<div id="deviceClose" class="PopUpButton Fleft" style="padding-left:5px; margin-top:10px;display:none;">
+				<h:inputText id="deviceCodeId" styleClass="deviceInputText" title="#{labelMsgs.alt_deviceCode}" readonly="true" value="#{householdDevicesBean.deviceCode}"/>
+				<br/><br/>
+				<div style="margin-left:175px;margin-top:30px;padding-top:10px;">
+					<h:commandLink id="addClosepop" style="padding-top:10px;" title="#{labelMsgs.title_closeLabel}" styleClass="CommonBtn_Link" action="addDeviceSuccessPage">
+						<div>#{labelMsgs.closeLabel}</div>				
+					</h:commandLink>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--  AddDevicePopUp popup end -->			
+	<div class="DevicesBoxDiv">
+		<c:if test="#{householdDevicesBean.usrAddEnabled eq 'yes'}">
+			<div id="add_Device" title="#{labelMsgs.addDevice}" onclick="openPopup('AddDevicePopUp', 'backgroundPopup');" class="AddNewDevice #{householdDevicesBean.deviceSlotsAvailable eq 0 ?DevicesFull:''}">
+				<div class="DeviceName">#{labelMsgs.addDevice}</div>
+				<div class="DeviceImg">
+					<div class="DeviceStatusIcon"></div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="#{householdDevicesBean.usrAddEnabled eq 'no'}">
+			<div id="add_Device_Dull"  class="AddNewDeviceDull">
+				<div class="DeviceName">#{labelMsgs.addDevice}</div>
+				<div class="DeviceImg">
+					<div class="DeviceStatusIcon"></div>
+				</div>
+			</div>
+		</c:if>
+		<div class="DevicesAvailable">
+			<c:set var="devItr" value="0"/>
+			<c:forEach items="#{householdDevicesBean.deviceList}" var="deviceItem">	
+				<c:set var="devItr" value="#{devItr+1}"/>
+				<c:if test="#{('DECE' == deviceItem.deviceType)?true:false}">
+					<div id="deviceDetailsId#{devItr}" class="DeviceActiveView" title="#{deviceItem.displayName}" onclick="navigateViewDevice('DEVICE','#{deviceItem.deviceId}','DECE','#{sessionScope.viewFormName}');">
+						<div class="DeviceImg">
+							<h:graphicImage url="#{deviceItem.displayImageUrl}" styleClass="#{deviceItem.displayImageUrl eq null || deviceItem.displayImageUrl eq '' ?'DisplayNone':''}" width="53" height="73" title="#{deviceItem.displayName}"/>
+						</div>
+						<div class="UvvuIcon">                                            
+						</div>
+						<div class="DeviceName"><truncate:truncateText text="#{deviceItem.displayName}" start="0" end="#{sessionScope.devNamLen}"/></div>
+					</div>		
+				</c:if>
+				<c:if test="#{deviceItem.deviceType == 'LEGACY'}">
+					<div id="deviceDetailsId#{devItr}" class="DeviceActiveView" title="#{deviceItem.displayName}" onclick="navigateViewDevice('DEVICE','#{deviceItem.deviceId}','LEGACY','#{sessionScope.viewFormName}');">
+						<div class="DeviceImg">
+							<h:graphicImage url="#{deviceItem.displayImageUrl}" styleClass="#{deviceItem.displayImageUrl eq null || deviceItem.displayImageUrl eq '' ?'DisplayNone':''}" width="53" height="73" title="#{labelMsgs.alt_img_displayImageUrl}"/>
+						</div>					
+						<div class="DeviceName"><truncate:truncateText text="#{deviceItem.displayName}" start="0" end="#{sessionScope.devNamLen}"/></div>
+					</div>
+				</c:if>
+				<c:if test="#{deviceItem.deviceId == 'NOTAVAILABLE'}">
+					<div id="deviceDetailsId#{devItr}" class="DeviceDullView">
+						<div class="DeviceName">#{labelMsgs.available}</div>		
+					</div>
+				</c:if>
+			</c:forEach>
+			<c:if test="#{((householdDevicesBean.devicesCount ge 12) &amp;&amp; (sessionScope.privilege ne 'BASIC') &amp;&amp; (sessionScope.userAge ne 'CHILD'))}">	
+				<div class="AvailableTextCount">
+					<h:outputLabel value="#{labelMsgs.devicesMaxInfo}"/>
+				</div>
+			</c:if>
+			<c:if test="#{((householdDevicesBean.devicesCount lt 12 &amp;&amp; householdDevicesBean.devicesCount ne 11) &amp;&amp; (sessionScope.privilege ne 'BASIC') &amp;&amp; (sessionScope.userAge ne 'CHILD'))}">
+				<div class="AvailableTextCount">
+					 <h:outputLabel value="#{labelMsgs.availablePart1}"/>
+               		<h:outputFormat value="#{labelMsgs.availablePart2}.">
+                    	<f:param value="#{householdDevicesBean.deviceSlotsAvailable}"/>
+                    </h:outputFormat>
+				</div>
+			</c:if>
+			<c:if test="#{((householdDevicesBean.devicesCount eq 11) &amp;&amp; (sessionScope.privilege ne 'BASIC') &amp;&amp; (sessionScope.userAge ne 'CHILD'))}">
+				<div class="AvailableTextCount">
+					 <h:outputLabel value="#{labelMsgs.availablePart1}"/>
+               		<h:outputFormat value="#{labelMsgs.availablePart3}.">
+                    	<f:param value="#{householdDevicesBean.deviceSlotsAvailable}"/>
+                    </h:outputFormat>
+				</div>
+			</c:if>
+		</div>
+	</div>
+</ui:composition>

@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">	
+				<!--Start : Broswe Media -->
+			<script type="text/javascript">				
+				window.onload = function () {
+					loadContactUsBrowseContent('#{applicationScope.staticContentBaseUrl}/faqs/helpBrowseContent.xml');
+				}
+			</script>
+				<h:commandLink id="helpPageNavigationLink" action="#{help.helpAuthNavigation}" immediate="true"/>
+				<h:inputHidden id="contactUsHelpCategoryHidden" value="test1"/>
+				<div class="BrowseHelpBox">
+					<div class="headingHelp">
+						Browse Help
+					</div>
+					<div class="Help_fields no_border_line">
+						<div class="Field_Heading">by search</div>
+							<div class="Fields_List">
+                            	<input type="text" name="helpSearchTopicInput" id="helpSearchTopicInput" value="Search for a topic" class="inputRetailer" onfocus="clearHelpSearchText('helpSearchTopicInput', 'onfocus')" onblur="clearHelpSearchText('helpSearchTopicInput', 'onblur')"/> 
+                            	<a href="#" class="GoBtn" onclick="javascript:loadFaqs('searchCategory','YES')">Go</a>
+                            </div>							
+					</div>
+					<div class="Help_fields">
+						<div class="Field_Heading">by topic</div>
+						<div class="Fields_List">
+							<ul id="listContactUsTopicId">
+								<li><p style="color: rgb(238, 238, 238);">No topics Found</p></li>
+							</ul>
+						</div>
+					</div>
+					<div class="Help_fields">
+						<div class="Field_Heading">#{labelMsgs.contactUs}</div>
+						<div class="Fields_List">
+							<ul>
+								<li>
+									<h:commandLink value="Technical Support" action="authContactPage" rendered="#{sessionScope.User!=null}" immediate="true"/>
+				    				<h:commandLink value="Technical Support" action="unAuthContactPage" rendered="#{sessionScope.User==null}" immediate="true"/>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+</ui:composition>

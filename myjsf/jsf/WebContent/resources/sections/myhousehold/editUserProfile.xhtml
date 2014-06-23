@@ -1,0 +1,495 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<script type="text/javascript">
+		window.onload = function() {
+			var divs = document.getElementsByTagName("div");
+				for (var i = 0; i &lt; divs.length; i++) {
+			        if (divs[i].className == 'rf-fu-lst') {
+			        	divs[i].style.height='60px';
+			        }
+			        else{
+			        	
+			        }
+			    }
+			
+			var loggedInAge='#{sessionScope.userAge}';
+			var ageDetails='#{userProfileBean.userProfileValueMap.age}';
+			var isValidFormFlag = '#{userProfileBean.userProfileValueMap.isValidForm}';
+			var pageError = '#{userProfileBean.errorValueMap.pageError}';
+			var successMsg = '#{userProfileBean.userProfileValueMap.successMsg}';
+			
+			if(isValidFormFlag == 'false' || (pageError!=null &amp;&amp; pageError!='') || (successMsg!=null &amp;&amp; successMsg!='')){
+				document.getElementById('frmEditMember:edit_User_save_btn').focus();
+			}
+
+			if(ageDetails == 'CHILD' || ageDetails == 'YOUTH'){
+				if(!(loggedInAge == 'ADULT')){
+					document.getElementById('member_email_hint').innerHTML="#{labelMsgs.editUserEmailHint_self}";
+					document.getElementById('member_email_hint').className="FieldsHint";
+				}else{
+					document.getElementById('member_email_hint').innerHTML="#{labelMsgs.editUserEmailHint}";
+					 document.getElementById('member_email_hint').className="FieldsHint";
+				}
+			}
+	 	}
+	</script>
+	
+	 <script type="text/javascript">
+		function selectRadio(idValue){	
+			document.getElementById('frmEditMember:privilegeHdn').value=document.getElementById(idValue).value;
+		}
+		function dobValidation(){
+			//This function is used to check user is child or youth or adult and render appropriate divs..
+		  	var today = new Date(); 
+			var currentyear = today.getFullYear();
+			var currentmonth = today.getMonth();
+			var currentdate = today.getDate();
+			var dobYear= document.getElementById('frmEditMember:verifydobYear').value;
+			var dobMonth = document.getElementById('frmEditMember:verifydobMonth').value;
+			var dobDate= document.getElementById('frmEditMember:verifydobDate').value;
+			var age=currentyear - dobYear;
+			if(!(dobMonth == ("0") || dobDate == ("0") || dobYear == ("0"))){
+                if((age == 18)
+                   	&amp;&amp; ((dobMonth>currentmonth+1) || 
+						((dobMonth==currentmonth+1) &amp;&amp; (dobDate>currentdate))))
+                             age--;
+                else if((age == 13)
+                       	&amp;&amp; ((dobMonth &lt; currentmonth+1) || 
+        						((dobMonth==currentmonth+1) &amp;&amp; (dobDate &lt;= currentdate))))
+                                     age++;
+                if(age &lt;= 13){
+                	document.getElementById('readOnlyCheckbox').style.display="block";
+                	document.getElementById('frmEditMember:termsOfUse').checked=true;
+                	document.getElementById('frmEditMember:termsOfUse').tabIndex="-1";
+                    document.getElementById('member_email_hint').innerHTML="#{labelMsgs.editUserEmailHint}";
+    	        	document.getElementById('member_email_hint').className="FieldsHint";
+                }
+                else if(age &gt; 13 &amp;&amp; age &lt; 18){
+                	document.getElementById('readOnlyCheckbox').style.display="block";
+                	document.getElementById('frmEditMember:termsOfUse').checked=true;
+                	document.getElementById('frmEditMember:termsOfUse').tabIndex="-1";
+                    document.getElementById('member_email_hint').innerHTML="#{labelMsgs.editUserEmailHint}";
+    	        	document.getElementById('member_email_hint').className="FieldsHint";
+                }
+                else if(age &gt;= 18){
+                	document.getElementById('readOnlyCheckbox').style.display="none";
+                	document.getElementById('member_email_hint').innerHTML="";
+                	document.getElementById('member_email_hint').className="DisplayNone";
+                }
+			}
+		}
+		function editFireEvent(){
+   		 var fireOnThis =document.getElementById('frmEditMember:edit_User_save_btn');
+   		 if( document.createEvent ) {
+   		   var evObj = document.createEvent('MouseEvents');
+   		   evObj.initEvent( 'click', true, false );
+   		   fireOnThis.dispatchEvent(evObj);
+   		 } else if( document.createEventObject ) {
+   		   fireOnThis.fireEvent('onclick');
+   		 }
+   	  }
+
+	</script>
+	
+	<h:form id="frmRemoveMemberProfile">
+	 <!--  Remove Member Popup Start  -->  
+			<div id="removeMember" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+					<span class="h3tag"><strong>#{labelMsgs.removeMemberPop}</strong></span>
+					<div class="PopupBody">
+						<div class="PopupLeftContent"><img src="#{applicationScope.staticContentBaseUrl}/images/RemoveIcon.png" width="81" height="81" alt="#{labelMsgs.alt_img_removeIcon}" /></div>
+							<div class="PopupRightContent paddingTop40">
+								<span class="h4tag"><strong>#{labelMsgs.removeMemberInfo}</strong></span>
+								<br />
+					        </div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<div id="doNotRemove" title="#{labelMsgs.cancelPop}" class="CommonBtn_Link" onclick="javascript:disablePopup1('removeMember', 'backgroundPopup');">
+							<div>#{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.dontRemoveMember}</div>
+						</div> 
+						<h:commandLink id="removeMemberContinue" title="#{labelMsgs.continue}" styleClass="CommonBtn_Link_Gray" action="#{userProfileBean.removeMemberProfile}">
+							<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId" />
+							<div>#{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.removeMember}</div>
+						</h:commandLink>						
+					</div>
+				</div>
+			</div>
+			
+    <!--  Remove Member Popup End  -->
+    </h:form>
+    <h:form id="frmEditMemberUnsavedChanges">
+    <!--  Changes Prompt Popup Start  -->
+			<div id="accountNameUnsavedChanges" class="popupContact" style="width:auto; min-width:530px;">
+				<div class="popup_container">
+					<div class="PopupBody">
+						<div class="PopupLeftContent">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" alt="#{labelMsgs.title_warnIcon}" width="81" height="81" />
+						</div>
+						<div class="PopupRightContent">
+							<h:outputLabel value="#{labelMsgs.saveChanges}"/><br />
+						</div>
+					</div>
+					<div class="PopUpButton" >
+						<div class="CommonBtn_Link" title="#{labelMsgs.saveLabel}" onclick="javascript:disablePopup1('accountNameUnsavedChanges', 'backgroundPopup');javascript:editFireEvent();">
+							<div>#{labelMsgs.saveLabel}</div>
+						</div>
+						
+						<div class="CommonBtn_Link_Gray"  title="#{labelMsgs.discardLabel}" onclick="handleNavigationFromPopup();">
+							<div>#{labelMsgs.discardLabel}</div>
+						</div>
+						<div class="CommonBtn_Link_Gray" title="#{labelMsgs.return}" onclick="javascript:disablePopup1('accountNameUnsavedChanges', 'backgroundPopup');">
+							<div>#{labelMsgs.return}</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+	<!--  Changes Prompt Popup End  -->
+	</h:form>	
+	 
+	<h:form id="frmEditMember">
+	<ui:include src="avatar.xhtml"/>	
+
+<!--  User Security Permissions popup start -->
+                <div id="SecurityPermissions" class="popupContact" style="z-index:10003; width:750px; background:#191919;">
+		            <div class="Security_Permissions">
+                        <a style="color:#fff; float:right;" title="#{labelMsgs.closeLabel}" href="#" onclick="javascript:disablePopup1('SecurityPermissions', 'backgroundPopup')">#{labelMsgs.closeLabel}</a>
+                              <div class="create_Access_Controls">
+                            		<div class="levelOfAccess"> 
+                                    	<div class="access_permitions_title">
+                                        	<div class="Media_Permissions" ><h:outputLabel value="#{labelMsgs.media}"/></div>
+											<div class="Household_Permissions"><h:outputLabel value="#{labelMsgs.memberNAccount}"/></div>
+											<div class="Players_Devices"><h:outputLabel value="#{labelMsgs.playersNdevices}"/></div>                                        
+                                        </div>
+                                    </div>
+                                    <div class="Access_Users">
+                                    	<div class="basic_Access_User">
+                                        	<div class="basic_user_radio_button">
+                                            	<span><h:outputLabel value="#{labelMsgs.basicAccess}"/></span>
+                                            </div>
+                                            <div class="basic_media_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.buyMedia}"/></li>
+                                                </ul> 
+                                            </div>
+                                           <div class="basic_household_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.viewMemberInfo}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.linkRetailer}"/></li>
+                                                </ul> 
+                                            </div>
+                                            <div class="basic_devices_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.viewPlayersNdevices}"/></li>
+                                                </ul> 
+                                            </div>
+                                        </div>
+                                        <div class="standrad_Access_User">
+                                        	<div class="standrad_user_radio_button">
+                                            	<span><h:outputLabel value="#{labelMsgs.standardAccess}*"/></span>
+                                            </div>
+                                            <div class="standrad_media_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.buyMediaForSQUAndFAU}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.streamMedia}"/></li>
+                                                </ul> 
+                                            </div>
+                                            <div class="standrad_household_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.viewMemberInfo}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.linkRetailer}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.editMemberInfoForStandard}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.manageMembersStd}"/></li>
+                                                </ul> 
+                                            </div>
+                                            <div class="standrad_devices_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.viewPlayersNdevices}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.managerPlayers}"/></li>
+                                                </ul> 
+                                            </div>
+                                        </div>
+                                        <div class="Full_Access_User">
+                                        	<div class="Full_user_radio_button">
+                                            	<span><h:outputLabel value="#{labelMsgs.fullAccess}"/></span>
+                                            </div>
+                                            <div class="Full_media_permitions">
+                                       			<ul>
+                                               		<li><h:outputLabel value="#{labelMsgs.buyMediaForSQUAndFAU}"/></li>
+                                                	<li><h:outputLabel value="#{labelMsgs.streamMedia}"/></li>
+                                               </ul> 
+                                            </div>
+                                            <div class="Full_household_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.viewMemberInfo}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.linkRetailer4full}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.editMemberInfoForFull}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.manageMembersFull}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.manageAccountInfo}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.closeAccount}"/></li>                           
+                                                </ul> 
+                                            </div>
+                                            <div class="Full_devices_permitions">
+                                        		<ul>
+                                                	<li><h:outputLabel value="#{labelMsgs.viewPlayersNdevices}"/></li>
+                                                    <li><h:outputLabel value="#{labelMsgs.managerPlayers}"/></li>
+                                                </ul> 
+                                            </div>
+                                      </div>
+                                  </div>
+                                <div style="color: #fff; margin-top:5px;">
+                            	  	<h:outputLabel id="securityAccessMandatory" value="*#{labelMsgs.ageRestriction}"/>
+                            	  	<h:outputLabel id="toseeEditUserPermision" value="#{labelMsgs.toSee}"/>&#160;
+                            	  	<h:commandLink id="editPrivacyPolicy" action="authPrivacyStatementPage" style="color:#9999CC;" target="_blank" value="#{labelMsgs.privacyStatement}"/><h:outputLabel id="EditUsrSeeClose" value="#{labelMsgs.closeBracket}"/>
+                            	  	<h:outputLabel id="EditsecurAceessMandatory1" value="#{labelMsgs.ageRestriction1}"></h:outputLabel>
+                            	</div>
+                            </div>                           
+       			      </div>
+       	        </div>
+<!--  User Security Permissions popup end -->
+	<!--  main body start  -->  
+	<h:inputHidden id="hdnnodeUserId" value="#{userProfileBean.nodeUserId}"/>
+	<h:inputHidden id="ageClass" value="#{userProfileBean.userProfileValueMap.age}"/>
+	<h:inputHidden id="hdnAvatarValue" value="#{userProfileBean.userProfileValueMap.avatarEditable}"/>
+	<h:inputHidden id="hdnMemberRemoveValue" value="#{userProfileBean.userProfileValueMap.accessRemoveMember}"/>
+	<h:inputHidden id="hdnFlagId" value="true"/>
+		<div class="main_body">
+			<c:set var="editTab" value="7"/>
+			<div class="BodyPage_heading">
+				<div class="MemberName">
+					<h:commandLink action="myHouseholdPage" onclick="return handleSaveChangesPopup(this.id);" title="#{labelMsgs.title_myHouseHold}" tabindex="#{editTab}" id="householdRenamed">
+	           			<h:outputLabel value="#{labelMsgs.theAccount}"/>
+	           			<h:outputLabel value="#{headerBean.householdName}"/>
+	           			<h:outputLabel value="#{labelMsgs.accountLabel}"/>
+					</h:commandLink>
+				</div>
+				<div class="RightHeadLink">
+					#{labelMsgs.havingTrouble}
+					<h:commandLink tabindex="#{editTab+1}" onclick="return handleSaveChangesPopup(this.id);" styleClass="Common_pointer" title="#{labelMsgs.helpNfaq}" value="#{labelMsgs.helpNfaq}" action="authHelpPage" id="helpLink">
+						<f:setPropertyActionListener value="profile" target="#{help.helpNav}"/>
+			      	</h:commandLink> 
+				</div>
+				<div class="Fright MembersTitleName">
+					<h1><span class="violet_color_link">
+						<truncate:truncateText text="#{userProfileBean.userProfileValueMap.memberFirstNameTemp}" start="0" end="-1"/>'s
+					</span>
+					<h:outputLabel value="#{labelMsgs.memberDetails1}"/></h1>
+				</div>
+			</div>
+			<div class="body_container_above_gradiant">
+				<div class="gradiant_box_left"/>
+				<div class="gradiant_box_middle">
+					<img class="gradiant_img" src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="#{labelMsgs.alt_img_container_top_gradiant}" />
+				</div>	
+				<div class="gradiant_box_right"/>
+			</div>			
+		<!--  body content start  --> 
+			<div class="body_wrapper" id="pageBody">
+				<div class="body_wrapper_left_shadow"/>
+				<div class="body_wrapper_container">
+					<div class="MemberProfileContainer">
+						<div class="MemberProfileImgMenuDiv">
+							<div class="Editmember_div140">
+								<div class="MemberText140 CursorpointerNone">									
+	           						<truncate:truncateText text="#{userProfileBean.userProfileValueMap.memberFirstNameTemp}" start="0" end="-1"/>
+								</div>
+								<div class="memberImage140">									
+									<c:set var="defaultImage" value="#{applicationScope.staticContentBaseUrl}/images/ActiveMemberIcon140.png" />
+									<h:graphicImage id="userImage123" url="#{(userProfileBean.userDVO.displayImageUrl ne null &amp;&amp; userProfileBean.userDVO.displayImageUrl ne '')? userProfileBean.userDVO.displayImageUrl : defaultImage}" title="#{userProfileBean.userDVO.displayName}" />
+									<c:if test="#{userProfileBean.userProfileValueMap.avatarEditable eq 'true'}">
+										<div class="EditImage140bottomText">
+											<a title="#{labelMsgs.editPhoto}" tabindex="#{editTab+17}" href="javascript:void(0)" onclick="javascript:textVanishment();openImg();javascript:openPopup('editPhotoPopup', 'backgroundPopup');"><h:outputLabel title="#{labelMsgs.editPhoto}" styleClass="Common_pointer" value="#{labelMsgs.editPhoto}"/></a>
+										</div>
+									</c:if>
+								</div>
+							</div>
+							<h:panelGroup id="linksPanel">
+							<div class="Profilemenu">
+								<ul class="MemberDetailsMenu">
+									<li><h:outputLabel styleClass="Active" value="#{labelMsgs.memberDetails}"/></li>
+									<li>
+										<h:commandLink tabindex="#{editTab+18}" onclick="return handleSaveChangesPopup(this.id);" value="#{labelMsgs.parentalControls}" title="#{labelMsgs.parentalControls}" action="#{userProfileBean.navigateToUserParentalControls}" id="parentalControlsNodeUser">
+											<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId" />
+										</h:commandLink>
+									 </li>
+									<li>
+										<h:commandLink tabindex="#{editTab+19}" onclick="return handleSaveChangesPopup(this.id);" title="#{labelMsgs.linkedAccounts}" action="#{userProfileBean.navigateToUserLinkedAccounts}" id="linkedAccountsNodeUser" value="#{labelMsgs.linkedAccounts}">
+											<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId" />
+										</h:commandLink>
+									</li>
+								</ul>
+							</div>
+							</h:panelGroup>
+						</div>
+						<div class="ProfileDetailsMainDiv">
+							<div class="MemberFormAbove_content">
+                                  <span class="Fleft"><h:outputLabel value="#{labelMsgs.allFieldsRequired}"/></span>
+	                                <c:if test="#{userProfileBean.userProfileValueMap.accessRemoveMember eq 'true'}">
+	                                	<span  class="RemoveThisMember">
+											<a title="#{labelMsgs.removeMember}" tabindex="#{editTab+20}" href="#" onclick="javascript:openPopup('removeMember', 'backgroundPopup');" id="profileRemove">#{labelMsgs.removeMember}</a>
+										</span>
+									</c:if>
+                                   <br/> <br/>
+                                  <span class="Fleft"><h:outputLabel value="#{labelMsgs.updateMsg}"/></span>
+                            </div>
+							<div class="EditUserInputfields BorderNone">
+								<div class="userfield_input">
+									<span class="FontWeight"><h:outputLabel value="#{labelMsgs.memberCountry}:"/></span><br />
+									<div class="form_inputfield">
+										<div class="normaltext">
+											<c:forEach items="#{userProfileBean.supportingCountryMap}" var="country">
+														<c:if test="#{country.value eq userProfileBean.userProfileValueMap.countryName}">
+															<h:outputLabel value="#{country.key}"/>
+														</c:if>
+											</c:forEach>
+										</div>
+									</div>
+								</div>
+								<div class="userfield_input">
+									<span class="FontWeight">
+										<h:outputLabel value="#{labelMsgs.memberBirthday}:" />
+									</span><br />
+									<div class="normaltext">
+										 <h:outputLabel value="#{userProfileBean.userProfileValueMap.DateOfBirth==null?'NULL':userProfileBean.userProfileValueMap.DateOfBirth}"/>
+									</div> 
+								</div>
+								<div id="accessLevel" class="userfield_input">
+									<span class="FontWeight Fleft">#{labelMsgs.permissions}:</span>
+									<a id="edit_permission_info" title="#{labelMsgs.permissions}" tabindex="#{editTab+7}" href="#" class="Iicon Fleft" onclick="javascript:openPopup('SecurityPermissions', 'backgroundPopup');">
+										<img src="#{applicationScope.staticContentBaseUrl}/images/Iicon.png" width="16" height="16" alt="#{labelMsgs.permissions}"/>
+									</a><br />
+									<div class="form_inputfield">
+										<h:inputHidden id="privilegeHdn" value="#{userProfileBean.userProfileValueMap.accessPrivilege}"/>
+										<h:inputHidden id="accessPrivilegeHdn" value="#{userProfileBean.userProfileValueMap.accessLevelEditable}"/>
+										<h:selectOneRadio tabindex="#{editTab+8}" title="#{labelMsgs.radioBtn}" id="privilegeSelectOneRadio" layout="pageDirection" styleClass="AccessLevels" disabled="#{!userProfileBean.userProfileValueMap.accessLevelEditable}"
+											 onclick="selectRadio(this.id);" value="#{userProfileBean.userProfileValueMap.accessPrivilege}">
+												<f:selectItem itemLabel="#{labelMsgs.basicAccess}" id="basicAccess" itemValue="BASIC"/>
+												<f:selectItem itemLabel="#{labelMsgs.standardAccess}" id="stdAccess" itemValue="STANDARD"/>
+												<f:selectItem itemLabel="#{labelMsgs.fullAccess}" itemValue="FULL" id="fullAccess" itemDisabled="#{sessionScope.privilege eq 'STANDARD' || userProfileBean.userProfileValueMap.age eq 'CHILD' || userProfileBean.userProfileValueMap.age eq 'YOUTH'}"/>
+										</h:selectOneRadio>
+									</div>
+								</div>
+								<c:if test="#{userProfileBean.userProfileValueMap.age ne 'CHILD'}">
+									<div class="userfield_input">
+										<span class="FontWeight"><h:outputLabel value="#{labelMsgs.memberFirstName}:" for="frmEditMember:memberFirstName"/></span><br />
+										<div class="form_inputfield">
+											<h:inputText tabindex="#{editTab+9}" title="#{labelMsgs.memberFirstName}" styleClass="input" id="memberFirstName" maxlength="50" value="#{userProfileBean.userProfileValueMap.memberFirstName}"
+											autocomplete="off" onfocus="toggleHintMsg('diplayHint','block');toggleHintMsg('memberFirstNameError','none');" onblur="toggleHintMsg('diplayHint','none');"/>
+										</div>
+										<div class="FieldsHint" id="diplayHint">
+											<h:outputLabel value="#{labelMsgs.displaynameHintMsg}"/>
+										</div>
+										<div id="memberFirstNameError">
+											<h:outputLabel styleClass="#{userProfileBean.errorValueMap.firstNameError ne null?'err_msg_edit_page':'err_msg_hide'}" id="firstNameError"
+												value="#{userProfileBean.errorValueMap.firstNameError}" rendered="#{userProfileBean.errorValueMap.firstNameError ne null}"/>
+										</div>
+									</div>
+									<div class="userfield_input">
+										<span class="FontWeight"><h:outputLabel value="#{labelMsgs.memberLastName}:" for="frmEditMember:memberLastName"/></span><br />
+										<div class="form_inputfield">
+											<h:inputText title="#{labelMsgs.memberLastName}" tabindex="#{editTab+10}" styleClass="input" id="memberLastName" value="#{userProfileBean.userProfileValueMap.memberLastName}" onfocus="toggleHintMsg('memberLastNameError','none');" maxlength="50" autocomplete="off" />
+										</div>
+										<div id="memberLastNameError">
+											<h:outputLabel styleClass="#{userProfileBean.errorValueMap.lastNameError ne null?'err_msg_edit_page':'err_msg_hide'}" id="lastNameError"
+												value="#{userProfileBean.errorValueMap.lastNameError}" rendered="#{userProfileBean.errorValueMap.lastNameError ne null}"/>
+										</div>
+									</div>
+								</c:if>
+								<div class="userfield_input">
+									<span class="FontWeight"><h:outputLabel value="#{labelMsgs.memberEmail}:" for="frmEditMember:memberEmailAddr"/></span>
+									<br/>
+									<div class="form_inputfield">
+										<h:inputText tabindex="#{editTab+11}" title="#{labelMsgs.memberEmail}" id="memberEmailAddr" styleClass="input" maxlength="100"
+											autocomplete="off" onfocus="toggleHintMsg('member_email_hint','block');toggleHintMsg('frmEditMember:memberEmailErrorRender','none');"
+											onblur="toggleHintMsg('member_email_hint','none');"
+											value="#{userProfileBean.userProfileValueMap.emailAddress}">
+												<a4j:ajax event="blur" execute="@all" render="memberEmailErrorRender" listener="#{userProfileBean.checkEmailAvailabilityAction}"
+												oncomplete="toggleHintMsg('member_email_hint','none');toggleHintMsg('frmEditMember:memberEmailErrorRender','block');"/>
+											</h:inputText>
+									</div>
+									<div id="member_email_hint" style="display:none;"/>
+									<h:panelGroup id="memberEmailErrorRender" style="float:left; width:280px;">
+										<h:outputLabel styleClass="#{userProfileBean.errorValueMap.emailError ne null &amp;&amp; userProfileBean.errorValueMap.emailType eq 'errorMsg'?'err_msg_edit_page':userProfileBean.errorValueMap.emailError ne null &amp;&amp; userProfileBean.errorValueMap.emailType eq 'hintMsg'?'err_hint_emailAddress':'err_msg_hide'}" id="memberEmailError"
+											value="#{userProfileBean.errorValueMap.emailError}" rendered="#{userProfileBean.errorValueMap.emailError ne null &amp;&amp; userProfileBean.userProfileValueMap.isValidForm eq 'false'}"/>
+									</h:panelGroup>
+								</div>
+								<div class="userfield_input">
+									<span class="FontWeight"><h:outputLabel value="#{labelMsgs.memberUserName}:" for="frmEditMember:memberUserName"/></span><br />
+									<div class="form_inputfield">
+										<h:inputText tabindex="#{editTab+12}" title="#{labelMsgs.memberUserName}" id="memberUserName" styleClass="input" value="#{userProfileBean.userProfileValueMap.username}" maxlength="64"
+											onfocus="toggleHintMsg('field_hint','block');toggleHintMsg('frmEditMember:userNotAvailableRender','none');" autocomplete="off">
+											<a4j:ajax event="blur" execute="@all" render="userNotAvailableRender" listener="#{userProfileBean.checkUserNameAvailabile}"
+												oncomplete="toggleHintMsg('field_hint','none');toggleHintMsg('frmEditMember:userNotAvailableRender','block');"/>
+										</h:inputText>
+									</div>
+									<div class="FieldsHint" id="field_hint">
+										<h:outputText value="#{labelMsgs.editUsernameHintMsg}"/>
+									</div>
+									<h:panelGroup id="userNotAvailableRender">
+										<h:outputLabel id="userNotAvailableId" rendered="#{userProfileBean.errorValueMap.usernameError ne null}"
+											styleClass="#{userProfileBean.errorValueMap.usernameError ne null ? 'err_msg_edit_page':'disply:none;'}"
+											value="#{userProfileBean.errorValueMap.usernameError}"/>
+									</h:panelGroup>
+								</div>
+								<div class="userfield_input">
+									<span class="FontWeight"><h:outputLabel value="#{labelMsgs.newPasswordLabel}:" for="frmEditMember:password"/></span><br />
+									<div class="form_inputfield">
+										<h:inputSecret tabindex="#{editTab+13}" title="#{labelMsgs.newPasswordLabel}" id="password" styleClass="input" value="#{userProfileBean.userProfileValueMap.password}" maxlength="64"
+											onfocus="toggleHintMsg('passwordHint','block');toggleHintMsg('passwordError','none');" autocomplete="off"
+											onblur="toggleHintMsg('passwordHint','none');"/>
+									</div>
+									<div class="FieldsHint" id="passwordHint">
+										<h:outputLabel value="#{labelMsgs.passwordHintMsg}"/>
+									</div>
+									<div id="passwordError">
+										<h:outputLabel value="#{userProfileBean.errorValueMap.passwordError}" id="passwordError"
+											styleClass="#{userProfileBean.errorValueMap.passwordError ne null?'err_msg_edit_page':'err_msg_hide'}" rendered="#{userProfileBean.errorValueMap.passwordError ne null}"/>
+									</div>
+								</div>
+								<div class="userfield_input">
+									<span class="FontWeight"><h:outputLabel value="#{labelMsgs.confMemberPasswordLabel}:" for="frmEditMember:confPassword"/></span><br/>
+									<div class="form_inputfield">
+										<h:inputSecret title="#{labelMsgs.confMemberPasswordLabel}" tabindex="#{editTab+14}" id="confPassword" autocomplete="off" onfocus="toggleHintMsg('cnfPasswordError','none');" value="#{userProfileBean.userProfileValueMap.confirmPassword}" styleClass="input" maxlength="64"/>
+									</div>
+									<div id="cnfPasswordError">							
+										<h:outputLabel rendered="#{userProfileBean.errorValueMap.confirmPasswordError ne null}" id="cnfPasswordError"
+											value="#{userProfileBean.errorValueMap.confirmPasswordError}" styleClass="#{userProfileBean.errorValueMap.confirmPasswordError ne null?'err_msg_edit_page':'err_msg_hide'}"/>
+									</div>
+								</div>
+								<div class="Continue_btn_Nospace clearBoth">
+									<div class="button_input">
+										<h:commandButton tabindex="#{editTab+15}" id="edit_User_save_btn" title="#{labelMsgs.saveTheChanges}" styleClass="image_button" value="#{labelMsgs.saveTheChanges}" action="#{userProfileBean.saveProfileChanges}">
+											<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId"/>
+										</h:commandButton>
+									</div>
+									<div class="Cancel">
+										<h:commandLink tabindex="#{editTab+16}" title="#{labelMsgs.cancel}" value="#{labelMsgs.cancel}" onclick="return handleSaveChangesPopup(this.id);" action="myHouseholdPage" id="cancelChanges"/>
+									</div>
+									<div id="pageError" style="float: left; margin-top:-5px; padding-left:10px;">
+										<h:outputLabel value="#{userProfileBean.errorValueMap.pageError}" id="pageError"
+											rendered="#{userProfileBean.errorValueMap.pageError ne null}" styleClass="#{userProfileBean.errorValueMap.pageError ne null?'err_msg_edit_page':'err_msg_hide'}" style="width: 400px;"/>
+									</div>
+									<div class="MarginLeft10 Fleft" id="PageSuccessHint">
+											<h:outputLabel value="#{userProfileBean.userProfileValueMap.successMsg}" id="successMsg"
+											rendered="#{userProfileBean.userProfileValueMap.successMsg ne null}" styleClass="#{userProfileBean.userProfileValueMap.successMsg ne null?'SuccessMsg':'SuccessMsgDull'}"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="body_wrapper_right_shadow"/>
+			</div>
+		<!--  body content end  -->			
+		</div>
+	<!-- main body end -->
+	</h:form>
+</ui:composition>

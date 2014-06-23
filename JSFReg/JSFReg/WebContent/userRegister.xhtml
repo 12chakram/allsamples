@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"> 
+
+<h:head>
+ <title>A Simple Java Server Faces Registration Application</title>
+ 
+ 
+ 
+</h:head>
+ 
+<body> 
+	<h:form>
+		<h2>JSF Registration App</h2>
+		<h4>Registration Form</h4>
+		
+			
+			First Name:
+				
+					<h:inputText label="First Name:" id="fname" value="#{userBean.firstName}" validator="#{userBean.validateinputfields}" validator="org.richfaces.BeanValidator" >
+					
+						<f:ajax event="blur" render="fnamemessage" />
+					</h:inputText>
+					<h:message for="fname" id="fnamemessage"/><br/>
+			Last Name:
+				
+					<h:inputText label="Last Name:" id="lname" value="#{userBean.lastName}"   validator="#{userBean.validateinputfields}" >
+						<f:ajax event="blur" render="lnamemessage" />
+					</h:inputText>
+					<h:message for="lname" id="lnamemessage"/><br/>
+			gender:
+				
+					<h:selectOneRadio label="gender" id="gender"  value="#{userBean.gender}" required="true" requiredMessage="please select your gendertype" >
+					 <f:selectItem itemLabel="Male" itemValue="male"/>
+					 <f:selectItem itemLabel="Female" itemValue="female"/>
+					</h:selectOneRadio>
+					<h:message for="gender" id="gendermessage"/> <br/>
+			Date of Birth:
+				
+					<h:inputText label="Date Of Birth" id="dob"  value="#{userBean.dob}"  required="true" requiredMessage="dob value is Required">
+					 <f:convertDateTime pattern="MM-dd-yy" />
+					 <a4j:ajax event="blur" render="dobmessage" />
+					 </h:inputText> (mm-dd-yy)
+					 <h:message for="dob" id="dobmessage"/><br/>
+			 Email Address:
+			 
+			 	<h:inputText label="Email" id="email"  value="#{userBean.email}" required="true" validator="#{userBean.validateinputfields}">
+			 		<a4j:ajax event="blur" render="emailerrormessage" />
+			 	</h:inputText>
+			 	<h:message for="email" id="emailerrormessage"/><br/>
+			 	
+			
+			 	
+			 	
+			Service Level:
+				
+					<h:selectOneMenu label="Service level" value="#{userBean.serviceLevel}" id="serverl" required="true" requiredMessage="Please selecy one servive" >
+						<a4j:ajax event="change"  render="servicelevelmessage" />
+						<f:selectItem  itemLabel="select service" itemValue=""/>
+						<f:selectItem itemLabel="Medium" itemValue="medium"/>
+						<f:selectItem  itemLabel="Basic" itemValue="basic"/>
+						<f:selectItem itemLabel="Premium" itemValue="premium"/>
+					</h:selectOneMenu>
+				<h:message for="serverl" id="servicelevelmessage"/><br/>
+			
+		
+		
+		<p><h:commandButton value="Register" action="confirm"  /></p>
+	</h:form>
+</body> 
+</html>

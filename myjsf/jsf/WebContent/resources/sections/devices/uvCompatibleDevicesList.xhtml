@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">			
+	
+	<div class="DevicesBoxDiv">
+        <div class="HeadingText">#{labelMsgs.uvCompatible}s</div>                                    
+		<div class="border_lineLightColor"></div>
+            <ui:repeat value="#{householdDevicesBean.deviceList}" var="uvcompdevice">
+	            <f:subview id="uvcompdevicelist" rendered="#{'LEGACY' == uvcompdevice.deviceType}">
+	               <div class="MemberOptimizedDevice">
+	                    <div class="LinkedOptimiseDevice">
+	                     	<div class="DeviceLogo">
+	                             <h:graphicImage url="#{uvcompdevice.displayImageUrl}" styleClass="#{uvcompdevice.displayImageUrl eq null || uvcompdevice.displayImageUrl eq '' ?'DisplayNone':''}" alt="#{labelMsgs.alt_img_displayImageUrl}" />
+	                        </div>
+	                        <div class="DeviceHolderDetail">
+	                        	<div class="MemberName">
+	                        		<div class="UserPc" onclick="navigateViewDevice('DEVICE','#{uvcompdevice.deviceId}','LEGACY','#{sessionScope.viewFormName}');">
+	                        			<truncate:truncateText text="#{uvcompdevice.displayName}" start="0" end="12"/>
+	                        		</div>
+	                        		<div class="DeviceStatus"></div>
+	                        	</div>
+	                      		<div class="CompatibleText">#{labelMsgs.uvCompatible}</div>
+							</div>
+					     </div>
+	                 </div>
+	            </f:subview>
+            </ui:repeat>
+    </div>
+ </ui:composition>

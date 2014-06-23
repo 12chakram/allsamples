@@ -1,0 +1,479 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">			
+	<script type="text/javascript">
+		function editDeviceDetails(deviceId,deviceType){
+        	document.getElementById('saveDiv_'+deviceId).style.display='block';
+        	document.getElementById('editDiv_'+deviceId).style.display='none';
+        	if(deviceType=='DECE'){
+        		document.getElementById('removeLink_'+deviceId).style.display='block';
+        		document.getElementById('rmvDvsDiv_'+deviceId).style.display='none';
+        		document.getElementById('dvsDscpDiv_'+deviceId).style.display='block';
+        	}
+        	document.getElementById('frmDevicesDashboard:deviceDispName_'+deviceId).select();
+        }
+		function setToNormalDeviceState(deviceId,deviceType){
+        	document.getElementById('saveDiv_'+deviceId).style.display='none';
+        	document.getElementById('editDiv_'+deviceId).style.display='block';
+        	if(deviceType=='DECE'){
+        		document.getElementById('removeLink_'+deviceId).style.display='none';
+        	}
+        }
+		function renderRemoveDeviceDiv(deviceId){
+			document.getElementById('frmDevicesDashboard:errorMsg_'+deviceId).style.display='none';
+			document.getElementById('rmvDvsDiv_'+deviceId).style.display='block';
+        	document.getElementById('dvsDscpDiv_'+deviceId).style.display='none';
+        	document.getElementById('saveDiv_'+deviceId).style.display='none';
+        	document.getElementById('editDiv_'+deviceId).style.display='block';
+        	
+        	var dispName = document.getElementById('frmDevicesDashboard:deviceDispName_'+deviceId).value.trim();
+        	var hdnDispName = document.getElementById('frmDevicesDashboard:hdnDispName_'+deviceId).value;
+        	if(null==dispName || ""==dispName){
+        		document.getElementById('frmDevicesDashboard:deviceDispName_'+deviceId).value=hdnDispName;
+        	}else if(dispName!=hdnDispName){
+        		document.getElementById('frmDevicesDashboard:deviceDispName_'+deviceId).value=hdnDispName;
+        	}
+		}
+		function backToPlrInitialState(deviceId,deviceType){
+			document.getElementById('rmvDvsDiv_'+deviceId).style.display='none';
+        	document.getElementById('dvsDscpDiv_'+deviceId).style.display='block';
+        	if(deviceType=='DECE'){
+        		document.getElementById('removeLink_'+deviceId).style.display='none';
+        	}
+		}
+		function validateDisplayName(dispNameId){
+			var displayName = document.getElementById('frmDevicesDashboard:deviceDispName_'+dispNameId).value.trim();
+			var flag = true;
+			if(null==displayName || ""==displayName){
+				document.getElementById('frmDevicesDashboard:errorMsg_'+dispNameId).style.display='block';
+				document.getElementById('frmDevicesDashboard:errorMsg_'+dispNameId).innerHTML='#{errorMsgs.devicename_mandatory}';
+				document.getElementById('frmDevicesDashboard:errorMsg_'+dispNameId).className='err_msg';
+				document.getElementById('frmDevicesDashboard:errorMsg_'+dispNameId).focus();
+				flag = false;
+			}else{
+				document.getElementById('frmDevicesDashboard:deviceDispName_'+dispNameId).innerHTML=displayName;
+				document.getElementById('frmDevicesDashboard:errorMsg_'+dispNameId).style.display='none';
+				document.getElementById('frmDevicesDashboard:errorMsg_'+dispNameId).className='';
+			}
+				
+			return flag;
+		}
+		function setValuesToPopup(deviceName,removeDeviceId){
+			if(deviceName.length>12){
+				deviceName = deviceName.substring(0,12)+"...";
+			}
+			document.getElementById('frmDevicesDashboard:popupDispName_1').innerHTML=deviceName;
+        	document.getElementById('frmDevicesDashboard:popupDispName_2').innerHTML=deviceName;
+        	document.getElementById('frmDevicesDashboard:removeDeviceId').value=removeDeviceId;
+		}
+		function myKeyPressed(e,buttonId){
+			e = e || window.event;
+			var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			if (unicode == 13){
+					document.getElementById('frmDevicesDashboard:sumbitButn_'+buttonId).click();
+					return true;
+				}
+			}
+		if(typeof String.prototype.trim !== 'function') {
+			String.prototype.trim = function() {
+			return this.replace(/^\s+|\s+$/g, '');
+			}
+		}
+		function expandFunction(devId){
+	    	document.getElementById('contentWithMore_'+devId).style.display='none';
+	    	document.getElementById('contentWithLess_'+devId).style.display='block';
+	    }
+
+	   function compressFunction(devId){
+	   		document.getElementById('contentWithMore_'+devId).style.display='block';
+	        document.getElementById('contentWithLess_'+devId).style.display='none';
+	   }
+
+	</script>
+	<h:inputHidden id="removeDeviceId" tabindex="-1" value="#{householdPlayersBean.removeDeviceId}"/>
+	<!-- Starting of remove device popup -->
+	<div id="LostUnavailablePlayer" class="popupContact" style="z-index:10003; width:430px;">
+	  	<div class="popup_textarea" style="width:410px; min-height:180px;">
+		  	<div class="clearBoth">
+			    <div class="UnsaveChangesIcon" style="padding-right:20px; padding-top:10px;"><img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" /></div>
+			    <div class="abondonmentText" style="width:290px; margin-top:10px;">
+				    <h4><h:outputLabel value="#{labelMsgs.areYouSureYouWantToReport}"/><br />
+						<h:outputLabel id="popupDispName_1" value=""/>&#160;<h:outputText value="#{labelMsgs.asLostOrUnavailable}"/>
+					</h4>
+					<div class="MarginTop20">
+						<h:outputLabel value="#{labelMsgs.toAddItBackLabel}"/><br />
+						<h:outputLabel value="#{labelMsgs.addFeatureOn}"/><h:outputLabel id="popupDispName_2" value=""/>.
+					</div>
+			    </div>
+		    </div>
+		    <div class="PopUpButton Fleft clearBoth" style="margin-left:22px; padding-left:88px;">
+		    	<a4j:commandLink id="removeDeviceBtn" styleClass="CommonBtn_Link" style="height:auto; min-width:65px; padding:10px 18px;" value="#{labelMsgs.reportAsLostLabel}" execute="@frmDevicesDashboard" render="showDevicePanel,unverifiedDevices,devicesCountPanel,maxDevicesReachedMsg,deviceCodePanel" action="#{householdPlayersBean.removeDevice}" oncomplete="javascript:disablePopup1('LostUnavailablePlayer', 'backgroundPopup');"/>
+		    	<a class="CancelLink" style="margin-top:15px;" onclick="javascript:disablePopup1('LostUnavailablePlayer', 'backgroundPopup')">#{labelMsgs.cancel}</a>
+		    </div>
+	  	</div>
+	</div>
+	<!-- Ending of remove device popup -->
+	<!-- starting of player pods -->
+	<div class="DevicesBoxDiv">
+    	<c:if test="#{householdPlayersBean.deviceCount gt 0}">
+	    	<div class="DevicesHeading">
+	    		<a4j:outputPanel id="devicesCountPanel"> 
+		    		<h:outputFormat value="#{labelMsgs.ultraVioletPlayersLbl}">
+		    			<f:param value="#{householdPlayersBean.deviceCount}"/>
+		    		</h:outputFormat>
+		    	</a4j:outputPanel>
+	    	</div>
+	    	<div class="border_lineLightColor"></div>
+    	</c:if>
+        <a4j:outputPanel id="showDevicePanel">
+        <div class="LeftDevices">
+	        <c:set var="uvDeviceId" value="0"/>
+	        <c:set var="privilege" value="#{sessionScope.privilege}"/>
+	        <c:forEach items="#{householdPlayersBean.deviceList}" var="uvDevicesObj">
+		       <c:set var="uvDeviceId" value="#{uvDeviceId+1}"/>
+		       <c:if test="#{uvDeviceId eq '1' || (uvDeviceId % 2) eq '1'}">
+		        <a4j:outputPanel id="devicesPanel_#{uvDeviceId}">
+		        	<h:inputHidden id="hdnDispName_#{uvDeviceId}" tabindex="-1" value="#{uvDevicesObj.displayName}"/>
+			        <c:if test="#{privilege ne 'BASIC'}">
+			        	<h:outputLabel id="errorMsg_#{uvDeviceId}" value="" style="display:none;"/>
+			        </c:if>
+					    <div class="MemberOptimizedDevice">
+					    <!-- To display deviceName  -->
+						<div class="DeviceTitleSection" id="editDiv_#{uvDeviceId}">
+					        <div class="Title">
+					        	<truncate:truncateText id="displayName_#{uvDeviceId}" text="#{uvDevicesObj.displayName}" start="0" end="-1"/>
+					        </div>
+					        <c:if test="#{privilege ne 'BASIC'}">
+					       		<a id="editLink_#{uvDeviceId}" class="EditTitle" title="#{labelMsgs.editLabel}"  onclick="editDeviceDetails('#{uvDeviceId}','#{uvDevicesObj.deviceType}');">#{labelMsgs.editLabel}</a>
+					       	</c:if>
+					    </div>
+						<!-- End of display name  -->
+						    <c:if test="#{privilege ne 'BASIC'}">
+						    <!-- Code to Show Save Button  -->
+							    <div class="DeviceTitleSection" id="saveDiv_#{uvDeviceId}" style="display: none;">
+							        <div class="EnterNewTitle">
+							        	<h:inputText id="deviceDispName_#{uvDeviceId}" title="#{uvDevicesObj.displayName}" autocomplete="off" onkeydown="myKeyPressed(event,'#{uvDeviceId}');" onfocus="toggleHintMsg('frmDevicesDashboard:errorMsg_#{uvDeviceId}','none');" value="#{uvDevicesObj.displayName}" maxlength="64"/>
+							        </div>
+							       	<a4j:commandButton id="sumbitButn_#{uvDeviceId}" styleClass="SaveTitle" title="#{labelMsgs.saveLabel}" value="#{labelMsgs.saveLabel}" render="displayName_#{uvDeviceId},deviceDispName_#{uvDeviceId},devicesPanel_#{uvDeviceId}" onclick="return validateDisplayName('#{uvDeviceId}');"  action="#{householdPlayersBean.updateDeviceDisplayName}" oncomplete="setToNormalDeviceState('#{uvDeviceId}','#{uvDevicesObj.deviceType}');">
+							       		<f:setPropertyActionListener value="#{uvDevicesObj.displayName}" target="#{householdPlayersBean.deviceName}"/>
+							       		<f:setPropertyActionListener value="#{uvDevicesObj.deviceId}" target="#{householdPlayersBean.deviceId}"/>
+							       		<f:setPropertyActionListener value="#{uvDevicesObj.deviceType}" target="#{householdPlayersBean.deviceType}"/>
+							       	</a4j:commandButton>
+							    </div>
+							<!-- End of show Save button -->
+							</c:if>
+							<!-- Starting of Device Description div  -->
+					        <div id="dvsDscpDiv_#{uvDeviceId}" class="DeviceContent">
+					        	<div class="Content">
+					        		<h:outputLabel value="#{uvDevicesObj.deviceManufacturerName}"/><h:outputLabel value="#{uvDevicesObj.deviceModelName}"/><br/>
+					        		<c:if test="#{uvDevicesObj.playersDVO ne null &amp;&amp; uvDevicesObj.playersDVO ne ''}">
+							        	<c:set var="totalPlayerLength" value="0"/>
+									    <c:set var="playerLength" value="0"/>
+									    <c:set var="totalPlayerNames" value=" "/>
+									    <c:set var="playerName" value=" "/>
+										<c:forEach items="#{uvDevicesObj.playersDVO}" var="playersObj">
+										    <c:set var="playerName" value="#{playersObj.playerName}#{labelMsgs.commaSpace}"/>
+										    <c:if test="#{not empty playerName}">
+											    <c:set var="totalPlayerNames" value="#{totalPlayerNames}#{playerName}"/>
+											    <c:set var="playerLength" value="#{fn:length(playersObj.playerName)}"/>
+											    <c:set var="totalPlayerLength" value="#{totalPlayerLength+playerLength}"/>
+										    </c:if>
+										</c:forEach>
+										<c:if test="#{totalPlayerLength gt 0}">
+										    <div class="Content" id="contentWithMore_#{uvDeviceId}">
+											    <c:choose>
+												    <c:when test="#{totalPlayerLength>80}">
+													    <c:set var="compressText" value="#{fn:substring(totalPlayerNames,0,80)}"/>
+													    <h:outputText value="#{compressText}"/>
+													    <a title=" #{labelMsgs.moreLabel}" class="MoreLessLink"  onclick="javascript:expandFunction('#{uvDeviceId}')">...#{labelMsgs.moreLabel}</a>
+												    </c:when>
+												    <c:otherwise>
+												    	<h:outputText value="#{totalPlayerNames}"/>
+												    	<c:if test="#{totalPlayerLength gt 0}">
+							        						<h:outputLabel value="#{labelMsgs.licAppsDesc1}"/><h:outputLabel value="#{uvDevicesObj.displayName}"/>
+							        					</c:if>
+												    </c:otherwise>
+											    </c:choose> 
+										    </div>
+										    <div class="Content" id="contentWithLess_#{uvDeviceId}" style="display:none">
+											    <h:outputText value="#{totalPlayerNames}"/>
+											    <c:if test="#{totalPlayerLength gt 0}">
+							        				<h:outputLabel value="#{labelMsgs.licAppsDesc1}"/><h:outputLabel value="#{uvDevicesObj.displayName}"/>
+							        			</c:if>
+											    <a title=" #{labelMsgs.lessLabel}" class="MoreLessLink"  onclick="javascript:compressFunction('#{uvDeviceId}')">...#{labelMsgs.lessLabel}</a>
+										   </div>
+										  </c:if>
+						        	</c:if>
+								</div>
+								<div class="AddedBy">
+									<c:if test="#{uvDevicesObj.deviceAddedUserGivenName ne null &amp;&amp; uvDevicesObj.deviceAddedUserGivenName ne ''}">
+									<h:outputFormat value="#{labelMsgs.addedByLbl}">
+										<f:param value="#{uvDevicesObj.createdDate}"/>
+										<f:param value="#{uvDevicesObj.deviceAddedUserGivenName ne null?uvDevicesObj.deviceAddedUserGivenName:''}"/>
+									</h:outputFormat>
+									</c:if>
+									<c:if test="#{uvDevicesObj.deviceAddedUserGivenName eq null || uvDevicesObj.deviceAddedUserGivenName eq ''}">
+										<h:outputLabel value="#{labelMsgs.addedLbl}"/>
+										<h:outputLabel value="#{uvDevicesObj.createdDate}"/>
+									</c:if>
+								</div>
+								<c:if test="#{privilege ne 'BASIC' &amp;&amp; uvDevicesObj.deviceType ne 'LEGACY'}">
+									<a id="removeLink_#{uvDeviceId}" class="RemovePlayer" onclick="renderRemoveDeviceDiv('#{uvDeviceId}');" style="display: none;">
+										#{labelMsgs.removePlayer}
+									</a>
+								</c:if>
+					        </div>
+					        <!-- End of Device Description div  -->
+					        <c:if test="#{privilege ne 'BASIC' &amp;&amp; uvDevicesObj.deviceType ne 'LEGACY'}">
+						        <div id="rmvDvsDiv_#{uvDeviceId}" class="DeviceContent" style="display: none; padding: 10px 0pt 5px 10px;">
+				              		<div class="Content">
+				              			<h:outputLabel value="#{labelMsgs.goto}"/><h:outputLabel value="#{uvDevicesObj.displayName}"/><h:outputLabel value="#{labelMsgs.removePlayerMsg1}"/>
+				              			<h:outputLabel value="#{headerBean.userName}"/><h:outputLabel value="#{labelMsgs.accountLabelSmall}."/>
+				              		</div>
+									<div class="Ok_Report_Button">
+										<div class="button_input">
+											<input id="okBtn_#{uvDeviceId}" class="image_button" type="button" title="#{labelMsgs.okButton}" value="#{labelMsgs.okButton}" onclick="backToPlrInitialState('#{uvDeviceId}','#{uvDevicesObj.deviceType}');"/>
+					                    </div>
+				                    	<a id="reportOrUnavble_#{uvDeviceId}" class="LostUnavailable" onclick="setValuesToPopup('#{uvDevicesObj.displayName}','#{uvDevicesObj.deviceId}');javascript:openPopup('LostUnavailablePlayer', 'backgroundPopup','#{uvDevicesObj.displayName}')">
+				                      		<h:outputText value="#{labelMsgs.reportLbl1}"/>&#160;<h:outputText value="#{uvDevicesObj.displayName}"/>&#160;<h:outputText value="#{labelMsgs.reportLbl2}"/>
+				                      	</a>
+				                     </div>
+				              </div>
+				           </c:if>
+					   	</div>
+				</a4j:outputPanel>
+				</c:if>
+	        </c:forEach>
+        </div>
+        <div class="RightDevices">
+	        <c:set var="uvDeviceId" value="0"/>
+	        <c:set var="privilege" value="#{sessionScope.privilege}"/>
+	        <c:forEach items="#{householdPlayersBean.deviceList}" var="uvDevicesObj">
+		       <c:set var="uvDeviceId" value="#{uvDeviceId+1}"/>
+		       <c:if test="#{uvDeviceId eq '2' || (uvDeviceId % 2) eq '0'}">
+		        <a4j:outputPanel id="devicesPanel_#{uvDeviceId}">
+		        	<h:inputHidden id="hdnDispName_#{uvDeviceId}" tabindex="-1" value="#{uvDevicesObj.displayName}"/>
+			        <c:if test="#{privilege ne 'BASIC'}">
+			        	<h:outputLabel id="errorMsg_#{uvDeviceId}" value="" style="display:none;"/>
+			        </c:if>
+					    <div class="MemberOptimizedDevice">
+					    <!-- To display deviceName  -->
+						<div class="DeviceTitleSection" id="editDiv_#{uvDeviceId}">
+					        <div class="Title">
+					        	<truncate:truncateText id="displayName_#{uvDeviceId}" text="#{uvDevicesObj.displayName}" start="0" end="-1"/>
+					        </div>
+					        <c:if test="#{privilege ne 'BASIC'}">
+					       		<a id="editLink_#{uvDeviceId}" class="EditTitle" title="#{labelMsgs.editLabel}"  onclick="editDeviceDetails('#{uvDeviceId}','#{uvDevicesObj.deviceType}');">#{labelMsgs.editLabel}</a>
+					       	</c:if>
+					    </div>
+						<!-- End of display name  -->
+						    <c:if test="#{privilege ne 'BASIC'}">
+						    <!-- Code to Show Save Button  -->
+							    <div class="DeviceTitleSection" id="saveDiv_#{uvDeviceId}" style="display: none;">
+							        <div class="EnterNewTitle">
+							        	<h:inputText id="deviceDispName_#{uvDeviceId}" title="#{uvDevicesObj.displayName}" autocomplete="off" onkeydown="myKeyPressed(event,'#{uvDeviceId}');" onfocus="toggleHintMsg('frmDevicesDashboard:errorMsg_#{uvDeviceId}','none');" value="#{uvDevicesObj.displayName}" maxlength="64"/>
+							        </div>
+							       	<a4j:commandButton id="sumbitButn_#{uvDeviceId}" styleClass="SaveTitle" title="#{labelMsgs.saveLabel}" value="#{labelMsgs.saveLabel}" render="displayName_#{uvDeviceId},deviceDispName_#{uvDeviceId},devicesPanel_#{uvDeviceId}" onclick="return validateDisplayName('#{uvDeviceId}');"  action="#{householdPlayersBean.updateDeviceDisplayName}" oncomplete="setToNormalDeviceState('#{uvDeviceId}','#{uvDevicesObj.deviceType}');">
+							       		<f:setPropertyActionListener value="#{uvDevicesObj.displayName}" target="#{householdPlayersBean.deviceName}"/>
+							       		<f:setPropertyActionListener value="#{uvDevicesObj.deviceId}" target="#{householdPlayersBean.deviceId}"/>
+							       		<f:setPropertyActionListener value="#{uvDevicesObj.deviceType}" target="#{householdPlayersBean.deviceType}"/>
+							       	</a4j:commandButton>
+							    </div>
+							<!-- End of show Save button -->
+							</c:if>
+							<!-- Starting of Device Description div  -->
+					        <div id="dvsDscpDiv_#{uvDeviceId}" class="DeviceContent">
+					        	<div class="Content">
+					        		<h:outputLabel value="#{uvDevicesObj.deviceManufacturerName}"/><h:outputLabel value="#{uvDevicesObj.deviceModelName}"/><br/>
+					        		<c:if test="#{uvDevicesObj.playersDVO ne null &amp;&amp; uvDevicesObj.playersDVO ne ''}">
+						        		<c:set var="totalPlayerLength" value="0"/>
+									    <c:set var="playerLength" value="0"/>
+									    <c:set var="totalPlayerNames" value=" "/>
+									    <c:set var="playerName" value=" "/>
+										<c:forEach items="#{uvDevicesObj.playersDVO}" var="playersObj">
+										    <c:set var="playerName" value="#{playersObj.playerName}#{labelMsgs.commaSpace}"/>
+										    <c:if test="#{not empty playerName}">
+											    <c:set var="totalPlayerNames" value="#{totalPlayerNames}#{playerName}"/>
+											    <c:set var="playerLength" value="#{fn:length(playersObj.playerName)}"/>
+											    <c:set var="totalPlayerLength" value="#{totalPlayerLength+playerLength}"/>
+										    </c:if>
+										</c:forEach>
+										<c:if test="#{totalPlayerLength gt 0}">
+										    <div class="Content" id="contentWithMore_#{uvDeviceId}">
+											    <c:choose>
+												    <c:when test="#{totalPlayerLength>80}">
+													    <c:set var="compressText" value="#{fn:substring(totalPlayerNames,0,80)}"/>
+													    <h:outputText value="#{compressText}"/>
+													    <a title=" #{labelMsgs.moreLabel}" class="MoreLessLink"  onclick="javascript:expandFunction('#{uvDeviceId}')">...#{labelMsgs.moreLabel}</a>
+												    </c:when>
+												    <c:otherwise>
+												    	<h:outputText value="#{totalPlayerNames}"/>
+												    	<c:if test="#{totalPlayerLength gt 0}">
+							        						<h:outputLabel value="#{labelMsgs.licAppsDesc1}"/><h:outputLabel value="#{uvDevicesObj.displayName}"/>
+							        					</c:if>
+												    </c:otherwise>
+											    </c:choose> 
+										    </div>
+										    <div class="Content" id="contentWithLess_#{uvDeviceId}" style="display:none">
+											    <h:outputText value="#{totalPlayerNames}"/>
+											    <c:if test="#{totalPlayerLength gt 0}">
+							        				<h:outputLabel value="#{labelMsgs.licAppsDesc1}"/><h:outputLabel value="#{uvDevicesObj.displayName}"/>
+							        			</c:if>
+											    <a title=" #{labelMsgs.lessLabel}" class="MoreLessLink"  onclick="javascript:compressFunction('#{uvDeviceId}')">...#{labelMsgs.lessLabel}</a>
+										   </div>
+										</c:if>
+									</c:if>
+								</div>
+								<div class="AddedBy">
+									<c:if test="#{uvDevicesObj.deviceAddedUserGivenName ne null &amp;&amp; uvDevicesObj.deviceAddedUserGivenName ne ''}">
+									<h:outputFormat value="#{labelMsgs.addedByLbl}">
+										<f:param value="#{uvDevicesObj.createdDate}"/>
+										<f:param value="#{uvDevicesObj.deviceAddedUserGivenName ne null?uvDevicesObj.deviceAddedUserGivenName:''}"/>
+									</h:outputFormat>
+									</c:if>
+									<c:if test="#{uvDevicesObj.deviceAddedUserGivenName eq null || uvDevicesObj.deviceAddedUserGivenName eq ''}">
+										<h:outputLabel value="#{labelMsgs.addedLbl}"/>
+										<h:outputLabel value="#{uvDevicesObj.createdDate}"/>
+									</c:if>
+								</div>
+								<c:if test="#{privilege ne 'BASIC' &amp;&amp; uvDevicesObj.deviceType ne 'LEGACY'}">
+									<a id="removeLink_#{uvDeviceId}" class="RemovePlayer" onclick="renderRemoveDeviceDiv('#{uvDeviceId}');" style="display: none;">
+										#{labelMsgs.removePlayer}
+									</a>
+								</c:if>
+					        </div>
+					        <!-- End of Device Description div  -->
+					        <c:if test="#{privilege ne 'BASIC' &amp;&amp; uvDevicesObj.deviceType ne 'LEGACY'}">
+						        <div id="rmvDvsDiv_#{uvDeviceId}" class="DeviceContent" style="display: none; padding: 10px 0pt 5px 10px;">
+				              		<div class="Content">
+				              			<h:outputLabel value="#{labelMsgs.goto}"/><h:outputLabel value="#{uvDevicesObj.displayName}"/><h:outputLabel value="#{labelMsgs.removePlayerMsg1}"/>
+				              			<h:outputLabel value="#{headerBean.userName}"/><h:outputLabel value="#{labelMsgs.accountLabelSmall}."/>
+				              		</div>
+									<div class="Ok_Report_Button">
+										<div class="button_input">
+											<input id="okBtn_#{uvDeviceId}" class="image_button" type="button" title="#{labelMsgs.okButton}" value="#{labelMsgs.okButton}" onclick="backToPlrInitialState('#{uvDeviceId}','#{uvDevicesObj.deviceType}');"/>
+					                    </div>
+				                    	<a id="reportOrUnavble_#{uvDeviceId}" class="LostUnavailable" onclick="setValuesToPopup('#{uvDevicesObj.displayName}','#{uvDevicesObj.deviceId}');javascript:openPopup('LostUnavailablePlayer', 'backgroundPopup','#{uvDevicesObj.displayName}')">
+				                      		<h:outputText value="#{labelMsgs.reportLbl1}"/>&#160;<h:outputText value="#{uvDevicesObj.displayName}"/>&#160;<h:outputText value="#{labelMsgs.reportLbl2}"/>
+				                      	</a>
+				                     </div>
+				              </div>
+				           </c:if>
+					   	</div>
+				</a4j:outputPanel>
+				</c:if>
+	        </c:forEach>
+        </div>
+        </a4j:outputPanel>
+        <a4j:outputPanel id="maxDevicesReachedMsg" style="margin-top: 10px; float: left; clear: both;">
+	       <c:if test="#{householdPlayersBean.deviceCount gt 0 &amp;&amp; householdPlayersBean.deviceCount ne 12 &amp;&amp; sessionScope.privilege ne 'BASIC'}">
+	        <div class="MemberOptimizedDevice_Dull clearBoth">
+		        <div class="DeviceTitleSection">
+		       		<div class="Title"><h:outputLabel value="#{labelMsgs.available}"/></div>
+		        </div>
+		        <div class="DeviceContent">
+			        <div class="Content">
+			        	<h:outputFormat value="#{householdPlayersBean.remainingDeviceCount eq 1?labelMsgs.youCanAddLblMsgWhenSinglePlr:labelMsgs.youCanAddLblMsg}">
+			        		<f:param value="#{householdPlayersBean.remainingDeviceCount}"/>
+			        		<f:param value="#{headerBean.userName}"/>
+			        	</h:outputFormat>
+			        </div>
+					<div class="AddPlayer">
+						<h:commandLink id="howToFindPlayer" title="#{labelMsgs.howDoIFindPlayerLabel}" styleClass="violet_link" target="_blank" value="#{labelMsgs.howDoIFindPlayerLabel}" action="authHelpPage">
+							<f:param value="ourDevices" name="topicVal"/>
+							<f:param value="1" name="questionId"/>
+						</h:commandLink>
+				        <h:commandLink id="howAndWhyLimitedPlayers" title="#{labelMsgs.howAndWhyLimitedPlayers}" styleClass="violet_link" target="_blank" value="#{labelMsgs.howAndWhyLimitedPlayers}" action="authHelpPage">
+							<f:param value="ourDevices" name="topicVal"/>
+							<f:param value="2" name="questionId"/>
+						</h:commandLink>
+			        </div>
+		        </div>
+	        </div>
+	       </c:if>
+        </a4j:outputPanel>
+        <!-- Code to show unverifiedDevices  -->
+        <a4j:outputPanel id="unverifiedDevices" style="clear: both; float: left; width: 100%;">
+	        <c:if test="#{householdPlayersBean.unverifiedDeviceList ne null &amp;&amp; householdPlayersBean.unverifiedDeviceCount gt 0}">
+	        	<div class="DevicesHeading MarginTop40">
+	        		<h:outputFormat value="#{labelMsgs.lostOrUnvailabel}">
+	        			<f:param value="#{householdPlayersBean.unverifiedDeviceCount}"/>
+	        		</h:outputFormat>
+	        	</div>
+			    <div class="border_lineLightColor"></div>
+			</c:if>
+			    <div class="LeftDevices">
+			    	<c:set var="playerId" value="0"/>
+			        <c:forEach items="#{householdPlayersBean.unverifiedDeviceList}" var="unAvailabelObj">
+				        <c:set var="playerId" value="#{playerId+1}"/>
+				        <c:if test="#{playerId eq '1' || (playerId % 2) eq '1'}">
+				        <a4j:outputPanel id="unAvailabel_#{playerId}">
+				            <div class="MemberOptimizedDevice_Dull">
+				              <div class="DeviceTitleSection">
+				              	<div class="Title">
+				              		<truncate:truncateText id="deviceName_#{playerId}" text="#{unAvailabelObj.displayName}" start="0" end="-1"/>
+				              	</div>
+				              </div>
+				              <div class="DeviceContent">
+				              	<div class="Content">
+				              		<c:if test="#{unAvailabelObj.deviceManufacturerName ne null &amp;&amp; unAvailabelObj.deviceModelName ne null}">
+				              			<h:outputFormat value="#{labelMsgs.onLabel}">
+											<f:param value="#{unAvailabelObj.deviceManufacturerName}"/>
+											<f:param value="#{unAvailabelObj.deviceModelName}"/>
+										</h:outputFormat>
+				              		</c:if>
+				              	</div>
+								<div class="AddedBy">
+									<h:outputFormat value="#{labelMsgs.reprtedLostOrUnavailable}">
+										<f:param value="#{headerBean.userName}"/>
+										<f:param value="#{unAvailabelObj.displayName}"/>
+									</h:outputFormat>
+								</div>
+				              </div>
+				            </div>
+				        </a4j:outputPanel>
+				     </c:if>
+			        </c:forEach>
+		        </div>
+			    <div class="RightDevices">
+			    	<c:set var="playerId" value="0"/>
+			        <c:forEach items="#{householdPlayersBean.unverifiedDeviceList}" var="unAvailabelObj">
+				        <c:set var="playerId" value="#{playerId+1}"/>
+				        <c:if test="#{playerId eq '2' || (playerId % 2) eq '0'}">
+				        <a4j:outputPanel id="unAvailabel_#{playerId}">
+				            <div class="MemberOptimizedDevice_Dull">
+				              <div class="DeviceTitleSection">
+				              	<div class="Title">
+				              		<truncate:truncateText id="deviceName_#{playerId}" text="#{unAvailabelObj.displayName}" start="0" end="-1"/>
+				              	</div>
+				              </div>
+				              <div class="DeviceContent">
+				              	<div class="Content">
+				              		<c:if test="#{unAvailabelObj.deviceManufacturerName ne null &amp;&amp; unAvailabelObj.deviceModelName ne null}">
+				              			<h:outputFormat value="#{labelMsgs.onLabel}">
+											<f:param value="#{unAvailabelObj.deviceManufacturerName}"/>
+											<f:param value="#{unAvailabelObj.deviceModelName}"/>
+										</h:outputFormat>
+				              		</c:if>
+				              	</div>
+								<div class="AddedBy">
+									<h:outputFormat value="#{labelMsgs.reprtedLostOrUnavailable}">
+										<f:param value="#{headerBean.userName}"/>
+										<f:param value="#{unAvailabelObj.displayName}"/>
+									</h:outputFormat>
+								</div>
+				              </div>
+				            </div>
+				        </a4j:outputPanel>
+				     </c:if>
+			        </c:forEach>
+		        </div>
+        </a4j:outputPanel>
+    </div>
+    <!-- ending of plaper pod -->
+</ui:composition>

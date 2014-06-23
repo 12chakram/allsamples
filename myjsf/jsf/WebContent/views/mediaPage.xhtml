@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/authenticatedTemplate.xhtml">
+  	 
+
+	<ui:define name="authMenu">
+     	<ui:include src="/resources/sections/media/mediaMenu.xhtml"/>     	
+    </ui:define>   
+            
+	<ui:define name="content">
+	<c:if test="#{ourMediaBean.decideMediaPrsnt eq 'true' &amp;&amp; ourMediaBean.decideMediaPrsnt ne ''}">
+		<h:form id="frmMedia">
+			<ui:include src="/resources/sections/media/mediaSection.xhtml"/>
+		</h:form>
+	</c:if>
+	<c:if test="#{ourMediaBean.decideMediaPrsnt eq 'false' || (ourMediaBean.decideMediaPrsnt eq '' &amp;&amp; ourMediaBean.decideMediaPrsnt ne null)}">
+		<h:form id="frmwithoutMedia">
+			<ui:include src="/resources/sections/media/mediaCarouselSection.xhtml"/>
+		</h:form>
+	</c:if>
+	</ui:define>
+ </ui:composition>

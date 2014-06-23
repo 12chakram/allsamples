@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="frmFooterMenu">
+		<div class="menu_bar">
+		     <div class="DashboardMenuBgimage100"/>
+		     <div class="menuMainAera">
+		     <c:set var="AuthFooterMenu" value="4"/>
+	     	 	<h:commandLink title="#{labelMsgs.ourMedia}" id="footerMenuMediaTab" tabindex="#{AuthFooterMenu}" styleClass="ourMedia_menu" value="#{labelMsgs.ourMedia}" action="mediaSection"/>
+	     	 	<div class="MenuMidBorder"></div>
+	          	<h:commandLink title="#{labelMsgs.myhousehold}" id="footerMenuMyaccountTab" tabindex="#{AuthFooterMenu+1}" styleClass="MyHousehold_menu" value="#{labelMsgs.myhousehold}" action="myHouseholdPage"/>
+	          	<div class="MenuMidBorder"></div>
+	     		<h:commandLink title="#{labelMsgs.ourPlayersLbl}" id="footerMenuDevicesTab" tabindex="#{AuthFooterMenu+2}" styleClass="ourDevices_menu" value="#{labelMsgs.ourPlayersLbl}" action="ourDevicesPage"/>
+	     		<div class="SearchBox">
+	     		<ui:include src="/resources/sections/common/searchMedia.xhtml"/>
+	     		</div>
+		     </div>
+	    </div>
+	</h:form>
+</ui:composition>

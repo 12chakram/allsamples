@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<script src="#{applicationScope.staticContentBaseUrl}/js/swfobject.js" type="text/javascript"></script>
+	<h:form id="frmAccountDashboardMenu">
+		<div class="menu_bar">
+		     <div class="DashboardMenuBgimage100"/>
+		     <c:set var="accntdashbrdMenu" value="4"/>
+		     <div class="menuMainAera">
+	     	 	<h:commandLink tabindex="#{accntdashbrdMenu}" id="ourMedia" title="#{labelMsgs.ourMedia}" styleClass="ourMedia_menu" value="#{labelMsgs.ourMedia}" action="mediaSection"/>
+	     	 	<div class="MenuMidBorder"></div>
+	          	<h:commandLink tabindex="#{accntdashbrdMenu+1}" id="myHouseHold" title="#{labelMsgs.myhousehold}" styleClass="MyHousehold_menu" value="#{labelMsgs.myhousehold}" action="myHouseholdPage"/>
+	          	<div class="MenuMidBorder"></div>
+				<h:commandLink tabindex="#{accntdashbrdMenu+2}" id="ourPlayers" title="#{labelMsgs.ourPlayersLbl}" styleClass="ourDevices_menu" value="#{labelMsgs.ourPlayersLbl}" action="ourDevicesPage"/>
+				<div class="SearchBox">
+				 <ui:include src="/resources/sections/common/searchMedia.xhtml"/>
+				 </div>
+		     </div>
+	    </div>
+	</h:form>
+</ui:composition>

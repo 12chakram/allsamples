@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<h:head>
+
+	<link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/custom_style.css" />	
+	
+	
+	<meta http-equiv="pragma" content="no-cache"/>
+	<meta http-equiv="cache-control" content="no-cache"/>
+	<meta http-equiv="expires" content="max-age=0"/>
+	<h:outputText value="&lt;!--[if IE]&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;#{applicationScope.staticContentBaseUrl}/css/IEstyle.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+	<f:loadBundle basename="biz.neustar.dece.decessp.i18n.labelTxts" var="labelMsgs"></f:loadBundle>
+	
+	</h:head>
+	<h:body style="background:#000;">
+		<h:form >	
+			<div class="signInBox">
+			<c:if test="#{loginUserBean.alreadyLoggedIn eq 'false'}">
+			    <div class="UserPasswordFields Fright">
+			   		<div class="button_Link HomeSignin" style="margin-right:10px;">
+			     		<span>
+			     			<h:commandLink id="signinId" styleClass="SignIn" target="_top" title="#{labelMsgs.signIn}" action="#{loginUserBean.authHandler}" value="#{labelMsgs.signIn}"/>
+			     		</span>
+			     	</div>
+			    	<div class="clearBoth paddingTop10 Fright width290">
+			    		<div class="Fleft">
+			    		<h:outputLabel value="#{labelMsgs.dontHavAccnt}"/>
+			    		</div>
+			    		<div class="Fleft">
+			     		<strong><h:link id="signUp" outcome="registrationStep1Page" styleClass="SignOutLink violet_color_link FontSize10" target="_top" title="Sign Up" value="#{labelMsgs.signUp}"/></strong>
+			     		</div>
+			    	</div>
+			    </div>
+			    <div id="Signin" class="SigninMsg"><h:outputLabel value="#{labelMsgs.signinMsg}"/></div>
+			    <div id="Signout" class="SignoutMsg"><h:outputLabel value="#{labelMsgs.signupMsg}"/></div>
+			</c:if>
+				<c:if test="#{loginUserBean.alreadyLoggedIn eq 'true'}">
+						<div style="float:right;padding:20px;">
+							<h:outputLabel value="Hello "/> <h:commandLink id="navToAuthHome" style="color:#9999CC" action="#{loginNavigationBean.loginAction}" target="_top" value="#{sessionScope.DispName}!"/><h:outputLabel value=" "/>
+							<h:commandLink id="navToUnAuthHome" value="(Not #{sessionScope.DispName}?)" style="color:#9999cc" action="#{loginNavigationBean.navigationToUnauthHomePage}" target="_top" />
+						</div>
+			   </c:if>
+			</div>
+	 	</h:form>
+ 	</h:body>
+</html>

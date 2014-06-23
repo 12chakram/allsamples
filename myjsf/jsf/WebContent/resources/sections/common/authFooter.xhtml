@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form id="uiAuthFooter">
+		<input id="LOGIN_SUCCESS" type="hidden" value="LOGIN_SUCCESS"/>
+		<div id="backgroundPopup"></div>
+		<!-- Start:Select Language pop-up -->
+		<div id="selectLanguage" class="popupContact" style="z-index:10003;">
+	         <div class="popup_textarea">
+	   				#{labelMsgs.selectLang}                                           
+                    <div class="LanguagesMainDiv">
+                    	<ul class="LanguagesList">
+                      	<li><h:commandLink  id="en-us" title="#{labelMsgs.enus}" actionListener="#{uiLocale.changeLocale}" value="#{labelMsgs.enus}"/></li>
+                          <li><h:commandLink  id="en-uk" title="#{labelMsgs.engb}" actionListener="#{uiLocale.changeLocale}" value="#{labelMsgs.engb}"/></li>                                                        
+                          <li><h:commandLink  id="fr-fr" title="#{labelMsgs.frfr}" actionListener="#{uiLocale.changeLocale}" value="#{labelMsgs.frfr}"/></li>                                                        
+                        </ul>
+                    </div>   		
+	               <div class="PaddingLeft170">
+		                 <div class="button_input">
+		 					<input class="image_button" type="button" onclick="javascript:disablePopup1('selectLanguage', 'backgroundPopup')" value="CANCEL" />
+		         		</div>
+	                </div>                          			        
+	      	</div>
+        </div>
+		<!-- End:Select Language pop-up -->
+	
+		<div class="footer_wrapper">
+			<div class="copyrights">  
+      			<a><span>&#169; <h:outputLabel value="#{labelMsgs.copyRight2010DECE}"></h:outputLabel></span></a> 
+      			<a class="midline">| </a> 
+      			<c:if test="#{applicationScope.portalLocalization eq 'yes'}">
+      				<a href="#" onclick="openPopup('selectLanguage', 'backgroundPopup');"> #{uiLocale.userSelectedLocale} </a>
+      			</c:if>
+      			<c:if test="#{applicationScope.portalLocalization ne 'yes'}">
+      				<a><span><h:outputLabel value="#{labelMsgs.enus}"/></span></a>
+      			</c:if>
+             </div>
+      		<div class="contact_us">
+      			<h:commandLink id="authSiteMap" title="#{labelMsgs.siteMap}" value="#{labelMsgs.siteMap}" action="authSiteMapPage"/>
+      			<a class="midline">|</a>
+      			<h:commandLink id="authTermsOfUse" title="#{labelMsgs.termsOfUse}" action="authTermsOfUsePage" value="#{labelMsgs.termsOfUse}"/>
+      			<a class="midline">|</a>
+      			<h:commandLink id="authPrivacyStatement" title="#{labelMsgs.privacyStatement}" action="authPrivacyStatementPage" value="#{labelMsgs.privacyStatement}"/>
+      			<a class="midline">|</a>
+      			<h:commandLink id="authDataCollectionPolicy" title="#{sessionScope.country eq 'GB'?labelMsgs.juniorPolicyLabel:labelMsgs.dataPolicyLabel}" action="authDataCollectionPolicyPage" value="#{sessionScope.country eq 'GB'?labelMsgs.juniorPolicyLabel:labelMsgs.dataPolicyLabel}"/>
+      			<a class="midline">|</a>
+      			<h:commandLink id="authHelp" title="#{labelMsgs.help}" action="#{loginNavigationBean.navigateToAuthHelpPage}" value="#{labelMsgs.help}">
+      				<f:setPropertyActionListener value="account" target="#{help.helpNav}"/>
+      			</h:commandLink>
+      		</div> 			
+		</div>
+	</h:form>	
+</ui:composition>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+<h:head>
+
+	<meta http-equiv="pragma" content="no-cache"/>
+	<meta http-equiv="cache-control" content="no-cache"/>
+	<meta http-equiv="expires" content="max-age=0"/>
+	<ui:decorate template="/resources/sections/common/authCommonJS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/authCommonCSS.xhtml"/>		
+</h:head>
+	<h:body>
+		<div class="container">
+			<ui:insert name="authPortalHeader">
+		    	<ui:include src="/resources/sections/common/authHeader.xhtml"/>
+			</ui:insert>
+			<ui:insert name="authMenu"/>
+			<ui:insert name="content"/>
+			<ui:insert name="authPortalFooter">
+				    <ui:include src="/resources/sections/common/authFooter.xhtml"/>
+			</ui:insert>		  
+		</div>
+	</h:body>
+</html>

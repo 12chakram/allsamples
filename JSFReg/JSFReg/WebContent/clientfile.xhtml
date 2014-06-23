@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+			template="template/template1.xhtml">
+
+<h:head></h:head> 
+<body> 
+
+
+	<ui:define name="sidebar"><h3>All JSF Components...</h3>
+	    <h:link onclick="document.getElementById('includelink').style.display='block'; return false"><span style="color: blue;">h:link </span></h:link>
+		<h:link onclick="document.getElementById('hcommandlink').style.display='block'; return false"><span style="color: blue;">h:commandLinkk </span></h:link>
+			    
+	</ui:define>
+	
+
+ 
+ 
+ <ui:define name="body" >
+     <div style="display:none;" id="includelink">
+     	<ui:include src="hlink.xhtml" ></ui:include>
+     </div>
+     <div style="display:none;" id="hcommandlink">
+     	<ui:include src="hcommandlink.xhtml" ></ui:include>
+     </div>
+ </ui:define>
+
+
+
+
+</body> 
+</ui:composition>
+
