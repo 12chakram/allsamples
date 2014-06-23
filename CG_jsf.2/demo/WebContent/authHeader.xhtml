@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets">	
+	<h:form id="authHeaderfrm">
+		<div class="authenticated_header">
+        	<div class="authenticated_hdr_logo">
+        	<c:set var="AuthHeadertab" value="1"/>
+   		    	<h:commandLink tabindex="#{AuthHeadertab}" id="logoLink" title="#{labelMsgs.title_ultraviolet}" action="#{headerBean.goHome}">
+   		    		<img  src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.png" title="#{labelMsgs.title_ultraviolet}" alt="#{labelMsgs.title_ultraviolet}" />
+   		    	</h:commandLink>
+            </div>         
+            <div class="help_faqs">
+            	<h:commandLink title="#{labelMsgs.helpAndFaqs}" tabindex="#{AuthHeadertab+1}"  styleClass="Common_pointer" value="#{labelMsgs.helpAndFaqs}" action="authHelpPage" id="helpLink">
+						<f:setPropertyActionListener value="account" target="#{help.helpNav}"/>
+			      </h:commandLink> 
+            	<a class="a_noUnderline" tabindex="-1"> |</a> 
+            	<span class="Fleft">
+           			<truncate:truncateText text="#{headerBean.userName}" start="0" end="-1"/>
+           		</span>
+	           <div style="float:left;" id="Mouse">
+	               <a tabindex="#{AuthHeadertab+2}" id="DropdownIcon">
+	               		<div class="DropDownIcon"></div>
+	               </a>
+	               <div class="DropDownText" id="DropDown">
+	               		<h:commandLink title="#{labelMsgs.memberSettings}" value="Member Settings" action="#{userProfileBean.navigateToUserProfile}" id="memberSettings" immediate="true">
+	               			<f:param value="#{sessionScope.userId}" name="selectedUserId"/>
+	               		</h:commandLink>
+	               		<h:commandLink title="#{labelMsgs.householdSettings}" value="Account Settings" rendered="#{sessionScope.privilege=='FULL'}" action="#{householdSettingsBean.householdAccountDetails}" id="householdSettings" immediate="true"/>
+	               		<h:commandLink title="#{labelMsgs.signOut}" value="#{labelMsgs.signOut}" action="#{headerBean.signOut}" id="signOutLink" immediate="true"/>
+	               </div>
+	           </div>
+           </div>
+        </div>
+	</h:form>
+</ui:composition>

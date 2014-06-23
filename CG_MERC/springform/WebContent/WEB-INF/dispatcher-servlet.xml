@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+  <beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:p="http://www.springframework.org/schema/p" 
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!-- The declaration of xmlns is a convenience for schema authors -->
+     
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+   
+  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages" /> 
+  
+  <bean id="userService1" class="com.vaannila.service.UserServiceImpl" /> 
+  
+  <bean id="userValidator" class="com.vaannila.validate.UserValidator"/>
+  
+  <bean name="/userRegistration.htm" class="com.vaannila.web.UserController"   p:userService-ref="userService1" p:validator-ref="userValidator" p:formView="userForm" /> 
+  
+  <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" p:viewName="index" /> 
+  
+  <!-- 'ParameterizableViewController' support with out creating controller , send directly to the jsp page  -->
+  </beans>

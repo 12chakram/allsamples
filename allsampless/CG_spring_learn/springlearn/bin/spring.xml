@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="triangle" class="com.ku.spring.beans.Triangle" autowire="byName" >
+		<!-- <property name="pointA" ref="zeropoint" />
+		<property name="pointB" ref="point1" />
+		<property name="pointC" ref="point2" />
+ -->	</bean>
+
+
+	<bean id="circle" class="com.ku.spring.beans.Circle">
+
+            <property name="pointA" ref="zeropoint" />
+   
+		<property name="pointcircle">
+			<bean  class="com.ku.spring.beans.Point">
+				 <property name="x" value="101"/>
+	  			<property name="y" value="202"/>
+			</bean>
+		</property>	
+		
+		<property name="pointcircle2">
+		<bean  class="com.ku.spring.beans.Point">
+				 <property name="x" value="100000"/>
+	  			<property name="y" value="200000"/>
+			</bean>
+		</property>	
+	</bean>
+	
+	
+
+	<bean id="zeropoint" class="com.ku.spring.beans.Point" name="pointA">
+	
+	  <property name="x" value="0"/>
+	  <property name="y" value="0"/>
+</bean>
+	
+	<bean id="point1" class="com.ku.spring.beans.Point"  name="pointB">
+	
+	  <property name="x" value="10"/>
+	  <property name="y" value="20"/>
+	</bean>
+	
+	<bean id="point2" class="com.ku.spring.beans.Point"  name="pointC">
+	
+	  <property name="x" value="100"/>
+	  <property name="y" value="200"/>
+	</bean>
+	
+	
+	
+	
+</beans>
