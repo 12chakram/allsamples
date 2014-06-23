@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>captcha</display-name>
+    
+    <servlet>
+        <servlet-name>jcaptcha</servlet-name>
+        <servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+	</servlet>
+<servlet-mapping>
+        <servlet-name>jcaptcha</servlet-name>
+        <url-pattern>/jcaptcha.jpg</url-pattern>
+</servlet-mapping>
+
+<servlet>
+        <servlet-name>myservlet</servlet-name>
+        <servlet-class>com.deva.JcaptchaServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+        <servlet-name>myservlet</servlet-name>
+        <url-pattern>/submit.jpg</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	    <servlet-name>ajcaptcha</servlet-name>
+	     <servlet-class>com.octo.captcha.module.servlet.SimpleSoundCaptchaServlet</servlet-class>
+	</servlet>
+	
+	    <servlet>
+	            <servlet-name>asubmit</servlet-name>
+	            <servlet-class>com.deva.SubmitActionServlet</servlet-class>
+	    </servlet>
+	    <servlet-mapping>
+           <servlet-name>ajcaptcha</servlet-name>
+	            <url-pattern>/jcaptcha.wav</url-pattern>
+	    </servlet-mapping>
+	
+	    <servlet-mapping>
+	            <servlet-name>asubmit</servlet-name>
+	            <url-pattern>/asubmit</url-pattern>
+	    </servlet-mapping>
+	    
+	     <servlet>
+	            <servlet-name>audiosubmit</servlet-name>
+	            <servlet-class>com.deva.AudioCaptchaServlet</servlet-class>
+	    </servlet>
+	    <servlet-mapping>
+           <servlet-name>audiosubmit</servlet-name>
+	            <url-pattern>/audiojcaptcha.wav</url-pattern>
+	    </servlet-mapping>
+    
+    
+</web-app>
