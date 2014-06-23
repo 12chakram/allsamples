@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<context:annotation-config/>
+	<context:component-scan base-package="biz.neustar.merc.mt" />
+	<context:property-placeholder location="classpath:mercmt.properties"/>
+	
+	<bean id="mtBusinessService" class="biz.neustar.merc.mt.service.impl.MTBusinessServiceImpl">
+		<property name="mtRequestMap">
+			<map>
+<!-- ###########################  TRANSACTIONS START ############################################# -->						
+				<!-- purchaseTitles() -->
+				<entry key="/User/PurchaseTitles_POST">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/Account/{AccountId}/Entitlement">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo">
+										<property name="requestXSLT" value="xsl/purchase-to-entitlement.xsl" />
+										<property name="resourceNamespace" value="urn:nsr:merc:entitlementid:" />
+									</bean>
+								</entry>
+								<entry key="${merc.backend.url}/Account/{AccountId}/Transaction">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo">
+										<property name="requestXSLT" value="xsl/purchase-to-transaction.xsl" />
+										<property name="idsToReplaceInPayload">
+											<list>
+												<value>{AccountId}</value>
+												<value>{EntitlementId}</value>
+											</list>
+										</property>
+										
+									</bean>
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+<!-- ###########################  TRANSACTIONS END ############################################# -->
+<!-- ###########################  TITLES START ############################################# -->				
+				<!-- getTitleOverview() -->
+				<entry key="/Title/{PathVariable}/Overview_GET">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/Asset/Metadata/Basic/{PathVariable}">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo" />
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+<!-- ###########################  TITLES END ############################################# -->				
+<!-- ###########################  USER INERACTIONS START ############################################# -->				
+				<!-- createAccount() -->
+				<entry key="/Users_POST">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/Account">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo">
+										<property name="requestXSLT" value="xsl/user-to-account.xsl" />
+										<property name="resourceNamespace" value="urn:nsr:merc:accountid:org:nsr:merc:" />
+									</bean>
+								</entry>
+								<entry key="${merc.backend.url}/Account/{AccountId}/User">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo" />
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+				<!-- getUserInfo() -->
+				<entry key="/User_GET">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/Account/{AccountId}/User/{UserId}">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo" />
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+<!-- ###########################  USER INERACTIONS END ############################################# -->				
+<!-- ###########################  STREAMS START ############################################# -->				
+				<!-- Stream Create -->
+				<entry key="/User/Streams_POST">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/Account/{AccountId}/Stream">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo" />
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+				
+				<!-- Stream Delete -->
+				<entry key="/User/Stream/{PathVariable}_DELETE">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/Account/{AccountId}/Stream/{PathVariable}">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo" />
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+<!-- ###########################  STREAMS END ############################################# -->		
+<!-- ###########################  PERSONALIZATION START ############################################# -->				
+				<!-- vategoryUpdate() -->
+				<entry key="/User/Category/{PathVariable}_PUT">
+					<bean class="biz.neustar.merc.mt.springbeans.MTRequestInfo">
+						<property name="mbRequestMap">
+							<util:map map-class="java.util.LinkedHashMap">
+								<entry key="${merc.backend.url}/User/{UserId}/Category/{PathVariable}">
+									<bean class="biz.neustar.merc.mt.springbeans.MBRequestInfo" />
+								</entry>
+							</util:map>
+						</property>
+					</bean>
+				</entry>
+<!-- ###########################  PERSONALIZATION END ############################################# -->					
+			</map>
+		</property>
+	</bean>
+
+	<bean id="classXMLInputFactory" class="java.lang.Class" factory-method="forName" >
+		<constructor-arg index="0" value="com.sun.xml.internal.stream.XMLInputFactoryImpl"/>
+		<constructor-arg index="1" type="boolean"><value>true</value></constructor-arg>
+		<constructor-arg index="2"><null/></constructor-arg>
+	</bean>
+
+	<bean id="classXMLOutputFactory" class="java.lang.Class" factory-method="forName" >
+		<constructor-arg index="0" value="com.sun.xml.internal.stream.XMLOutputFactoryImpl"/>
+		<constructor-arg index="1" type="boolean"><value>true</value></constructor-arg>
+		<constructor-arg index="2"><null/></constructor-arg>
+	</bean>
+
+	<bean id="classTransformerFactory" class="java.lang.Class" factory-method="forName" >
+		<constructor-arg index="0" value="com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl"/>
+		<constructor-arg index="1" type="boolean"><value>true</value></constructor-arg>
+		<constructor-arg index="2"><null/></constructor-arg>
+	</bean>
+	<bean id="objTransformerFactory" class="javax.xml.transform.TransformerFactory" 
+		factory-method="newInstance" factory-bean="classTransformerFactory">
+	</bean>
+			
+	<!-- JSON to XML Converter -->	
+	<bean id="jsonXmlConverter" class="biz.neustar.merc.mt.filter.impl.JsonXmlConverter">
+		<constructor-arg index="0">
+			<bean id="_0" factory-method="newInstance" class="javax.xml.stream.XMLInputFactory"
+  							factory-bean="classXMLInputFactory">
+			</bean>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<bean id="_1" factory-method="newInstance" class="javax.xml.stream.XMLOutputFactory"
+							factory-bean="classXMLOutputFactory">
+			</bean>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<bean id="_2" factory-method="newTransformer" class="javax.xml.transform.Transformer"
+							factory-bean="objTransformerFactory">
+			</bean>
+		</constructor-arg>				
+		<property name="stripNamespaces">
+			<value>true</value>
+		</property>
+	</bean>
+	
+	<!-- XML Validator -->	
+	<bean id="mtXMLValidator" class="biz.neustar.merc.mt.validators.MTXMLValidator">
+		<constructor-arg>
+			<util:list list-class="java.util.ArrayList">
+				<value>schema/xmldsig-core-schema.xsd</value>
+				<value>schema/xenc-schema.xsd</value>
+				<value>schema/md.xsd</value>
+				<value>schema/merc-common.xsd</value>
+				<value>schema/merc-basic.xsd</value>
+			</util:list>
+		</constructor-arg>
+	</bean>
+	
+</beans>

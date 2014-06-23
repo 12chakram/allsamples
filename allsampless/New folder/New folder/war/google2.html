@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>Search Project</title>
+
+<!-- 
+
+-->
+
+<style>
+	body, html {
+		margin:0;
+		padding:0;
+		font-family:arial;
+	}
+	
+	#page_overlay {
+		width:100%;
+		z-index:2;
+	}
+	
+	#page_content {
+		font-size:30px;
+		padding:10px;
+		background-color:#000000;
+		color:#ffffff;
+		margin-top:40px;
+		
+		/* Display on top of slideshow */
+		z-index:2;	
+		position:relative; /* This is very important! */	
+	}
+	
+	img#bg {
+		/* Stretch background */
+		position:fixed;
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+		z-index:0;
+	}
+	
+	#bg_grid {
+		position:fixed; /* This is very important! */
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+	    background: url(grid.png) repeat;
+			
+		/* Display on top of background */
+		z-index:1;
+	}
+
+	#image_description {
+		position:fixed; /* This is very important! */
+		right:-150px;
+		bottom:60px;
+		width:140px;
+		height:38px;
+		background-color:#dddddd;
+		filter:alpha(opacity=80);
+		-moz-opacity:0.8;
+		-khtml-opacity: 0.8;
+		opacity: 0.8;
+		z-index:2;
+		padding:5px;
+		font-size:10px;
+		line-height:12px;
+		color:#333333;
+	}
+	
+	a, a:link, a:visited, a:active {
+		text-decoration:none;
+		color:#A62F00;
+	}
+	
+	a:hover {
+		text-decoration:underline;
+	}
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+	var aImages = new Array();
+	var aURL = new Array();
+	var aArtists = new Array();
+	var iPrev = -1;
+	var iRnd = -1;
+	
+	aImages[0] = "http://dl.dropbox.com/u/11099294/search_pro/62336free-website-builder-seo.jpg";
+	aImages[1] = "http://dl.dropbox.com/u/11099294/search_pro/3646522-teclado-close-up-con-fondo-de-c-digo-binario.jpg";
+	aImages[2] = "http://dl.dropbox.com/u/11099294/search_pro/depositphotos_1731274-Technology-background.jpg";
+	aImages[3] = "http://dl.dropbox.com/u/11099294/search_pro/depositphotos_2077680-Technology-earth-globe.jpg";
+	aImages[4] = "http://dl.dropbox.com/u/11099294/search_pro/depositphotos_2229904-Searching-the-skies.jpg";
+	
+	aURL[0] = "";
+	aURL[1] = "";
+	aURL[2] = "";
+	aURL[3] = "";
+	aURL[4] = "";
+	
+	aArtists[0] = "";
+	aArtists[1] = "";
+	aArtists[2] = "Marcel Verkaart";
+	aArtists[3] = "Marco Schippers";	
+	aArtists[4] = "Sylvia Hennequin";
+	
+	$(document).ready(function() {
+	
+		/* Define the function that triggers to fade in the background as soon as the image has loaded */
+		$("img#bg").load(function()
+			{
+				/* Fade in during 3 seconds */
+				$("img#bg").fadeTo(2000,1);
+				
+				/* Animate the picture description during 1 second */
+				setTimeout(function() { $("#image_description").animate({right: '+=150'}, 1000) }, 1000);
+			
+				/* Set the timeout to fade out the image and the description after 10 seconds*/
+		    	setTimeout(function() 
+			    	{
+			    		$("#image_description").animate({right: '-=150'}, 1000);
+			    		$("img#bg").fadeOut(2000);
+			    		
+			    		/* Load the next image after 4 seconds */
+			    		setTimeout(LoadImages,3000);
+			    	}
+			    	,10000);
+			}			
+		)
+	
+		/* Start the slideshow one second after the page is ready */ 
+		setTimeout(LoadImages,1000);
+		
+    });
+
+    function LoadImage(iNr)
+	{
+	
+		/* Assign the new image to the background */
+		$("img#bg").attr("src", aImages[iNr]);
+ 		
+ 		/* Assign the artist name to the description */
+ 		$("#image_artist").html(aArtists[iNr]);
+ 		
+ 		/* Assign the image url to the description */
+        $("a#image_url").attr("href", aURL[iNr]);
+        $("a#image_url").html("for sale @canvasinabox.com");
+                        	
+    };
+    
+    function LoadImages()
+    {
+    	
+    	/* Select a random image number and make sure this is not equal to the previous image */
+    	while(iPrev == iRnd)
+    	{
+    		iRnd = Math.floor(Math.random()*aImages.length);
+    	}
+    	
+    	/* Show the selected image */
+    	LoadImage(iRnd);
+    	
+    	iPrev = iRnd;
+    	
+    };
+</script>
+
+
+ <script src="https://www.google.com/jsapi"
+        type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+    //<!
+    google.load('search', '1');
+
+    function OnLoad() {
+      // Create a search control
+      var searchControl = new google.search.SearchControl();
+
+      // Add in a full set of searchers
+      var videosearch = new google.search.VideoSearch();
+	  
+     // searchControl.addSearcher(localSearch);
+      searchControl.addSearcher(new google.search.WebSearch());
+      searchControl.addSearcher(new google.search.VideoSearch());
+      searchControl.addSearcher(new google.search.BlogSearch());
+      searchControl.addSearcher(new google.search.NewsSearch());
+      searchControl.addSearcher(new google.search.ImageSearch());
+      searchControl.addSearcher(new google.search.BookSearch());
+      searchControl.addSearcher(new google.search.PatentSearch());
+
+      // Set the Local Search center point
+     // localSearch.setCenterPoint("New York, NY");
+	  
+	 // searchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+
+// create a drawOptions object
+var drawOptions = new google.search.DrawOptions();
+
+// tell the searcher to draw itself in linear mode
+drawOptions.setDrawMode(google.search.SearchControl.DRAW_MODE_TABBED);
+searchControl.draw(document.getElementById("searchcontrol"), drawOptions);
+
+      // tell the searcher to draw itself and tell it where to attach
+      //searchControl.draw(document.getElementById("searchcontrol"));
+	  //videosearch.draw(document.getElementById("tabs-2"));
+
+      // execute an inital search
+      searchControl.execute("");
+	  
+    }
+    google.setOnLoadCallback(OnLoad);
+
+    //]]>
+    </script>
+    <style type="text/css">
+	body{
+		font-family:Arial, Helvetica, sans-serif;
+		font-size:12px;
+	}
+		#main{
+			background:#ffffff;
+		width:980px;
+		margin:20px auto;
+		border:1px solid #dddddd;
+	}
+	.header{
+		background:url(http://dl.dropbox.com/u/11099294/search_pro/seach_header.jpg) repeat;
+		padding:20px;
+		margin:0;
+		border-bottom:3px solid #d7d7d7;
+	}
+	h1{
+		font-size:24px;
+		color:#09F;
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	#searchcontrol{
+		padding:20px;
+		height:400px;
+		overflow:scroll;
+	}
+	#searchcontrol input.gsc-input{
+	color: #808080;
+	background:none;
+	border:0;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 6px;
+	width:230px;
+	margin-bottom: 15px;
+    margin-left: 25px;
+    padding: 6px 6px 10px;
+	}
+	
+	.gsc-control{
+		width:800px;
+	}
+	table.gsc-search-box td{
+		width:30%;
+	}
+	#footer{
+		background:#efefef;
+		border:1px solid #cccccc;
+		text-align:center;
+		padding:5px;
+	}
+	.gsc-tabHeader{
+		padding:5px 10px;
+	}
+	#searchcontrol table.gsc-search-box{
+		width:60%;
+		margin:0 auto;
+	}
+	#searchcontrol input.gsc-search-button {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    display: block;
+    height: 30px;
+    margin: 0 0 15px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 32px;
+}
+	.gsc-tabsArea{
+		border-bottom: 2px solid #CCCCCC;
+	}
+	.gsc-resultsbox-visible{
+		background: none repeat scroll 0 0 #F7F7F7;
+    display: block;
+    padding: 10px;
+	}
+	
+	
+	.gsc-tabHeader.gsc-tabhInactive{
+		background:url(http://dl.dropbox.com/u/11099294/search_pro/bluepx.png) repeat-x top left;
+		border-left:1px solid #169dd8;
+		border-right:1px solid #169dd8;
+		border-top:0;
+		padding:5px 20px;
+		font-size:13px;
+		font-weight:bold;
+		color:#ffffff;
+	}
+	.gsc-tabHeader.gsc-tabhActive{
+		padding:5px 20px;
+	}
+	h1.globe{
+		background:url(http://dl.dropbox.com/u/11099294/miss/1332692461_explorer.png) no-repeat left center;
+		height:80px;
+		padding:40px 0 0 150px;
+		margin:0;
+	}
+	#searchcontrol table.gsc-search-box{
+		background:url(http://dl.dropbox.com/u/11099294/search_pro/search_box.jpg) no-repeat left top;
+		width:365px;
+		height:95px;
+	}
+	</style>
+
+
+
+</head>
+<body>
+
+<!-- This is the main page -->
+<div id="page_overlay">
+	
+    
+    
+    
+</div>
+
+<!-- The container for the description -->
+
+<!-- The container for the background-image -->
+<img id="bg" style="display:none" />
+
+<!-- The container for the grid on top of the background-image -->
+<div id="bg_grid">
+<div id="main">
+  <div class="header">
+  
+  		<h1 class="globe"></h1>
+  </div>
+  <div id="searchcontrol">Loading</div>
+
+    <div id="footer">
+    <p>project references: sfsfsd sdfdsf</p>
+    </div>
+ </div> 
+
+</div>
+
+</body>
+</html>

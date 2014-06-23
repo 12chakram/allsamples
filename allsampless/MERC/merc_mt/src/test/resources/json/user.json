@@ -1,0 +1,24 @@
+{
+	"merc-basic:User" : {
+		"@ThirdPartyID" : "urn:nsr:merc:thirdparty:merc",
+		"merc-basic:Name" : {
+			"GivenName" : "Krithika",
+			"SurName" : "Balamurugan"
+		},
+		"merc-basic:Country" : "AU",
+		"merc-basic:ContactInfo" : {
+			"PrimaryEmail" : {
+				"Value" : "abc.efgh@email.com",
+				"ConfirmationEndpoint" : null
+			}
+		},
+		"DateOfBirth" : {
+			"@MeetsAgeOfMajority" : "false",
+			"$" : "1990-12-07"
+		},
+		"merc-basic:Credentials" : {
+			"Username" : "Myusername6",
+			"Password" : "Password1"
+		}
+	}
+}

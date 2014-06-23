@@ -1,0 +1,29 @@
+{
+	"Purchase" : {
+		"@xsi:type" : "merc-basic:Purchase-type",
+		"@ID" : "urn:nsr:merc:1234",
+		"ALID" : " urn:nsr:merc:accountid:alid123",
+		"Profile" : "http://tempuri.org",
+		"TransactionType" : {
+			"@TransactionID" : "urn:nsr:merc:trans1234",
+			"AccountID" : "urn:nsr:merc:act1234",
+			"PaymentTransactionID" : "PaymentTransactionID",
+			"EntitlementID" : "urn:nsr:merc:ent1234",
+			"Title" : "Title",
+			"MediaProfile" : "http://tempuri.org",
+			"TransactionInfo" : {
+				"ResourceID" : "urn:nsr:merc:res1234",
+				"PurchaseType" : "http://tempuri.org"
+			},
+			"Price" : "100.0",
+			"CreditCardAuthZCode" : "CreditCardAuthZCode",
+			"PaymentProcessorID" : "PaymentProcessorID",
+			"TransactionStatusHistory" : {
+				"Current" : {
+					"Value" : "urn:nsr:merc:type:TransactionStatus:completed",
+					"DateTime" : "2001-12-31T12:00:00"
+				}
+			}
+		}
+	}
+}

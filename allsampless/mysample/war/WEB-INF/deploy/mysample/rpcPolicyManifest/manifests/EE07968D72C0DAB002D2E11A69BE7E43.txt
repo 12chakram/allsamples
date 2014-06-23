@@ -1,0 +1,2 @@
+serviceClass: com.ku.gap.learn.client.GreetingService
+path: F6CCA163A46A22C5A2E50669835E2D52.gwt.rpc

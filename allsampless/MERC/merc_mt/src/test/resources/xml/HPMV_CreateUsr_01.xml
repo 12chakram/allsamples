@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:User ThirdPartyID="urn:nsr:merc:Junit" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic ../../../main/resources/schema/merc-basic.xsd ">
+  <merc-basic:Name>
+    <merc-basic:GivenName>GivenName</merc-basic:GivenName>
+  </merc-basic:Name>
+  <merc-basic:Country>Country</merc-basic:Country>
+  <merc-basic:Credentials>
+    <merc-basic:Username>Username</merc-basic:Username>
+  </merc-basic:Credentials>
+  <merc-basic:Cart/>
+  <merc-basic:PwdHash>
+    <merc-basic:IsLocal>true</merc-basic:IsLocal>
+    <merc-basic:Value>MA==</merc-basic:Value>
+  </merc-basic:PwdHash>
+</merc-basic:User>

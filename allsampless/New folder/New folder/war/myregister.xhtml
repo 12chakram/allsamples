@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	<head>
+		<title>Actual Register Page</title>
+		<link href="../css/mystyle.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+	
+		<div class="logo">
+			<a href="myregister.jsf">
+				<img alt="ezeeappointer" src="../img/logo.png"/>
+			</a>
+		</div>
+		
+		<div class="formRow">
+        	<label>UserName:</label>
+            <div class="formRight">
+            	<h:inputText label="User Name" id="uname" value="#{myManagedBean.userName}" required="true" requiredMessage="please enter user name" title="User Name"/>
+            	<rich:message for="uname"/>
+    		</div>
+            <div class="clear"></div>
+        </div>
+            
+        <div class="formRow">
+        	<label>Password</label>
+            <div class="formRight">
+            	<h:inputSecret label="Password" id="pwd" value="#{myManagedBean.password}" required="true" requiredMessage="please enter password" title="Password">
+       				<f:validateLength minimum="4" maximum="10"/>
+       			</h:inputSecret>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="formRow">
+        	<label>Confirm Password</label>
+            <div class="formRight">
+            	<h:inputSecret label="Confirm Password" id="cpwd" value="#{myManagedBean.confirmPassword}" required="true" requiredMessage="please confirm the password" title="Confirm Password">
+       				<f:validateLength minimum="4" maximum="10"/>
+       			</h:inputSecret>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+		<div class="formRow">
+           	<label>Email</label>
+       		<div class="formRight">
+         	   <h:inputText label="Email Address" id="email" value="#{registrationManagedBean.email}" required="true" requiredMessage="please enter valid mail"  title="Email"/>
+       		</div>
+       		<div class="clear"></div>
+       	</div>
+  
+             
+        <div class="formRow">
+        	<label>First Name:</label>
+            <div class="formRight">
+            	<h:inputText label="First Name" id="fname" value="#{myManagedBean.firstName}" required="true" requiredMessage="please enter first name" title="First Name"/>
+    		</div>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="formRow">
+        	<label>Last Name:</label>
+           	<div class="formRight">
+           		<h:inputText label="Last Name" id="lname" value="#{myManagedBean.lastName}" required="true" requiredMessage="please enter last name" title="Last Name"/>
+    		</div>
+            <div class="clear"></div>
+        </div>
+        
+        <div class="formRow">
+        	<label>Company Name:</label>
+            <div class="formRight">
+            	<h:inputText label="Company Name" id="cname" value="#{myManagedBean.companyName}" required="true" requiredMessage="please enter company name" title="Company Name"/>
+    		</div>
+            <div class="clear"></div>
+        </div>
+        
+        
+        <div class="formRow">
+            <label>Phone:</label>
+           	<div class="formRight">
+           		<h:inputText label="Phone" id="phone" value="#{myManagedBean.phone}"  placeholder="Max 10 characters here" maxlength="10" title="Phone"/>
+           	</div>
+            <div class="clear"></div>
+        </div>
+        
+       	<h:commandButton value="Register" action="confirm"/>
+    
+        
+        
+	</body>
+</html>

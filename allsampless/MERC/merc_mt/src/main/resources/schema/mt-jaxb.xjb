@@ -1,0 +1,36 @@
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+               jaxb:version="2.0">
+
+   <jaxb:bindings schemaLocation="md.xsd" >
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.movielabs.md"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+
+   <jaxb:bindings schemaLocation="xenc-schema.xsd" >
+    <jaxb:schemaBindings>
+      <jaxb:package name="org.w3.xmlenc"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  
+  <jaxb:bindings schemaLocation="xmldsig-core-schema.xsd" >
+    <jaxb:schemaBindings>
+      <jaxb:package name="org.w3.xmldsig"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  
+  <jaxb:bindings schemaLocation="merc-basic.xsd" >
+    <jaxb:schemaBindings>
+      <jaxb:package name="biz.neustar.merc.mt.jUnit.jaxb"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  
+  
+  <jaxb:bindings schemaLocation="merc-common.xsd" >
+    <jaxb:schemaBindings>
+      <jaxb:package name="biz.neustar.merc.mt.jUnit.jaxb"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  
+</jaxb:bindings>

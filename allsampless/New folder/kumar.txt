@@ -1,0 +1,44 @@
+<datasources>
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <datasource jndi-name="java:/jdbc/dece" pool-name="decePool" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.24.5.11)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = neustar)))</connection-url>
+                    <driver>deceoracle</driver>
+                    <pool>
+                        <max-pool-size>250</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>build1116</user-name>
+                        <password>build1116</password>
+                    </security>
+                </datasource>
+                <drivers>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                    <driver name="deceoracle" module="com.mydece">
+                        <xa-datasource-class>oracle.jdbc.driver.OracleDriver</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
+        </subsystem>
+        <subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1">
+            <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000"/>
+        </subsystem>
+==================================== 
+ <resources>
+        <resource-root path="ojdbc6.jar"/>
+        <!-- Insert resources here -->
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/>
+        <module name="javax.servlet.api" optional="true"/>
+    </dependencies>
+    

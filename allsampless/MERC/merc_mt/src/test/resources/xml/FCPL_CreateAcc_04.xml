@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:Account ThirdPartyID="urn:nsr:merc:Junit" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic merc-basic.xsd ">
+  <merc-basic:DisplayName1>DisplayName</merc-basic:DisplayName1>
+  <merc-basic:Country>IN</merc-basic:Country>
+</merc-basic:Account>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich ="http://richfaces.org/rich">
+<h:head>
+
+	<title>tinyPM Support &raquo;&nbsp; New Account Registration</title>
+	<link href="css/my.css" rel="stylesheet" type="text/css"/> 
+</h:head>
+
+<h:body>
+	<div align="center">
+	<div id="container">
+	
+	<img height="5%" src="../img/ezeeappoint.bmp" />
+	</div>
+		
+<p/>
+<fieldset><legend>Types and Required: Messages Next to Fields</legend>
+<h:form>
+  
+  <rich:panel header="RegistrationForm">
+  
+   	<h:panelGroup layout="block">
+   	
+      	<h:panelGrid columns="1">
+     
+			 	<table>
+ 		
+ 		<tr>
+        	
+        	<td>User Name:</td>
+        	
+        </tr>
+        
+        <tr>
+        	
+       		<td><h:inputText label="User Name" id="uname" value="#{registrationManagedBean.userName}" required="true"  title="User Name"/><h:message for="uname" /></td>
+      
+      	</tr>
+      
+      	<tr>
+        	
+        	<td>Email Address:</td>
+        
+        </tr>
+        
+        <tr>
+        	
+        	<td><h:inputText label="Email Address" id="email" value="#{registrationManagedBean.email}" required="true" validator="#{registrationManagedBean.validateEmail}" title="Email"/> <h:message for="email" /> </td>
+
+	    </tr>
+      
+    	<tr>
+        	
+        	<td>Password:</td>
+        
+        </tr>
+        
+        <tr>
+        
+        	<td><h:inputSecret label="Password" id="pwd" value="#{registrationManagedBean.password}" required="true" title="Password"/><h:message for="pwd" /></td>
+      
+      	</tr>
+      
+	    <tr>
+    
+        <td>Confirm Password:</td>
+    
+    
+    	</tr>
+    	
+    	<tr>
+    	
+        	<td><h:inputSecret label="Confirm Password" id="cpwd" value="#{registrationManagedBean.confirmPassword}" required="true" title="Confirm Password"/><h:message for="cpwd" /></td>
+      
+      	</tr>
+      
+      	<tr>
+        
+        	<td>First Name:</td>
+        
+        </tr>
+        
+        <tr>
+        
+        	<td><h:inputText label="First Name" id="fname" value="#{registrationManagedBean.firstName}" required="true" title="First Name"/><h:message for="fname" /></td>
+      
+      	</tr>
+      
+      	<tr>
+        
+        	<td>Last Name:</td>
+        
+        </tr>
+        
+        <tr>
+        	
+        	<td><h:inputText label="Last Name" id="lname" value="#{registrationManagedBean.lastName}" required="true" title="Last Name"/><h:message for="lname" /></td>
+      
+      	</tr>
+ 
+ 		<tr>
+        
+        	<td>Company Name:</td>
+        	
+        </tr>
+        
+        <tr>
+        	<td><h:inputText label="Company Name" id="cname" value="#{registrationManagedBean.companyName}" required="true" title="Company Name"/><h:message for="cname" /></td>
+        	
+      	</tr>
+      
+      	<tr>
+        	
+        	<td>Country:</td>
+        	
+        </tr>
+            	    <f:selectItem itemValue="0" itemLabel="Hyderabad" />
+    
+    	
+    	<tr>
+    	
+    		<td>
+    		
+    			<rich:select>
+            	    <f:selectItem itemValue="0" itemLabel="India" />
+        	        <f:selectItem itemValue="1" itemLabel="Us" />
+    	            <f:selectItem itemValue="2" itemLabel="Uk" />
+	                <f:selectItem itemValue="3" itemLabel="Australia" />
+    	            <f:selectItem itemValue="4" itemLabel="Singapore" />
+	            </rich:select>
+    		
+    		</td>
+    	
+    	</tr>
+    	
+    	<tr>
+        	
+        	<td>City:</td>
+        	
+        </tr>
+    	
+       <tr>
+      
+        <td>
+        
+        	<rich:select>
+        	        <f:selectItem itemValue="1" itemLabel="California" />
+    	            <f:selectItem itemValue="2" itemLabel="London" />
+	                <f:selectItem itemValue="3" itemLabel="sydny" />
+    	            <f:selectItem itemValue="4" itemLabel="singapore" />
+	            </rich:select>
+              
+        </td>
+      
+      </tr>
+       
+    </table>
+    		
+    		<p><h:commandButton value="Register" action="confirm" /></p>
+			   	
+
+
+
+
+      </h:panelGrid>
+</h:panelGroup>
+  </rich:panel>
+
+</h:form>
+</fieldset>
+
+</div></h:body></html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:Purchase xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic ../../../main/resources/schema/merc-basic.xsd ">
+  <merc-basic:ALID>urn:nsr:merc:alid1234</merc-basic:ALID>
+  <merc-basic:Profile>urn:nsr:merc:type:mediaprofile:hd</merc-basic:Profile>
+  <merc-basic:TransactionType>urn:nsr:merc:type:transaction:rental</merc-basic:TransactionType>
+</merc-basic:Purchase>

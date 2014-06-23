@@ -1,0 +1,26 @@
+<schema-set xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        prefer-inline="true" 
+        type-substitutions="xs:integer xs:int xs:decimal xs:float"
+        binding-per-schema="false">
+    
+	<schema name="md.xsd" 
+            binding-file-name="merc-mt-binding.xml"
+            package="biz.neustar.merc.mt.jUnit.jibx">
+	</schema>
+	<schema name="merc-common.xsd" 
+            binding-file-name="merc-mt-binding.xml"
+            package="biz.neustar.merc.mt.jUnit.jibx">
+	</schema>
+	<schema name="xmldsig-core-schema.xsd" 
+            binding-file-name="merc-mt-binding.xml"
+            package="biz.neustar.merc.mt.jUnit.jibx">
+	</schema>
+	<schema name="xenc-schema.xsd" 
+            binding-file-name="merc-mt-binding.xml"
+            package="biz.neustar.merc.mt.jUnit.jibx">
+	</schema>
+	<schema name="merc-basic.xsd" 
+            binding-file-name="merc-mt-binding.xml"
+            package="biz.neustar.merc.mt.jUnit.jibx">
+	</schema>
+</schema-set>

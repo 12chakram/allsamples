@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:User ThirdPartyID="urn:nsr:merc:td1234" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic merc-basic.xsd ">
+  <merc-basic:Name>
+    <merc-basic:GivenName>MTGivenName</merc-basic:GivenName>
+  </merc-basic:Name>
+  <merc-basic:Country>US</merc-basic:Country>
+  <merc-basic:ContactInfo>
+		<merc-basic:PrimaryEmail>
+			<merc-basic:Value>mtemail@example.com</merc-basic:Value>
+			<merc-basic:ConfirmationEndpoint />
+		</merc-basic:PrimaryEmail>
+  </merc-basic:ContactInfo>
+  <merc-basic:DateOfBirth MeetsAgeOfMajority="false">1990-12-07</merc-basic:DateOfBirth>
+  <merc-basic:Credentials>
+    <merc-basic:Username>mtuser100</merc-basic:Username>
+    <merc-basic:Password>Password1</merc-basic:Password>
+  </merc-basic:Credentials>
+  <merc-basic:Cart/>
+  <merc-basic:PwdHash>
+    <merc-basic:IsLocal>true</merc-basic:IsLocal>
+    <merc-basic:Value>MA==</merc-basic:Value>
+  </merc-basic:PwdHash>
+</merc-basic:User>

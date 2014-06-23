@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:Account AccountID="http://tempuri.org" ThirdPartyID="http://tempuri.org" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic ../../../main/resources/schema/merc-basic.xsd ">
+  <merc-basic:DisplayName>merc-basic:DisplayName</merc-basic:DisplayName>
+  <merc-basic:Country>merc-basic:Country</merc-basic:Country>
+  <merc-basic:MERCLockerID>http://tempuri.org</merc-basic:MERCLockerID>
+  <merc-basic:ActiveStreamCount>0</merc-basic:ActiveStreamCount>
+  <merc-basic:AvailableStreams>0</merc-basic:AvailableStreams>
+  <merc-basic:AvailableRentals>0</merc-basic:AvailableRentals>
+  <merc-basic:UserList FilterClass="http://tempuri.org" FilterCount="1" FilterDRM="" FilterMoreAvailable="true" FilterOffset="">
+    <merc-basic:UserReference>http://tempuri.org</merc-basic:UserReference>
+  </merc-basic:UserList>
+  <merc-basic:Subscription MediaProfile="http://tempuri.org">
+    <merc-basic:SubscriptionPeriod>1</merc-basic:SubscriptionPeriod>
+    <merc-basic:RefreshDuration>1</merc-basic:RefreshDuration>
+    <merc-basic:SubscriptionTiers>urn:nsr:merc:type:subscription:Tier1</merc-basic:SubscriptionTiers>
+  </merc-basic:Subscription>
+  <merc-basic:ResourceStatus>
+    <merc-basic:Current CreatedBy="http://tempuri.org" CreationDate="2001-12-31T12:00:00" DeletedBy="http://tempuri.org" DeletionDate="2001-12-31T12:00:00" ModificationDate="2001-12-31T12:00:00" ModifiedBy="http://tempuri.org">
+      <merc-basic:Value>urn:nsr:merc:type:status:active</merc-basic:Value>
+      <merc-basic:Description>merc-basic:Description</merc-basic:Description>
+    </merc-basic:Current>
+    <merc-basic:History>
+      <merc-basic:Prior ModificationDate="2001-12-31T12:00:00" ModifiedBy="http://tempuri.org">
+        <merc-basic:Value>urn:nsr:merc:type:status:active</merc-basic:Value>
+        <merc-basic:Description>merc-basic:Description</merc-basic:Description>
+      </merc-basic:Prior>
+    </merc-basic:History>
+  </merc-basic:ResourceStatus>
+</merc-basic:Account>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:Entitlement  xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic ../../../main/resources/schema/merc-basic.xsd ">
+  <merc-basic:EntitlementBasic>
+    <merc-basic:EntitlementProfiles/>
+  </merc-basic:EntitlementBasic>
+</merc-basic:Entitlement>

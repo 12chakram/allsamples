@@ -1,0 +1,1 @@
+{"contacts":{"contact":{"@id":"1","name":{"$":"JohnDoe"},"phone":{"$":"123-456-7890"},"address":{"street":{"$":"123JFKStreet"},"city":{"$":"AnyTown"},"state":{"$":"AnyState"},"zipCode":{"$":"12345"}}}}}

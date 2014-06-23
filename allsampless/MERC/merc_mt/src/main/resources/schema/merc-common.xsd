@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.neustar.biz/schema/2012/01/merc-common"
+    elementFormDefault="unqualified" attributeFormDefault="unqualified" blockDefault="substitution"
+    version="2.0">
+
+
+    <xs:complexType name="Price-type">
+        <xs:sequence>
+            <xs:element name="Value" type="merc-common:PriceValue-type"/>
+            <xs:element name="Currency" type="merc-common:Currency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UpgradePricing-type">
+        <xs:sequence>
+            <xs:element name="UpgradePrice" type="merc-common:Price-type"/>
+            <xs:element name="Upgrade" type="merc-common:Upgrade-type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ************************* Simple Types ************************* -->
+    
+    <xs:simpleType name="Upgrade-type">
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:upsell:DVD-to-UV"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:BD-to-UV"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:SUBS-SD"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:SUBS-HD"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:RENT-SD"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:RENT-HD"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:OWN-SD"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:OWN-HD"/>
+            <xs:enumeration value="urn:nsr:merc:type:upsell:UV-SD"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PriceValue-type">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Pricing-type">
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:pricing:Promotion"/>
+            <xs:enumeration value="urn:nsr:merc:type:pricing:Regular"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CurrencyList">
+        <xs:list itemType="merc-common:Currency"/>
+    </xs:simpleType>
+        
+    <xs:simpleType name="Currency">
+        <xs:restriction base="xs:string">
+        	<xs:pattern value="Euro|US_Dollar|British_Pound|AU_Dollar|Yen"/>
+        </xs:restriction>
+    </xs:simpleType>    
+</xs:schema>

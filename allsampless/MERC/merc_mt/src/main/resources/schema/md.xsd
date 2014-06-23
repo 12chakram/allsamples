@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) by Craig Seidel (MovieLabs) -->
+<xs:schema xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.movielabs.com/schema/md/v1.07/md" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.07">
+	<!--Common Metadata-->
+	<!--verson 1.07-->
+	<!-- *** Metadata References ***-->
+	<xs:simpleType name="id-type">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="orgID-type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ContentID-type">
+		<xs:restriction base="md:id-type"/>
+	</xs:simpleType>
+	<xs:complexType name="ContentIdentifier-type">
+		<xs:sequence>
+			<xs:element name="Namespace" type="xs:string"/>
+			<xs:element name="Identifier" type="xs:string"/>
+			<xs:element name="Location" type="xs:anyURI" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="AssetPhysicalID-type">
+		<xs:restriction base="md:id-type"/>
+	</xs:simpleType>
+	<xs:simpleType name="AssetLogicalID-type">
+		<xs:restriction base="md:id-type"/>
+	</xs:simpleType>
+	<!--*** Parental Controls ***-->
+	<xs:complexType name="ContentRatingDetail-type">
+		<xs:sequence>
+			<xs:element name="Region" type="md:Region-type"/>
+			<xs:element name="System" type="xs:string"/>
+			<xs:element name="Value" type="xs:string"/>
+			<xs:element name="Reason" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LinkToLogo" type="xs:anyURI" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContentRating-type">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="NotRated" type="xs:boolean" fixed="true"/>
+				<xs:element name="Rating" type="md:ContentRatingDetail-type" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element name="AdultContent" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--*** Basic Metadata ***-->
+	<xs:complexType name="ContentSequenceInfo-type">
+		<xs:sequence>
+			<xs:element name="Number" type="xs:int"/>
+			<xs:element name="HouseSequence" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicMetadataParent-type">
+		<xs:choice>
+			<xs:element name="Parent" type="md:BasicMetadata-type"/>
+			<xs:element name="ParentContentID" type="md:ContentID-type"/>
+		</xs:choice>
+		<xs:attribute name="relationshipType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="isclipof"/>
+					<xs:enumeration value="isepisodeof"/>
+					<xs:enumeration value="isseasonof"/>
+					<xs:enumeration value="ispieceof"/>
+					<xs:enumeration value="ispartof"/>
+					<xs:enumeration value="isderivedfrom"/>
+					<xs:enumeration value="iscompositeof"/>
+					<xs:enumeration value="issupplementto"/>
+					<xs:enumeration value="ispromotionfor"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BasicMetadataInfo-type">
+		<xs:sequence>
+			<xs:element name="TitleDisplay19" type="xs:string"/>
+			<xs:element name="TitleDisplay60" type="xs:string" minOccurs="0"/>
+			<xs:element name="TitleSort" type="xs:string"/>
+			<xs:element name="ArtReference" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:anyURI">
+							<xs:attribute name="resolution" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Summary190">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="cast" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Summary400" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="cast" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Summary4000" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="cast" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DisplayIndicators" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="CC"/>
+						<xs:enumeration value="F"/>
+						<xs:enumeration value="P"/>
+						<xs:enumeration value="DD"/>
+						<xs:enumeration value="SAP"/>
+						<xs:enumeration value="DVS"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Genre" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Keyword" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="VersionNotes" type="xs:string" minOccurs="0"/>
+			<xs:element name="Region" type="md:Region-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OriginalTitle" type="xs:string"/>
+			<xs:element name="CopyrightLine" type="xs:string" minOccurs="0"/>
+			<xs:element name="PeopleLocal" type="md:BasicMetadataPeople-type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="language" type="xs:language" use="required"/>
+		<xs:attribute name="default" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="BasicMetadataJob-type">
+		<xs:sequence>
+			<xs:element name="JobFunction">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="md:Role-type">
+							<xs:attribute name="scheme" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="JobDisplay" type="xs:string" minOccurs="0"/>
+			<xs:element name="BillingBlockOrder" type="xs:int" minOccurs="0"/>
+			<xs:element name="Character" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Guest" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicMetadataPeople-type">
+		<xs:sequence>
+			<xs:element name="Job" type="md:BasicMetadataJob-type" maxOccurs="unbounded"/>
+			<xs:element name="Name" type="md:PersonName-type"/>
+			<xs:element name="Identifier" type="md:PersonIdentifier-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Gender" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="male"/>
+						<xs:enumeration value="female"/>
+						<xs:enumeration value="neutral"/>
+						<xs:enumeration value="plural"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicMetadata-type">
+		<xs:sequence>
+			<xs:element name="UpdateNum" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LocalizedInfo" type="md:BasicMetadataInfo-type" maxOccurs="unbounded"/>
+			<xs:element name="RunLength" type="xs:duration" minOccurs="0"/>
+			<xs:element name="ReleaseYear" type="xs:gYear"/>
+			<xs:choice>
+				<xs:element name="ReleaseDate" type="xs:date" minOccurs="0"/>
+				<xs:element name="ReleaseDateTime" type="xs:dateTime" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="ReleaseHistory" type="md:ReleaseHistory-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="WorkType" type="xs:string"/>
+			<xs:element name="PictureColorType" type="md:ColorType-type" minOccurs="0"/>
+			<xs:element name="PictureFormat" type="xs:string" minOccurs="0"/>
+			<xs:element name="ThreeD" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="AltIdentifier" type="md:ContentIdentifier-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RatingSet" type="md:ContentRating-type" minOccurs="0"/>
+			<xs:element name="People" type="md:BasicMetadataPeople-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CountryOfOrigin" type="md:Region-type" minOccurs="0"/>
+			<xs:element name="AssociatedOrg" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="md:OrgName-type">
+							<xs:attribute name="role" type="xs:string"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SequenceInfo" type="md:ContentSequenceInfo-type" minOccurs="0"/>
+			<xs:element name="Parent" type="md:BasicMetadataParent-type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ContentID" type="md:ContentID-type" use="required"/>
+	</xs:complexType>
+	<!--*** Abbreviated Metadata ***-->
+	<xs:complexType name="AbbreviatedMetadataInfo-type">
+		<xs:sequence>
+			<xs:element name="TitleBrief" type="xs:string"/>
+			<xs:element name="ArtReference" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SummaryShort" type="xs:string"/>
+			<xs:element name="DisplayIndicators" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="CC"/>
+						<xs:enumeration value="F"/>
+						<xs:enumeration value="P"/>
+						<xs:enumeration value="DD"/>
+						<xs:enumeration value="SAP"/>
+						<xs:enumeration value="DVS"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="language" type="xs:language" use="required"/>
+		<xs:attribute name="default" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="AbbreviatedMetadata-type">
+		<xs:sequence>
+			<xs:element name="UpdateNum" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LocalizedInfo" type="md:AbbreviatedMetadataInfo-type" maxOccurs="unbounded"/>
+			<xs:element name="Rating" type="md:ContentRating-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AltIdentifier" type="md:ContentIdentifier-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Studio" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Equivalent to DisplayName</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ContentID" type="md:ContentID-type" use="required"/>
+	</xs:complexType>
+	<!--*** Physical Asset Metadata ***-->
+	<xs:complexType name="DigitalAssetAudioEncoding-type">
+		<xs:sequence>
+			<xs:element name="Codec" type="xs:string"/>
+			<xs:element name="CodecType" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="BitrateMax" type="xs:integer" minOccurs="0"/>
+			<xs:element name="SampleRate" type="xs:integer" minOccurs="0"/>
+			<xs:element name="SampleBitDepth" type="xs:integer" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetAudioData-type">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="Type" type="xs:string" minOccurs="0"/>
+			<xs:element name="Encoding" type="md:DigitalAssetAudioEncoding-type" minOccurs="0"/>
+			<xs:element name="Language">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:language">
+							<xs:attribute name="dubbed" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Channels" type="xs:string"/>
+			<xs:element name="TrackReference" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetVideoEncoding-type">
+		<xs:sequence>
+			<xs:element name="Codec" type="xs:string"/>
+			<xs:element name="CodecType" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MPEGProfile" type="xs:string" minOccurs="0"/>
+			<xs:element name="MPEGLevel" type="xs:string" minOccurs="0"/>
+			<xs:element name="BitrateMax" type="xs:integer" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetVideoPicture-type">
+		<xs:sequence>
+			<xs:element name="AspectRatio" type="xs:string"/>
+			<xs:element name="PixelAspect" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NTSC"/>
+						<xs:enumeration value="PAL"/>
+						<xs:enumeration value="square"/>
+						<xs:enumeration value="other"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WidthPixels" type="xs:int" minOccurs="0"/>
+			<xs:element name="HeightPixels" type="xs:int" minOccurs="0"/>
+			<xs:element name="ActiveWidthPixels" type="xs:int" minOccurs="0"/>
+			<xs:element name="ActiveHeightPixels" type="xs:int" minOccurs="0"/>
+			<xs:element name="FrameRate" type="xs:int" minOccurs="0"/>
+			<xs:element name="Progressive" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="Type3D" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetImageData-type">
+		<xs:sequence>
+			<xs:element name="Width" type="xs:int"/>
+			<xs:element name="Height" type="xs:int"/>
+			<xs:element name="Encoding" type="xs:string"/>
+			<xs:element name="TrackReference" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetVideoData-type">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="Type" type="xs:string" minOccurs="0"/>
+			<xs:element name="Encoding" type="md:DigitalAssetVideoEncoding-type" minOccurs="0"/>
+			<xs:element name="Picture" type="md:DigitalAssetVideoPicture-type"/>
+			<xs:element name="ColorType" type="md:ColorType-type">
+				<xs:annotation>
+					<xs:documentation>BW, Color, Colorized, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubtitleLanguage" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:language">
+							<xs:attribute name="closed" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TrackReference" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetSubtitleData-type">
+		<xs:sequence>
+			<xs:element name="Format">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="SDImage" type="xs:boolean"/>
+							<xs:attribute name="HDImage" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="Type" type="xs:string" minOccurs="0"/>
+			<xs:element name="FormatType" type="xs:string" minOccurs="0"/>
+			<xs:element name="Language" type="xs:language"/>
+			<xs:element name="TrackReference" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetInteractiveData-type">
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string"/>
+			<xs:element name="Language" type="xs:language"/>
+			<xs:element name="TrackReference" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalAssetMetadata-type">
+		<xs:choice>
+			<xs:element name="Audio" type="md:DigitalAssetAudioData-type"/>
+			<xs:element name="Video" type="md:DigitalAssetVideoData-type"/>
+			<xs:element name="Subtitle" type="md:DigitalAssetSubtitleData-type"/>
+			<xs:element name="Image" type="md:DigitalAssetImageData-type"/>
+			<xs:element name="Interactive" type="md:DigitalAssetInteractiveData-type"/>
+		</xs:choice>
+	</xs:complexType>
+	<!--*** Container description ***-->
+	<xs:simpleType name="ContainerProfile-type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="ContainerSpecific-type">
+		<xs:sequence>
+			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ContainerType-type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="ContainerMetadata-type">
+		<xs:sequence>
+			<xs:element name="Type" type="md:ContainerType-type" minOccurs="0"/>
+			<xs:element name="Track" type="md:DigitalAssetMetadata-type" maxOccurs="unbounded"/>
+			<xs:element name="ContainerSpecificMetadata" type="md:ContainerSpecific-type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--*** Composite Object ***-->
+	<xs:simpleType name="CompObjID-type">
+		<xs:restriction base="md:id-type"/>
+	</xs:simpleType>
+	<xs:complexType name="CompObjEntry-type">
+		<xs:sequence>
+			<xs:element name="DisplayName" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="language" type="xs:language"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Entry" type="md:CompObjEntry-type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:element name="ContentID" type="md:ContentID-type"/>
+				<xs:element name="BasicMetadata" type="md:BasicMetadata-type"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompObjData-type">
+		<xs:complexContent>
+			<xs:extension base="md:CompObj-type">
+				<xs:sequence>
+					<xs:element name="DisplayName" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="xs:string">
+									<xs:attribute name="language" type="xs:language"/>
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="CompObjID" type="md:CompObjID-type"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CompObj-type">
+		<xs:sequence>
+			<xs:element name="Entry" type="md:CompObjEntry-type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--*** Prior Release Information ***-->
+	<xs:complexType name="ReleaseHistory-type">
+		<xs:sequence>
+			<xs:element name="ReleaseType" type="xs:string"/>
+			<xs:element name="DistrTerritory" type="md:Region-type" minOccurs="0"/>
+			<xs:element name="DateTime" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:dateTime">
+							<xs:attribute name="scheduled" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Date">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:date">
+							<xs:attribute name="scheduled" type="xs:boolean"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReleaseOrg" type="md:OrgName-type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--*** ADDITIONAL TYPES ***-->
+	<xs:simpleType name="Role-type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="NVPair-type">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ColorType-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="color"/>
+			<xs:enumeration value="bandw"/>
+			<xs:enumeration value="colorized"/>
+			<xs:enumeration value="composite"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Region-type">
+		<xs:choice>
+			<xs:element name="country">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[A-Z][A-Z]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="countryRegion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[A-Z][A-Z]-[A-Z0-9]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="OrgName-type">
+		<xs:sequence>
+			<xs:element name="DisplayName" type="xs:string"/>
+			<xs:element name="SortName" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="organizationID" type="md:orgID-type"/>
+	</xs:complexType>
+	<xs:complexType name="PersonName-type">
+		<xs:sequence>
+			<xs:element name="DisplayName" type="xs:string"/>
+			<xs:element name="SortName" type="xs:string" minOccurs="0"/>
+			<xs:element name="FirstGivenName" type="xs:string" minOccurs="0"/>
+			<xs:element name="SecondGivenName" type="xs:string" minOccurs="0"/>
+			<xs:element name="FamilyName" type="xs:string" minOccurs="0"/>
+			<xs:element name="Suffix" type="xs:string" minOccurs="0"/>
+			<xs:element name="Moniker" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactInfo-type">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="PrimaryEmail" type="xs:string"/>
+			<xs:element name="AlternateEmail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Address" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Phone" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="type" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonIdentifier-type">
+		<xs:sequence>
+			<xs:element name="Identifier" type="xs:string"/>
+			<xs:element name="Namespace" type="xs:string"/>
+			<xs:element name="ReferenceLocation" type="xs:anyURI" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateTimeRange-type">
+		<xs:sequence>
+			<xs:element name="Start" type="xs:dateTime"/>
+			<xs:element name="End" type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contacts>
+    <contact id="1">
+        <name>John Doe</name>
+        <phone>123-456-7890</phone>
+        <address>
+            <street>123 JFKStreet</street>
+            <city>Any Town</city>
+            <state>Any State</state>
+            <zipCode>12345</zipCode>
+        </address>
+    </contact>
+</contacts>

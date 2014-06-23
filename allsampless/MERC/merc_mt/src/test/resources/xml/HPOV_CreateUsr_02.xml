@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:User DefaultThirdPartyID="urn:nsr:merc:thirdparty:merc" ThirdPartyID="http://tempuri.org" UserID="http://tempuri.org" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic ../../../main/resources/schema/merc-basic.xsd ">
+  <merc-basic:Name>
+    <merc-basic:GivenName>GivenName</merc-basic:GivenName>
+    <merc-basic:SurName>SurName</merc-basic:SurName>
+  </merc-basic:Name>
+  <merc-basic:Country>Country</merc-basic:Country>
+  <merc-basic:DisplayImage>
+    <merc-basic:DisplayImageURL Height="1" MimeType="" Width="1">http://tempuri.org</merc-basic:DisplayImageURL>
+  </merc-basic:DisplayImage>
+  <merc-basic:ContactInfo>
+    <merc-basic:PrimaryEmail ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:Value>Value</merc-basic:Value>
+      <merc-basic:ConfirmationEndpoint>http://tempuri.org</merc-basic:ConfirmationEndpoint>
+      <merc-basic:VerificationToken>VerificationToken</merc-basic:VerificationToken>
+    </merc-basic:PrimaryEmail>
+    <merc-basic:AlternateEmail ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:Value>Value</merc-basic:Value>
+      <merc-basic:ConfirmationEndpoint>http://tempuri.org</merc-basic:ConfirmationEndpoint>
+      <merc-basic:VerificationToken>VerificationToken</merc-basic:VerificationToken>
+    </merc-basic:AlternateEmail>
+    <merc-basic:Address ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:PostalAddress>PostalAddress</merc-basic:PostalAddress>
+      <merc-basic:PostalCode>PostalCode</merc-basic:PostalCode>
+      <merc-basic:Locality>Locality</merc-basic:Locality>
+      <merc-basic:StateOrProvince>StateOrProvince</merc-basic:StateOrProvince>
+      <merc-basic:Country>Country</merc-basic:Country>
+    </merc-basic:Address>
+    <merc-basic:TelephoneNumber ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:Value>Value</merc-basic:Value>
+      <merc-basic:ConfirmationEndpoint>http://tempuri.org</merc-basic:ConfirmationEndpoint>
+      <merc-basic:VerificationToken>VerificationToken</merc-basic:VerificationToken>
+    </merc-basic:TelephoneNumber>
+    <merc-basic:MobileTelephoneNumber ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:Value>Value</merc-basic:Value>
+      <merc-basic:ConfirmationEndpoint>http://tempuri.org</merc-basic:ConfirmationEndpoint>
+      <merc-basic:VerificationToken>VerificationToken</merc-basic:VerificationToken>
+    </merc-basic:MobileTelephoneNumber>
+  </merc-basic:ContactInfo>
+  <merc-basic:Languages>
+    <merc-basic:Language primary="true">EN</merc-basic:Language>
+  </merc-basic:Languages>
+  <merc-basic:LegalGuardian Status="urn:nsr:merc:type:status:active">http://tempuri.org</merc-basic:LegalGuardian>
+  <merc-basic:DateOfBirth MeetsAgeOfMajority="true">2001-01-01</merc-basic:DateOfBirth>
+  <merc-basic:Credentials>
+    <merc-basic:Username>Username</merc-basic:Username>
+    <merc-basic:Password>Password</merc-basic:Password>
+  </merc-basic:Credentials>
+  <merc-basic:UserRecoveryTokens>
+    <merc-basic:RecoveryItem>
+      <merc-basic:QuestionID>1</merc-basic:QuestionID>
+      <merc-basic:Question>Question</merc-basic:Question>
+      <merc-basic:QuestionResponse>QuestionResponse</merc-basic:QuestionResponse>
+    </merc-basic:RecoveryItem>
+  </merc-basic:UserRecoveryTokens>
+  <merc-basic:OtherIDList>
+    <merc-basic:OtherID>
+      <merc-basic:ThirdPartyID>http://tempuri.org</merc-basic:ThirdPartyID>
+      <merc-basic:HasLocker>true</merc-basic:HasLocker>
+      <merc-basic:SubjectID>http://tempuri.org</merc-basic:SubjectID>
+      <merc-basic:AccountID>http://tempuri.org</merc-basic:AccountID>
+      <merc-basic:Credentials>
+        <merc-basic:TokenType>http://tempuri.org</merc-basic:TokenType>
+        <merc-basic:Token>MA==</merc-basic:Token>
+      </merc-basic:Credentials>
+    </merc-basic:OtherID>
+  </merc-basic:OtherIDList>
+  <merc-basic:PreferenceList>
+    <merc-basic:Preference PreferenceID="http://tempuri.org">
+      <merc-basic:Name xsi:type="anyType"/>
+      <merc-basic:Value xsi:type="anyType"/>
+    </merc-basic:Preference>
+  </merc-basic:PreferenceList>
+  <merc-basic:CategoryList>
+    <merc-basic:Category CategoryID="http://tempuri.org">
+      <merc-basic:Name>Name</merc-basic:Name>
+      <merc-basic:Title ALID="http://tempuri.org">
+        <merc-basic:Title>Title</merc-basic:Title>
+      </merc-basic:Title>
+    </merc-basic:Category>
+  </merc-basic:CategoryList>
+  <merc-basic:GenreList>
+    <merc-basic:Genre GenreID="http://tempuri.org">
+      <merc-basic:Name>Name</merc-basic:Name>
+      <merc-basic:Title ALID="http://tempuri.org">
+        <merc-basic:Title>Title</merc-basic:Title>
+      </merc-basic:Title>
+    </merc-basic:Genre>
+  </merc-basic:GenreList>
+  <merc-basic:RatingList>
+    <merc-basic:Rating ContentID="http://tempuri.org" RatingID="http://tempuri.org">
+      <merc-basic:Rating>1</merc-basic:Rating>
+    </merc-basic:Rating>
+  </merc-basic:RatingList>
+  <merc-basic:Cart>
+    <merc-basic:CartItem>
+      <merc-basic:Title ALID="http://tempuri.org">
+        <merc-basic:Title>Title</merc-basic:Title>
+      </merc-basic:Title>
+      <merc-basic:Price>
+        <Value>0.0</Value>
+        <Currency>Currency</Currency>
+      </merc-basic:Price>
+      <merc-basic:Date>2001-12-31T12:00:00</merc-basic:Date>
+    </merc-basic:CartItem>
+  </merc-basic:Cart>
+  <merc-basic:BillingInformation>
+    <merc-basic:BillingAddress ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:PostalAddress>PostalAddress</merc-basic:PostalAddress>
+      <merc-basic:PostalCode>PostalCode</merc-basic:PostalCode>
+      <merc-basic:Locality>Locality</merc-basic:Locality>
+      <merc-basic:StateOrProvince>StateOrProvince</merc-basic:StateOrProvince>
+      <merc-basic:Country>Country</merc-basic:Country>
+    </merc-basic:BillingAddress>
+    <merc-basic:BillingPhone ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:Value>Value</merc-basic:Value>
+      <merc-basic:ConfirmationEndpoint>http://tempuri.org</merc-basic:ConfirmationEndpoint>
+      <merc-basic:VerificationToken>VerificationToken</merc-basic:VerificationToken>
+    </merc-basic:BillingPhone>
+    <merc-basic:BillingEmail ID="http://tempuri.org" verificationDateTime="2001-12-31T12:00:00" verificationEntity="http://tempuri.org" verified="0">
+      <merc-basic:Value>Value</merc-basic:Value>
+      <merc-basic:ConfirmationEndpoint>http://tempuri.org</merc-basic:ConfirmationEndpoint>
+      <merc-basic:VerificationToken>VerificationToken</merc-basic:VerificationToken>
+    </merc-basic:BillingEmail>
+  </merc-basic:BillingInformation>
+  <merc-basic:PwdHash>
+    <merc-basic:IsLocal>true</merc-basic:IsLocal>
+    <merc-basic:Value>MA==</merc-basic:Value>
+  </merc-basic:PwdHash>
+  <merc-basic:ResourceStatus>
+    <merc-basic:Current CreatedBy="http://tempuri.org" CreationDate="2001-12-31T12:00:00" DeletedBy="http://tempuri.org" DeletionDate="2001-12-31T12:00:00" ModificationDate="2001-12-31T12:00:00" ModifiedBy="http://tempuri.org">
+      <merc-basic:Value>urn:nsr:merc:type:status:active</merc-basic:Value>
+      <merc-basic:Description>Description</merc-basic:Description>
+    </merc-basic:Current>
+    <merc-basic:History>
+      <merc-basic:Prior ModificationDate="2001-12-31T12:00:00" ModifiedBy="http://tempuri.org">
+        <merc-basic:Value>urn:nsr:merc:type:status:active</merc-basic:Value>
+        <merc-basic:Description>Description</merc-basic:Description>
+      </merc-basic:Prior>
+    </merc-basic:History>
+  </merc-basic:ResourceStatus>
+</merc-basic:User>

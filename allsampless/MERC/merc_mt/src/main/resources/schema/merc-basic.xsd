@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:md="http://www.movielabs.com/schema/md/v1.07/md"
+    xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common"
+    xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    targetNamespace="http://www.neustar.biz/schema/2012/01/merc-basic"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    blockDefault="substitution"
+    version="2.0">
+    <xs:import namespace="http://www.movielabs.com/schema/md/v1.07/md" schemaLocation="md.xsd"/>
+    <xs:import namespace="http://www.neustar.biz/schema/2012/01/merc-common" schemaLocation="merc-common.xsd"/>
+    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+    <xs:import namespace="http://www.w3.org/2001/04/xmlenc#" schemaLocation="xenc-schema.xsd"/>
+
+    <!-- *************** Schema for Basic MERC objects ***************** -->
+
+    <!-- *************************************************************** -->
+    
+    
+    <!-- *************** Basic Elements **************** -->
+    <xs:element name="Country" type="xs:string"/>
+
+    <!-- *************** Abstract Types **************** -->
+    <xs:simpleType name="EntityID-type">
+        <xs:restriction base="xs:anyURI">
+            <xs:pattern value="urn:nsr:merc:.*"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+    <xs:complexType name="LocalizedStringAbstract-type">
+        <xs:annotation>
+            <xs:documentation>
+                The LocalizedStringAbstract-type defines a simple string datatype and adds an attribute to indicate the spoken language for the string
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+
+                <xs:attribute name="Language" type="xs:language" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="LocalizedURIAbstract-type">
+        <xs:annotation>
+            <xs:documentation>
+                The LocalizedURIAbstract-type defines an extension to the xs:anyURI datatype and adds an attribute to indicate the spoken language for the resource provided
+            </xs:documentation>
+
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:anyURI">
+                <xs:attribute name="Language" type="xs:language" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:attributeGroup name="VerificationAttr-group">
+        <xs:attribute name="ID" type="xs:anyURI" use="optional"/>
+
+        <xs:attribute name="verified" type="xs:boolean" use="optional" default="0"/>
+        <xs:attribute name="verificationDateTime" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="verificationEntity" type="xs:anyURI" use="optional"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="AdminGroup">
+        <xs:attribute name="CreationDate" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="CreatedBy" type="merc-basic:EntityID-type" use="optional"/>
+        <xs:attribute name="DeletionDate" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="DeletedBy" type="merc-basic:EntityID-type" use="optional"/>
+
+    </xs:attributeGroup>
+    <xs:attributeGroup name="ModificationGroup">
+        <xs:attribute name="ModificationDate" type="xs:dateTime" use="optional"/>
+        <xs:attribute name="ModifiedBy" type="merc-basic:EntityID-type" use="optional"/>
+    </xs:attributeGroup>
+    <!--  <xs:attributeGroup ref="merc-basic:ViewFilterAttr-type"/> -->
+
+    <!-- *************** Abstract Class for Third Party support **************** -->
+    <xs:complexType name="AbstractResourceType" abstract="true">
+
+        <xs:attribute name="ThirdPartyID" type="merc-basic:EntityID-type" use="required"/>
+    </xs:complexType>
+
+    <!-- *************** Policies **************** -->
+    <xs:element name="PolicyList" type="merc-basic:PoliciesAbstract-type"/>
+    <xs:complexType name="PoliciesAbstract-type">
+        <xs:sequence>
+            <xs:element name="Policy" type="merc-basic:Policy-type" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+        <xs:attribute name="PolicyListID" type="merc-basic:EntityID-type" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="Policy-type">
+        <xs:sequence>
+            <xs:element name="PolicyClass" type="merc-basic:EntityID-type"/>
+            <xs:element name="Resource" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="RequestingEntity" type="merc-basic:EntityID-type" minOccurs="0"
+                maxOccurs="unbounded"/>
+            <xs:element name="PolicyAuthority" type="merc-basic:EntityID-type"
+                default="urn:nsr:merc:role:merc"/>
+            <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+
+        </xs:sequence>
+        <xs:attribute name="PolicyID" use="optional" type="xs:anyURI"/>
+        <xs:attribute name="Immutable" default="false" type="xs:boolean"/>
+    </xs:complexType>
+
+    <!-- *************** Account **************** -->
+    <xs:element name="Account" type="merc-basic:Account-type"/>
+    <xs:complexType name="Account-type">
+        <xs:complexContent>
+
+            <xs:extension base="merc-basic:AbstractResourceType">
+                <xs:sequence>
+                    <xs:element name="DisplayName" type="xs:string"/>
+                    <xs:element ref="merc-basic:Country"/>
+                    <xs:element name="MERCLockerID" type="xs:anyURI" minOccurs="0"/>
+                    <!-- <xs:element name="DomainID" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/> -->
+                    <xs:element name="ActiveStreamCount" type="xs:int" minOccurs="0"/>
+                    <xs:element name="AvailableStreams" type="xs:int" minOccurs="0"/>
+                    <xs:element name="AvailableRentals" type="xs:int" minOccurs="0"/>
+
+                    <xs:element name="UserList" type="merc-basic:UserList-type" minOccurs="0"/>
+                    <xs:element name="Subscription" type="merc-basic:SubscriptionProfile-type" minOccurs="0"/>
+                    <!-- <xs:element ref="merc-basic:PolicyList" minOccurs="0"/> -->
+                    <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="AccountID" type="merc-basic:EntityID-type" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Languages-type">
+        <xs:sequence>
+            <xs:element name="Language" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:language">
+                            <xs:attribute name="primary" type="xs:boolean"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:attributeGroup name="ViewFilterAttr-type">
+        <xs:annotation>
+            <xs:documentation>
+                Filter properties on a collection:
+                FilterClass describes the object property to filter on. defined values are:
+                
+                urn:nsr:merc:type:viewfilter:surname
+                urn:nsr:merc:type:viewfilter:displayname
+                urn:nsr:merc:type:viewfilter:title
+                urn:nsr:merc:type:viewfilter:title:alpha
+            </xs:documentation>
+
+        </xs:annotation>
+        <xs:attribute name="FilterClass" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="FilterOffset" type="xs:string" use="optional"/>
+        <xs:attribute name="FilterCount" type="xs:positiveInteger" use="optional"/>
+        <xs:attribute name="FilterMoreAvailable" type="xs:boolean" use="optional"/>
+        <xs:attribute name="FilterDRM" type="xs:string" use="optional"/>
+    </xs:attributeGroup>
+    <xs:simpleType name="AssetProfile-type">
+        <xs:restriction base="xs:anyURI"/>
+
+    </xs:simpleType>
+
+    <!-- *********************** User ******************** -->
+    <xs:element name="User" type="merc-basic:UserData-type"/>
+    <xs:element name="Name" type="merc-basic:PersonName-type"/>
+    <xs:complexType name="PersonName-type">
+        <xs:sequence>
+            <xs:element name="GivenName" type="xs:string"/>
+            <xs:element name="SurName" type="xs:string" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ContactInfo" type="merc-basic:UserContactInfo-type"/>
+    <xs:element name="Languages" type="merc-basic:Languages-type"/>
+    <xs:element name="Credentials" type="merc-basic:UserCredentials-type"/>
+
+    <xs:complexType name="UserData-type">
+        <xs:complexContent>
+            <xs:extension base="merc-basic:AbstractResourceType">
+
+                <xs:sequence>
+                    <xs:element ref="merc-basic:Name"/>
+                    <xs:element ref="merc-basic:Country"/>
+                    <xs:element ref="merc-basic:DisplayImage" minOccurs="0"/>
+                    <xs:element ref="merc-basic:ContactInfo" minOccurs="0"/>
+                    <xs:element ref="merc-basic:Languages" minOccurs="0"/>
+                    <xs:element name="LegalGuardian" type="merc-basic:LegalGuardian-type" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                    <xs:element name="DateOfBirth" type="merc-basic:DateOfBirth-type" minOccurs="0"/>
+                    <xs:element ref="merc-basic:Credentials"/>
+
+                    <xs:element name="UserRecoveryTokens" type="merc-basic:PasswordRecovery-type"
+                        minOccurs="0"/>
+                    <xs:element ref="merc-basic:OtherIDList" minOccurs="0"/>
+                    <xs:element ref="merc-basic:PreferenceList" minOccurs="0"/>
+                    <xs:element ref="merc-basic:CategoryList" minOccurs="0"/>
+                    <xs:element ref="merc-basic:GenreList" minOccurs="0"/>
+                    <xs:element ref="merc-basic:RatingList" minOccurs="0"/>
+                    <!-- <xs:element ref="merc-basic:PolicyList" minOccurs="0"/> -->
+                    <xs:element ref="merc-basic:Cart"/>
+                    <xs:element ref="merc-basic:BillingInformation" minOccurs="0"/>
+
+                    <xs:element ref="merc-basic:PwdHash"/>
+                    <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="UserID" type="merc-basic:EntityID-type" use="optional"/>
+                <xs:attribute name="DefaultThirdPartyID" type="merc-basic:EntityID-type"
+                    default="urn:nsr:merc:thirdparty:merc"/>
+                <!-- <xs:attribute name="UserClass" type="merc-basic:UserClass-type" use="required"/> -->
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="PwdHash" type="merc-basic:PwdHash-type"/>
+    <xs:complexType name="PwdHash-type">
+        <xs:sequence>
+            <xs:element name="IsLocal" type="xs:boolean"/>
+            <xs:element name="Value" type="xs:base64Binary"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UserContactInfo-type">
+
+        <xs:sequence>
+            <xs:element name="PrimaryEmail" type="merc-basic:ConfirmedCommunicationEndpoint-type"
+                minOccurs="1"/>
+            <xs:element name="AlternateEmail" type="merc-basic:ConfirmedCommunicationEndpoint-type"
+                minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="merc-basic:Address" minOccurs="0"/>
+            <xs:element name="TelephoneNumber" type="merc-basic:ConfirmedCommunicationEndpoint-type"
+                minOccurs="0"/>
+            <xs:element name="MobileTelephoneNumber" type="merc-basic:ConfirmedCommunicationEndpoint-type"
+                minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="DisplayImage" type="merc-basic:DisplayImage-type"/>
+    <xs:complexType name="DisplayImage-type">
+        <xs:choice>
+            <xs:element name="DisplayImageURL" type="merc-basic:AbstractImageResource-type"/>
+            <xs:element name="DisplayImageData" type="xs:base64Binary"/>
+            <!-- Proposal: change to XMLMIME - [PCD: Missed during comment review. recommend submition during Errata cycle -->
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="DateOfBirth-type">
+        <xs:simpleContent>
+            <xs:extension base="xs:date">
+                <xs:attribute name="MeetsAgeOfMajority" type="xs:boolean" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="ConfirmedCommunicationEndpoint-type">
+
+        <xs:sequence>
+            <xs:element name="Value" type="xs:string"/>
+            <xs:element name="ConfirmationEndpoint" type="xs:anyURI" minOccurs="0"/>
+            <xs:element name="VerificationToken" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="merc-basic:VerificationAttr-group"/>
+    </xs:complexType>
+
+    <xs:element name="Address" type="merc-basic:ConfirmedPostalAddress-type"/>
+
+    <xs:complexType name="ConfirmedPostalAddress-type">
+        <xs:sequence>
+            <xs:element name="PostalAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="Locality" type="xs:string" minOccurs="0"/>
+            <xs:element name="StateOrProvince" type="xs:string" minOccurs="0"/>
+            <xs:element ref="merc-basic:Country"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="merc-basic:VerificationAttr-group"/>
+
+    </xs:complexType>
+
+    <xs:complexType name="UserCredentials-type">
+        <xs:sequence>
+            <xs:element name="Username" type="xs:string"/>
+            <xs:element name="Password" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PasswordRecovery-type">
+
+        <xs:sequence>
+            <xs:element name="RecoveryItem" type="merc-basic:PasswordRecoveryItem-type"
+                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PasswordRecoveryItem-type">
+        <xs:sequence>
+            <xs:element name="QuestionID" type="xs:positiveInteger"/>
+            <xs:element name="Question" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="QuestionResponse" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LegalGuardian-type">
+        <xs:simpleContent>
+            <xs:extension base="merc-basic:EntityID-type">
+                <xs:attribute name="Status" type="merc-basic:StatusValue-type"
+                    default="urn:nsr:merc:type:status:active"/>
+            </xs:extension>
+
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:element name="OtherID" type="merc-basic:OtherID-type"/>
+    <xs:complexType name="OtherID-type">
+        <xs:sequence>
+            <xs:element name="ThirdPartyID" type="merc-basic:EntityID-type"/>
+            <xs:element name="HasLocker" type="xs:boolean"/>
+            <xs:element name="SubjectID" type="xs:anyURI" minOccurs="0"/>
+
+            <xs:element name="AccountID" type="xs:anyURI" minOccurs="0"/>
+            <xs:element name="Credentials" type="merc-basic:OtherCredentials-type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OtherCredentials-type">
+        <xs:sequence>
+            <xs:element name="TokenType" type="merc-basic:EntityID-type"/>
+            <xs:choice>
+
+                <xs:element name="Token" type="xs:base64Binary"/>
+                <xs:any namespace="##other" processContents="lax"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Preference" type="merc-basic:Preference-type"/>
+    <xs:complexType name="Preference-type">
+        <xs:sequence>
+
+            <xs:element name="Name" type="xs:anyType"/>
+            <xs:element name="Value" type="xs:anyType"/>
+        </xs:sequence>
+        <xs:attribute name="PreferenceID" type="merc-basic:EntityID-type" use="optional"/>
+    </xs:complexType>
+ 
+    <xs:element name="Category" type="merc-basic:Category-type"/>
+    <xs:complexType name="Category-type">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+
+            <xs:element name="Title" type="merc-basic:Title-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="CategoryID" type="merc-basic:EntityID-type" use="optional"/>
+    </xs:complexType>
+    
+    <xs:element name="CategoryList" type="merc-basic:CategoryList-type"/>
+    <xs:complexType name="CategoryList-type">
+        <xs:sequence>
+            <xs:element name="Category" type="merc-basic:Category-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:element name="Genre" type="merc-basic:Genre-type"/>
+    <xs:complexType name="Genre-type">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Title" type="merc-basic:Title-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="GenreID" type="merc-basic:EntityID-type" use="optional"/>
+
+    </xs:complexType>
+    
+    <xs:element name="GenreList" type="merc-basic:GenreList-type"/>
+    <xs:complexType name="GenreList-type">
+        <xs:sequence>
+            <xs:element name="Genre" type="merc-basic:Genre-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Title" type="merc-basic:Title-type"/>
+
+    <xs:complexType name="Title-type">
+        <xs:sequence>
+            <xs:element name="Title" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="ALID" type="md:AssetLogicalID-type"/>
+    </xs:complexType>
+
+
+    <xs:element name="Rating" type="merc-basic:Rating-type"/>
+    <xs:complexType name="Rating-type">
+
+        <xs:sequence>
+            <xs:element name="Rating" type="xs:positiveInteger" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="ContentID" type="md:ContentID-type" use="optional"/>
+        <xs:attribute name="RatingID" type="merc-basic:EntityID-type" use="optional"/>
+    </xs:complexType>
+    
+    <xs:element name="RatingList" type="merc-basic:RatingList-type"/>
+    <xs:complexType name="RatingList-type">
+        <xs:sequence>
+
+            <xs:element name="Rating" type="merc-basic:Rating-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CartItem" type="merc-basic:CartItem-type"/>
+    <xs:complexType name="CartItem-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:Title"/>
+            <xs:element name="Price" type="merc-common:Price-type"/>
+
+            <xs:element name="Date" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+        
+    </xs:complexType>
+    <xs:element name="Cart" type="merc-basic:Cart-type"/>
+    <xs:complexType name="Cart-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:CartItem" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    
+    <xs:element name="BillingInformation" type="merc-basic:BillingInformation-type"/>
+    <xs:complexType name="BillingInformation-type">
+        <xs:sequence>
+            <xs:element name="BillingAddress" type="merc-basic:ConfirmedPostalAddress-type"/>            
+            <xs:element name="BillingPhone" type="merc-basic:ConfirmedCommunicationEndpoint-type" minOccurs="0"/>
+            <xs:element name="BillingEmail" type="merc-basic:ConfirmedCommunicationEndpoint-type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- *************** MERC Entitlements (aka. the uber Rights Tokens) ******************** -->
+
+    
+    <xs:element name="Entitlement" type="merc-basic:Entitlement-type"/>
+    <xs:complexType name="Entitlement-type">
+        <xs:complexContent>
+            <xs:extension base="merc-basic:AbstractResourceType">
+                <xs:sequence>
+                    <xs:element ref="merc-basic:EntitlementBasic"/>
+                    <xs:element ref="merc-basic:EntitlementPurchaseInfo" minOccurs="0"/>
+                    <xs:element ref="merc-basic:EntitlementDetails" minOccurs="0"/>
+                    <xs:element ref="merc-basic:EntitlementLocation" minOccurs="0"/>
+
+                    <xs:element name="MERCLockerID" type="merc-basic:EntityID-type" minOccurs="0"/>
+                    <xs:element ref="merc-basic:PolicyList" minOccurs="0"/>
+                    <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+                    <!-- <xs:element ref="merc-cmd:Offers" minOccurs="0"/> -->
+                </xs:sequence>
+                <xs:attribute name="EntitlementID" type="merc-basic:EntityID-type" use="optional"/>
+                <xs:attribute name="ALID" type="merc-basic:EntityID-type"/>
+                <xs:attribute name="ContentID" type="merc-basic:EntityID-type"/>
+                <xs:attribute name="HasPromotion" type="xs:boolean" default="false"/>
+
+                <xs:attribute name="Disc2Cloud" type="xs:boolean" default="false"/>
+                <xs:attribute name="IsUltraviolet" type="xs:boolean" default="false"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="ResourceLocation-type">
+        <xs:sequence>
+            <xs:element name="Location" type="xs:anyURI"/>
+            <xs:element name="Preference" type="xs:int" minOccurs="0"/>
+
+        </xs:sequence>
+        <xs:attribute name="MediaProfile" type="xs:anyURI" use="optional"/>
+        <!-- required for FulfillmentWebLoc, abscent in Manifest -->
+    </xs:complexType>
+    
+    <xs:element name="EntitlementBasic" type="merc-basic:EntitlementBasic-type"/>
+    <xs:complexType name="EntitlementBasic-type">
+        <xs:sequence>
+            <xs:element name="SoldAs" type="merc-basic:EntitlementSoldAs-type" minOccurs="0"/>
+            <xs:element ref="merc-basic:EntitlementProfiles"/>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="EntitlementSoldAs" type="merc-basic:EntitlementSoldAs-type"/>
+    <xs:complexType name="EntitlementSoldAs-type">
+        <xs:sequence>
+            <xs:element name="DisplayName" type="merc-basic:LocalizedStringAbstract-type" minOccurs="0"/>
+            <xs:element name="ProductID" type="xs:string" minOccurs="0"/>
+            <xs:choice>
+                <xs:element ref="merc-basic:ContentID" maxOccurs="unbounded"/>
+
+                <xs:element name="BundleID" type="merc-basic:EntityID-type"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="EntitlementProfiles" type="merc-basic:EntitlementProfileInfo-type"/>
+    <xs:complexType name="EntitlementProfileInfo-type">
+        <xs:choice>
+            <xs:element name="PurchaseProfile" type="merc-basic:PurchaseProfile-type" minOccurs="0"
+                maxOccurs="unbounded"/>
+            <xs:element name="RentalProfile" type="merc-basic:RentalProfile-type" minOccurs="0"
+                maxOccurs="unbounded"/>
+
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="PurchaseProfile-type">
+        <xs:sequence>
+            <xs:element name="DiscreteMediaEntitlementRemaining"
+                type="merc-basic:DiscreteMediaEntitlementRemaining-type" minOccurs="0"/>
+            <xs:element name="CanDownload" type="xs:boolean" default="true"/>
+            <xs:element name="CanStream" type="xs:boolean" default="true"/>
+            <xs:element name="MaxNumberOfStreams" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="StreamWindow" type="xs:duration" minOccurs="0"/>
+
+            <xs:element name="MaxNumberOfDownloads" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="DownloadWindow" type="xs:duration" minOccurs="0"/>
+            <!-- Should be presented in days -->            
+        </xs:sequence>
+        <xs:attribute name="MediaProfile" type="merc-basic:AssetProfile-type" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="DiscreteMediaEntitlementRemaining-type">
+        <xs:simpleContent>
+            <xs:extension base="xs:integer">
+
+                <xs:attribute name="FulfillmentMethod" type="xs:NMTOKENS" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="RentalProfile-type">
+        <xs:sequence>
+            <xs:element name="MaxNumberOfPlays" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="RightsWindow" type="xs:duration" minOccurs="0"/>
+            <xs:element name="ViewWindow" type="xs:duration" minOccurs="0"/>
+
+            <!-- <xs:element name="ActualPlayTime" type="xs:duration" minOccurs="0"/> -->
+        </xs:sequence>
+        <xs:attribute name="MediaProfile" type="merc-basic:AssetProfile-type" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="SubscriptionProfile-type">
+        <xs:sequence>
+            <xs:element name="SubscriptionPeriod" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="RefreshDuration" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="SubscriptionTiers" type="merc-basic:subscriptiontype"/>
+
+        </xs:sequence>
+        <xs:attribute name="MediaProfile" type="merc-basic:AssetProfile-type" use="required"/>
+    </xs:complexType>
+    
+    <xs:element name="EntitlementLocation" type="merc-basic:EntitlementLocation-type"/>
+    <xs:complexType name="EntitlementLocation-type">
+        <xs:sequence>
+            <xs:element name="LicenseAcqBaseLoc" type="xs:anyURI"/>
+            <xs:element name="FulfillmentWebLoc" type="merc-basic:ResourceLocation-type"
+                maxOccurs="unbounded"/>
+            <xs:element name="FulfillmentManifestLoc" type="merc-basic:ResourceLocation-type"
+                maxOccurs="unbounded"/>
+
+            <xs:element name="StreamWebLoc" type="merc-basic:ResourceLocation-type" maxOccurs="unbounded"
+            />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="EntitlementPurchaseInfo" type="merc-basic:EntitlementPurchaseInfo-type"/>
+    <xs:complexType name="EntitlementPurchaseInfo-type">
+        <xs:sequence>
+            <xs:element name="NodeID" type="merc-basic:EntityID-type"/>
+            <xs:element name="RetailerTransaction" type="xs:string"/>
+            <xs:element name="PurchaseAccount" type="merc-basic:EntityID-type"/>
+
+            <xs:element name="PurchaseUser" type="merc-basic:EntityID-type"/>
+            <xs:element name="PurchaseTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="EntitlementDetails" type="merc-basic:EntitlementDetails-type"/>
+    <xs:complexType name="EntitlementDetails-type">
+        <xs:sequence>
+            <xs:element name="OriginalTitle" type="xs:string"/>
+            <xs:element name="TitleDisplay19" type="xs:string"/>
+
+            <xs:element name="ArtReference" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="Summary190" type="xs:string"/>
+            <xs:element name="Genre" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="RunLength" type="xs:duration" minOccurs="0"/>
+            <xs:element name="WorkType" type="xs:string"/>
+            <xs:element name="RatingSet" type="md:ContentRating-type" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="Language" type="xs:language" use="required"/>
+    </xs:complexType>
+
+    
+    <!-- Asset identifier primitives -->
+    <xs:element name="ContentID" type="md:ContentID-type"/>
+    <xs:element name="ALID" type="md:AssetLogicalID-type"/>
+    <xs:element name="APID" type="md:AssetPhysicalID-type"/>
+    
+    <!-- *************** Download Manifest ******************** -->
+    <xs:complexType name="FulfillmentManifestItem-type">
+        <xs:sequence>
+            <xs:element name="Description" type="xs:string"/>
+            <xs:element name="ContentProfile" type="merc-basic:AssetProfile-type"/>
+
+            <xs:element name="APID" type="md:AssetPhysicalID-type"/>
+            <xs:element name="LocationURL" type="xs:anyURI"/>
+            <xs:element name="Hash">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="type">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+
+                                        <xs:enumeration value="md5"/>
+                                        <xs:enumeration value="sha1"/>
+                                        <xs:enumeration value="crc32"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+
+            </xs:element>
+            <xs:element name="Length" type="xs:integer"/>
+            <xs:element name="LocalName" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="FulfillmentManifest-type">
+        <xs:sequence>
+            <xs:element name="ALID" type="md:AssetLogicalID-type"/>
+            <xs:element name="item" type="merc-basic:FulfillmentManifestItem-type" maxOccurs="unbounded"/>
+
+        </xs:sequence>
+    </xs:complexType>
+    <!-- *************** Assets ************************* -->
+    <xs:complexType name="AssetWindow-type">
+        <xs:sequence>
+            <xs:element name="Region" type="md:Region-type"/>
+            <xs:element name="DateTimeRange" type="md:DateTimeRange-type"/>
+            <xs:element name="CanDownload" type="xs:boolean"/>
+            <xs:element name="CanLicense" type="xs:boolean"/>
+
+            <xs:element name="CanStream" type="xs:boolean"/>
+            <xs:element name="AllowedDiscreteMediaFulfillmentMethods" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LogicalAsset" type="merc-basic:ALIDAsset-type"/>
+    <xs:complexType name="ALIDAsset-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:AssetFulfillmentGroup" maxOccurs="unbounded"/>
+            <xs:element name="AssetWindow" type="merc-basic:AssetWindow-type" minOccurs="0" maxOccurs="unbounded"/>
+
+        </xs:sequence>
+        <xs:attribute name="Version" type="xs:int"/>
+        <xs:attribute name="ALID" type="md:AssetLogicalID-type" use="required"/>
+        <xs:attribute name="ContentID" type="md:ContentID-type" use="required"/>
+        <xs:attribute name="MediaProfile" type="merc-basic:AssetProfile-type" use="required"/>
+        <xs:attribute name="AssentStreamAllowed" type="xs:boolean" use="required">
+            <xs:annotation>
+                <xs:documentation>AKA: Checkbox LASP</xs:documentation>
+
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="AssentStreamLoc" type="xs:anyURI" use="optional"/>
+    </xs:complexType>
+    <xs:element name="AssetFulfillmentGroup" type="merc-basic:AssetFulfillmentGroup-type"/>
+    <xs:complexType name="AssetFulfillmentGroup-type">
+        <xs:sequence>
+            <xs:element name="DigitalAssetGroup" type="merc-basic:DigitalAssetGroup-type" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+        <xs:attribute name="FulfillmentGroupID" type="xs:string" use="optional"/>
+        <xs:attribute name="LatestContainerVersion" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="DigitalAssetGroup-type">
+        <xs:sequence>
+            <xs:element name="ActiveAPID" type="md:AssetPhysicalID-type" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="ReplacedAPID" type="md:AssetPhysicalID-type" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="RecalledAPID" type="merc-basic:RecalledAPID-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+        <xs:attribute name="DiscreteMediaFulfillmentMethods" type="xs:NMTOKENS" use="optional"/>
+        <xs:attribute name="CanDownload" type="xs:boolean" use="optional"/>
+        <xs:attribute name="CanStream" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="RecalledAPID-type">
+        <xs:simpleContent>
+            <xs:extension base="md:AssetPhysicalID-type">
+                <xs:attribute name="ReasonURL" type="xs:anyURI" use="optional"/>
+            </xs:extension>
+
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:element name="BasicAsset" type="merc-basic:AssetMDBasic-type"/>
+    <xs:complexType name="AssetMDBasic-type">
+        <xs:sequence>
+            <xs:element name="BasicData" type="md:BasicMetadata-type"/>
+            <xs:element name="Rating" type="merc-basic:Rating-type" minOccurs="0"/>
+            <xs:element name="Category" type="xs:string" minOccurs="0"/>
+            <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DigitalAsset" type="merc-basic:DigitalAssetMetadata-type"/>
+    <xs:complexType name="DigitalAssetMetadata-type">
+        <xs:complexContent>
+            <xs:extension base="md:DigitalAssetMetadata-type">
+                <xs:sequence>
+                    <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+                </xs:sequence>
+
+                <xs:attribute name="APID" type="md:AssetPhysicalID-type" use="required"/>
+                <xs:attribute name="ContentID" type="md:ContentID-type" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="LogicalAssetReference-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:ContentID"/>
+            <xs:element ref="merc-basic:ALID"/>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AssetMapKey" type="merc-basic:AssetMapKey-type"/>
+    <xs:complexType name="AssetMapKey-type">
+        <xs:sequence>
+            <xs:element name="KeyInfo" type="merc-basic:AssetMapKeyInfo-type" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="APID" type="md:AssetPhysicalID-type" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="AssetMapKeyInfo-type">
+        <xs:sequence>
+            <xs:element name="TrackID" type="xs:int"/>
+            <xs:element ref="ds:KeyInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Bundle" type="merc-basic:BundleData-type"/>
+    <xs:complexType name="BundleData-type">
+        <xs:sequence>
+
+            <xs:element name="DisplayName" type="merc-basic:LocalizedStringAbstract-type" maxOccurs="unbounded"/>
+            <xs:element name="LogicalAssetReference" type="merc-basic:LogicalAssetReference-type" maxOccurs="unbounded"/>
+            <xs:element name="CompObj" type="md:CompObj-type" minOccurs="0"/>
+            <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="BundleID" type="merc-basic:EntityID-type" use="required"/>
+    </xs:complexType>
+    
+    <!-- *************** PaymentTransactions ************ -->
+    <xs:element name="Transaction" type="merc-basic:Transaction-type"/>
+
+    <xs:complexType name="Transaction-type">
+        <xs:sequence>
+            <xs:element name="AccountID" type="merc-basic:EntityID-type"/>
+            <xs:element name="PaymentTransactionID" type="xs:string"/>
+            <xs:element name="EntitlementID" type="merc-basic:EntityID-type"/>
+            <xs:element name="Title" type="xs:string" minOccurs="0"/>
+            <xs:element name="MediaProfile" type="xs:anyURI" minOccurs="0"/>
+            <xs:element ref="merc-basic:TransactionInfo"/>
+            <xs:element name="Price" type="xs:float" minOccurs="0"/>
+
+            <xs:element name="CreditCardAuthZCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="PaymentProcessorID" type="xs:string" minOccurs="0"/>
+            <xs:element ref="merc-basic:Extensions" minOccurs="0"/>
+            <xs:element ref="merc-basic:TransactionStatusHistory" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="TransactionID" type="merc-basic:EntityID-type" use="optional"/>
+    </xs:complexType>
+
+    <xs:element name="TransactionInfo" type="merc-basic:TransactionInfo-type"/>
+
+    <xs:complexType name="TransactionInfo-type">
+        <xs:sequence>
+            <xs:element name="ResourceID" type="merc-basic:EntityID-type"/>
+            <xs:element name="Description" type="xs:string" minOccurs="0"/>
+            <xs:element name="PurchaseType" type="xs:anyURI"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Extensions" type="merc-basic:ExtensionsType"/>
+
+    <xs:complexType name="ExtensionsType">
+        <xs:sequence>
+            <xs:any namespace="##other" processContents="lax" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="TransactionStatusHistory" type="merc-basic:TransactionStatusHistory-type"/>
+    <xs:complexType name="TransactionStatusHistory-type">
+        <xs:sequence>
+
+            <xs:element name="Current" type="merc-basic:TransactionStatus-type"/>
+            <xs:element name="Past" type="merc-basic:TransactionStatusList-type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="TransactionStatus" type="merc-basic:TransactionStatus-type"/>
+    <xs:complexType name="TransactionStatus-type">
+        <xs:sequence>
+            <xs:element name="Value" type="merc-basic:TransactionStatusValue-type"/>
+
+            <xs:element name="Note" type="xs:string" minOccurs="0"/>
+            <xs:element name="DateTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TransactionStatusValue-type">
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:TransactionStatus:completed"/>
+            <xs:enumeration value="urn:nsr:merc:type:TransactionStatus:abandoned"/>
+            <xs:enumeration value="urn:nsr:merc:type:TransactionStatus:failed"/>
+
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- *************** Collections ******************** -->
+    <xs:element name="UserList" type="merc-basic:UserList-type"/>
+    <xs:complexType name="UserList-type">
+        <xs:sequence>
+            <xs:element name="UserReference" type="merc-basic:EntityID-type" minOccurs="0"
+                maxOccurs="unbounded"/>
+        </xs:sequence>
+
+        <xs:attributeGroup ref="merc-basic:ViewFilterAttr-type"/>
+    </xs:complexType>
+
+    <xs:element name="OtherIDList" type="merc-basic:OtherIDList-type"/>
+    <xs:complexType name="OtherIDList-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:OtherID" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="PreferenceList" type="merc-basic:PreferenceList-type"/>
+    <xs:complexType name="PreferenceList-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:Preference" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="EntitlementList" type="merc-basic:EntitlementList-type"/>
+    <xs:complexType name="EntitlementList-type">
+
+        <xs:sequence>
+            <xs:element ref="merc-basic:Entitlement" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="StreamList" type="merc-basic:StreamList-type"/>
+    <xs:complexType name="StreamList-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:Stream" minOccurs="0" maxOccurs="unbounded"/>
+
+        </xs:sequence>
+        <xs:attribute name="ActiveStreamCount" type="xs:int"/>
+        <xs:attribute name="AvailableStreams" type="xs:int"/>
+    </xs:complexType>
+
+    <xs:element name="TransactionList" type="merc-basic:TransactionList-type"/>
+    <xs:complexType name="TransactionList-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:Transaction" maxOccurs="unbounded" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="TransactionStatusList" type="merc-basic:TransactionStatusList-type"/>
+    <xs:complexType name="TransactionStatusList-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:TransactionStatus" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="LogicalAssetList" type="merc-basic:LogicalAssetList-type"/>
+    <xs:complexType name="LogicalAssetList-type">
+        <xs:sequence>
+            <xs:element ref="merc-basic:LogicalAsset" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="BasicAssetList" type="merc-basic:BasicAssetList-type"/>
+    <xs:complexType name="BasicAssetList-type">
+
+        <xs:sequence>
+            <xs:element ref="merc-basic:BasicAsset" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    <!-- ******** Resource Status structure ********* -->
+    <xs:simpleType name="StatusValue-type">
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:status:active"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:deleted"/>
+
+            <xs:enumeration value="urn:nsr:merc:type:status:forceddelete"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:suspended"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:blocked"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:blocked:tou"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:blocked:clg"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:pending"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:archived"/>
+            <xs:enumeration value="urn:nsr:merc:type:status:other"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+    <xs:element name="ResourceStatus" type="merc-basic:ElementStatus-type"/>
+    <xs:complexType name="ElementStatus-type">
+        <xs:sequence>
+            <xs:element name="Current" type="merc-basic:Status-type"/>
+            <xs:element name="History" type="merc-basic:StatusHistory-type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Status-type">
+
+        <xs:sequence>
+            <xs:element name="Value" type="merc-basic:StatusValue-type"/>
+            <xs:element name="Description" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="merc-basic:AdminGroup"/>
+        <xs:attributeGroup ref="merc-basic:ModificationGroup"/>
+    </xs:complexType>
+    <xs:complexType name="StatusHistory-type">
+        <xs:sequence>
+
+            <xs:element maxOccurs="unbounded" name="Prior" type="merc-basic:PriorStatus-type"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PriorStatus-type">
+        <xs:sequence>
+            <xs:element name="Value" type="merc-basic:StatusValue-type"/>
+            <xs:element name="Description" type="xs:string"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="merc-basic:ModificationGroup"/>
+
+    </xs:complexType>
+    <xs:complexType name="AbstractImageResource-type">
+        <xs:simpleContent>
+            <xs:extension base="xs:anyURI">
+                <xs:attributeGroup ref="merc-basic:ImageProperties-group"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:attributeGroup name="ImageProperties-group">
+
+        <xs:attribute name="Height" type="xs:positiveInteger" use="optional"/>
+        <xs:attribute name="Width" type="xs:positiveInteger" use="optional"/>
+        <xs:attribute name="MimeType" type="xs:string" use="optional"/>
+    </xs:attributeGroup>
+
+
+    <!-- ******** HTTP Response Status structure ********* -->
+    <xs:element name="HTTPResponseStatus" type="merc-basic:HTTPResponseStatus-type"/>
+    <xs:complexType name="HTTPResponseStatus-type">
+        <xs:sequence>
+
+            <xs:element name="StatusCode" type="xs:positiveInteger"/>
+            <xs:element name="ETag" type="xs:string" minOccurs="0"/>
+            <xs:element ref="merc-basic:SubStatus" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="SubStatus" type="merc-basic:SubStatus-type"/>
+    <xs:complexType name="SubStatus-type">
+        <xs:sequence>
+            <xs:element name="SubStatusCode" type="xs:positiveInteger"/>          
+            <xs:element name="Description" type="xs:string"/>
+
+            <xs:element name="ETag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>    
+
+    <!-- *************** Streams ******************** -->
+    <xs:element name="Stream" type="merc-basic:Stream-type"/>
+    <xs:complexType name="Stream-type">
+        <xs:complexContent>
+            <xs:extension base="merc-basic:AbstractResourceType">
+
+                <xs:sequence>
+                    <xs:element name="StreamClientNickname" type="xs:string" minOccurs="0"/>
+                    <xs:element name="RequestingUserID" type="merc-basic:EntityID-type" minOccurs="0"/>
+                    <xs:element name="EntitlementID" type="xs:anyURI"/>
+                    <xs:element name="StreamID" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ExpirationDateTime" type="xs:dateTime" minOccurs="0"/>
+                    <xs:element ref="merc-basic:SubDividedGeolocation" minOccurs="0"/>
+                    <xs:element ref="merc-basic:ResourceStatus" minOccurs="0"/>
+                </xs:sequence>
+
+                <xs:attribute name="StreamHandleID" type="xs:ID" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- *************** Geolocation data **************** -->
+    <xs:element name="SubDividedGeolocation" type="merc-basic:SubDividedGeolocation-type"/>
+    <xs:complexType name="SubDividedGeolocation-type">
+        <xs:simpleContent>
+
+            <xs:extension base="xs:string">
+                <xs:attribute name="Confidence" type="xs:positiveInteger" use="optional"/>
+                <xs:attribute name="CaluculationMethod" type="xs:anyURI" use="optional"/>
+                <xs:attribute name="ViaProxy" type="merc-basic:UncertainBoolean-type"
+                    default="urn:nsr:merc:type:unknown"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="UncertainBoolean-type">
+
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:true"/>
+            <xs:enumeration value="urn:nsr:merc:type:false"/>
+            <xs:enumeration value="urn:nsr:merc:type:unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- *************** Useful Simple Types **************** -->
+    <xs:simpleType name="MediaProfile-type">
+
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:mediaprofile:hd"/>
+            <xs:enumeration value="urn:nsr:merc:type:mediaprofile:sd"/>
+            <xs:enumeration value="urn:nsr:merc:type:mediaprofile:pd"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+    
+    <!-- *************** Client-related definitions **************** -->
+    <!-- ************* (formerly in merc-client xsd) *************** -->
+    
+    <xs:element name="Purchase" type="merc-basic:Purchase-type"/>
+
+    <xs:complexType name="Purchase-type">
+        <xs:sequence>
+            <xs:element name="ALID" type="md:AssetLogicalID-type"/>
+            <xs:element name="Profile" type="merc-basic:MediaProfile-type"/>
+            <xs:element name="TransactionType" type="merc-basic:TransactionType"/>
+        </xs:sequence>
+        <xs:attribute name="ID" type="merc-basic:EntityID-type"/>
+    </xs:complexType>    
+    
+    
+    <xs:element name="Gift" type="merc-basic:Gift-type"/>
+
+    <xs:complexType name="Gift-type">
+        <xs:complexContent>
+            <xs:extension base="merc-basic:Purchase-type">
+                <xs:sequence>
+                    <xs:element name="Message" type="xs:string" minOccurs="0"/>
+                    <xs:element name="email" type="merc-basic:ConfirmedCommunicationEndpoint-type"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+
+    </xs:complexType>
+    
+    <xs:element name="Coupon" type="merc-basic:Coupon-type"/>
+    <xs:complexType name="Coupon-type">
+        <xs:complexContent>
+            <xs:extension base="merc-basic:Purchase-type">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:string"/>
+                    <xs:element name="Usable" type="xs:boolean"/>
+                </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="Redemption" type="merc-basic:Redemption-type"/>
+    <xs:complexType name="Redemption-type">
+        <xs:complexContent>
+            <xs:extension base="merc-basic:Purchase-type">
+                <xs:sequence>
+                    <xs:element name="HDPrice" type="xs:positiveInteger" minOccurs="0"/>
+
+                    <xs:element name="SDPrice" type="xs:positiveInteger" minOccurs="0"/>
+                    <xs:element name="PDPrice" type="xs:positiveInteger" minOccurs="0"/>
+                    <xs:element name="HDPriceRedemption" type="xs:positiveInteger" minOccurs="0"/>
+                    <xs:element name="SDPriceRedemption" type="xs:positiveInteger" minOccurs="0"/>
+                    <xs:element name="PDPriceRedemption" type="xs:positiveInteger" minOccurs="0"/>
+                    <xs:element name="SpecialPrice" type="xs:positiveInteger" minOccurs="0"/>
+                    <xs:element name="MediaType" type="merc-basic:RedemptionMediaType-type"/>
+                </xs:sequence>
+            </xs:extension>
+
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:simpleType name="TransactionType">
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:transaction:rental"/>
+            <xs:enumeration value="urn:nsr:merc:type:transaction:purchase"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Offer-type">
+
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:offer:gift"/>
+            <xs:enumeration value="urn:nsr:merc:type:offer:redemption"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="RedemptionMediaType-type">
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:redemption:BD"/>
+            <xs:enumeration value="urn:nsr:merc:type:redemption:DVD"/>
+
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="Search" type="merc-basic:Search-type"/>
+    <xs:complexType name="Search-type">
+        <xs:sequence>
+            <xs:element name="Criteria" type="merc-basic:Criteria-type" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="Criteria-type">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- For User definition -->
+    <xs:simpleType name="subscriptiontype">
+
+        <xs:restriction base="xs:anyURI">
+            <xs:enumeration value="urn:nsr:merc:type:subscription:Tier1"/>
+            <xs:enumeration value="urn:nsr:merc:type:subscription:Tier2"/>
+            <xs:enumeration value="urn:nsr:merc:type:subscription:Tier3"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>
+

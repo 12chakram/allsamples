@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      
+      <h:head>
+      	<!-- <title>tinyPM Support &raquo;&nbsp; New Account Registration</title>
+		<link type="text/css" rel="stylesheet" href="../css/my.css" /> -->
+	  </h:head>
+	  
+	
+	  <h:body>
+	  <img src="../img/ezeeappoint.bmp" align="top"/>
+	  	<h:form>
+	  		<h:panelGrid columns="3">
+	  			<h:outputText value="User Name:" />
+	  			<h:inputText label="User Name" id="uname" value="#{registrationManagedBean.userName}" required="true" title="User Name">
+	  				<f:validateLength minimum="3" maximum="8"/>
+	  			</h:inputText>
+       		    <rich:message for="uname"/> 
+       		    	
+             	<h:outputText value="Email Address:" />
+       			<h:inputText label="Email Address" id="email" value="#{registrationManagedBean.email}" required="true" requiredMessage="please enter valid mail"  title="Email">
+       		        <f:validateRegex pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$"/>
+       			</h:inputText>
+            	<rich:message for="email"/>
+       	 		
+       	 		<h:outputText value="Password:" />
+       			<h:inputSecret label="Password" id="pwd" value="#{registrationManagedBean.password}" required="true" requiredMessage="please enter password" title="Password">
+       				<f:validateLength minimum="3" maximum="8"/>
+       			</h:inputSecret>
+                <rich:message for="pwd"/>
+       		     
+       		    <h:outputText value="Confirm Password:" />     
+      			<h:inputSecret label="Confirm Password" id="cpwd" value="#{registrationManagedBean.confirmPassword}" required="true" requiredMessage="please enter confirm password" title="Confirm Password">
+      				<f:validateLength minimum="3" maximum="8"/>
+      			</h:inputSecret>
+      			<rich:message for="cpwd"/>
+     			
+     			<h:outputText value="First Name:" />
+      			<h:inputText label="First Name" id="fname" value="#{registrationManagedBean.firstName}" required="true" requiredMessage="please enter first name" title="First Name">
+      				<f:validateLength minimum="3" maximum="8"/>
+      			</h:inputText>
+      			<rich:message for="fname"/>
+      
+      			<h:outputText value="Last Name:" />
+      			<h:inputText label="Last Name" id="lname" value="#{registrationManagedBean.lastName}" required="true" requiredMessage="please enter last name" title="Last Name">
+      				<f:validateLength minimum="3" maximum="8"/>
+      			</h:inputText>
+      			<rich:message for="lname"/>
+      	
+      			<h:outputText value="Company Name:" />
+     	      	<h:inputText label="Company Name" id="cname" value="#{registrationManagedBean.companyName}" required="true" requiredMessage="please enter company name"  title="Company Name">
+     	      		<f:validateLength minimum="3" maximum="8"/>
+     	      	</h:inputText>
+	      		<rich:message for="cname"/>
+    		 </h:panelGrid>
+     	     <h:commandButton value="Register" action="confirm" />
+  		</h:form>
+  	</h:body>
+</html>

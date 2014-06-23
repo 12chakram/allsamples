@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<h:head>
+		<title>tinyPM Support &raquo;&nbsp; New Account Registration</title>
+		<link type="text/css" rel="stylesheet" href="../css/my.css" />
+	
+	</h:head>
+	
+	<h:body>
+	
+		<div id="container">
+			<img height="5%" src="../img/appointee.bmp" />
+			<div id="pagecontent">			
+				<h1>New Account Registration</h1>
+	<h:form>
+
+ 		<fieldset>
+ 			<legend>Your Account</legend>
+        		 <label for="userName" class="valid">User Name<span class="required" >*</span></label>
+        		 <span class="required">
+        		 	<h:inputText label="User Name" id="uname" value="#{registrationManagedBean.userName}" styleClass="registertextbox" required="true" title="User Name">
+       			 	<f:validateLength minimum="3" maximum="8"/>
+            	</h:inputText>
+                <rich:message for="uname" />
+      	       </span>
+        
+       <label for="emailAddress" class="valid">Email Address<span class="required">*</span></label>
+       <span class="required">
+       	 <h:inputText label="Email Address" id="email" value="#{registrationManagedBean.email}" styleClass="registertextbox" required="true" requiredmessage="please enter valid mail" validator="#{registrationManagedBean.validateEmail}" title="Email"/></span>
+       	
+       <label for="password" class="valid">Password<span class="required">*</span></label>
+       <span class="required">
+       		<h:inputSecret label="Password" id="pwd" value="#{registrationManagedBean.password}" styleClass="registertextbox" required="true" title="Password">
+       		    <f:validateLength minimum="3" maximum="8"/>
+            
+            </h:inputSecret>
+            <rich:message for="pwd" />
+       </span>        
+      	
+      <label for="confirmPassword" class="valid">Confirm Password<span class="required">*</span></label>
+      <span class="required">
+      	<h:inputSecret label="Confirm Password" id="cpwd" value="#{registrationManagedBean.confirmPassword}" styleClass="registertextbox" required="true" title="Confirm Password">
+      		<f:validateLength minimum="3" maximum="8"/>
+            </h:inputSecret>
+            <rich:message for="cpwd" />
+      </span>
+       
+      <label for="firstName" class="valid">First Name<span class="required">*</span></label>
+      <span class="required">
+      	<h:inputText label="First Name" id="fname" value="#{registrationManagedBean.firstName}" styleClass="registertextbox" required="true" title="First Name" >
+      		<f:validateLength minimum="3" maximum="8"/>
+            </h:inputText>
+            <rich:message for="fname" />
+      </span>
+        
+      <label for="lastName" class="valid">Last Name<span class="required">*</span></label>
+      <span class="required">
+      	<h:inputText label="Last Name" id="lname" value="#{registrationManagedBean.lastName}" styleClass="registertextbox" required="true" title="Last Name">
+      		<f:validateLength minimum="3" maximum="8"/>
+            </h:inputText>
+            <rich:message for="lname" />
+      </span>
+      
+      <label for="companyName" class="valid">Company Name<span class="required">*</span></label>
+      <span class="required">
+      	<h:inputText label="Company Name" id="cname" value="#{registrationManagedBean.companyName}" styleClass="registertextbox" required="true" title="Company Name">
+      		<f:validateLength minimum="3" maximum="8"/>
+            </h:inputText>
+            <rich:message for="cname" />
+      </span>
+              
+      <label for="country" class="valid">Country<span class="required">*</span></label>
+      <span class="required"><f:facet name="header"><h:outputText value="country"/></f:facet></span>
+      <span><rich:select>
+            	    <f:selectItem itemValue="0" itemLabel="India" />
+        	        <f:selectItem itemValue="1" itemLabel="Us" />
+    	            <f:selectItem itemValue="2" itemLabel="Uk" />
+	                <f:selectItem itemValue="3" itemLabel="Australia" />
+    	            <f:selectItem itemValue="4" itemLabel="Singapore" />
+	        </rich:select>
+    </span>
+      	
+    <label for="city" class="valid">City<span class="required">*</span></label>
+      <span class="required"><f:facet name="header"><h:outputText value="city"/></f:facet></span>
+      <span>
+      		<rich:select>
+            	    <f:selectItem itemValue="0" itemLabel="Hyderabad" />
+        	        <f:selectItem itemValue="1" itemLabel="California" />
+    	            <f:selectItem itemValue="2" itemLabel="London" />
+	                <f:selectItem itemValue="3" itemLabel="sydny" />
+    	            <f:selectItem itemValue="4" itemLabel="singapore" />
+	         </rich:select>
+        </span>
+      	 
+      		 
+    </fieldset>    		
+    <fieldset><p><h:commandButton value="Register" action="confirm" styleClass="rf-sel-dflt-lbl"/></p></fieldset>
+  
+  </h:form>
+  	
+		</div>
+
+		<div id="pagefooter">
+
+			<p class="links"><a href="http://freeproxyserver.ca/index.php?btxmnercdeqt=aHR0cHM6Ly9tYWlsLWF0dGFjaG1lbnQuZ29vZ2xldXNlcmNvbnRlbnQuY29tL3ByaXZhY3kuanNm" id="j_id104">Privacy Policy</a><a href="http://freeproxyserver.ca/index.php?btxmnercdeqt=aHR0cHM6Ly9tYWlsLWF0dGFjaG1lbnQuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2NvbnRhY3QuanNm" id="j_id107">Contact</a></p>
+			<p>Copyright &copy; 2012 <a href="http://freeproxyserver.ca/index.php?btxmnercdeqt=aHR0cDovL3d3dy5hZ2lsZXJzLmNvbQ%3D%3D" target="_blank" title="ezeeappointee - appointee that works!">ezeeappointee</a> All rights reserved.</p>
+
+		</div>
+	</div>
+</h:body>
+</html>

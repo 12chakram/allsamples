@@ -1,0 +1,13 @@
+
+syntax: regexp
+^target$
+syntax: regexp
+^\.classpath$
+syntax: regexp
+^\.settings$
+syntax: regexp
+^src/test/java/biz/neustar/merc/mt/jUnit/jibx$
+syntax: regexp
+^src/test/java/binding\.xml$
+syntax: regexp
+^src/test/java/biz/neustar/merc/mt/jUnit/jaxb$

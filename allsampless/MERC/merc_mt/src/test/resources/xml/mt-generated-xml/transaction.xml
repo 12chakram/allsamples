@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:Transaction xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic ../../../../main/resources/schema/merc-basic.xsd ">
+  <merc-basic:AccountID>urn:nsr:merc:accountid:org:nsr:merc:1c7ffae3-76f8-49cf-a591-612f59f1696b</merc-basic:AccountID>
+  <merc-basic:PaymentTransactionID>urn:nsr:merc:1234</merc-basic:PaymentTransactionID>
+  <merc-basic:EntitlementID>urn:nsr:merc:entitlementid:d13127bc-1c50-4150-8a2a-f957a7276d93</merc-basic:EntitlementID>
+  <merc-basic:TransactionInfo>
+    <merc-basic:ResourceID>urn:nsr:merc:1234</merc-basic:ResourceID>
+    <merc-basic:PurchaseType>urn:nsr:merc:type:transaction:rental</merc-basic:PurchaseType>
+  </merc-basic:TransactionInfo>
+</merc-basic:Transaction>

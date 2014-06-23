@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merc-basic:Stream StreamHandleID="idvalue0" ThirdPartyID="urn:nsr:merc:1234" xmlns:md="http://www.movielabs.com/schema/md/v1.07/md" xmlns:merc-basic="http://www.neustar.biz/schema/2012/01/merc-basic" xmlns:merc-common="http://www.neustar.biz/schema/2012/01/merc-common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neustar.biz/schema/2012/01/merc-basic merc-basic.xsd ">
+  <merc-basic:StreamClientNickname>merc-basic:StreamClientNickname</merc-basic:StreamClientNickname>
+  <merc-basic:RequestingUserID>urn:nsr:merc:1234</merc-basic:RequestingUserID>
+  <merc-basic:EntitlementID>http://tempuri.org</merc-basic:EntitlementID>
+  <merc-basic:StreamID>merc-basic:StreamID</merc-basic:StreamID>
+  <merc-basic:ExpirationDateTime>2001-12-31T12:00:00</merc-basic:ExpirationDateTime>
+  <merc-basic:SubDividedGeolocation CaluculationMethod="http://tempuri.org" Confidence="1" ViaProxy="urn:nsr:merc:type:unknown">merc-basic:SubDividedGeolocation</merc-basic:SubDividedGeolocation>
+  <merc-basic:ResourceStatus>
+    <merc-basic:Current CreatedBy="urn:nsr:merc:1234" CreationDate="2001-12-31T12:00:00" DeletedBy="urn:nsr:merc:1234" DeletionDate="2001-12-31T12:00:00" ModificationDate="2001-12-31T12:00:00" ModifiedBy="urn:nsr:merc:1234">
+      <merc-basic:Value>urn:nsr:merc:type:status:active</merc-basic:Value>
+      <merc-basic:Description>merc-basic:Description</merc-basic:Description>
+    </merc-basic:Current>
+    <merc-basic:History>
+      <merc-basic:Prior ModificationDate="2001-12-31T12:00:00" ModifiedBy="urn:nsr:merc:1234">
+        <merc-basic:Value>urn:nsr:merc:type:status:active</merc-basic:Value>
+        <merc-basic:Description>merc-basic:Description</merc-basic:Description>
+      </merc-basic:Prior>
+    </merc-basic:History>
+  </merc-basic:ResourceStatus>
+</merc-basic:Stream>
