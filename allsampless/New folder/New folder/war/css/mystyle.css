@@ -1,0 +1,33 @@
+body { background-color:rgb(100,010,100);color:hsla(120,85%,55%,1.0);}
+.formRow { padding: 14px 14px 18px 14px; }
+.formRow .formRight { width: 100%; float: none; margin-right: 14px; }
+.formRow .inputImg { top: auto; bottom: 26px; }
+.formRow > label { float: none; padding: 0 0 12px 0; }
+.formRight label { float: left; margin-right: 24px; padding: 2px 0; cursor: pointer; }
+.formRow .formRight { display: block; float: right; width: 80%; margin-right: 18px; }
+.formRight label { float: left; margin-right: 24px; padding: 2px 0; cursor: pointer; }
+
+
+
+@media only screen and (min-width: 980px) and (max-width: 1280px) {
+	
+	.oneTwo { width: 48%; }
+	.wrapper { margin: 0 4%; }
+	.oneThree { width: 31%; margin-left: 3.5%; }
+	.twoOne { width: 65.5%; }
+	.oneFour { width: 22%; margin-left: 4%; }
+	.formRow .formRight { width: 72%; }
+	.chzn-container { width: 80%!important; }
+	.SRC_NumBox { width: 10%; }
+	.SRC_CodeBox { width: 90%; }
+	
+}
+
+
+.rf-sel-dflt-lbl{
+height:22px;
+width: 240px;
+}
+	
+	
+.button, button, input[type=submit], input[type=reset], input[type=button] { font-size: 10px; font-weight: bold; background-image: url(../images/ui/usualButtons.png); background-repeat: repeat-x; text-transform: uppercase; white-space: nowrap; cursor: pointer; font-family: Arial, Helvetica, sans-serif; line-height: 12px; display: inline-block; max-height: 29px; }

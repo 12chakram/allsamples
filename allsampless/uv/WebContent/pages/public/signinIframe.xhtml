@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/custom_style.css" />
+	<link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/js/uvvussp.js" />
+	<!--[if IE]>
+    	<link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/IEstyle.css" />        
+    <![endif]-->
+	<f:loadBundle basename="biz.neustar.dece.decessp.i18n.labelTxts" var="labelMsgs"></f:loadBundle>
+	<script type="text/javascript">
+		window.onload = function() {
+			document.getElementById('frmHomePageIframe:inputUName').focus();
+			}
+			function buttonFireEvent(toPage){
+				var fireOnThis;
+				if(toPage=='pending'){
+					fireOnThis=document.getElementById('frmHomePageIframe:hiddenPending');
+				}
+				else if(toPage=='noPending')
+					fireOnThis = document.getElementById('frmHomePageIframe:hiddenLink');
+				if(document.createEvent) {
+				  var evObj = document.createEvent('MouseEvents');
+				  evObj.initEvent( 'click', true, false );
+				  fireOnThis.dispatchEvent(evObj);
+				} else if( document.createEventObject ) {
+				  fireOnThis.fireEvent('onclick');
+				}
+			}
+
+			function myKeyPressed(e){
+				e = e || window.event;
+				var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+				if (unicode == 13){
+					FireEventonthis();
+				}
+			}
+
+			function FireEventonthis(){
+				var fireOnThis = document.getElementById('frmHomePageIframe:signInButton');
+				if(document.createEvent) {
+				  var evObj = document.createEvent('MouseEvents');
+				  evObj.initEvent( 'click', true, false );
+				  fireOnThis.dispatchEvent(evObj);
+				} else if( document.createEventObject ) {
+				  fireOnThis.fireEvent('onclick');
+				}
+			}
+						
+	</script>
+	<body>
+	<h:form id="frmHomePageIframe">
+	<div class="signInBox">
+				<div class="UserPasswordFields">
+					<div class="UsernameField">
+			      		<h:outputLabel value="#{labelMsgs.userName}" for="frmHomePageIframe:inputUName"/>
+			          	<h:inputText styleClass="beta_user_inputbox" size="20" id="inputUName" alt="#{labelMsgs.userName}" tabindex="1" value="#{loginUserBean.userName}" maxlength="64"/>
+			        </div>
+			        <div class="PasswordField">
+			      		<h:outputLabel value="#{labelMsgs.passwordLabel}" for="frmHomePageIframe:inputPassword"/>
+			          	<h:inputSecret value="#{loginUserBean.password}" id="inputPassword" redisplay="true" alt="#{labelMsgs.passwordLabel}" tabindex="2" styleClass="beta_user_inputbox" onkeydown="javascript:myKeyPressed(event);" autocomplete="off" maxlength="64"/>
+			         </div>
+			         
+			         <div class="image_anchor_btn" style="margin-top: 15px;  padding-left:0px; cursor: pointer;">
+					       <span>
+					  			<a4j:commandButton id="signInButton" tabindex="4" style="margin-top: 2px; text-transform:uppercase; cursor: pointer; background:none; border:0px; font-weight:bold; color:#fff;"
+					  				value="#{labelMsgs.signIn}" action="#{loginUserBean.doLogin}" reRender="signInPanelError,signInError,pendingAction"
+					  				oncomplete="#{loginUserBean.errorValueMap.pageError eq null || loginUserBean.errorValueMap.pageError eq '' ? 'buttonFireEvent(\'noPending\')' : (loginUserBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || 
+					  				loginUserBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG'
+					  				 || loginUserBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'buttonFireEvent(\'pending\')' : '')}"/>
+					  			<h:commandLink id="hiddenLink" style="dispaly:none;" tabindex="-2" action="#{loginNavigationBean.loginAction}" target="_top"/>			  			
+					  		</span>
+			          </div>
+			         
+				</div>
+				
+				
+				<div class="RememberForgotLinks">
+					<div class="UsernameField">
+						<div class="CheckBoxDiv">
+				         	<div class="Fleft">
+				         		<h:selectBooleanCheckbox id="remembermeCheckBox" tabindex="3" styleClass="checkbox" style="margin:0 4px 0 0;" value="#{loginUserBean.rememberMe}"/>
+				         	</div>
+				        	<div class="Fleft RememberMe"><h:outputLabel value="#{labelMsgs.rememberMe}" for="frmHomePageIframe:remembermeCheckBox"/></div>
+				        </div>
+			        </div>
+			        
+			        <div class="PasswordField">
+				        <div class="ForgotPassword" style="margin:5px 0 3px 3px;">
+				           <h:commandLink id="forgotPassword" target="_top" tabindex="5" value="#{labelMsgs.forgotPassword}" action="forgotMyPasswordPage" />
+				        </div>
+			        </div>
+			        <h:commandLink  styleClass="NeedHelp" tabindex="6" value="#{labelMsgs.needHelp}?" action="troubleSignInHelpPage" target="_top"/>
+				</div>
+				
+	         <h:panelGroup id="signInPanelError">
+				<h:outputLabel id="signInError" rendered="#{loginUserBean.errorValueMap.pageError ne null}" value="#{loginUserBean.errorValueMap.pageError}"
+					styleClass="#{loginUserBean.errorValueMap.pageError eq 'TOU_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'COPPA_NOT_ACCEPTED_BY_CLG' || loginUserBean.errorValueMap.pageError eq 'ACCOUNT_USER_STATUS_BLOCKED_CLG' ? 'DisplayNone' : (loginUserBean.errorValueMap.pageError ne null ? 'err_msg':'DisplayNone')}" style="clear:both; margin-top:0px; min-height:16px;"/>
+			 </h:panelGroup>
+			 <a4j:outputPanel id="pendingAction">
+	  			<h:commandLink id="hiddenPending" style="dispaly:none;" tabindex="-1" action="pendingUser" target="_top">
+	  				<f:param value="#{loginUserBean.errorValueMap.pageError}" name="dispFor" />
+	  			</h:commandLink>  		
+  			</a4j:outputPanel>
+	</div>
+ 	</h:form>
+ 	</body>
+</ui:composition>

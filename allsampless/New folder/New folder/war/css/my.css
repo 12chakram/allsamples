@@ -1,0 +1,278 @@
+
+.clearfix:after 	{ content: "."; height: 0; clear: both; visibility: hidden; }
+
+.clearfix 			{ display: inline-block; }
+
+
+
+/* Hides from IE-mac \*/
+
+* html .clearfix 	{ height: 1%; }
+
+.clearfix 			{ display: block; }
+
+/* End hide from IE-mac */
+
+
+
+.clear				{ clear: both; visibility: hidden; height: 0px; }
+
+
+
+/*body, td, th 	{ font-family: Lucida, "Lucida Grande", Tahoma, sans-serif; color: #ff00ff; background-color: #f0f0f0;} */
+
+.left{float:left;background-image:url('left.jpg'); background-repeat:repeat-y;}
+
+/* page links */
+
+a			{ color: #0; border-bottom: 1px dotted #739AC7; text-decoration: none; }
+
+a:hover		{ color: #739AC7; }
+
+a img		{ border-width: 0px; vertical-align: middle; }
+
+.body
+{
+	background-image:url('../img/body3.bmp');
+	background-color:#6495ed;
+}
+
+/* common page layout */
+
+h1			{ font-size: 180%; color: white; letter-spacing: -1.0px; font-weight: bold; padding: 2px 20px; background-color: #298EF4; background-image:url('../img/body3.bmp'); background-repeat:repeat-all;}
+
+h2			{ font-size: 130%; color: #191919; letter-spacing: -0.5px; font-weight: lighter; padding: 5px 20px; }
+
+
+
+.controls-wrapper { padding: 6px 0px 6px 35px; margin: 0px;}
+
+.controls-wrapper form {width: 96%; padding 0px; margin: 0px;}
+
+
+
+.table-wrapper	{ width: 100%; margin: 0px; padding:0px;}	
+
+table			{ width: 95%; }
+
+table td		{ font-size: 90%; padding: 5px; }
+
+thead td		{ font-weight: bold; color: #414141; background-color: #f9f9f9; border-bottom: 3px solid #969696; }
+
+/*tbody td		{ border-bottom: 1px solid #969696; vertical-align: top; }*/
+
+tbody td .info	{ font-size: 75%; color: #969696; }
+
+tfoot td		{ color: #414141; background-color: #f9f9f9; font-size: 80% }
+
+.subtotals      { background-color: transparent; border-width: 0px; }
+
+.discounts      	{ background-color: transparent; border-width: 0px; color: #7BB963; }
+
+.discounts strong 	{ color: #4D863C; }
+
+
+
+form		    		{ padding: 10px; margin: 10px 0px; }
+
+form p, form div 		{ margin: 5px 0px; }
+
+form .messages			{ color: #C63217; }
+
+form label	  			{ font-size: 120%; color: #ff00ff; display: block; padding-top: 0.25em; }
+
+form label.checkbox		{ font-size: 200%; width: 100%; display: inline; float: none; padding-top: 0px; }
+
+form .invalid input,
+
+form .invalid select	{ border: 2px solid #C63217; }
+
+form label .required	{ color: red; }
+
+
+
+fieldset				{ width: 50%; border-width: 0px; }
+
+fieldset.buttons		{ width: 96%; padding-left: 20px; }
+
+
+
+fieldset label,
+
+fieldset input,
+
+fieldset textarea,
+
+fieldset img			{ margin-left: 10px; }
+
+fieldset img.captcha	{ border: 1px solid #d0d0d0; }
+
+fieldset input			{ font-size: 130%; }
+
+fieldset select			{ font-size: 120%; font-weight: lighter; letter-spacing: -0.5px; margin: 3px 0px 3px 10px; }
+
+fieldset input.checkbox	{ border-width: 0px; vertical-align: middle; }
+
+legend					{ font-size: 130%; color: #ffff00; letter-spacing: -0.5px; font-weight: lighter; }
+
+
+
+.sidebar				{ margin: 0px; float: right; width: 40%; padding-top: 0px; padding-left: 30px; padding-bottom: 50px; padding-right: 30px; border-left: 1px solid #d9d9d9; }
+
+.info					{ font-size: 80%; color: #414141; }
+
+.controls				{ margin: 0px; }
+
+
+
+/* main menu */
+
+#mainmenu				{ float: right; font-size: 90%; color: #d0d0d0; }
+
+#mainmenu a 			{ color: #414141; font-weight: bold; margin-left: 5px; margin-right: 5px; }
+
+#mainmenu a:hover		{ color: #739AC7; border-bottom: 1px dotted #1C356A;  }
+
+#mainmenu .logged-in	{ color: #1C356A; font-weight: bold; margin-right: 5px; }
+
+
+
+/* page content */
+
+#container				{ padding: 0 12px 20px 12px; }
+
+#pagecontent			{ background-color: #f1f1f1;background-image:url('../img/amar1.jpg'); background-repeat:repeat-all;}
+
+
+
+/* page footer */
+
+#pagefooter				{ border-top: 5px solid #f0f0f0; margin-top: 0px; }
+
+#pagefooter	p			{ font-size: 11px; color: #000000; text-align: left; margin: 10px; }
+
+#pagefooter a 			{ color: #414141; border-bottom: 1px dotted #1C356A; }
+
+#pagefooter a:hover		{ color: #000000; }
+
+#pagefooter .links		{ float: right; width: 250px; text-align: right; }
+
+#pagefooter .links a	{ margin-right: 5px; margin-left: 5px; }
+
+
+
+/* EULA */
+
+#eula_form fieldset		{ width: 100%; }
+
+#eula_form fieldset div	{ margin-left: 10px; }
+
+
+
+div.eula 				{ font-family: Lucida, "Lucida Grande", Tahoma, sans-serif; padding: 20px; font-size: 75%; margin-right: 10px; }
+
+div.eula.scrollable		{ width: 90%; height: 250px; overflow: scroll; }
+
+div.eula p				{ text-align: justify; }
+
+div.eula h1, 
+
+div.eula h2, 
+
+div.eula h3				{ letter-spacing: 0px; background-color: transparent; margin-left: 0px; padding-left: 0px; }
+
+
+
+/* license keys */
+
+.license_box { width: 29%; min-height: 8em; padding: 10px; border: 2px solid #d0d0d0; text-align: center; }
+
+
+
+/* contact */
+
+#contact				{ padding: 1px 20px; }
+
+
+
+/* privacy policy */
+
+#privacy_policy p,
+
+#privacy_policy li		{ font-size: 90%; }
+
+#privacy_policy p		{ padding: 1px 20px; text-align: justify; }
+
+
+
+/* forum */
+
+.post h1			{ font-size: 120%; color: #191919; font-weight: bold; padding: 10px 0px; background-color: transparent; }
+
+.post h2			{ font-size: 110%; color: #191919; font-weight: bold; padding: 5px 0px; background-color: transparent; }
+
+.post blockquote	{ border-left: 3px solid #14316B; padding: 0px; padding-left: 5px; margin: 0px; }
+
+
+
+/* errors */
+
+.error-wrapper 		{ padding: 30px 0pt; text-align: center; width: 100%; }
+
+.error-box			{ font-size: 90%; text-align: left; color: #414141; border: 2px solid #d0d0d0; background-color: #ffffff; padding: 20px; width: 400px; margin-left: auto; margin-right: auto; }
+
+.error-box strong 	{ font-size: 120%; color: #960000; }
+
+
+
+.view-filter 	 	   { -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; text-align: center; padding:2px 8px 2px 8px; margin:4px; text-decoration:none; border-bottom:0; font-weight:bold;}
+
+.view-filter.selected { background-color: #4678AE; color:#ffffff; }
+
+.site-header-inner-1{
+background-image: url(http://www.qualcomm.com/sites/all/modules/custom/megamenu/images/header/background.png);
+background-repeat: repeat-x;
+height: 72px;
+overflow: visible;
+}
+.registertextbox{
+height:22px;
+width: 240px;
+}
+
+.rf-sel{
+height:22px;
+width: 240px;
+}
+
+.rf-sel-inp{
+height:22px;
+width: 240px;
+}
+
+.rf-sel-dflt-lbl{
+height:22px;
+width: 240px;
+
+}
+.msg
+{
+	background-color: #4678AE; 
+	color:#ffffff;
+	
+}
+
+
+button, input[type="reset"], input[type="submit"], input[type="button"] {
+    background-color: #4A75B5;
+    background-image: url("org.richfaces.images/buttonBackgroundImage.png");
+    background-position: left top;
+    background-repeat: repeat-x;
+    border-color: #C0C0C0;
+    border-width: 1px;
+    color: #ffffff;
+    font-family: Arial,Verdana,sans-serif;
+    font-size: 20px;
+    padding: 3px;
+    
+}

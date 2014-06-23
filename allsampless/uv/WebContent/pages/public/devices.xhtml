@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf">
+	
+<!--  AddDevicePopUp popup start -->
+	<div id="AddDevicePopUp" class="popupContact" style="z-index:10003;">
+		<div class="popup_textarea">
+			<h3>#{labelMsgs.addDeviceTitle}</h3>
+			<br /><br />
+			<div id="AddAccountMsg">
+				<h4 >#{labelMsgs.addDeviceMsg}</h4>
+			</div>
+			<div class="DisplayNone" id="ConnectionCodeMsg">
+				<h4>#{labelMsgs.addDeviceMsg2}</h4>
+			</div>
+			<div id="deviceAddCode" class="PopUpButton Fleft" style="padding-left:40px; margin-top:40px;">
+				<a4j:commandLink id="addDeviceCode" style="padding-top:10px;"  title="#{labelMsgs.alt_addDeviceCodeLbl}" styleClass="CommonBtn_Link" action="#{householdDevicesBean.getAddDeviceCode}" oncomplete="chgAddDeviceDivs('GETCODE');" reRender="deviceCodeId">
+					<div>#{labelMsgs.addDeviceCodeLbl}</div>				
+				</a4j:commandLink> 
+				
+				<a id="addDeviceClose" href="#" style="padding-top:10px;" class="CommonBtn_Link_Gray" title="#{labelMsgs.title_addDeviceClose}" onclick="javascript:disablePopup1('AddDevicePopUp', 'backgroundPopup')">
+					<div>#{labelMsgs.addDeviceClose}</div>				
+				</a>
+			</div>
+			<div id="deviceClose" class="PopUpButton Fleft" style="padding-left:5px; margin-top:10px;display:none;">
+				<h:inputText id="deviceCodeId" title="#{labelMsgs.alt_deviceCode}" disabled="true" style="width:95%;padding 0 5px; margin:10px 15px 0 0; clear:both; float:left; min-height:20px; color: black;" value="#{householdDevicesBean.deviceCode}"/>
+				<br/><br/>
+				<div style="margin-left:175px;margin-top:30px;padding-top:10px;">
+					<h:commandLink id="addClosepop" style="padding-top:10px;" title="#{labelMsgs.title_closeLabel}" styleClass="CommonBtn_Link" action="addDeviceSuccessPage">
+						<div>#{labelMsgs.closeLabel}</div>				
+					</h:commandLink>
+				</div>                                                   
+			</div>
+		</div>
+	</div>			 
+<!--  AddDevicePopUp popup end -->			
+	<c:set var="devicesSummaryTab" value="8"/>
+	<div class="DevicesBoxDiv">
+		<c:if test="#{householdDevicesBean.usrAddEnabled eq 'yes'}">
+				<a tabindex="#{devicesSummaryTab}" href="#" id="add_Device" title="#{labelMsgs.title_addDevice}" onclick="openPopup('AddDevicePopUp', 'backgroundPopup');" class="AddNewDevice #{householdDevicesBean.deviceSlotsAvailable eq 0 ?DevicesFull:''}">
+					<div class="DeviceName">#{labelMsgs.addDevice}</div>
+					<div class="DeviceImg">
+						<div class="DeviceStatusIcon"></div>
+					</div>
+				</a>
+		</c:if>
+		<c:if test="#{householdDevicesBean.usrAddEnabled eq 'no'}">
+			<a tabindex="#{devicesSummaryTab}" id="add_Device_Dull" href="#" class="AddNewDeviceDull">
+				<div class="DeviceName">#{labelMsgs.addDevice}</div>
+				<div class="DeviceImg">
+					<div class="DeviceStatusIcon"></div>
+				</div>
+			</a>
+		</c:if>
+		<div class="DevicesAvailable">
+			<c:set var="devItr" value="0"/>
+			<c:forEach items="#{householdDevicesBean.deviceList}" var="deviceItem">	
+				<c:set var="devItr" value="#{devItr+1}"/>
+				<c:if test="#{('DECE' == deviceItem.deviceType)?true:false}">
+					<a tabindex="#{devItr+devicesSummaryTab}" href="#" id="deviceDetailsId#{devItr}" class="DeviceActiveView" title="#{labelMsgs.title_viewDeviceDetails}" onclick="navigateViewDevice('DEVICE','#{deviceItem.deviceId}','DECE','#{sessionScope.viewFormName}');">
+						<div class="DeviceImg">
+							<img src="#{deviceItem.displayImageUrl}" width="53" height="73" title="#{labelMsgs.alt_img_displayImageUrl}"/>
+						</div>
+						<div class="UvvuIcon">                                            
+						</div>
+						<div class="DeviceName"><truncate:truncateText text="#{deviceItem.displayName}" start="0" end="#{sessionScope.devNamLen}"/></div>
+					</a>				
+				</c:if>
+				<c:if test="#{deviceItem.deviceType == 'LEGACY'}">
+					<a tabindex="#{devItr+devicesSummaryTab}" href="#" id="deviceDetailsId#{devItr}" class="DeviceActiveView" title="#{labelMsgs.title_viewDeviceDetails}" onclick="navigateViewDevice('DEVICE','#{deviceItem.deviceId}','LEGACY','#{sessionScope.viewFormName}');">
+						<div class="DeviceImg">
+							<img src="#{deviceItem.displayImageUrl}" width="53" height="73" title="#{labelMsgs.alt_img_displayImageUrl}"/>
+						</div>						
+						<div class="DeviceName"><truncate:truncateText text="#{deviceItem.displayName}" start="0" end="#{sessionScope.devNamLen}"/></div>
+					</a>
+				</c:if>
+				<c:if test="#{deviceItem.deviceId == 'NOTAVAILABLE'}">
+					<a tabindex="#{devItr+devicesSummaryTab}" href="#" id="deviceDetailsId#{devItr}" class="DeviceDullView" title="#{labelMsgs.title_avail}">
+						<div class="DeviceName">#{labelMsgs.available}</div>		
+					</a>
+				</c:if>		
+			</c:forEach>		
+			<c:if test="#{((householdDevicesBean.devicesCount ge 12) &amp;&amp; (sessionScope.privilege ne 'BASIC') &amp;&amp; (sessionScope.userAge ne 'CHILD'))}">	
+				<div class="AvailableTextCount">
+					<h:outputLabel value="#{labelMsgs.devicesMaxInfo}"/>
+				</div>
+			</c:if>
+			<c:if test="#{((householdDevicesBean.devicesCount lt 12) &amp;&amp; (sessionScope.privilege ne 'BASIC') &amp;&amp; (sessionScope.userAge ne 'CHILD'))}">
+				<div class="AvailableTextCount">
+					 <h:outputLabel value="#{labelMsgs.availablePart1}"/>
+               		<h:outputFormat value="#{labelMsgs.availablePart2}.">
+                    	<f:param value="#{householdDevicesBean.deviceSlotsAvailable}"/>
+                    </h:outputFormat>
+				</div>	
+			</c:if>	
+		</div>	
+	</div>   
+</ui:composition>

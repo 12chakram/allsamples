@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>DECE Self Service Web Portal</display-name>
+	<description>
+        DECE Self Service Web Application
+    </description>
+    <distributable/>
+    <!--  DECE Config Start-->
+	<context-param>
+		<param-name>enableLocalization</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>decesspConfigLocation</param-name>
+		<param-value>/opt/DECE_jboss/server/sspnode/conf/dece/config.properties</param-value>
+	</context-param>
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>file:///opt/DECE_jboss/server/sspnode/conf/dece/log4j.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>    
+	<!--  DECE Config End -->
+
+    <!--  Spring Configuration -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/ui-app-context.xml</param-value>
+    </context-param>
+	<listener>
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  	</listener>
+  	<listener>
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	</listener>	
+	<context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+          <param-value>/WEB-INF/faces-config.xml,/WEB-INF/faces-navigation.xml     
+       </param-value>
+    </context-param>	
+	
+	
+	<!-- Rich Faces Configuration  -->
+	<context-param>
+    	<param-name>facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE</param-name>
+    	<param-value>false</param-value>
+  	</context-param>
+  	<context-param>
+		<param-name>facelets.LIBRARIES</param-name>
+		<param-value>/WEB-INF/facelets/tags/dece.taglib.xml</param-value>
+	</context-param>
+	<context-param>
+    	<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    	<param-value>.xhtml</param-value>
+  	</context-param>  	
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>org.ajax4jsf.VIEW_HANDLERS</param-name> 
+		<param-value>com.sun.facelets.FaceletViewHandler</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>org.richfaces.SKIN</param-name> 
+		<param-value>blueSky</param-value>
+	</context-param>
+	<context-param> 
+		<param-name>org.richfaces.CONTROL_SKINNING</param-name> 
+		<param-value>enable</param-value>
+	</context-param>
+	<filter> 
+		<display-name>RichFaces Filter</display-name> 
+		<filter-name>richfaces</filter-name> 
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+		<init-param>
+   			<param-name>createTempFiles</param-name>
+   			<param-value>true</param-value>
+  		</init-param>
+  		<init-param>
+ 			<param-name>maxRequestSize</param-name>
+   			<param-value>2222222</param-value>
+  		</init-param>
+	</filter>
+	<filter-mapping> 
+		<filter-name>richfaces</filter-name> 
+		<servlet-name>Faces Servlet</servlet-name> 
+		<dispatcher>REQUEST</dispatcher> 
+		<dispatcher>FORWARD</dispatcher> 
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<listener> 
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	
+	<servlet>
+        <servlet-name>resourceServlet</servlet-name>
+        <servlet-class>biz.neustar.dece.portal.utils.ResourceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>resourceServlet</servlet-name>
+        <url-pattern>/resourceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>initServlet</servlet-name>
+        <servlet-class>biz.neustar.dece.portal.utils.InitServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet>
+		<servlet-name>image</servlet-name>
+		<servlet-class>biz.neustar.dece.common.servlet.ImageProcessingServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>image</servlet-name>
+		<url-pattern>/image/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <servlet-name>portalReverseSAMLServlet</servlet-name>
+        <servlet-class>biz.neustar.dece.portal.utils.PortalReverseSAMLServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>portalReverseSAMLServlet</servlet-name>
+        <url-pattern>/reverseSAML</url-pattern>
+    </servlet-mapping>
+	
+    
+    
+    <!--  JSF Configuration -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping> 
+	
+	<filter>
+		<filter-name>AuthorizationFilter</filter-name>
+		<filter-class>biz.neustar.dece.portal.utils.AuthenticationFilter</filter-class>
+	</filter>	
+	<filter-mapping>
+		<filter-name>AuthorizationFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
+
+    <session-config>
+      <session-timeout>30</session-timeout> 
+    </session-config>	
+
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>	
+	</welcome-file-list>
+	
+	
+	
+
+</web-app>

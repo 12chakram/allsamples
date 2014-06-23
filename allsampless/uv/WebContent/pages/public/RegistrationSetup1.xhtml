@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/unAuthenticatedTemplate.xhtml">
+	<ui:define name="unAuthPortalHeader">
+		    <ui:include src="/resources/sections/common/createHouseholdHeader.xhtml"/>
+	</ui:define>
+	<ui:define name="unAuthContent">
+	
+<h:form id="frmCancelReg">
+    <div id="cancelRegistration" class="popupContact" style="z-index:10003;">
+        <div class="popup_textarea">
+            <h3>#{labelMsgs.saveChanges}</h3>
+			<div class="PopupBody">
+				<div class="PopupLeftContent">
+					<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" />
+				</div>
+				<div class="PopupRightContent">
+					#{labelMsgs.UnsavedChangesProfile}<br />
+				</div>
+			</div>
+			<div class="PopUpButton Fleft">
+				<a class="CommonBtn_Link" onclick="javascript:disablePopup1('cancelRegistration', 'backgroundPopup');">
+					<div> #{labelMsgs.cancelPop}</div>
+					<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+				</a> 
+				<h:commandLink styleClass="CommonBtn_Link_Gray" action="#{loginNavigationBean.navigateToHomePage}">
+					<div> #{labelMsgs.continue}</div>
+					<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+				</h:commandLink>
+			</div>
+        </div>
+	</div>
+</h:form>
+			  
+  		<c:if test="#{householdRegistrationBean.step1Render eq 'step1FirstPage'}">
+	  		<ui:include src="/resources/sections/registration/verifyRegistrationDOB.xhtml"/>
+		</c:if> 
+		<c:if test="#{householdRegistrationBean.step1Render eq 'step1SecondPage'}"> 
+	   		<ui:include src="/resources/sections/registration/verifyRegistrationEmail.xhtml"/> 
+		</c:if>
+		<c:if test="#{householdRegistrationBean.step1Render eq 'step1ThirdPage'}"> 
+	   		<ui:include src="/resources/sections/registration/confirmEmail.xhtml"/> 
+		</c:if>
+		<c:if test="#{householdRegistrationBean.step1Render eq 'regStep2Page'}"> 
+			<ui:include src="/resources/sections/registration/householdNameRegistration.xhtml"/> 
+		</c:if>	
+		<c:if test="#{householdRegistrationBean.step1Render eq 'regStep3Page'}"> 		
+			<ui:include src="/resources/sections/registration/createHousehold.xhtml"/>
+		</c:if>
+	</ui:define>
+ </ui:composition>
+ 
