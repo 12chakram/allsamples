@@ -1,0 +1,74 @@
+/com.genuitec.eclipse.reporting.oda_6.0.2.200712120145.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/com.ibm.icu_3.6.1.v20070417.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+D/com.lowagie.itext_1.5.2.v20070626////
+/javax.wsdl_1.4.0.v200706111329.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.bridge_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.css_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.dom.svg_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.dom_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.ext.awt_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.extension_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.apache.batik.parser_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.pdf_1.6.0.v200706111329.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.apache.batik.svggen_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.swing_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.transcoder_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.util.gui_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.util_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.batik.xml_1.6.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+D/org.apache.commons.codec_1.3.0.v20070531////
+/org.apache.xerces_2.8.0.v200705301630.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.apache.xml.resolver_1.1.0.v200705310020.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.api_1.0.0.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.chart.device.extension_2.2.0.v20070530.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.chart.device.svg_2.2.0.v20070613.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.chart.engine.extension_2.2.0.v20070622.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.chart.engine_2.2.0.v20070621.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.chart.reportitem_2.2.0.v20070531.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.core_2.2.0.v20070615.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.data_2.2.0.v200706221.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.report.data.adapter_2.2.0.v20070622.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+D/org.eclipse.birt.report.data.oda.jdbc_2.2.0.v20070615////
+D/org.eclipse.birt.report.data.oda.sampledb_2.2.0.v20070607////
+/org.eclipse.birt.report.data.oda.xml_2.2.0.v20070607.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.report.engine.emitter.html_2.2.0.v20070620.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.report.engine.emitter.pdf_2.2.0.v20070530.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.report.engine.emitter.postscript_2.2.0.v20070530.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.report.engine.emitter.ppt_2.2.0.v20070607.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.report.engine.emitter.prototype.excel_2.2.0.v20070621.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.report.engine.emitter.wpml_2.2.0.v20070620.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+D/org.eclipse.birt.report.engine.fonts_2.2.0.v20070530////
+/org.eclipse.birt.report.engine_2.2.0.v20070621.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.report.item.crosstab.core_2.2.0.v20070622.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.birt.report.model.adapter.oda_2.2.0.v20070530.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.birt.report.model_2.2.0.v20070619.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.core.contenttype_3.2.100.v20070319.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.core.jobs_3.3.0.v20070423.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.core.runtime.compatibility.auth_3.2.100.v20070502.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+D/org.eclipse.core.runtime.compatibility.registry_3.2.100.v20070316////
+/org.eclipse.core.runtime.compatibility_3.1.200.v20070502.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.core.runtime_3.3.100.v20070530.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.datatools.connectivity.oda.consumer_3.1.0.200706071.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.datatools.connectivity.oda.design_3.0.4.200706071.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.datatools.connectivity.oda.flatfile_3.0.4.200706071.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.datatools.connectivity.oda.profile_3.0.4.200706071.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.datatools.connectivity.oda_3.1.0.200706071.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.datatools.connectivity_1.0.0.200706181.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.datatools.enablement.oda.ws_1.0.0.200706151.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.datatools.enablement.oda.xml_1.0.1.200706151.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.emf.common_2.2.1.v200702131851.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.emf.ecore.xmi_2.2.2.v200702131851.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.emf.ecore_2.2.2.v200702131851.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.emf_2.2.0.v200702131851.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.equinox.app_1.0.0.v20070423.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.equinox.common_3.3.0.v20070426.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.equinox.preferences_3.2.100.v20070522.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.equinox.registry_3.3.0.v20070522.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.osgi.services_3.1.200.v20070531.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.eclipse.osgi_3.3.0.v20070530.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.eclipse.update.configurator_3.2.100.v20070507.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+D/org.mozilla.rhino_1.6.0.v20070531////
+/org.w3c.css.sac_1.3.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+/org.w3c.dom.smil_1.0.0.v200706111724.jar/1.1/Thu Dec 20 16:02:26 2007/-kb/
+/org.w3c.dom.svg_1.1.0.v200706111724.jar/1.1/Thu Dec 20 16:02:25 2007/-kb/
+D/org.w3c.sac_1.3.0.v20070531////

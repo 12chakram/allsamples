@@ -1,0 +1,13 @@
+#Sun Aug 19 18:11:46 CDT 2007
+connectionInfoProperty=MyEclipse Derby
+detect.m2m=false
+eclipse.preferences.version=1
+enableAnalysisProperty=true
+generate.version=false
+instance/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true
+newSchemaProperty=CLASSICCARS
+re.daoFile=WebRoot/WEB-INF/applicationContext.xml
+re.lemfId=entityManagerFactory
+re.settings=/DWRSpringJPA/jpa.reveng.xml
+re.strategy=
+schemaProperty=CLASSICCARS

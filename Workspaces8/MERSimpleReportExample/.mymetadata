@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MERSimpleReportExample"
+  id="myeclipse.1198077517046"
+  context-root="/MERSimpleReportExample"
+  j2ee-spec="1.4"
+  archive="MERSimpleReportExample.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

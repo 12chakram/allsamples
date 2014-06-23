@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="SimpleFaceletsExample"
+  id="myeclipse.1190821963719"
+  context-root="/SimpleFaceletsExample"
+  j2ee-spec="5.0"
+  archive="SimpleFaceletsExample.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

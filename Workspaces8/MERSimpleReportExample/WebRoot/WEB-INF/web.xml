@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<context-param>
+		<description>
+			Report resources(design files or document files) directory
+			for preview. Default to ${Context Root}
+		</description>
+		<param-name>BIRT_VIEWER_WORKING_FOLDER</param-name>
+		<param-value />
+	</context-param>
+	<context-param>
+		<description>
+			Report engine log level.(
+			ALL|SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST|OFF )
+		</description>
+		<param-name>BIRT_VIEWER_LOG_LEVEL</param-name>
+		<param-value>WARNING</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			Directory to store all birt report script libraries (JARs).
+			Default to ${Context Root}/scriptlib
+		</description>
+		<param-name>BIRT_VIEWER_SCRIPTLIB_DIR</param-name>
+		<param-value>WEB-INF/report-engine/scriptlib</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			If force optimized HTML output.Default to true
+		</description>
+		<param-name>HTML_ENABLE_AGENTSTYLE_ENGINE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			Report Engine logs directory. Default to ${Context
+			Root}/logs
+		</description>
+		<param-name>BIRT_VIEWER_LOG_DIR</param-name>
+		<param-value>WEB-INF/report-engine/logs</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			Resource location directory(library files, images files or
+			others). Default to ${Context Root}
+		</description>
+		<param-name>BIRT_RESOURCE_PATH</param-name>
+		<param-value />
+	</context-param>
+	<context-param>
+		<description>
+			Output images/charts directory. Default to ${Context
+			Root}/report/images
+		</description>
+		<param-name>BIRT_VIEWER_IMAGE_DIR</param-name>
+		<param-value>WEB-INF/report-engine/images</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			BIRT viewer extended configuration file
+		</description>
+		<param-name>BIRT_VIEWER_CONFIG_FILE</param-name>
+		<param-value>
+			WEB-INF/report-engine/viewer.properties
+		</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			If always overwrite generated document file. Default to true
+		</description>
+		<param-name>BIRT_OVERWRITE_DOCUMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			Dataset rows limited when preview report. Default to return
+			all rows
+		</description>
+		<param-name>BIRT_VIEWER_MAX_ROWS</param-name>
+		<param-value />
+	</context-param>
+	<context-param>
+		<description>
+			The generated document files directory. Default to ${Context
+			Root}/documents
+		</description>
+		<param-name>BIRT_VIEWER_DOCUMENT_FOLDER</param-name>
+		<param-value>WEB-INF/report-engine/documents</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			If turn on the function that supports print on the server
+			side(ON|OFF).Default to on.
+		</description>
+		<param-name>BIRT_VIEWER_PRINT_SERVERSIDE</param-name>
+		<param-value>ON</param-value>
+	</context-param>
+	<context-param>
+		<description>Default locale setting</description>
+		<param-name>BIRT_VIEWER_LOCALE</param-name>
+		<param-value>en-US</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			If usr can only access the reprot resources under working
+			folder. Default is false
+		</description>
+		<param-name>WORKING_FOLDER_ACCESS_ONLY</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<listener>
+		<listener-class>
+			org.eclipse.birt.report.listener.ViewerHttpSessionListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			org.eclipse.birt.report.listener.ViewerServletContextListener
+		</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>EngineServlet</servlet-name>
+		<servlet-class>
+			org.eclipse.birt.report.servlet.BirtEngineServlet
+		</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewerServlet</servlet-name>
+		<servlet-class>
+			org.eclipse.birt.report.servlet.ViewerServlet
+		</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EngineServlet</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EngineServlet</servlet-name>
+		<url-pattern>/preview</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewerServlet</servlet-name>
+		<url-pattern>/frameset</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EngineServlet</servlet-name>
+		<url-pattern>/parameter</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewerServlet</servlet-name>
+		<url-pattern>/run</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/birt.tld</taglib-uri>
+			<taglib-location>
+				/WEB-INF/report-engine/tlds/birt.tld
+			</taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>
+

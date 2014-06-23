@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="MyEclipse Derby" database="MYBLOG" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="POST">
+      <Drawing expanded="true" location="46,39" dimensions="197,109" />
+      <Columns>
+        <Column name="ID" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="TITLE" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="CONTENT" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="CLOB" size="2147483647" />
+        </Column>
+        <Column name="POSTTIME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="TIMESTAMP" size="10,6" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships />
+</ERDiagram>
+
