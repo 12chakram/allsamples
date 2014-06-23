@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   
+   
+   <!-- THE bean element is used to define the bean for the given class.
+     the property subelement of bean specifies the property of the student
+     class named name. the value specified in the property element will be
+     set in the student class object  by the IOC container 
+    -->
+   
+   <bean id="studentbean" class="com.javatpoint.Student">
+        <property name="name" value="Kumar vayyala" />
+   </bean>
+   
+   <bean id="employee" class="com.javatpoint.Employee">
+       <constructor-arg value="10" type="int" />
+             <!--   <constructor-arg value="10"/>    it will take as String if type not specified  -->
+          <constructor-arg value="Sonoo" />
+          <constructor-arg>
+          	<ref bean="address"/>
+          </constructor-arg>
+   </bean>
+   
+   <bean id="address" class="com.javatpoint.Address">
+   			<constructor-arg  value="Hyderabad"/>
+   			<constructor-arg value="AP"/>
+   			<constructor-arg  value="India" />
+   </bean>
+   
+   <bean id="questions" class="com.javatpoint.Question">
+      <constructor-arg value="10" type="int"/>
+      <constructor-arg value="What is Java" />
+      <!-- <constructor-arg>
+      	<list>
+      	   <value>Java is a ProgrammingLanguage</value>
+      	   <value>Java is a platform</value>
+      	   <value>Java is a Island</value>
+      	</list>
+      </constructor-arg> -->
+      <constructor-arg>
+	      <list>
+	      	<ref bean="answer1"/>
+	      	<ref bean="answer2"/>
+	      </list>
+      </constructor-arg>
+   </bean>
+   
+    <bean id="questionMap" class="com.javatpoint.QuestionMap">
+        <constructor-arg value="10" type="int"/>
+        <constructor-arg value="What is Java?" />
+         <constructor-arg>
+         <!-- duplicate key values not allowed  -->
+         	<map>
+         	   <entry key="Java is programing language!" value="Kumar" />
+         	   <entry key="Java is a Platform" value="jhon smith" />
+         	   <entry key="Java is Island" value="Scoot" />
+         	</map>
+         </constructor-arg> 
+   </bean>
+   
+   <bean id="answer1" class="com.javatpoint.Answer">
+     <constructor-arg value="1" type="int"/>
+      <constructor-arg value="Java is programing language" />
+      <constructor-arg value="kumar" />
+   </bean>  
+   
+   <bean id="answer2" class="com.javatpoint.Answer">
+     <constructor-arg value="2"  type="int"/>
+      <constructor-arg value="Java is platform" />
+      <constructor-arg value="kumar vayyala" />
+   </bean>  
+   
+   <bean id="answeramau1" class="com.javatpoint.AnswerQMAU">
+   		<constructor-arg value="1"/>
+   	    <constructor-arg value="Java is programing Language"/>
+   	    <constructor-arg value="12/12/2003" type="Date"></constructor-arg>
+   </bean>
+   
+    <bean id="answeramau2" class="com.javatpoint.AnswerQMAU">
+   		<constructor-arg value="2"/>
+   	    <constructor-arg value="Java is plotform"/>
+   	    <constructor-arg value="12/12/2004" type="Date"></constructor-arg>
+   </bean>
+ 
+   <bean id="user1" class="com.javatpoint.User">
+   		<constructor-arg value="1" type="int"/>
+   		<constructor-arg value="Kumar vayyala" />
+   		<constructor-arg value="kumar.v18@gmail.com"/>
+   </bean>
+   
+   <bean id="user2" class="com.javatpoint.User">
+   		<constructor-arg value="2" type="int"/>
+   		<constructor-arg value="vayyala Kumar" />
+   		<constructor-arg value="chakram12@hotmail.com"/>
+   </bean>
+   
+   <bean id="questionmapansweruser" class="com.javatpoint.QuestionMapAnswerUser">
+   		<constructor-arg value="1" type="int"/>
+   		<constructor-arg value="What is Java"/>
+   		<constructor-arg>
+   			<map>
+   				<entry key-ref="answeramau1" value-ref="user1" />
+   				<entry key-ref="answeramau2" value-ref="user2" />
+   			
+   			</map>
+   		
+   		</constructor-arg>
+   </bean>
+   
+   </beans>

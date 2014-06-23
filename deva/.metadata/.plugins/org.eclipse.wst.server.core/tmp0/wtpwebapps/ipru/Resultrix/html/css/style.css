@@ -1,0 +1,24 @@
+
+ul.menu {list-style:none; margin:0; padding:0}
+ul.menu * {margin:0; padding:0}
+ul.menu a {display:block; color:#fff; text-decoration:none}
+ul.menu a:hover {display:block; color:#595958; text-decoration:none; color:#FFFFFF;}
+ul.menu li {position:relative; float:left; }
+ul.menu li:hover {position:relative; float:left;  background-color:#be2128; _background-color:#be2128; color:#FFFFFF;}
+ul.menu ul {position:absolute; top:35px;  left:0; background:#d1d1d1; display:none; opacity:0; list-style:none}
+ul.menu ul li {position:relative; border:1px solid #aaa; border-top:none; width:158px; margin:0}
+ul.menu ul li a {display:block; padding:5px 5px 5px 5px; background-color:#0d5387}
+ul.menu ul li a:hover { display:block; padding:5px 5px 5px 5px; background-color:#be2128;}
+.sumaroow{ background:# url(../images/arrow.gif) no-repeat; top:8px; right:10px; position:absolute; width:4px; height:7px;}
+ul.menu ul ul {left:158px; top:-1px}
+ul.menu .menulink { padding-top:10px; padding-bottom:5px; padding-left:20px; padding-right:20px; height:20px; font-weight:bold; width:auto; float:left; color:#FFFFFF;}
+ul.menu .menulink:hover, ul.menu .menuhover {background-color:#be2128; color:}
+ul.menu .sub {background:#d1d1d1 url(../images/arrow.gif) 136px 8px no-repeat;}
+ul.menu .topline {border-top:1px solid #aaa;}
+
+
+
+
+
+
+

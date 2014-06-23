@@ -1,0 +1,7 @@
+INDEX VERSION 1.126
+G:\deva\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1181490835.index
+\ipru
+G:\deva\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3279050117.index
+\ipru
+G:\deva\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\987818415.index
+\ipru
