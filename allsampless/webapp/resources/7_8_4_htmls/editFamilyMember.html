@@ -1,0 +1,1289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- Collapse / Expand -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/animatedcollapse.js"></script>
+<script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+
+<script type="text/javascript">
+function showdiv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+
+	for(i=1; i<=3; i++)
+	{
+		if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+		{
+			collapse.style.display = "none";
+			expand.style.display = "inline";
+			faqs.style.display = "block";
+		}
+		else
+		{
+			var rcollapse = document.getElementById("collapse"+i);
+			var rexpand = document.getElementById("expand"+i);
+			var rfaqs = document.getElementById("faq"+i);
+			rcollapse.style.display = "inline";
+			rexpand.style.display = "none";
+			rfaqs.style.display = "none";
+		}
+	}
+}
+
+function hidediv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+	collapse.style.display = "inline";
+	expand.style.display = "none";
+	faqs.style.display = "none";
+		
+	
+} 
+function select1(){
+	document.getElementById("agegrp").style.display="none";
+}
+/*
+var ageGrp = null;
+function changeAgeValue(ageGroupSelected){
+	ageGrp = ageGroupSelected;
+	if(ageGrp == 'select'){
+	document.getElementById("agegrp").style.display="block";
+		
+	}
+	else if(ageGrp == 'Child (under 13)'){
+		document.getElementById('11').value=ageGroupSelected;
+        document.getElementById("agegrp").style.display="none";		
+		document.getElementById('basicRadio').checked='checked';
+		document.getElementById('basicRadio').disabled=true;
+		document.getElementById('fullRadio').disabled=true;
+		document.getElementById('standardRadio').disabled=true;
+		document.getElementById("coppa_tc").style.display = "none";
+		document.getElementById("eula_tc").style.display = "none";
+		document.getElementById("coppa_tc").style.color= "#fff";
+		document.getElementById("eula_tc").style.color= "#fff";
+		
+	}else if(ageGrp == 'Youth (13 to 17)'){
+		document.getElementById('11').value=ageGroupSelected;
+	    document.getElementById("agegrp").style.display = "none";
+		document.getElementById('standardRadio').checked='checked';
+		document.getElementById('basicRadio').disabled=true;
+		document.getElementById('fullRadio').disabled=true;
+		document.getElementById('standardRadio').disabled=true;
+	    document.getElementById("coppa_tc").style.color= "#555";
+		document.getElementById("eula_tc").style.color= "#fff";
+		document.getElementById("coppa_tc").style.display = "none";
+		document.getElementById("eula_tc").style.display = "none";
+	}else if(ageGrp == 'Adult (18 or older)'){
+		document.getElementById('11').value=ageGroupSelected;
+		document.getElementById('fullRadio').disabled=false;
+		document.getElementById('standardRadio').disabled=false;
+		document.getElementById('basicRadio').disabled=false;
+		document.getElementById('fullRadio').checked='checked';
+		document.getElementById("agegrp").style.display = "none";
+		document.getElementById("coppa_tc").style.color= "#555";
+		document.getElementById("eula_tc").style.color= "#555";
+		document.getElementById("coppa_tc").style.display = "none";
+		document.getElementById("eula_tc").style.display = "none";	
+	}
+	checkAgeGroupForPermissions();
+	return true;
+}
+*/
+</script>
+
+<script type="text/javascript">
+
+animatedcollapse.addDiv('faq1', 'fade=0,speed=400,group=pets')
+animatedcollapse.addDiv('faq2', 'fade=0,speed=400,group=pets,persist=1,hide=1')
+animatedcollapse.addDiv('faq3', 'fade=0,speed=400,group=pets,hide=1')
+
+animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+	//$: Access to jQuery
+	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+	//state: "block" or "none", depending on state
+}
+
+animatedcollapse.init()
+
+</script>
+<script type="text/javascript" src="js/js1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jcarousel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/skin.css" />
+
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+        vertical: true,
+        scroll:2
+    });
+});
+
+</script>
+<script type="text/javascript">
+function msg()
+{
+	var fullURL = parent.document.URL;
+	var x = fullURL.substring(fullURL.indexOf('?')+4, fullURL.length);
+	
+	if(x == "profile") {
+		document.getElementById("credentials").style.display = "block";
+		document.getElementById("parental_control").style.display = "none";
+		document.getElementById("accounts").style.display = "none";
+		document.getElementById("profile_tab").className = "tabs-selected";
+		document.getElementById("control_tab").className = "";
+		document.getElementById("accounts_tab").className = "";
+	}
+	if(x == "controls") {
+		document.getElementById("credentials").style.display = "none";
+		document.getElementById("parental_control").style.display = "block";
+		document.getElementById("accounts").style.display = "none";
+		document.getElementById("control_tab").className = "tabs-selected";
+		document.getElementById("profile_tab").className = "";
+		document.getElementById("accounts_tab").className = "";
+	}
+	if(x == "accounts") {
+		document.getElementById("credentials").style.display = "none";
+		document.getElementById("parental_control").style.display = "none";
+		document.getElementById("accounts").style.display = "block";
+		document.getElementById("accounts_tab").className = "tabs-selected";
+		document.getElementById("control_tab").className = "";
+		document.getElementById("profile_tab").className = "";
+	}
+	
+}
+
+
+var hidelac = null;
+function linkac(linkedacc){
+	hidelac = linkedacc;
+	if(hidelac == 'aca2'){
+	document.getElementById("hidelac").style.display="block";
+	  document.getElementById("acdiv2").style.display="block";	
+		document.getElementById("acdiv10").style.display="none";
+		document.getElementById("acdiv90").style.display="none";
+		document.getElementById("acdiv22").style.display="none";
+		document.getElementById("acdiv11").style.display="none";
+		document.getElementById("acdiv55").style.display="none";
+		document.getElementById("aca10").style.backgroundColor="#333";
+		document.getElementById("aca2").style.backgroundColor="#000";
+		document.getElementById("aca90").style.backgroundColor="#333";
+		document.getElementById("aca22").style.backgroundColor="#333";
+		document.getElementById("aca11").style.backgroundColor="#333";
+		document.getElementById("aca55").style.backgroundColor="#333";
+		
+	}
+	else if(hidelac == 'aca10'){
+		
+        document.getElementById("acdiv2").style.display="none";	
+		document.getElementById("acdiv10").style.display="block";
+		document.getElementById("acdiv90").style.display="none";
+		document.getElementById("acdiv22").style.display="none";
+		document.getElementById("acdiv11").style.display="none";
+		document.getElementById("acdiv55").style.display="none";
+		document.getElementById("aca10").style.backgroundColor="#000";
+		document.getElementById("aca2").style.backgroundColor="#333";
+		document.getElementById("aca90").style.backgroundColor="#333";
+		document.getElementById("aca22").style.backgroundColor="#333";
+		document.getElementById("aca11").style.backgroundColor="#333";
+		document.getElementById("aca55").style.backgroundColor="#333";
+		
+		
+	}
+	else if(hidelac == 'aca90'){
+		
+        document.getElementById("acdiv2").style.display="none";	
+		document.getElementById("acdiv10").style.display="none";
+		document.getElementById("acdiv90").style.display="block";
+		document.getElementById("acdiv22").style.display="none";
+		document.getElementById("acdiv11").style.display="none";
+		document.getElementById("acdiv55").style.display="none";
+		document.getElementById("aca10").style.backgroundColor="#333";
+		document.getElementById("aca2").style.backgroundColor="#333";
+		document.getElementById("aca90").style.backgroundColor="#000";
+		document.getElementById("aca22").style.backgroundColor="#333";
+		document.getElementById("aca11").style.backgroundColor="#333";
+		document.getElementById("aca55").style.backgroundColor="#333";
+		
+		
+	}
+	else if(hidelac == 'aca22'){
+		
+        document.getElementById("acdiv2").style.display="none";	
+		document.getElementById("acdiv10").style.display="none";
+		document.getElementById("acdiv90").style.display="none";
+		document.getElementById("acdiv22").style.display="block";
+		document.getElementById("acdiv11").style.display="none";
+		document.getElementById("acdiv55").style.display="none";
+		document.getElementById("aca10").style.backgroundColor="#333";
+		document.getElementById("aca2").style.backgroundColor="#333";
+		document.getElementById("aca90").style.backgroundColor="#333";
+		document.getElementById("aca22").style.backgroundColor="#000";
+		document.getElementById("aca11").style.backgroundColor="#333";
+		document.getElementById("aca55").style.backgroundColor="#333";
+		
+		
+	}
+	else if(hidelac == 'aca11'){
+		
+        document.getElementById("acdiv2").style.display="none";	
+		document.getElementById("acdiv10").style.display="none";
+		document.getElementById("acdiv90").style.display="none";
+		document.getElementById("acdiv22").style.display="none";
+		document.getElementById("acdiv11").style.display="block";
+		document.getElementById("acdiv55").style.display="none";
+		document.getElementById("aca10").style.backgroundColor="#333";
+		document.getElementById("aca2").style.backgroundColor="#333";
+		document.getElementById("aca90").style.backgroundColor="#333";
+		document.getElementById("aca22").style.backgroundColor="#333";
+		document.getElementById("aca11").style.backgroundColor="#000";
+		document.getElementById("aca55").style.backgroundColor="#333";
+		
+		
+	}
+	else if(hidelac == 'aca55'){
+		
+        document.getElementById("acdiv2").style.display="none";	
+		document.getElementById("acdiv10").style.display="none";
+		document.getElementById("acdiv90").style.display="none";
+		document.getElementById("acdiv22").style.display="none";
+		document.getElementById("acdiv11").style.display="none";
+		document.getElementById("acdiv55").style.display="block";
+		document.getElementById("aca10").style.backgroundColor="#333";
+		document.getElementById("aca2").style.backgroundColor="#333";
+		document.getElementById("aca90").style.backgroundColor="#333";
+		document.getElementById("aca22").style.backgroundColor="#333";
+		document.getElementById("aca11").style.backgroundColor="#333";
+		document.getElementById("aca55").style.backgroundColor="#000";
+		
+		
+	}
+}
+
+
+
+</script>
+
+<script src="js/slider.js" type="text/javascript"></script>
+<script type='text/javascript' src="js/tabs.js"></script>
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+<!-- popup  -->
+
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+
+
+<!-- Tabs -->
+<script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
+<script type="text/javascript"> $(function() { $('#form_fields').tabs(); }); </script>
+<!-- Tabs -->
+<script type="text/javascript">
+function msg()
+{
+	var fullURL = parent.document.URL;
+	var x = fullURL.substring(fullURL.indexOf('?')+4, fullURL.length);
+	
+	if(x == "profile") {
+		document.getElementById("credentials").style.display = "block";
+		document.getElementById("parental_control").style.display = "none";
+		document.getElementById("accounts").style.display = "none";
+		document.getElementById("profile_tab").className = "tabs-selected";
+		document.getElementById("control_tab").className = "";
+		document.getElementById("accounts_tab").className = "";
+	}
+	if(x == "controls") {
+		document.getElementById("credentials").style.display = "none";
+		document.getElementById("parental_control").style.display = "block";
+		document.getElementById("accounts").style.display = "none";
+		document.getElementById("control_tab").className = "tabs-selected";
+		document.getElementById("profile_tab").className = "";
+		document.getElementById("accounts_tab").className = "";
+	}
+	if(x == "accounts") {
+		document.getElementById("credentials").style.display = "none";
+		document.getElementById("parental_control").style.display = "none";
+		document.getElementById("accounts").style.display = "block";
+		document.getElementById("accounts_tab").className = "tabs-selected";
+		document.getElementById("control_tab").className = "";
+		document.getElementById("profile_tab").className = "";
+	}
+	
+}
+</script>
+</head>
+
+<body class="bodybg" onload="javascript:msg();">
+
+	<!--Start : Remove Member Popup -->
+    <div id="remove_member" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Remove Jackson Smith from Smith Family?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('remove_member', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>Warning:</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you wish to continue with the removal of this family member? </strong>           
+        </div>
+       <div class="centeredBtn">
+				<ul>
+					<li><a href="ourDevices.html?a=ok" class="anchor_btn"><span>Yes</span></a></li>
+					<li><a href="addDeviceViaCode.html" class="anchor_btn"><span>No. Cancel this operation</span></a></li>
+				</ul>
+			</div>
+    </div>
+	<!--End : Remove Member Popup -->
+	
+	<!--Start : confirm Changes Popup -->
+    <div id="confirm_changes" class="popupContact" style="width:500px;">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Confirmation Request</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('confirm_changes', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+         <div class="centeredBtn">
+				<ul>
+					<li><a href="memberProfile.html" class="anchor_btn"><span>Save Changes?</span></a></li>
+					<li><a href="memberProfile.html" class="anchor_btn"><span>Discard Changes?</span></a></li>
+				</ul>
+		</div>
+    </div>
+	<!--End : confirm Changes Popup -->
+	
+	 <!--start : Upload Avatar Popup-->
+    <div id="popupUploadAvatar" class="popupContact" style="width:600px;" >
+        <div class="heading">
+            <div class="forgot"><h2>Upload Picture</h2></div>
+            <div class="close">
+                <a id="A1" class="popupContactClose" onclick="javascript:disablePopup1('popupUploadAvatar', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+		<div class="confirm">
+			
+			<div class="fleft" style="float:left; width:100%; text-align:right">
+					<div style="float:left; width:20%;"></div>
+				
+					<div class="box_info">
+						<div class="manage_btns ">
+							<div class="centeredBtn">
+							<ul>
+								<li><a href="#" class="anchor_btn"><span>Upload a Picture From Your Computer</span></a></li>
+								<li><a href="#" class="anchor_btn"><span>Upload Image</span></a></li>
+								<li style="margin-left:10px; float:left; margin-top:5px;"></li>
+							</ul>
+							</div>
+						</div>
+						
+						<div class="upload_img_info">
+							<span class="image_file_name">image_file_name.jpg</span>
+							<span class="remove_imag"><a href="#">Cancel</a></span>				
+						</div>
+					</div>
+					
+					<div class="fleft clear padding_top_15" style="width:100%;">
+						<div style="float:left; width:20%;">&#160;</div><span class="red">&#160;</span>		
+						<div class="default_images">
+							<ul>
+								<li style="padding-top:20px; padding-right:15px;">Or Pick One of These Images : </li>
+								<li><a href="#"><img src="images/avatar_img_1.jpg" alt="" border="0"/></a></li>
+								<li><a href="#"><img src="images/avatar_img_2.jpg" alt="" border="0"/></a></li>
+								<li><a href="#"><img src="images/avatar_img_3.jpg" alt="" border="0"/></a></li>
+								<li><a href="#"><img src="images/avatar_img_4.jpg" alt="" border="0"/></a></li>
+							</ul>
+						</div>
+					</div>				
+			</div>
+			
+			
+			
+		</div>
+    </div>
+    <!--end : Upload Avatar Popup-->
+	
+    <div id="backgroundPopup">
+    </div>
+<!--End : Popup-->
+
+<!--Start : Retailer Policy Statement popup --> 
+    <div id="retailer_policy" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2> Policy Statements  </h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('retailer_policy', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="popup_content">
+			
+        	<div class="popup_scroll" >
+				<div class="controls">
+					<div class="account_control_lable"><input type="checkbox" checked="checked" />Link My Accounts</div>
+					
+				<textarea class="policy_txt">[By checking this box] You allow [Retailer/LASP name] to connect to your UltraViolet account without requiring you to log in. You can change this at any time by visiting the [Retailer/LASP name] Web site or the UltraViolet Web site.</textarea>
+				</div>
+			
+			<div class="controls">
+				<div class="account_control_lable"><input type="checkbox" checked="checked"/>Manage My Profile </div>
+				<textarea class="policy_txt">[By checking this box] You give [Retailer/LASP name] consent  to access and manage your Member profile at your direction - including accessing, changing, and deleting information in your Member profile. You can change this at any time by visiting the [Retailer/LASP name] Web site or the UltraViolet Web site. </textarea>
+			</div>
+
+				<div class="controls">
+					<div class="account_control_lable"><input type="checkbox" checked="checked"/>Recommend Related Media, Products, and Services </div>
+					<textarea class="policy_txt">[By checking this box] You allow [Retailer/LASP name] to use your media and other information (including such personal information as email address, parental-control settings and user name) to recommend related media, products, and services to you. This may include information about media you obtained from other retailers. Ultraviolet will not disclose to [Company Name] the retailers from whom you acquired your media. [Retailer/LASP name] will not share this information with third parties, except with its service providers for the sole purpose of providing services to you. You can change this at any time by visiting the [Retailer/LASP name] Web site or the UltraViolet Web site.</textarea>
+				</div>
+
+						  
+			</div>
+		</div>
+	</div>
+<!--End : Retailer Policy Statement popup -->
+
+<div id="main_wrapper">
+	<div id="container">
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg" border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+			<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+		</div>
+		<div id="nav_wrapper">
+                <ul>
+                    <li>
+                    <div class="width100p">
+                    <a href="detailOurMedia.html" class="our_media" >
+                   <span > <ul>
+                  			 <li>
+                   <span>OUR MEDIA </span><br />
+                      <em>125 Movies available </em>
+                      </li></ul></span>
+                  
+                        </a>
+                        </div>
+                        </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="myFamily.html" class="my_familyselect">
+                   <span > <ul>
+                  			 <li>
+                     			<span>MY HOUSEHOLD </span><br />
+                      			<em>3 of 6 Members active </em>
+                                </li>
+                              </ul>
+                          </span>
+                    </a></div>
+                    </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="ourDevices.html" class="our_devices">
+                     <span > <ul>
+                  			 <li>
+                         		 <span>OUR DEVICES</span>
+                              	<br />
+                          		<em>4 of 12 Devices active</em>
+                        		 </li>
+                              </ul>
+                          </span>
+                        </a>
+                        </div>
+                        </li>
+                    
+                </ul>
+          </div>
+		<div id="nav_hr">
+			<img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+		
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+				<div class="left_panel">
+					<!-- Start : My Profile Heading -->
+					<div class="myprofile_heading_wrapper">
+						<div class="myprofile_heading">
+							<h2>MY HOUSEHOLD /</h2><span>ALICE SMITH </span><br />
+							Adipiscing elit, sed diam non ummy nibh euismod tincidunt
+						</div>
+						<!--<div class="Back_to_myfamily">
+							<a href="myFamily.html"><span>Back to My Family</span></a>
+						</div>-->
+					</div>
+					<!-- Start : My Profile Heading -->
+					
+					<!-- Start : Manage Family Member -->
+					<div class="member_profile">
+						<div class="fmember_img"> <img src="images/html/profile_pic.gif" width="200" height="131" border="0" alt="" /></div>
+						<div class="member_details">
+							<div class="manage_details_values">
+								<div class="member_access">
+									<div class="fmember_name">Alice Smith </div>
+									<div class="permissions">
+										<ul>
+										 <li style="width:220px;"><span>Standard Access Level</span></li>
+										 <li>Parental Controls: <span>Disabled</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="manage_member">
+									<ul>
+										<li><a href="javascript:void(0)" class="edit" onclick="javascript:openPopup('confirm_changes', 'backgroundPopup')"><span>View</span></a></li>
+										<li><a href="javascript:void(0)" class="delete" onclick="javascript:openPopup('remove_member', 'backgroundPopup')"><span>Remove</span></a></li>
+									</ul>
+									
+								</div>
+							</div>
+							<!--<div class="manage_details_values">
+								<div class="member_submenu">
+									<a href="#" class="active">Info</a> | <a href="#">Top 10</a>
+								</div>
+							</div>-->
+						</div>
+					</div>
+					<!-- End : Manage Family Member -->
+					
+					<!-- Start : Edit Family Member -->
+					<div class="add_family_heading"><h2>Edit Family Member</h2>
+						<div class="require">Fields denoted with an asterisk <span style="color:#FF0000">*</span> are required.</div>
+					</div>				
+					<div class="add_family_member">
+					
+						<!--Start : Upload Image -->
+						<div class="image_upload">
+							<div class="upload_img"><span class="fmember_img"><img src="images/img2.jpg" alt="" width="95" height="60" border="0" /></span></div>
+							<div class="upload_btn">
+								<div class="centeredBtn">
+									<ul>
+										<li><a href="javascript:void(0)" class="anchor_btn" onclick="javascript:openPopup('popupUploadAvatar', 'backgroundPopup')"><span>Change Picture</span></a></li>
+									</ul>
+								</div>
+								
+							</div>
+							<!--<div class="default_images_name">Or select from below :</div>
+							<div class="default_images">
+								<ul>
+									<li><a href="#"><img src="images/default_img1.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img2.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img3.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img4.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img1.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img2.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img3.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img4.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img1.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img2.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img3.jpg" alt="" border="0"/></a></li>
+									<li><a href="#"><img src="images/default_img4.jpg" alt="" border="0"/></a></li>
+								</ul>
+							</div>-->
+						</div>
+						<!--End : Upload Image -->
+						
+						<!--start: Registration Form -->
+						<div id="form_fields" class="form_fields">
+							
+								<ul>
+									<li id="profile_tab"><a href="#credentials"><span>Profile</span></a></li>
+                                    <li id="accounts_tab"><a href="#permission_control"><span>Access Level</span></a></li>
+									<li id="control_tab"><a href="#parental_control"><span>Parental Controls</span></a></li>
+                                    
+									<li id="accounts_tab"><a href="#accounts"><span>Linked Accts</span></a></li>
+								</ul>
+								<!--Start : My Info form fields-->
+								<div id="credentials">
+								<div class="form1">
+										<div class="formlable">Username</div><span class="red">*</span>
+										<div class="formfield "><input type="text" class="text_input" /> 
+										<a href="#" class="check">Check Availability</a>
+										</div>
+									</div>
+									<div class="form">
+										<div class="formlable">Display Name </div><span class="red">&#160;</span>
+										<div class="formfield"><input type="text" class="text_input" value="Alice Smith" />
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									
+									<div class="form1">
+										<div class="formlable">Email Address</div> <span class="red">*</span>
+										<div class="formfield"><input type="text" class="text_input" value="alicesmith@someprovider.com"/> 
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<div class="form1" style="display: none;">
+										<div class="formlable">Alternate Email Address </div><span class="red">&#160;</span>
+										<div class="formfield"><input type="text" class="text_input" value="asmith@someprovider.com" />
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+											
+									
+									<div class="form1">
+										<div class="formlable">Password </div> <span class="red">&#160;</span>
+										<div class="formfield"><input type="password" class="text_input" value="********" /> 
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<div class="form1">
+										<div class="formlable">Confirm Password </div> <span class="red">&#160;</span>
+										<div class="formfield"><input type="password" class="text_input" value="********"/> 
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<!--<div class="form1">
+										<div class="formlable"> Country </div><span class="red">&#160;</span>
+										<div class="formfield"><select name="country" >
+												<option>-- Select Country --</option>
+												<option>USA</option>
+												<option>Japan</option>
+												<option>France</option>
+												</select>
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>-->
+									
+									<div class="form1">
+										<div class="formlable">Secret Question 1</div> <span class="red">*</span>
+										<div class="formfield"> <select><option>-- Secret Question --</option></select>
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<div class="form1">
+										<div class="formlable">Answer</div> <span class="red">*</span>
+										<div class="formfield">  <input type="text" class="text_input" value="San Pablo Avenue"/>
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<div class="form1">
+										<div class="formlable">Secret Question 2</div> <span class="red">*</span>
+										<div class="formfield"> <select><option>-- Secret Question --</option></select>
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<div class="form1">
+										<div class="formlable">Answer</div> <span class="red">*</span>
+										<div class="formfield">  <input type="text" class="text_input" value="Fluffy"/>
+											<span class="hide_error_msg">Error Messages Here</span>
+										</div>
+									</div>
+									<div class="group_title">
+										<!--<div class="form" >
+											<div class="formlable">Permission Level</div> <span class="red">*</span>
+											<div class="formfield"> 
+												<input type="radio" name="DECE_permission_level" value="radio" />Basic &#160;<br />
+												<input type="radio" name="DECE_permission_level" value="radio" checked="checked" />Standard &#160;<br />
+												<input type="radio" name="DECE_permission_level" value="radio" />Full
+												<span class="hide_error_msg">Error Messages Here</span>
+											</div>
+										</div>-->
+									</div>
+								
+									<!--<div class="form1">
+										<div class="formlable">&#160;</div><span class="red">&#160;</span>
+										<div class="formfield"><input type="checkbox"/> I am 18 years of age or older</div>
+									</div>-->
+								</div>
+							<!--End : My Info form fields-->
+                            
+                            
+                            <!--start :permission_control-->
+                            <div id="permission_control">
+								<div class="fleft form">
+											<div class="select_box fleft clear padding_top_5 profile_row">
+											
+										<div class="formlable" style="width:150px;">Date of Birth<div class="fleft padding_top_5 padding_left_18 width160 whiteTxt" style="padding-bottom:5px; width:120px;"> <a href="javascript:void(0)" class="whiteTxt" onclick="javascript:openPopup('age_of_majority_profile', 'backgroundPopup')" style="display: none;"> What's This?</a> </div>
+													</div> <span class="red">*</span>
+										<div class="formfield">
+										<select name="dob_mon" style="width:70px;font-size:11px; padding:2px 3px; border:1px solid #555;">
+                                                        <option>Month</option>
+                                                        <option>Jan</option>
+														<option>Feb</option>
+														<option>Mar</option>
+														<option selected="selected">Apr</option>
+														<option>May</option>
+														<option>Jun</option>
+														<option>Jul</option>
+														<option>Aug</option>
+														<option>Sep</option>
+														<option>Oct</option>
+														<option>Nov</option>
+														<option>Dec</option>
+
+                                                        </select>
+                                                         <select name="dob_date" style="width:50px;font-size:11px; padding:2px 3px; border:1px solid #555;">
+                                                         <option>Day</option>
+                                                        <option>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                        <option>04</option>
+                                                        <option>05</option>
+                                                        <option>06</option>
+                                                        <option>07</option>
+                                                        <option>08</option>
+                                                        <option>09</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                        <option>13</option>
+                                                        <option>14</option>
+                                                        <option>15</option>
+                                                        <option selected="selected">16</option>
+                                                        <option>17</option>
+                                                        <option>18</option>
+                                                        <option>19</option>
+                                                        <option>20</option>
+                                                        <option>21</option>
+                                                        <option>22</option>
+                                                        <option>23</option>
+                                                        <option>24</option>
+                                                        <option>25</option>
+                                                        <option>26</option>
+                                                        <option>27</option>
+                                                        <option>28</option>
+                                                        <option>29</option>
+                                                        <option>30</option>
+                                                        <option>31</option>
+                                                        </select>
+                                                         
+                                                         <select name="dob_year" style="width:60px;font-size:11px; padding:2px 3px; border:1px solid #555;">
+                                                         <option>Year</option>
+                                                        <option>1997</option>
+                                                        <option>1996</option>
+                                                        <option>1995</option>
+                                                        <option>1994</option>
+                                                        <option>1993</option>
+                                                        <option>1992</option>
+                                                        <option>1991</option>
+                                                        <option>1990</option>
+                                                        <option>1989</option>
+                                                        <option>1988</option>
+                                                        <option>1987</option>
+                                                        <option>1986</option>
+                                                        <option>1985</option>
+                                                        <option>1984</option>
+                                                        <option>1983</option>
+                                                        <option>1982</option>
+                                                        <option>1981</option>
+                                                        <option>1980</option>
+                                                        <option>1979</option>
+                                                        <option>1978</option>
+                                                        <option>1977</option>
+                                                        <option selected="selected">1976</option>
+                                                        <option>1975</option>
+                                                        <option>1974</option>
+                                                        <option>1973</option>
+                                                        <option>1972</option>
+                                                        <option>1971</option>
+                                                        <option>1970</option>
+                                                        <option>1969</option>
+                                                        <option>1968</option>
+                                                        <option>1967</option>
+                                                        <option>1966</option>
+                                                        <option>1965</option>
+                                                        <option>1964</option>
+                                                        <option>1963</option>
+                                                        <option>1962</option>
+                                                        <option>1961</option>
+                                                        <option>1960</option>
+                                                        <option>1959</option>
+                                                        <option>1958</option>
+                                                        <option>1957</option>
+                                                        <option>1956</option>
+                                                        <option>1955</option>
+                                                        <option>1954</option>
+                                                        <option>1953</option>
+
+                                                        <option>1952</option>
+                                                        <option>1951</option>
+                                                        <option>1950</option>
+                                                        <option>1949</option>
+                                                        <option>1948</option>
+                                                        <option>1947</option>
+                                                        <option>1946</option>
+                                                        <option>1945</option>
+                                                        <option>1944</option>
+                                                        <option>1943</option>
+                                                        <option>1942</option>
+                                                        <option>1941</option>
+                                                        <option>1940</option>
+                                                        <option>1939</option>
+                                                        <option>1938</option>
+                                                        <option>1937</option>
+                                                        <option>1936</option>
+                                                        <option>1935</option>
+                                                        <option>1934</option>
+                                                        <option>1933</option>
+                                                        <option>1932</option>
+                                                        <option>1931</option>
+                                                        <option>1930</option>
+                                                        <option>1929</option>
+                                                        <option>1928</option>
+                                                        <option>1927</option>
+                                                        <option>1926</option>
+                                                        <option>1925</option>
+                                                        <option>1924</option>
+                                                        <option>1923</option>
+                                                        <option>1922</option>
+                                                        <option>1921</option>
+                                                        <option>1920</option>
+                                                        <option>1919</option>
+                                                        <option>1918</option>
+                                                        <option>1917</option>
+                                                        <option>1916</option>
+                                                        <option>1915</option>
+                                                        <option>1914</option>
+                                                        <option>1913</option>
+                                                        <option>1912</option>
+                                                        <option>1911</option>
+                                                        <option>1910</option>
+                                                        </select> 
+								<span class="hide_error_msg">Error Messages Here</span>
+									</div>
+								
+											<div class="fleft clear padding_top_5 padding_left_18 whiteTxt width122" style="display:none;"> Age of
+													Member  <span  class="red fright">*</span>
+											</div>
+											<div  class="fleft padding_left_18 padding_bottom_5 padding_top_5" style="display:none;">
+												<div  class="dropdwonmenu">
+													<div  class="menu"  style="padding-left:10px;">
+														<ul  class="add_permistions">
+															<li ><a href="#">
+															  <input onmouseover="javascript:changeAgeValue('select');" class="agegroup" id="11" type="text" value="Adult (18 or older)" />
+															</a>
+															  <div  id="agegrp" >	<ul style="background:#ccc; margin:0px auto; "  >	  
+																	<li ><a href="#" id="13" onclick="javascript:changeAgeValue('Child (under 13)');" >Child (under 13)</a></li>
+                                                                    <li ><a href="#" id="17" onclick="javascript:changeAgeValue('Youth (13 to 17)');" >Youth (13 to 17)</a></li>
+                                                                    <li ><a href="#" id="18" onclick="javascript:changeAgeValue('Adult (18 or older)');" >Adult (18 or older)</a></li>
+										</ul>		</div>				
+														  </li>
+														  
+														</ul>
+													</div>
+												</div>
+											</div>
+										<!--<div class="fleft clear padding_top_5 padding_left_18 whiteTxt" style="padding-bottom:5px;"> <a href="javascript:void(0)" class="whiteTxt" onclick="javascript:openPopup('age_of_majority_profile', 'backgroundPopup')"> What’s This?</a> </div>-->
+										</div>									
+										<div class="profile_row" style="padding-top: 10px">
+											<div class="left_padding"> 
+												<div class="fields" style="padding-right:8px"> <input type="radio"  name="DECE_permission_level" value="radio"   id="basicRadio"/>Basic Access Member</div> 
+                                                <div class="member_access"> 
+                                                 <ul class="listdiscie7">
+                                                		<li>View My Family</li>
+                                                        <li>View Our Devices</li>
+                                                        <li>Link / Unlink Retailers to our Account</li>
+                                                        <li>Buy content</li>
+                                                </ul>
+                                                </div>
+                                                	<br />
+												<div class="fields" style="padding-right:8px"> <input type="radio" name="DECE_permission_level" value="radio" checked="checked"  id="standardRadio"/>Standard Access Member</div> 
+                                                <div class="member_access">
+                                                 <ul class="listdiscie7">
+                                                		<li>Basic Access privileges plus...</li>
+                                                        <li>Stream content from online services</li>
+                                                        <li>Manage Family Members</li>
+                                                        <li>Manage Devices</li>
+                                                </ul>
+                                                </div>
+                                                	<br />
+												<div class="fields" style="padding-right:8px"> <input type="radio" name="DECE_permission_level"  value="radio" id="fullRadio"/>Full Access Member</div> 
+                                                <div class="member_access" >
+                                                <ul class="listdiscie7">
+                                                		<li>Standard Access privileges plus...</li>
+                                                        <li>Manage Access Levels for Family Members</li>
+                                                        <li>Manage Parental Control for Family Members</li>
+                                                        <li>Manage System Policies for our Account</li>
+                                                        <li>Link / unlink Streaming Services to our Account</li>
+                                                </ul>
+                                                </div>
+                                                	<br />
+												<span class="hide_error_msg">Error Messages Here</span>
+											</div>
+										</div>
+										<div class="form" >
+											<div class="padding_left_18"> 
+                                            <div id="coppa_tc" style="display:none;" >
+												<input type="checkbox" name="DECE_permission_level" value="checkbox" id="coppaAcceptCheckId"/>I accept <a href="javascript:void(0);" onclick="javascript:openPopup('coppa_accept', 'backgroundPopup')"  style="color:white;">COPPA</a> Terms and &amp; Conditions for this User.<br /></div>
+                                                <div id="eula_tc" style="display:none;">
+												<input type="checkbox" name="DECE_permission_level" value="checkbox" id="eulaAcceptCheckId" />I accept <a href="javascript:void(0);" onclick="javascript:openPopup('eula_accept', 'backgroundPopup')" style="color:white;">EULA</a> Terms and &amp; Conditions for this User.<br /></div>
+											</div>
+										</div>
+									
+								</div>
+							</div>
+							
+							
+								
+								
+							<!--Start : Parental controls myProfile Information-->
+							<script type="text/javascript">
+								function showControls()
+								{
+									var cval = document.form1.parentalcontrol;
+									if(cval.checked)
+									 document.getElementById("controls_c").style.display = "block" 
+									else
+									 document.getElementById("controls_c").style.display = "none" 
+								}
+							</script>
+							<div id="parental_control">
+								<div class="form" >
+									<form action="" id="form1" name="form1">
+									<div class="ver_menu_content" id="pcdiv1">
+										<div class="tab_inner_content">
+		<input type="checkbox" type="checkbox" id="parentalcontrol" name="parentalcontrol" onclick="javascript:showControls()" /> Check This Box if You Want to Activate Parental Controls for This Member.
+											<hr color="#333333" />
+										</div>
+										<div class="fleft clear" id="controls_c" style="width:100%; display:none;">
+											<div class="tab_inner_content clear" style="padding-left:5px;">
+												<div class="clear" style="float:left; font-weight:bold; font-size:14px; margin:10px 0">Movie Rating</div>
+												<div class="clear movie_rating" >
+													<span>&nbsp;G</span> <span>PG</span> <span>PG-13</span> <span>R</span> <span>NC-17</span>
+													<div style="float:left; position:relative;">
+														<div class="slider horizontal2" id="red-slider" tabIndex="1">
+															<input class="slider-input" id="red-slider-input" />
+														</div>
+													</div>
+												</div>
+												<div class="clear" style="float:left; font-weight:bold; font-size:14px; margin:10px 0">TV Rating</div>
+												<div class="clear movie_rating">
+													<span>&nbsp;TV Y</span><span> TV Y7</span>
+												<span>TV Y7 FV</span><span>TV G</span>
+												<span>TV PG</span><span>TV 14</span>
+												<span>TV MA</span>
+													<div style="float:left; position:relative;">
+													<div class="slider horizontal1" id="red-slider1" tabIndex="1">
+														<input class="slider-input" id="red-slider-input1" />
+													</div>
+													</div>
+												</div>
+												<script type="text/javascript">
+												// init code
+												var r = new Slider(document.getElementById("red-slider"), document.getElementById("red-slider-input"));
+												var r1 = new Slider(document.getElementById("red-slider1"), document.getElementById("red-slider-input1"));
+												</script>
+											</div>
+											<div class="tab_inner_content">
+												<input type="checkbox" /> Block Explicit Music Videos<br />
+												<input type="checkbox" /> Block Unrated Content<br />
+												<input type="checkbox" checked="checked" /> Block Adult Content
+											</div>
+										</div>
+									</div>
+									</form>
+								</div>
+							</div>
+							<!--Start : Parental controls  Information-->
+							<!--Start : Accounts -->
+							<div id="accounts" >
+								<div class="form" id="hidelac">
+								  <div class="ver_menu" style="padding-left:10px;">
+								    <div style="position: absolute; visibility: hidden;" id="linkedAccountsIdsReferenceJS">
+													 2, 10, 90, 22,11,55,			
+									  </div>
+									  <ul id="mycarousel" class="jcarousel-skin-tango" style="padding-top:30px;">
+                                        <li>
+                                        					
+										<div class="ver_menu_item">
+											<a href="javascript:void(0)" class="active" id="aca2" onclick="javascript:linkac('aca2');"><img src="images/partners/bestbuy.png" /></a>
+										</div></li>
+                                        <li>
+										<div class="ver_menu_item">
+											<a href="javascript:void(0)" id="aca10" onclick="javascript:linkac('aca10');"><img src="images/partners/tesco.png" /></a>
+										</div></li>
+                                        <li><span class="ver_menu" style="padding-left:10px;"><a href="javascript:void(0)" onclick="javascript:prevAccounts(topIndex,'bottomIndex')"></a></span>
+										<div class="ver_menu_item">
+											<a href="javascript:void(0)" id="aca90" onclick="javascript:linkac('aca90');"><img src="images/partners/netflix.png" /></a>
+										</div></li>
+                                        <li>
+										<div class="ver_menu_item">
+											<a href="javascript:void(0)" id="aca22" onclick="javascript:linkac('aca22');"><img src="images/partners/netflix.png" /></a>
+										</div></li>
+                                        <li>
+										<div class="ver_menu_item">
+											<a href="javascript:void(0)" id="aca11" onclick="javascript:linkac('aca11');"><img src="images/partners/netflix.png" /></a>
+										</div></li>
+                                        <li>
+										<div class="ver_menu_item">
+											<a href="javascript:void(0)" id="aca55" onclick="javascript:linkac('aca55');"><img src="images/partners/netflix.png" /></a>
+								    </div></li>
+                                    
+                                    
+                                    </ul>
+									  <a href="javascript:void(0)">
+									  
+									  </a>
+									</div>
+									<div class="accounts_content_edit" id="acdiv2">
+										
+										<div class="tab_inner_content clear">
+											<div class="controls">
+												<div class="account_control_lable">
+                                                <div class="control_checkbox"><input type="checkbox" disabled="disabled" checked="checked"/></div> <div  class="control_content">Maintain link to this business</div> </div>
+											</div>
+											<div class="controls">
+												<div class="account_control_lable">
+                                                <div class="control_checkbox"><input type="checkbox" disabled="disabled" checked="checked"/></div>
+                                     <div class="control_content">            Allow this business to access and edit my user and household information</div> </div>
+											</div>
+											<div class="controls">
+												<div class="account_control_lable">
+                                                <div class="control_checkbox"><input type="checkbox" disabled="disabled" checked="checked"/> </div>
+                                  <div class="control_content">              Share my purchase history with this business for them to make recommendations </div></div>
+											</div>
+										</div>
+										<div class="tab_inner_content" style="padding-left:40px;">
+											<a href="javascript:void(0)" class="retailer_policy" onclick="javascript:openPopup('retailer_policy', 'backgroundPopup')">What are these?</a>
+										</div>
+									</div>
+									<div class="accounts_content_edit" style="display:none;" id="acdiv10">
+										&nbsp;10
+									</div>
+									<div class="accounts_content_edit" style="display:none;" id="acdiv90">
+										&nbsp;90
+									</div>
+									<div class="accounts_content_edit" style="display:none;" id="acdiv22">
+										&nbsp;22
+									</div>
+									
+									<div class="accounts_content_edit" style="display:none;" id="acdiv11">
+										&nbsp;11
+									</div>
+									<div class="accounts_content_edit" style="display:none;" id="acdiv55">
+										&nbsp;55
+									</div>									
+								</div>
+							</div>
+							<!--End : Accounts-->
+						</div>
+						
+						
+					</div>
+					<!-- start : Verify Image  
+					<div class="form_common_area">
+						<div class="inner_form_title">Verify Image</div>
+						<div class="common_area">
+							<div class="form">
+								<div class="formlable">Type the characters shown </div><span class="red">*</span>
+								<div class="formfield"> <input type="text" class="text_input" />
+									<span class="hide_error_msg"></span>
+								</div>
+							</div>
+							<div class="form1">
+								<div class="formlable"> &#160;</div><span class="red">&#160;</span>
+								<div class="formfield"> 
+									<img src="images/rand_img.jpg" alt="" /> 
+									<a href="#" class="refresh">Refresh Image</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				 end : Verify Image  -->
+					<!-- Start : Submit Button -->
+					<div class="inner_center_btn">
+							<div class="centeredBtn fright">
+								<ul style="float:right; left:inherit;">
+									<li style="right:inherit;"><a href="myFamily.html" class="anchor_btn"><span>Save Profile Information</span></a></li>
+									<li style="right:inherit;"><a href="myFamily.html" class="anchor_btn"><span>Cancel</span></a></li>
+								</ul>
+							</div>
+						</div>
+					<!-- Start : Submit Button -->
+					
+					<!-- End : Edit Family Member -->
+				</div>
+				<div class="right_panel">
+					<div class="cont_box1">
+						<div class="content_box" >
+							<div class="quickview_tab" id="quickview">
+								<div class="quick_tip_title">QUICK TIP </div>
+								<div class="quicktip_arrows">
+									<a href="#" class="leftArrow" rel="previous" title="Previous">
+										<img src="images/side_arrow_lft.gif"  border="0" alt="" />
+									</a><a href="#" rel="next" title="Next">
+										<img src="images/side_arrow_rght.gif" border="0" alt="" />
+									</a>
+								</div>
+							</div>
+						
+							<div class="quick_view_content">
+								<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso </div>
+								<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso</div>
+							 </div>
+							<script type="text/javascript">
+								var newscripts=new virtualpaginate({
+								piececlass: "items",
+								piececontainer: 'div', //Let script know you're using "p" tags as separator (instead of default "div")
+								pieces_per_page: 1,
+								defaultpage: 0,
+								wraparound: false,
+								persist: true
+							})
+
+							newscripts.buildpagination(["quickview"])
+							</script>
+						</div>
+						<div class="box_btm"></div>
+					</div>
+					
+					<div class="cont_box1">
+						<div class="content_box">
+								<div class="quickview_tab">TOP PROFILE FAQs
+									<div style="float:right;">
+									</div>
+								</div>
+								<div class="select_arrow">
+									<div class="faq_arrow">
+										<a href="#" rel="toggle[faq1]" data-openimage="images/expand.gif" data-closedimage="images/collapse.gif">
+											<img src="images/expand.gif" border="0" width="11" />
+										</a>
+									</div>
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How consectetuer adipiscing diam nonummy nibh euismod? </div>
+								</div>
+								<div id="faq1" class="ans">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+								</div>
+								
+								<div class="select_arrow">
+									<div class="faq_arrow">
+										<a href="#" rel="toggle[faq2]" data-openimage="images/expand.gif" data-closedimage="images/collapse.gif">
+											<img src="images/expand.gif" border="0" width="11" />
+										</a>
+									</div>
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How consectetuer adipiscing diam nonummy nibh euismod? </div>
+								</div>
+								<div id="faq2" class="ans">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+								</div>
+								
+								<div class="select_arrow">
+									<div class="faq_arrow">
+										<a href="#" rel="toggle[faq3]" data-openimage="images/expand.gif" data-closedimage="images/collapse.gif">
+											<img src="images/expand.gif" border="0" width="11" />
+										</a>
+									</div>
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How consectetuer adipiscing diam nonummy nibh euismod? </div>
+								</div>
+								<div id="faq3" class="ans">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+								</div>
+							</div>
+							<div class="box_btm" style="clear:both;"></div>
+					</div>
+					<div class="more_faq"><a href="help.html?f=profile">More Profile FAQs</a> | <a href="help.html">All FAQs</a></div>
+				</div>
+			</div>
+		</div>
+		<div id="footer_wrapper">
+			<div class="copyrights"> 
+					Copyright 2010 DECE&nbsp;&nbsp;  |  
+					<a href="javascript:void(0)" onclick="javascript:openPopup('copyright_statement', 'backgroundPopup')">Copyright Statement</a>  |  
+					<a href="viewPrivacyStatement.html">Privacy Statement</a>  |  
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/authenticatedTemplate.xhtml">
+    <ui:define name="authMenu">
+     	<ui:include src="/resources/sections/addUser/addUserMenu.xhtml"/>
+    </ui:define>           
+	<ui:define name="content">
+		<c:if test="#{userProfileBean.userProfileValueMap.linkedAccountsEditable eq 'true'}">
+			<ui:include src="/resources/sections/myhousehold/editLinkedServices.xhtml"/>
+		</c:if>
+		<c:if test="#{userProfileBean.userProfileValueMap.linkedAccountsEditable ne 'true'}">
+			<ui:include src="/resources/sections/myhousehold/viewLinkedAccounts.xhtml"/>
+		</c:if>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/authenticatedTemplate.xhtml">
+    <ui:define name="authMenu">
+     	<ui:include src="/resources/sections/help/authHelpMenu.xhtml"/>
+    </ui:define>           
+	<ui:define name="content">
+		<h:form id="frmAuthHelp">
+	  		<ui:include src="/resources/sections/help/helpSection.xhtml"/>
+	  	</h:form>
+	</ui:define>
+ </ui:composition>

@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="FrmLogin">         
+       <div id="content_wrapper">
+    	        <div id="bodycontent">
+    <!-- *****************************  Start: New Beta Users Login Content  *****************************  -->
+				   <div class="register_form">
+						<div class="titlestrip" style="border-bottom:0px;"> <span class="beta_login_title" style=" text-transform:uppercase;">#{msgs.betaUserWelcomeMsg}</span> <h:commandLink id="signinHelpNav" action="signinHelp" class="trouble_sign_in">#{msgs.betaUserSignInHelp}</h:commandLink> </div>          
+						<div class="reg_form">
+						  <div class="beta_login_body_left">
+						    <div class="members_bg"> <img src="#{applicationScope.staticContentBaseUrl}/images/beta_user_members_img.jpg" width="452" height="118" /> </div>
+						  </div>
+						  <div class="beta_login_body_right">
+						    <div class="user_sign-in-text"> #{msgs.betaUserSignInTitle}</div>
+						    <div class="beta_input_fields"></div>
+						    <div class="beta_input_fields">
+						      <table cellpadding="0" cellspacing="0" border="0" class="beta_input_table">
+						        <tr>
+						          <td>
+						          	<h:inputText alt="#{msgs.LOGIN_INPUTALT_USERNAME}" class="beta_user_inputbox" size="20" id="inputUName" tabindex="1" value="#{userLoginBean.userName}" onfocus="input_focus(this.id);" onblur="input_blur(this.id);"  maxlength="64"/>						          	
+						            <div class="beta_user_inputdiv">#{msgs.usernameLabel}</div>
+						         </td>
+						        </tr>
+						        <tr>
+						          <td>
+						            <h:inputSecret value="#{userLoginBean.password}" redisplay="true" id="inputselect" tabindex="2" class="beta_user_inputbox" onfocus="input_focus(this.id); clearText(this)" onblur="input_blur(this.id); clearText(this)" onkeydown="javascript:myKeyPressed(event);" autocomplete="off"/>
+						            <div class="beta_user_inputdiv">#{msgs.passwordLabel}</div></td>
+						        </tr>
+						      </table>
+						    </div>
+						     <div class="beta_sign_errorOutput" >
+				 				<span class="show_error_msg"><h:outputText value="#{userLoginBean.errorValueMap.pageError}"/></span>
+			  				</div>
+						    <div class="beta_input_fields">     					      
+						      <h:selectBooleanCheckbox id="remembermeCheckBox" tabindex="3" styleClass="fleft" value="#{userLoginBean.rememberMe}"  />
+						      <div class="remember_me_text">#{msgs.betaUserRememberMe}</div>	
+						    </div>
+						    <div class="beta_input_fields">
+						      <div class="bet_sign-in">
+						        <ul>
+						            <li>
+						            	<h:commandLink tabindex="4" styleClass="anchor_btn" action="#{userLoginBean.doLogin}" id="signinButton">
+											<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.betaUserSignIn}"/>
+											<h:outputText value="&lt;/span&gt;" escape="false"/>
+										</h:commandLink>						            	
+						            </li>
+						            <li class="forgot_pwd">
+						            	<h:commandLink tabindex="5" action="forgotPasswordPage" id="forgotPwd">
+											<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.betaUserForgotPwdLink}"/>
+											<h:outputText value="&lt;/span&gt;" escape="false"/>
+										</h:commandLink>						            	
+						            </li>
+						          </ul>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+				</div>
+	<!-- *****************************  End: New Beta Users Login Content  *****************************  -->
+			</div>
+            </div>
+        
+	</h:form>          
+</ui:composition>

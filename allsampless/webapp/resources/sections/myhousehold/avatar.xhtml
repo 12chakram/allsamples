@@ -1,0 +1,161 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jstl/core"	
+	xmlns:rich="http://richfaces.org/rich">
+	 <script language="javascript">
+	 	function typeRejected(){
+			document.getElementById("uploadSuccess").innerHTML="";
+			document.getElementById("fileErr").innerHTML="#{errorMsgs.Not_A_VALID_FORMAT}";
+			document.getElementById("fileErr").style.display="block";
+			document.getElementById("fileErr").className="err_msg_avatar";
+		}		
+		function textVanishment(){
+			document.getElementById("fileErr").innerHTML="";
+			document.getElementById("fileErr").style.display="none";
+			document.getElementById("uploadSuccess").innerHTML="";
+			document.getElementById("frmEditMember:avatarError").style.display="none";			
+			document.getElementById("frmEditMember:avatarUrlValue").value='';
+		}
+		function refreshImg(){			
+			document.getElementById("frmEditMember:uploadImage").src="/ssp/resourceServlet?type=bytesOfImage&amp;dummy="+(new Date()).getTime().toString();
+			document.getElementById("frmEditMember:uploadImage").className='';
+			document.getElementById("frmEditMember:avatarUrlValue").value='';
+		}
+		function setImage(imageSrc){
+			document.getElementById("frmEditMember:uploadImage").src=imageSrc;
+			document.getElementById("frmEditMember:uploadImage").className='';
+			document.getElementById("frmEditMember:avatarUrlValue").value=imageSrc;
+			document.getElementById("uploadSuccess").innerHTML="";
+			document.getElementById("fileErr").innerHTML="";
+			document.getElementById("fileErr").style.display="none";
+		}
+		function successMessage(){			
+			document.getElementById("uploadSuccess").innerHTML="#{labelMsgs.SuccessUploadImage}";
+			document.getElementById("fileErr").innerHTML="";
+			document.getElementById("fileErr").style.display="none";
+		}
+		function clearImg(){
+			document.getElementById("frmEditMember:uploadImage").src="";
+			document.getElementById("frmEditMember:uploadImage").className='DisaplayNone';
+			document.getElementById("fileErr").innerHTML="";
+			document.getElementById("fileErr").style.display="none";
+			document.getElementById("uploadSuccess").innerHTML="";
+			document.getElementById("frmEditMember:avatarError").style.display="none";			
+			document.getElementById("frmEditMember:avatarUrlValue").value='';
+		}
+		function checkForUrl(){
+			if((document.getElementById("frmEditMember:uploadImage").src).match('.jsf')){
+				document.getElementById("uploadSuccess").innerHTML="";
+				document.getElementById("fileErr").style.display="none";
+				document.getElementById("fileErr").innerHTML="";
+				fireEvent(document.getElementById('frmEditMember:saveAvatarBtn'),'click');
+			}else if((document.getElementById("frmEditMember:uploadImage").src)==(document.getElementById("frmEditMember:avatarSrc").value)){
+				document.getElementById("uploadSuccess").innerHTML="";
+				document.getElementById("fileErr").style.display="none";
+				document.getElementById("fileErr").innerHTML="";
+				fireEvent(document.getElementById('frmEditMember:saveAvatarBtn'),'click');
+			}else{
+				fireEvent(document.getElementById('frmEditMember:saveAvatarBtn'),'click');
+			}
+		}
+	</script>
+	<!-- Edit Photo popup start-->            
+	<h:inputHidden id="avatarUrlValue"/>
+	<h:inputHidden id="avatarSrc" value="#{userProfileBean.userDVO.displayImageUrl}"/>
+		<div id="editPhotoPopup" class="popupContact" style="z-index:10003;">
+			<div class="popup_textarea">
+				<h3><h:outputLabel value="#{labelMsgs.editMemberPhoto}"/></h3>
+				<div class="EditMemberPhoto">
+					<div class="Editmember_div140">
+						<div class="MemberText140">
+							<truncate:truncateText text="#{userProfileBean.userDVO.displayName}" start="0" end="-1"/>
+						</div>
+						<div class="clearImage140">
+							<h:graphicImage id="uploadImage" height="83px" width="98" url="#{userProfileBean.userDVO.displayImageUrl}" styleClass="#{userProfileBean.userDVO.displayImageUrl eq null || userProfileBean.userDVO.displayImageUrl eq ''?'DisplayNone':''}" alt="Member Photo"/>
+						</div>
+						<div class="ClearPhoto">
+								<a href="#" onclick="clearImg();"><h:outputLabel styleClass="Common_pointer" value="#{labelMsgs.clearYourPhoto}"/></a>
+						</div>
+					</div>
+					<div class="UploadImageField">
+					<c:if test="#{userProfileBean.userProfileValueMap.age ne 'CHILD'}">
+						<h4><h:outputLabel value="#{labelMsgs.uploadImageFromPC}"/></h4>
+						<rich:fileUpload id="upload" fileUploadListener="#{userProfileBean.fileUploadListner}"
+										addControlLabel = "#{labelMsgs.browse}"
+		    							uploadControlLabel ="Upload" styleClass="input Fleft"
+										maxFilesQuantity="1" autoclear="true"  immediateUpload="false"
+										acceptedTypes="jpg, gif, png, bmp"
+										allowFlash="false" listHeight="60px" listWidth="300px">
+										<f:param value="#{userProfileBean.nodeUserId}" name="selectedUserId"/>
+								<a4j:support event="onuploadcomplete" reRender="upload,uploadImage,fileErr,uploadSuccess" oncomplete="refreshImg();successMessage();" />
+								<a4j:support event="ontyperejected" reRender="upload,uploadImage,fileErr,uploadSuccess" oncomplete="javascript:typeRejected()" />
+								<a4j:support event="onsizerejected" reRender="upload,uploadImage,fileErr,uploadSuccess" oncomplete="javascript:typeRejected()"/>
+						</rich:fileUpload>
+						<div class="OrText">
+							<span class="Fleft"><hr class="HrTag"/></span>
+							<span class="Or Fleft">or</span>
+							<span class="Fleft"><hr class="HrTag"/></span>
+							</div>
+						</c:if>
+						<div>
+							<label id="fileErr"></label>
+						</div>
+						<h:panelGroup id="avatarError">
+							<h:outputLabel id="avatarPageError" styleClass="#{userProfileBean.errorValueMap.pageError ne null?'err_msg_avatar':'DisplayNone'}"
+							rendered="#{userProfileBean.errorValueMap.pageError ne null}" value="#{userProfileBean.errorValueMap.pageError}"/>
+						</h:panelGroup>
+						<div class="EditImage_SuccessMsg">
+							<label id="uploadSuccess"></label>
+						</div>
+						<h4 class="SelectTheImagesBelow"><h:outputLabel value="#{labelMsgs.selectImageBelow}"/></h4>                           
+					</div>                                                        
+				</div>   
+				<div class="PhotosCorner">
+					<span class="PhotoField">
+						<a id="editDefaultAvatarLink1">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/avatar_img_1.jpg" alt="Ball-Image" onclick="setImage(this.src);" id="editDefaultImage1"/>
+						</a>
+					</span>
+					<span class="PhotoField">
+						<a id="editDefaultAvatarLink2">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/avatar_img_2.jpg" alt="Ball-Image" onclick="setImage(this.src);" id="editDefaultImage2"/>
+						</a>
+					</span>
+					<span class="PhotoField">
+						<a id="editDefaultAvatarLink3">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/avatar_img_3.jpg" alt="Ball-Image" onclick="setImage(this.src);" id="editDefaultImage3"/>
+						</a>
+					</span>
+					<span class="PhotoField">
+						<a id="editDefaultAvatarLink4">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/avatar_img_4.jpg" alt="Ball-Image" onclick="setImage(this.src);" id="editDefaultImage4"/>
+						</a>
+					</span>
+					<span class="PhotoField">
+						<a id="editDefaultAvatarLink5" >
+							<img src="#{applicationScope.staticContentBaseUrl}/images/avatar_img_5.jpg" alt="Ball-Image" onclick="setImage(this.src);" id="editDefaultImage5"/>
+						</a>
+					</span>
+					<span class="PhotoField">
+						<a id="editDefaultAvatarLink6">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/avatar_img_6.jpg" alt="Ball-Image" onclick="setImage(this.src);" id="editDefaultImage6"/>
+						</a>
+					</span>
+				</div>
+				<div class="PopUpButton">
+					<div class="button_input">
+						<input type="button" class="image_button" onclick="checkForUrl();" value="#{labelMsgs.saveTheChanges}"/>
+						<a4j:commandButton id="saveAvatarBtn" styleClass="DisplayNone" action="#{userProfileBean.saveAvatarChange}" oncomplete="#{userProfileBean.errorValueMap.pageError eq null?'javascript:disablePopup1(\'editPhotoPopup\', \'backgroundPopup\');':''}" reRender="avatarSrc,uploadImage,avatarPageError,avatarError,userImage123">
+							<f:param value="#{userProfileBean.nodeUserId}" name="selectedUserId"/>
+						</a4j:commandButton>
+					</div>
+					<div class="DonotAccept"><a4j:commandLink id="cancelImgLnk" oncomplete="javascript:disablePopup1('editPhotoPopup','backgroundPopup');" reRender="uploadImage" action="#{userProfileBean.cancelAvatarChange}" value="#{labelMsgs.cancel}"/></div>
+				</div>
+			</div>
+		</div>
+	<!-- Edit Photo popup end. -->
+</ui:composition>

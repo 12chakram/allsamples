@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets">	
+	<h:form id="pendingAccountHeaderfrm">
+		<div class="authenticated_header">
+        	<div class="authenticated_hdr_logo">
+   		    		<img  src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.png" alt="UltraViolet Logo" />
+            </div>         
+            <div class="help_faqs">
+            	<a id="helpLink">#{labelMsgs.helpAndFaqs}</a>
+						
+            	<a class="a_noUnderline" tabindex="-1"> |</a> 
+            	<span class="Fleft">
+           			<truncate:truncateText text="#{headerBean.userName}" start="0" end="-1"/>
+           		</span>
+	           <div style="float:left;" id="Mouse">
+	               <a id="DropdownIcon">
+	               		<div class="DropDownIcon"></div>
+	               </a>
+	               <div class="DropDownText" id="DropDown">
+	               		<a id="memberSettings">#{labelMsgs.memberSettings}</a>
+	               		<a id="householdSettings">#{labelMsgs.householdSettings}</a>
+	               		<h:commandLink value="#{labelMsgs.signOut}" action="#{headerBean.signOut}" id="signOutLink" immediate="true"/>
+	               </div>
+	           </div>
+           </div>
+        </div>
+	</h:form>
+</ui:composition>

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- Collapse / Expand -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+
+<script type="text/javascript">
+function showdiv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+
+	for(i=1; i<=3; i++)
+	{
+		if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+		{
+			
+			collapse.style.display = "none";
+			expand.style.display = "inline";
+			faqs.style.display = "block";
+		}
+		else
+		{
+			var rcollapse = document.getElementById("collapse"+i);
+			var rexpand = document.getElementById("expand"+i);
+			var rfaqs = document.getElementById("faq"+i);
+			rcollapse.style.display = "inline";
+			rexpand.style.display = "none";
+			rfaqs.style.display = "none";
+		}
+	}
+}
+
+function hidediv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+	
+	
+			collapse.style.display = "inline";
+			expand.style.display = "none";
+			faqs.style.display = "none";
+		
+	
+} 
+
+function validateCode(val, eid)
+{
+	var	eMsg = document.getElementById(eid);
+	if(val != "345HB8732323")
+	{
+		
+		eMsg.style.display = "";
+	}
+	else
+		eMsg.style.display = "none";
+		
+}
+</script>
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+<!-- popup  -->
+</head>
+
+<body class="bodybg">
+<!--Start : Terms & Conditions --> 
+      
+<!--End : privacy statement-->
+
+<!--Start : Popup-->
+    <div id="continue_adding_devices" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Continue Adding Devices?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('continue_adding_devices', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>Warning:</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you wish to continue?</strong>           
+        </div>
+       
+			<div class="centeredBtn">
+				<ul>
+					<li><a href="ourDevices.html?a=ok" class="anchor_btn"><span>Yes</span></a></li>
+					<li><a href="addDeviceViaCode.html" class="anchor_btn"><span>No. Cancel this operation</span></a></li>
+				</ul>
+			</div>
+        
+    </div>
+    <div id="backgroundPopup">
+    </div>
+    <!--End : Popup-->
+
+
+<div id="main_wrapper">
+  <div id="container">
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<!--Start : Select Languages-->
+			<!--End : Select Languages-->
+        </div>
+		
+		
+		
+		<div id="content_wrapper"  >
+			<div id="bodycontent" >
+				<div class="left_panel"  style="padding-bottom:20xp;">
+					<div class="content_heading">
+						<div class="heading"><h1 class="device_heading">Add New Legacy Device to Household</h1></div>
+					</div>
+					<div class="device_option_steps" style="color:#FFFFFF;">
+							
+							<div class="option_content">
+								<div class="reg_form_tabs">
+									<div class="reg_form_details">
+										<div class="form_lable"> &#160;</div>
+										<div class="form_field"> &#160;
+											<span class="hide_error_msg"></span>
+										</div>
+									</div>
+									<div class="reg_form_details">
+										<div class="form_lable"> Device </div><span class="red"></span>
+										<div class="form_field"> 
+											<select>
+												<option>-- Select Device --</option>
+												<option>TeleVision</option>
+												<option>DVD Player</option>
+											</select>
+											<span class="hide_error_msg"></span>
+										</div>
+									</div>
+									<div class="reg_form_details1">
+										<div class="form_lable"> Manufacturer </div><span class="red"></span>
+										<div class="form_field padding_top_3"> 
+											<select>
+												<option>-- Select Manufacturer --</option>
+												<option>Sony</option>
+												<option>Thoshiba</option>
+												<option>Samsung</option>
+											</select>
+											<span class="hide_error_msg"></span>
+										</div>
+									</div>
+									<div class="reg_form_details">
+										<div class="form_lable"> &#160;</div>
+										<div class="form_field"> &#160;
+										<span class="hide_error_msg"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						  <div class="edit_device">
+							<div class="centeredBtn" style="padding-bottom:20px;">
+							  <ul>
+								<li><a href="javascript:void(0)" class="anchor_btn"><span>Add</span></a></li>
+							  </ul>
+							</div>
+						  </div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

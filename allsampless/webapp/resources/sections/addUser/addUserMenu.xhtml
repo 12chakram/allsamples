@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="frmAddUserMenu">
+
+<!-- cancel add user popup -->
+    <h:commandLink id="cancelLnk"  style="display:none;" action="#{headerBean.goHome}"/>
+    <div id="cancelAddUser" class="popupContact" style="z-index:10003;">
+        <div class="popup_textarea">
+            <h3>#{labelMsgs.saveChanges}</h3>
+			<div class="PopupBody">
+				<div class="PopupLeftContent">
+					<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" title="#{labelMsgs.title_warnIcon}" width="81" height="81" />
+				</div>
+				<div class="PopupRightContent">
+					#{labelMsgs.UnsavedChangesProfile}<br />
+				</div>
+			</div>
+			<div class="PopUpButton Fleft">
+				<a href="#" id="ReturnChangesPop" class="CommonBtn_Link" onclick="javascript:disablePopup1('cancelAddUser', 'backgroundPopup');">
+					<div> #{labelMsgs.cancelPop}</div>
+					<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+				</a> 
+				<h:commandLink id="popUpMyHousehold" styleClass="CommonBtn_Link_Gray" action="myHouseholdPage">
+					<div> #{labelMsgs.continue}</div>
+					<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+				</h:commandLink>
+			</div>
+        </div>
+	</div>
+	<div id="backgroundPopup"></div>
+<!-- cancel add user popup -->
+	
+     <div class="menu_bar">
+	     <div class="HouseholdMenuBgimage100"/>
+	       <div class="menuMainAera">
+	       	<c:set var="addUserMenuTab" value="4"/>
+		     	 <h:commandLink tabindex="#{addUserMenuTab}" id="addUserMenu_OurMedia" title="#{labelMsgs.ourMedia}" styleClass="ourMedia_menu" value="#{labelMsgs.ourMedia}" action="mediaSection"/>
+		     	 <h:commandLink tabindex="#{addUserMenuTab+1}" id="addUserMenu_MyHousehold" title="#{labelMsgs.myhousehold}" styleClass="MyHousehold_menu_active" action="myHouseholdPage">
+		         	 <span class="">
+		         	 	<div class="MyHousehold_menu_active_icon"></div>
+		         	 	<div class="HouseHoldActiveText">#{labelMsgs.myhousehold}</div>
+		         	 </span>
+		             <div class="active_green_icon">&#160;</div>
+		         </h:commandLink>
+		     	<h:commandLink tabindex="#{addUserMenuTab+2}" id="addUserMenu_OurDevices" title="#{labelMsgs.ourPlayers}" styleClass="ourDevices_menu" value="#{labelMsgs.ourPlayers}" action="ourDevicesPage"/>
+		     	<div class="SearchBox">
+		     	<ui:include src="/resources/sections/common/searchMedia.xhtml"/>
+		     	</div>
+			</div>
+    </div>
+	</h:form>
+</ui:composition>

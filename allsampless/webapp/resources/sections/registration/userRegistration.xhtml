@@ -1,0 +1,291 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:comp="http://www.dece.com/jsf"
+	xmlns:rich="http://richfaces.org/rich">
+	 <script type="text/javascript">
+       function clearCaptcha() {	       
+         document.getElementById('FrmReg:captchaImageText').value='';       
+       }  
+     </script>
+     <div id="content_wrapper">
+         <div id="bodycontent">
+				<div class="register_form">	
+					<div class="titlestrip">
+						<span class="title1"><h:outputText value="#{msgs.fillFormMessage}"/></span> <span class="require"><h:outputText value=" #{msgs.requiredFieldInfo1} "/><span style="color:#FF0000">*</span> <h:outputText value=" #{msgs.requiredFieldInfo2}"/></span>                
+					</div>
+					<h:form id="FrmReg">
+					<div style="width:620px;" class="fleft">
+					<div class="form_title">
+							<h:outputText value="#{msgs.createHouseHoldLabel}"/></div>
+					<div id="form_tabs">
+						<div class="reg_form">
+							<!-- start : Personal Info Form  -->
+							<div class="reg_form_tabs">
+								<div class="reg_form_details">
+								<div style="padding-bottom: 4px;">#{msgs.houseHoldNameTitle}</div>
+									<div class="form_lable"> 
+									<h:outputLabel value="#{msgs.householdNamelabel}" for="FrmReg:HouseHoldName"></h:outputLabel>  </div><span class="red">*</span>
+									<div class="form_field"> <h:inputText  value="#{userRegistrationBean.householdName}" alt="#{msgs.REG_INPUTALT_HOUSEHOLDNAME}" id="HouseHoldName" maxlength="50"/>
+										<span class="show_error_msg">
+											<h:message for="HouseHoldName"></h:message>
+											 <h:outputText value="#{userRegistrationBean.errorValueMap.householdNameError}" id="householdNameError"/> 
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form_title">#{msgs.createfirstfamilymember}</div>
+					<div id="form_tabs">
+						<div class="reg_form">
+							<!-- start : Personal Info Form  -->
+							<div class="reg_form_tabs">
+								<div class="reg_form_details">
+								<div style="padding-bottom: 4px;">#{msgs.firstHouseholdMemberTitle}</div>
+									<div class="form_lable">  
+										<h:outputLabel value="#{msgs.usernameLabel}" for="FrmReg:uname"></h:outputLabel></div><span class="red">*</span>
+									<div class="form_field"> 
+										<a4j:region>
+										<h:inputText  alt="#{msgs.REG_INPUTALT_USERNAME}" id="uname" value="#{userRegistrationBean.userDVO.userName}" maxlength="64" onfocus="toggleHint('username')" onblur="toggleHint('username')"/>
+										<span class="show_error_msg" style="float:left;">
+													<rich:messages for="uname"/>
+		                               		     	<h:outputText value="#{userRegistrationBean.errorValueMap.usernameError}" id="usernameerror"/> 
+		                               		       <h:outputText value="#{userRegistrationBean.errorValueMap.usernameAvailable}" id="usernameAvailable" style="color:green"/>
+										</span>
+											  <a4j:commandLink id="checkAvailability" action="#{userRegistrationBean.checkAvailabilityAction}" 
+											  style="clear:both; padding-left:1px;" styleClass="check"  value="#{msgs.checkAvailabilityButton}" reRender="uname,usernameerror,usernameAvailable"/>
+									     <div class="pass_info_main" id='usernameHint'>
+										<div class="username_info" style="font-family: verdana;">#{msgs.usernameHint}</div>
+										</div>
+										</a4j:region>
+									</div>									
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"> 
+									<h:outputLabel value="#{msgs.displayNameLabel}" for="FrmReg:disName"></h:outputLabel></div><span class="red">&#160;</span>
+									<div class="form_field"> 
+									<h:inputText  alt="#{msgs.REG_INPUTALT_DISPALYNAME}" maxlength="50" value="#{userRegistrationBean.userDVO.displayName}" id="disName" onfocus="toggleHint('displayname')" onblur="toggleHint('displayname')">									  									
+									</h:inputText>
+									  <span class="show_error_msg">
+									  	 <h:outputText value="#{userRegistrationBean.errorValueMap.displayNameError}" id="displaynameerror"/> 
+									     <h:message for="disname"/>
+									   </span>
+									   <div class="pass_info_main" id='displaynameHint'>
+										<div class="username_info" style="font-family: verdana;">#{msgs.displaynameHint}</div>
+										</div>	 
+									</div>									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable">
+									   <h:outputLabel value="#{msgs.dateOfBirthLabel}" for="FrmReg:dob_monthId"></h:outputLabel></div><span class="red">*</span>									    
+									<div class="form_field">									
+										<h:selectOneMenu id="dobMonthId" value="#{userRegistrationBean.dobMonthValue}" style="width:70px;font-size:12px; padding:2px 3px; border:1px solid #555;" >
+		                                    <f:selectItems value="#{userRegistrationBean.dobMonthDetailsList}"/>
+		                                </h:selectOneMenu>		                                
+		                                <h:selectOneMenu id="dobDateId" value="#{userRegistrationBean.dobDateValue}" style="width:55px;font-size:12px; padding:2px 3px; border:1px solid #555;" >
+		                                    <f:selectItems value="#{userRegistrationBean.dobDateDetailsList}"/>
+		                                </h:selectOneMenu> 
+		                                <h:selectOneMenu id="dobYearId" value="#{userRegistrationBean.dobYearValue}" style="width:60px;font-size:12px; padding:2px 3px; border:1px solid #555;" >
+		                                    <f:selectItems value="#{userRegistrationBean.dobYearDetailsList}"/>
+		                                </h:selectOneMenu> 		                          	
+										<span class="show_error_msg">
+										  <h:message for="dobMonthId,dobDateId,dobYearId"/>
+										  <h:outputText value="#{userRegistrationBean.errorValueMap.ageGroupError}"/>
+										</span>
+									</div>
+								</div>								
+								<div class="reg_form_details">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.emailAddressLabel}" for="FrmReg:emailAddress"></h:outputLabel> </div><span class="red">*</span>
+									<div class="form_field"> 
+									<h:inputText  alt="#{msgs.REG_INPUTALT_EMAIL}" id="emailAddress" value="#{userRegistrationBean.userDVO.email}" maxlength="100">
+										<f:validateLength maximum="100"/>
+									</h:inputText>
+										<span class="show_error_msg">
+										    <h:message for="emailAddress"/>
+										    <h:outputText value="#{userRegistrationBean.errorValueMap.emailError}"/>
+										</span>
+									</div>									
+								</div>
+								<div class="reg_form_details" style="display:none;">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.alternateEmailAddressLabel}" for="FrmReg:alternateEmailAddress"/> </div><span class="red">&#160;</span>
+									<div class="form_field">
+									 <h:inputText alt="#{msgs.REG_INPUTALT_ALTEMAIL}" id="alternateEmailAddress" value="#{userRegistrationBean.alternateEmail}" maxlength="100">
+										<f:validateLength maximum="100"/>
+									</h:inputText>
+										<span class="show_error_msg">
+										    <h:message for="alternateEmailAddress"/>
+										    <h:outputText value="#{userRegistrationBean.errorValueMap.alternateEmailError}"/>
+										</span>										
+									</div>									
+								</div>								
+								<div class="reg_form_details1">
+									<div class="form_lable"><h:outputLabel value="#{msgs.decePasswordLabel}" for="FrmReg:createpassword"/> </div><span class="red">*</span>
+									<div class="form_field">
+									<h:inputSecret id="createpassword" value="#{userRegistrationBean.userDVO.password}" maxlength="32" autocomplete="off" onfocus="toggleHint('pwd')" onblur="toggleHint('pwd')">
+										<f:validateLength minimum="8" maximum="32"/>
+									</h:inputSecret>
+										<span class="show_error_msg">
+										   <h:message for="createpassword"/>
+										   <h:outputText value="#{userRegistrationBean.errorValueMap.passwordError}"/>
+									   </span>
+									   <div id='pwdHint' class="pass_info_main">											
+											<div class="username_info" style="font-family: verdana;">#{msgs.passwordHint}</div>
+										</div>
+									</div>									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.reEnterPasswordLabel}" for="FrmReg:confirmPassword"/> </div><span class="red">*</span>
+									<div class="form_field"> <h:inputSecret id="confirmPassword" value="#{userRegistrationBean.confirmPassword}" maxlength="32" autocomplete="off"/>
+										<span class="show_error_msg">
+										    <h:message for="confirmPassword"/>
+										    <h:outputText value="#{userRegistrationBean.errorValueMap.confirmPasswordError}"/>
+										</span>
+									</div>									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.country}" for="FrmReg:countrymenu"/></div><span class="red">*</span>
+									<div class="form_field"> 
+									<h:selectOneMenu id="countrymenu" value="#{userRegistrationBean.householdCountry}">	                                   
+	                                    	<f:selectItems value="#{userRegistrationBean.countryMap}">
+	                                    	</f:selectItems>
+	                                	</h:selectOneMenu>
+										<span class="show_error_msg"><h:outputText value="#{userRegistrationBean.errorValueMap.countryError}"/></span>
+									</div>									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.secretQuestion1Label}" for="FrmReg:selectSecq1"></h:outputLabel></div> <span class="red">*</span>
+									<div class="form_field">
+									 <h:selectOneMenu id="selectSecq1" value="#{userRegistrationBean.userDVO.secretQuestionOneId}" >		                                   	
+		                                    <f:selectItems value="#{userRegistrationBean.secqsMap}" />
+		                                </h:selectOneMenu>
+		                                <span class="show_error_msg">
+										   <h:message for="selectSecq1"/>
+										   <h:outputText value="#{userRegistrationBean.errorValueMap.secQuestion1Error}"/>
+										</span>   
+									</div>
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.answerlabel}" for="FrmReg:SecAnswer1"/> </div><span class="red">*</span>
+									<div class="form_field"> 
+									<h:inputText  alt="#{msgs.REG_INPUTALT_SECANS1}" id="SecAnswer1" value="#{userRegistrationBean.userDVO.secretQuestionOneAnswer}" maxlength="50" />
+									 <span class="show_error_msg">
+									    <h:message for="SecAnswer1"/>
+									    <h:outputText value="#{userRegistrationBean.errorValueMap.secAns1Error}"/>
+									  </span> 
+									</div>
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"> <h:outputLabel value="#{msgs.secretQuestion2Label}" for="FrmReg:selectSecq2"/> </div><span class="red">*</span>
+									<div class="form_field">
+									<h:selectOneMenu id="selectSecq2" value="#{userRegistrationBean.userDVO.secretQuestionTwoId}" >	                                   	 	
+	                                    <f:selectItems value="#{userRegistrationBean.secqsMap2}"/>
+	                                </h:selectOneMenu>
+	                                   <span class="show_error_msg">
+										  <h:message for="selectSecq2" />
+										  <h:outputText value="#{userRegistrationBean.errorValueMap.secQuestion2Error}"/>
+										</span>
+									</div>
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"><h:outputLabel value="#{msgs.answerlabel}" for="FrmReg:SecAnswer2"/>  </div><span class="red">*</span>
+									<div class="form_field"> 
+									<h:inputText alt="#{msgs.REG_INPUTALT_SECANS2}" id="SecAnswer2" value="#{userRegistrationBean.userDVO.secretQuestionTwoAnswer}" maxlength="50" />
+									<span class="show_error_msg">
+									    <h:message for="SecAnswer2"/>
+										<h:outputText value="#{userRegistrationBean.errorValueMap.secAns2Error}"/>
+									</span>
+									</div>
+								</div>
+							</div>
+							<!-- start : Household Info.  -->
+						</div>
+					</div>
+                    <!-- start : Agree to Terms  -->
+                    <div class="form_title"><h:outputText value="#{msgs.agreeToTermsTitle}"/></div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="terms">
+								<span class="red">*</span> 
+								<h:selectBooleanCheckbox id="acceptTermsCheckbox" value="#{userRegistrationBean.acceptTermsCheckbox}" />
+								<h:outputLabel value="#{msgs.agreeToTerms1Label}" for="FrmReg:acceptTermsCheckbox"/>								
+							</div>
+								<span class="show_error_msg" style="width:600px;">
+									<h:message for="acceptTermsCheckbox"/>
+									<h:outputText value="#{userRegistrationBean.errorValueMap.termsandConditionsError}"/>
+							   </span>							
+							<div class="termsandcond">
+            		 			<iframe src="#{applicationScope.termsOfUseUrl}" id="printable_area"  frameborder="0" scrolling="yes" class="termsofuse_iframe" />
+							</div>							
+						</div>
+					</div>
+					<!-- END : Agree to Terms  -->
+					<!-- start : CAPTCHA  -->
+					<div class="form_title"><h:outputText value="#{msgs.verifyImageTitle}"/></div>
+					<div class="reg_form">
+					<a4j:outputPanel ajaxRendered="true">
+						<div class="reg_form_details">
+							<div class="form_lable"><h:outputLabel value="#{msgs.captchaLabel}"/></div><span class="red">*</span>
+							<div class="form_field"> 
+							<h:inputText id="captchaImageText" alt="#{msgs.REG_INPUTALT_CAPTHCA}" value="#{userRegistrationBean.captchaValue}" size="8"/>
+								<span class="show_error_msg">
+								  <h:message for="captchaImageText"/>
+								  <h:outputText id="captchaError" value="#{userRegistrationBean.errorValueMap.captchaValueError}"/>
+								</span>
+							</div>
+							<div class="reg_form_details">
+								<div class="form_lable"> &#160;</div><span class="red">&#160;</span>
+								<div class="form_field">									 
+									 <h:graphicImage id="captchaImage" url="/jcaptcha?dummy=#{userRegistrationBean.currentTime}" immediate="true" alt="#{msgs.CAPTCHA_ALT}"/><br />
+                                     <a4j:commandLink styleClass="refresh" value="#{msgs.refreshCaptchLink}" reRender="captchaImage,captchaImageText" oncomplete="clearCaptcha();"/>
+								</div>
+							</div>
+						</div>
+					</a4j:outputPanel>
+					</div>
+					<!-- End : CAPTCHA  -->
+					
+					<!-- Start : Page level error displayholder -->
+					<div class="reg_form_details">
+						<span class="show_error_msg" style="padding-left: 200px; padding-bottom:5px">                                 
+                            <h:outputText value="#{userRegistrationBean.errorValueMap.pageError}" />
+                        </span>
+					</div>
+					<!-- End : Page level error displayholder -->
+					
+				  	<!-- start : submit button -->
+					<div class="submitform_btn" style="width:620px;">
+						<div class="centeredBtn">
+							<ul>
+								<li><h:commandLink styleClass="anchor_btn" action="#{userRegistrationBean.registrationSubmitAction}" id="createButton">
+										<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.createAccountButton}"/>
+										<h:outputText value="&lt;/span&gt;" escape="false"/>
+									</h:commandLink></li>
+								<li class="cancel_btn"><h:commandLink  action="#{userRegistrationBean.registrationCancelAction}" style="color:#fff;" immediate="true" id="cancelButton">
+										<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.cancelButton}"/>
+										<h:outputText value="&lt;/span&gt;" escape="false"/>									
+									</h:commandLink>
+								</li>
+							</ul>
+						</div>
+					</div>
+	 			 	<!-- End : submit button -->
+	 			</div>
+	 			</h:form>
+				 <div class="right_panel padding_top_36">
+				 <div>
+				 		<ui:decorate template="/resources/sections/registration/quickTip.xhtml"/>
+				</div>
+				<div class="registrationFAQ">
+						<ui:decorate template="/resources/sections/registration/householdFaq.xhtml"/>
+				</div>	
+				</div>
+            </div>
+        </div>
+       </div>
+	
+</ui:composition>

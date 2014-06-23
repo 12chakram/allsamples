@@ -1,0 +1,386 @@
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/popup.js"></script>
+<!--[if lte IE 7]> 
+<style type="text/css">
+.media_list1 .dropdwonmenu .menu ul li ul.ieposition{ margin-left:-161px; margin-top:16px; }
+.select_tipic .dropdwonmenu .menu ul li ul.ieposition{ margin-left:-159px; margin-top:17px; }
+</style>
+<![endif]--> 
+
+
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+<!--lines for Seaerch field validation Focus -->
+<script type="text/javascript">
+function clearText(field){
+
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+
+}
+</script>
+<!--end -->
+
+<link rel="stylesheet" title="Standard" href="css/screen.css" type="text/css" media="screen" />
+<script language="JavaScript" type="text/javascript" src="js/imageflow.js"></script>
+</head>
+<body class="bodybg">
+
+ <div id="backgroundPopup">
+    </div>
+<div id="main_wrapper">
+	<div id="container">
+		<!--Start : Header-->
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg" border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+			<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+		</div>
+		<!--End : Header-->
+		
+		<!--Start : Main Navigation-->
+		<div id="nav_wrapper">
+                <ul>
+                    <li>
+                    <div class="width100p">
+                    <a href="detailOurMedia.html" class="our_mediaselect" >
+                   <span > <ul>
+                  			 <li>
+                   				<span>OUR MEDIA </span><br />
+                     			 <em>125 Movies available </em>
+                      			</li></ul></span>
+                  
+                        </a>
+                        </div>
+                        </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="myFamily.html" class="my_family">
+                   <span > <ul>
+                  			 <li>
+                     			<span>MY HOUSEHOLD </span><br />
+                      			<em>3 of 6 Members active </em>
+                                </li>
+                              </ul>
+                          </span>
+                    </a></div>
+                    </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="ourDevices.html" class="our_devices">
+                     <span > <ul>
+                  			 <li>
+                         		 <span>OUR DEVICES</span>
+                              	<br />
+                          		<em>4 of 12 Devices active</em>
+                        		 </li>
+                              </ul>
+                          </span>
+                        </a>
+                        </div>
+                        </li>
+                    
+                </ul>
+          </div>
+		<!--End : Main Navigation-->
+		
+		<div id="nav_hr">
+			<img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+		
+		<!--Start : Content Wrapper-->
+		<div id="content_wrapper" >
+		
+			<div id="contact_media">
+			
+				<!--Start : Browse Media -->
+				<div class="media_left">
+					<div class="browse_media">
+						BROWSE MEDIA
+					</div>
+					<div class="media_list">
+						<div class="media_type">by Search</div>
+						<div class="all_type"> <a href="#">&gt;&gt; All</a> </div>
+						<div class="search">
+							<div class="search_left_corner">
+								<img src="images/search_left_corner.jpg" width="6" height="19" border="0" alt="searcb_left_corner" />
+							</div>
+							<div class="media_search_input">
+								<input type="text" value="Search for a title" onFocus="clearText(this)" onBlur="clearText(this)" name="search_title"/>
+							</div>
+							<div class="search_btn">
+								<img src="images/search_btn.jpg" width="24" height="19" border="0" alt="search" />
+							</div>
+						</div>
+					</div>
+					<div class="media_list clear">
+						<div class="media_type">by My Purchased Media</div>
+						<div class="all_type"> <a href="#">&gt;&gt; All</a> </div>
+						<div class="options">
+							<ul>
+								<li><a href="#">&nbsp;</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="media_list clear">
+						<div class="media_type">by type</div>
+						<div class="all_type"> <a href="#">&gt;&gt; All</a> </div>
+						<div class="options">
+							<ul>
+								<li><a href="#">Movies (213)</a></li>
+								<li><a href="#">TV Shows (54)</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="media_list clear">
+						<div class="media_type">by genre</div>
+						<div class="all_type"> <a href="#">&gt;&gt; All</a> </div>
+						<div class="options">
+							<ul>
+								<li><a href="#">Action &amp; Adventure (15)</a></li>
+								<li><a href="#">Animation (4)</a></li>
+								<li><a href="#">Comedy (4)</a></li>
+								<li><a href="#">Crime, Law, Mystery (4)</a></li>
+								<li><a href="#">Drama (4)</a></li>
+								<li><a href="Episodic_tv_movies.html" class="media_link_active">Episodic TV/Movies (4)</a></li>
+								<li><a href="#">Family &amp; Kids (4)</a></li>
+								<li><a href="#">Fasion / Beauty (4)</a></li>
+								<li><a href="#">Horror &amp; Suspence (4)</a></li>
+								<li><a href="#">Mini-Series (4)</a></li>
+								<li><a href="#">Romance (4)</a></li>
+								<li><a href="#">Sci-Fi &amp; Fantasy (4)</a></li>
+								<li><a href="#">Other (4)</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="media_list clear">
+						<div class="media_type">by Retailer</div>
+						<div class="all_type"> <a href="#">&gt;&gt; All</a> </div>
+						<select style="width:165px;">
+						<option>—Select Retailer—</option>
+						<option>Retailer 1</option>
+						<option>Retailer 2</option>
+						<option>Retailer 3</option>
+						</select>
+					</div>
+				</div>
+				<!--End : Browse Media -->
+				
+				<div class="media_right">
+				
+					<!--Start : Heading, Search -->
+					<div class="media_header">
+						<div class="heading"><h2>OUR MEDIA <span>LIBRARY</span></h2></div>
+						<!--<div class="search">
+							<div class="search_left_corner">
+								<img src="images/search_left_corner.jpg" width="6" height="19" border="0" alt="searcb_left_corner" />
+							</div>
+							<div class="search_input">
+					  				<input type="text" value="Search for a title" onFocus="clearText(this)" onBlur="clearText(this)" name="search_title"/>	
+							</div>
+							<div class="search_btn">
+								<img src="images/search_btn.jpg" width="24" height="19" border="0" alt="search" />
+							</div>
+						</div>-->
+					</div>
+					<!--End : Heading, Search -->
+					
+					<!--Start : Sort by detail, list, coverflow -->
+					<div class="submenu">
+						<div class="view_as">
+							View as : <a href="detailOurMedia.html" >detail</a> | <a href="listOurMedia.html">list</a> | <a href="#" class="active">coverflow</a>						</div>
+						<div class="show">
+							Show : <a href="#">All</a> | <a href="#" class="active">Movies</a> | <a href="#" >TV Shows</a> | <a href="#">Recently Added</a> | <a href="#">A-Z</a>
+						</div>
+				  	</div>
+					<!--End : Sort by detail, list, coverflow -->
+					
+					<!--Start : Coverflow banner block -->
+					<div class="media_banner">
+						<img id="preload" src="images/slider.png" />
+
+						<div id="imageflow" style="margin-left:-10px;">
+							<div id="images">
+								<img src="images/slider/img1.jpg" w="141" h="181" />
+								<img src="images/slider/img2.jpg" w="141" h="181" />
+								<img src="images/slider/img3.jpg" w="141" h="181" />
+								<img src="images/slider/img4.jpg" w="141" h="181" />
+								<img src="images/slider/img5.jpg" w="141" h="181" />
+								<img src="images/slider/img6.jpg" w="141" h="181" />
+								<img src="images/slider/img7.jpg" w="141" h="181" />
+								<img src="images/slider/img1.jpg" w="141" h="181" />
+								<img src="images/slider/img2.jpg" w="141" h="181" />
+								<img src="images/slider/img3.jpg" w="141" h="181" />
+								
+							</div>
+							<div id="captions"></div>
+						
+							<div id="scrollbar">
+								<div id="slider"></div>
+							</div>
+							
+						</div>	
+					
+					</div>
+					<!--End : Coverflow banner block -->
+					
+					<!--Start : Product Details -->
+					<div class="media_content_coverflow">
+						<div class="media_lib_list_coverflow">
+							<div class="product">
+								<div class="product_image"><a href="moreDetailOurMedia.html"><img src="images/slider/img3.jpg" width="90" height="135" border="0" alt="" /></a></div>
+								<div class="product_details">
+									<div class="product_name" >
+										<select class="select1"><option>Season 1</option></select>
+										<select class="select2"><option>Ep. 9 - 8:00 A.M. - 9:00 A.M.</option></select>
+									  	<div class="media_go"><a href="#"><img src="images/go.jpg" width="24" height="18" border="0" alt="" /></a></div>									</div>
+									
+								  <div class="product_desc">The Hurt Locker is a 2009 American war film. <br />The film was directed by Kathryn Bigelow. 
+									  <a href="moreDetailOurMedia.html">more &gt; </a>									</div>
+									<table cellpadding="0" cellspacing="0" class="download_options" >
+                                    	<tr>
+                                        <td class="lefttd">
+											<div class="retailer_btn" >
+										
+												<a href="#"><img src="images/partners/retailer-A.JPG" alt="" border="0" /></a>
+											
+										</div>
+										</td>
+                                        <td class="midtd">
+										
+											<div class="accquiredRightsPanel prducts_rights">
+												<div class="download_lbl">Download</div>
+												<div class="blackout_period">Available Dec 10</div>
+												<div class="download_lbl" style="padding-left:10px;">
+												<a href="#" class="dwn_btn"><span class="dwn" >HD</span></a>
+												<a href="#" class="dwn_btn"><span class="dwn" >SD</span></a> 
+												<a href="#" class="dwn_btn"><span class="dwn" >PD</span></a>
+												</div>												
+											</div>
+											</td>
+                                            <td class="righttd">
+                                            <div class="copy_button_download">
+                                            
+                                            	<a href="#" class="fright "><img src="images/copy_icon2.png" alt="Copy" border="0" /></a>
+                                            </div></td></tr>
+                                            </table>
+								</div>
+							</div>
+						</div>
+						<div class="stream">
+								<div class="streamedby">Currently being streamed: </div>
+                                <span class="text_decoration">Bob smith</span><br />
+                                <span class="text_decoration">Jackson smith</span><br />
+                                <span >Lasp user</span>
+							
+						</div>
+					</div>
+					<!--End : Product Details -->
+					
+				</div>
+			</div>
+		</div>
+		<!--End : Content Wrapper-->
+		
+		<!--Start : Footer-->
+		<div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+		<!--End : Footer-->
+		
+	</div>
+</div>
+</body>
+<script language="JavaScript" type="text/javascript">init();</script>
+</html>

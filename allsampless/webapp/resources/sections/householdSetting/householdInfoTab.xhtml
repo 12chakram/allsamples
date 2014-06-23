@@ -1,0 +1,144 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:nt="http://www.dece.com/jsf">	
+	<script type="text/javascript">
+	 function renameButtonClick(){		
+		 var renameValue=document.getElementById("householdRenameFormId:houseHoldrenameId");
+		 var hiddenValue=document.getElementById("householdRenameFormId:hiddenId");
+		 hiddenValue.value=renameValue.value;					
+	 }
+	 function renameHouseholdClick(){                 
+        var householdDisplayName=document.getElementById("householdRenameFormId:householdDisplayNameHiddenId");
+        var renameValue=document.getElementById("householdRenameFormId:houseHoldrenameId");
+        renameValue.value=householdDisplayName.value;                    
+	 }
+	 function closeClick(){						 		 
+	    var householdNameErrorMesg=document.getElementById('householdRenameFormId:houseHoldNameErrorId');
+	    var householdUpdateErrorMesg=document.getElementById('householdRenameFormId:houseHoldUpdateErrorId');
+	    var removeHouseHoldErrorMesg=document.getElementById('houseHoldRemoveFormId:removeHouseHoldErrorId');
+       	if(householdNameErrorMesg!= null || householdUpdateErrorMesg !=null || removeHouseHoldErrorMesg) {                    		               	 
+			 householdNameErrorMesg.innerHTML='';
+			 householdUpdateErrorMesg.innerHTML='';
+			 removeHouseHoldErrorMesg.innerHTML='';						 				
+			 return true;
+       	 }                  
+	 }
+	 function enterKeyHandledCode(e){
+   	  e = e || window.event;
+			var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			if (unicode == 13){					
+				return false;
+			}
+        }
+  </script> 		     	 	
+	<!-- Start of Rename Div -->
+	<h:form id="householdRenameFormId">	
+	   <h:inputHidden id="hiddenId" value=""></h:inputHidden>	
+	   <div id="rename_household" class="popupContact">		   	
+          <div class="heading">
+            <div class="forgot">
+                <h2>#{msgs.renameHouseholdPopupTitle}</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose1" class="popupContactClose" onclick="javascript:disablePopup1('rename_household', 'backgroundPopup');return closeClick();">#{msgs.closeLabel}</a>
+            </div>
+        </div>
+        <div class="worning">           	
+          <div style="float:left;">
+        	<h:outputLabel value="#{msgs.renameHouseholdPopupLabel1}" for="householdRenameFormId:houseHoldrenameId"/>
+        	&#160;
+         </div>        
+          <span class="red">*</span>
+           <h:inputText id="houseHoldrenameId" value="#{householdSetting.houseHoldNameValue}" maxlength="50" style="width:200px;" alt="#{msgs.HOUSEHOLD_INPUTALT_RENAME}" onkeypress="return enterKeyHandledCode(event);">
+          </h:inputText>   
+           <h:inputHidden id="householdDisplayNameHiddenId" value="#{householdSetting.familyDetails[0]}"></h:inputHidden>      	
+		</div>		
+        <div class="confirm">			
+		    <span class="show_error_msg" style="width: 100%; text-align: center;">	
+		       <h:outputText value="#{householdSetting.errorValueMap.houseHoldNameError}" id="houseHoldNameErrorId" /><br />
+			   <h:outputText value="#{householdSetting.errorValueMap.pageError}" id="houseHoldUpdateErrorId"/>
+		    </span> 
+        </div>
+        <div class="centeredBtn">
+            <ul>
+                <li>
+				   <a4j:commandLink id="renameHouseHoldId" action="#{householdSetting.renameHousehold}" reRender="houseHoldNameErrorId,houseHoldUpdateErrorId,renameHouseHoldId,userNamePanelId,infoUserNamePanelId,householdDisplayNameHiddenId,houseHoldRenameSuccessId" oncomplete="newsFeedOnload();#{(householdSetting.errorValueMap.houseHoldNameError eq null &amp;&amp; householdSetting.errorValueMap.pageError eq null)?'disablePopup1(\'rename_household\', \'backgroundPopup\');return closeClick()':'return false'}"  styleClass="anchor_btn"  onclick="renameButtonClick();">
+					    <h:outputText value="&lt;span&gt;#{msgs.saveButtonLabel}&lt;/span&gt;" escape="false"></h:outputText>					    
+				   </a4j:commandLink>				   
+                </li>
+				<li>
+				   <a id="renameHouseHoldCancelId" class="anchor_btn" onclick="javascript:disablePopup1('rename_household', 'backgroundPopup');return closeClick();"><span>#{msgs.renameHouseholdPopupLink2}</span></a>			    
+				</li>
+            </ul>
+        </div>
+     </div>   
+     </h:form>     
+    <!-- End of Rename Div -->	 
+    <!-- Start of Remove Div -->	
+    <h:form id="houseHoldRemoveFormId"> 
+      <div id="remove_household" class="popupContact">      
+        <div class="heading">
+            <div class="forgot">
+                <h2>#{msgs.removeHouseholdPopupTitle}</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" class="popupContactClose" onclick="javascript:disablePopup1('remove_household', 'backgroundPopup')">#{msgs.closeLabel}</a>                 
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>#{msgs.removeHouseholdPopupContentHead}</h3>
+			<p>#{msgs.householdWarningInfo}</p>
+		</div>
+        <div class="confirm">
+			<strong>#{msgs.removeHouseholdPopupFooterText}&#160;<span style="word-wrap:break-word;"> #{householdSetting.familyDetails[0]}&#63;</span></strong> 
+			<span class="show_error_msg" style="width: 100%; text-align: center;padding-top: 5px;">						
+			    <h:outputText value="#{householdSetting.errorValueMap.pageError}" id="removeHouseHoldErrorId"/>
+	        </span>           
+        </div>
+        <div class="centeredBtn">
+            <ul>
+                <li>                   
+                   <a4j:commandLink id="removeHouseHoldId" action="#{householdSetting.removeHouseholdAction}" reRender="removeHouseHoldErrorId,removeHouseHoldId" oncomplete="#{(householdSetting.errorValueMap.pageError eq null)? 'return true':''}" styleClass="anchor_btn" >
+					   <h:outputText value="&lt;span&gt;#{msgs.removeHouseholdPopupLink1}&lt;/span&gt;" escape="false"></h:outputText>	
+				   </a4j:commandLink>	
+                </li>
+				<li>
+				  <a id="removeHouseHoldCancelId" class="anchor_btn" onclick="javascript:disablePopup1('remove_household', 'backgroundPopup');return closeClick();"><span>#{msgs.removeHouseholdPopupLink2}</span></a>				
+				</li>
+            </ul>
+        </div>      
+    </div>  
+    </h:form>   
+   <!-- End of Remove Div -->	 
+   <!-- Start of Info Tab -->
+       <div class="household_info" id="household_info">
+		    <div class="manage_household_news">
+			   <div class="household_name">
+			   		#{msgs.householdNamelabel}						       
+		          <h:panelGroup id="infoUserNamePanelId">
+		             <truncate:truncateText text="#{householdSetting.familyDetails[0]}" start="0" end="20"/>
+		          </h:panelGroup>  						        
+			   </div>
+			   </div>	
+			   <div>
+				 <div class="household_warning">
+				 	<span>#{msgs.warning}</span>
+				 	 <p style="color: rgb(255, 255, 255); font-family: inherit; font-weight: inherit; font-size: 11px; letter-spacing: 0px; font-style: inherit;">
+					    #{msgs.householdWarningInfo}
+					 </p>   
+				 </div>
+                          <div class="manage_household">
+				<ul>
+			    	<li><a href="#" class="rename" onclick="javascript:openPopup('rename_household', 'backgroundPopup');renameHouseholdClick();" ><span>#{msgs.renameHouseholdPopupTitle}</span></a></li>
+					<li><a href="#" class="delete" onclick="javascript:openPopup('remove_household', 'backgroundPopup')"><span>#{msgs.removeHouseholdlinkMesg}</span></a></li>
+		     	</ul>
+			</div>
+		 </div>			
+	   </div>				
+   
+   <!-- End of Info Tab -->
+</ui:composition>

@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>ULTRAVIOLET</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    
+    
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    
+	<script language="javascript" type="text/javascript">
+		function showDiv(divid)
+		{
+			var sldivid = document.getElementById(divid);
+			sldivid.style.display = "";
+		}
+		function hideDiv(divid)
+		{
+			var sldivid = document.getElementById(divid);
+			sldivid.style.display = "none";
+		}
+		
+		function showdiv(cid, eid, faqid)
+		{
+			var collapse = document.getElementById(cid);
+			var expand = document.getElementById(eid);
+			var faqs = document.getElementById(faqid);
+		
+			for(i=1; i<=3; i++)
+			{
+				if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+				{
+					
+					collapse.style.display = "none";
+					expand.style.display = "inline";
+					faqs.style.display = "block";
+				}
+				else
+				{
+					var rcollapse = document.getElementById("collapse"+i);
+					var rexpand = document.getElementById("expand"+i);
+					var rfaqs = document.getElementById("faq"+i);
+					rcollapse.style.display = "inline";
+					rexpand.style.display = "none";
+					rfaqs.style.display = "none";
+				}
+			}
+		}
+		
+		function hidediv(cid, eid, faqid)
+		{
+			var collapse = document.getElementById(cid);
+			var expand = document.getElementById(eid);
+			var faqs = document.getElementById(faqid);
+			
+			
+					collapse.style.display = "inline";
+					expand.style.display = "none";
+					faqs.style.display = "none";
+				
+			
+		} 
+		
+		function ChangeImageNext(val)
+		{
+			var imgPre=document.getElementById('pre');
+			var imgNex=document.getElementById('nex');
+			
+			imgPre.src="images/side_arrow_lft.gif";
+			if(val<newscripts.pagecount-1)
+			{
+				imgNex.src="images/side_arrow_rght.gif";
+				imgPre.style.cursor="pointer"
+				imgNex.style.cursor="pointer"
+			}
+			else
+			{
+				imgNex.src="images/side_arrow_rght_disable.gif";
+				imgNex.style.cursor="default"
+			}
+		}
+		
+		
+		
+		function ChangeImagePrevious(val)
+		{
+			var imgPre=document.getElementById('pre');
+			var imgNex=document.getElementById('nex');
+			imgNex.src="images/side_arrow_rght.gif";
+			
+			if(val>0)
+			{
+				imgPre.src="images/side_arrow_lft.gif";
+				imgNex.style.cursor="pointer"
+				imgPre.style.cursor="pointer"
+			}
+			else
+			{
+				imgPre.src="images/side_arrow_lft_disable.gif";
+				imgPre.style.cursor="default"
+			}
+		}
+		
+		
+		//function aaa(){
+//			var tips = document.getElementById(kk);
+//			for(i=1; i<=1; i++)
+//			{
+//			  if(items.id == "items")
+//			
+//			{alert("t");
+//
+//			document.getElementById('pre').style.display="none"
+//			document.getElementById('pr').style.cursor="block"
+//				}
+//				else	
+//		     {
+//				alert("i");
+//				document.getElementById('pre').style.display="block"
+//				document.getElementById('pr').style.display="none"
+//				}
+//			}
+//		}
+
+		function changeAgeValue(ageGroupSelected){
+			if(ageGroupSelected == ''){
+				document.getElementById("coppaAcceptCheckId").checked = "";
+				document.getElementById("coppaAcceptCheckId").disabled = "disabled";
+				document.getElementById("selectDropdown").style.display = "block";
+				document.getElementById("under13Dropdown").style.display = "none";
+				document.getElementById("over18Dropdown").style.display = "none";
+				document.getElementById("between13And18Dropdown").style.display = "none";
+			}else if(ageGroupSelected == 'Child (under 13)'){
+				document.getElementById("coppaAcceptCheckId").disabled = "";
+				document.getElementById("selectDropdown").style.display = "none";
+				document.getElementById("under13Dropdown").style.display = "block";
+				document.getElementById("over18Dropdown").style.display = "none";
+				document.getElementById("between13And18Dropdown").style.display = "none";
+			}else if(ageGroupSelected == 'Youth (13 to 17)'){
+				document.getElementById("coppaAcceptCheckId").checked = "";
+				document.getElementById("coppaAcceptCheckId").disabled = "true";
+				document.getElementById("selectDropdown").style.display = "none";
+				document.getElementById("under13Dropdown").style.display = "none";
+				document.getElementById("over18Dropdown").style.display = "none";
+				document.getElementById("between13And18Dropdown").style.display = "block";
+			}else if(ageGroupSelected == 'Adult (18 or older)r'){
+				document.getElementById("coppaAcceptCheckId").checked = "";
+				document.getElementById("coppaAcceptCheckId").disabled = "true";
+				document.getElementById("selectDropdown").style.display = "none";
+				document.getElementById("under13Dropdown").style.display = "none";
+				document.getElementById("over18Dropdown").style.display = "block";
+				document.getElementById("between13And18Dropdown").style.display = "none";
+			}
+			return true;
+		}
+		
+</script>
+	
+    <!--[if lte IE 7]> 
+<style type="text/css">
+.dropdwonmenu .menu ul li ul.ieposition{ margin-left:-189px; margin-top:20px; }
+</style>
+<![endif]-->
+    <!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+    <!-- Collapse / Expand -->
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+   
+<style type="text/css"> .TxtStyle{display:none} @media print{.TxtStyle{display:block !important;;}} </style>
+    <script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+  
+</head>
+<body class="bodybg" onload="javascript:aaa();" >
+
+    <div id="age_confirmation" class="popupContact" style="width:500px;">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Select Age Group</h2>
+            </div>
+            <div class="close">
+                <a onclick="javascript:disablePopup1('age_confirmation', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="select_options" style="text-align:center">
+			 <div class="fleft padding_top_7 padding_left_23 whiteTxt">Age Group</div><span class="red fleft padding_top_7 right_padding left_padding whiteTxt">*</span>
+			<div class="select_box fleft left_padding padding_top_5">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li id="selectDropdown" style="text-align:left;display:none;" >
+									   <a href="javascript:void(0);" id="ageGroupId" onclick="javascript:changeAgeValue('');">-- Select --</a>
+												   <ul class="ieposition">
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Child (under 13)');">Child (under 13)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Youth (13 to 17)');">Youth (13 to 17)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Adult (18 or older)r');">Adult (18 or older)r</a></li>
+									   </ul>
+								  </li>
+								  <li id="under13Dropdown" style="text-align:left;">
+								  	   <a href="javascript:void(0);" id="ageGroupId2">Child (under 13)</a>
+												   <ul class="ieposition">
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('');">-- Select --</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Child (under 13)');">Child (under 13)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Youth (13 to 17)');">Youth (13 to 17)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Adult (18 or older)r');">Adult (18 or older)r</a></li>
+									   </ul>
+								  </li>
+								  <li id="between13And18Dropdown" style="text-align:left;display:none;">
+								  	   <a href="javascript:void(0);" id="ageGroupId3">Youth (13 to 17)</a>
+												   <ul class="ieposition">
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('');">-- Select --</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Child (under 13)');"> Child (under 13)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Youth (13 to 17)');">Youth (13 to 17)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Adult (18 or older)r');"> Adult (18 or older)r</a></li>
+									   </ul>
+								  </li>
+								  <li id="over18Dropdown" style="text-align:left;display:none;">
+								  	   <a href="javascript:void(0);" id="ageGroupId4">Adult (18 or older)r</a>
+												   <ul class="ieposition">
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('');">-- Select --</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Child (under 13)');">Child (under 13)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Youth (13 to 17)');">Youth (13 to 17)</a></li>
+											<li><a style="padding-left:10px; width:150px;" href="#" onclick="javascript:changeAgeValue('Adult (18 or older)r');">Adult (18 or older)r</a></li>
+									   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="clear fleft padding_top_7 padding_left_18 whiteTxt">
+				<input type="checkbox" id="coppaAcceptCheckId"/> I accept COPPA for the user
+			</div>	
+			
+		</div>
+		 <div class="centeredBtn">
+			<ul>
+				<li><a href="javascript:void(0)" class="anchor_btn" onclick="javascript:disablePopup1('age_confirmation', 'backgroundPopup'); openPopup('add_family_member', 'backgroundPopup')" id="continueId"><span>Continue</span></a></li>
+				<li><a href="javascript:void(0)" class="anchor_btn" onclick="javascript:disablePopup1('age_confirmation', 'backgroundPopup')"><span>Cancel</span></a></li>
+			</ul>
+		</div>
+    </div>
+	<!--End : age confirmation popup -->
+	
+<!--Start : Add Family Member Popup -->
+    <div id="add_family_member" class="popupContact" style="width:500px;">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Add New Family Member</h2>
+            </div>
+            <div class="close">
+                <a onclick="javascript:disablePopup1('add_family_member', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="select_options">
+			<div class="invite_member">
+				<div class="invite_memebr_heading">Invite family member to join Household Account </div>
+				<div class="lable clear">Email</div>
+				<div class="field"><input type="text" /></div>
+				<div style="min-width:100px; float:left; margin-top:4px; *margin-top:6px;">
+					<div class="centeredBtn">
+						<ul><li><a href="myFamily.html" class="anchor_btn"><span>Invite Member</span></a></li></ul>
+					</div>
+				</div>
+			</div>
+			<div class="fleft popup_or_stmt clear"> ( OR )</div>
+			<div class="go_add_member clear">
+				<div class="invite_memebr_heading">Create a profile for a new family member</div>
+				 <div class="left" style="width:90%; margin-top:23px;">
+					 <div class="centeredBtn">
+							<ul>
+								<li class="add_my_family"><a href="addFamilyMember.html"><span>Add Family Member</span></a></li>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+	<!--End : Add Family Member Popup -->
+	<div id="backgroundPopup"></div>
+	
+    <div id="main_wrapper">
+        <div id="container">
+            <div id="header">
+                <div id="logo_wrapper">
+                    <a href="welcome.html">
+                        <img src="images/deceBrand_logo.jpg" border="0" alt="DeceBrand Logo" /></a>
+                </div>
+                <div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+				<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+            </div>
+            <div id="nav_wrapper">
+                <ul>
+                    <li>
+                    <div class="width100p">
+                    <a href="detailOurMedia.html" class="our_media" >
+                   <span > <ul>
+                  			 <li>
+                   <span>OUR MEDIA </span><br />
+                      <em>125 Movies available </em>
+                      </li></ul></span>
+                  
+                        </a>
+                        </div>
+                        </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="myFamily.html" class="my_familyselect">
+                   <span > <ul>
+                  			 <li>
+                     			<span>MY HOUSEHOLD </span><br />
+                      			<em>3 of 6 Members active </em>
+                                </li>
+                              </ul>
+                          </span>
+                    </a></div>
+                    </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="ourDevices.html" class="our_devices">
+                     <span > <ul>
+                  			 <li>
+                         		 <span>OUR DEVICES</span>
+                              	<br />
+                          		<em>4 of 12 Devices active</em>
+                        		 </li>
+                              </ul>
+                          </span>
+                        </a>
+                        </div>
+                        </li>
+                    
+                </ul>
+          </div>
+            <div id="nav_hr">
+                <img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+            </div>
+            <div id="content_wrapper">
+                <div id="bodycontent">
+                    <div class="left_panel">
+                        <div class="content_heading">
+                            <div class="heading">
+                                <h1 class="family_heading">
+                                    MY HOUSEHOLD</h1>
+                                <p>
+                                    Click on picture to view details</p>
+                            </div>
+                            <div class="add_my_family">
+                                <a href="addFamilyMember-Step1.html" ><span>Add Household Member</span></a></div>
+                        </div>
+                        <div class="profile_wrapper">
+                            <!-- start :Profile 1 -->
+                            <div class="profile">
+                                <div class="profile_img">
+                                  <div class="selectProfile"> <a href="myProfile.html"> <img src="images/html/profile_you.jpg" alt="" width="200" height="130" border="0" /> </a>
+                                    <div class="you_are_in" ><a href="myProfile.html">&nbsp;</a></div>
+                                    <div class="you_bg">YOU</div>
+                                  </div>
+                              </div>
+                              
+                              <div class="profile_bg">
+                                
+                                    <div class="profile_menu">
+                                        <h3>
+                                            Bob Smith Willi...
+                                        </h3>
+                                        <ul>
+                                            <li><span> Full Access Member </span></li>
+                                            <li>Parental Controls: <span>Disabled</span></li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="dropdownmenu">
+                                        <div class="menu">
+                                            <ul>
+                                                <li><a href="#" id="current">Quick Links</a>
+                                                    <ul class="ieposition" style="*margin-left:-188px;  *margin-top:20px;">
+                                                        <li><a href="editMyProfile.html">Edit My Profile</a></li>
+                                                        <li><a href="editTop10.html">Top 10</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                  
+                                </div>
+                                <div><img src="images/profile-bg-bottom.jpg" width="200" height="2" /></div>
+                              </div>
+                            </div>
+                            <!-- end : Profile 1 -->
+                            <!-- start : Profile 2 -->
+                            <div class="profile">
+                                <div class="profile_img">
+                                  <!--<div class="noimage_profile">
+                                   <a href="memberProfile.html">
+                                  <img src="images/no_image_bg.png" alt="" width="200" height="130" border="0" /></a>
+                                  <div class="noimage_a" > <a herf="#">No Image</a> </div>
+                                    <div class="pending_are_in" ><a href="myProfile.html">&nbsp;</a></div>
+                                    <div class="pending_bg">Pending</div>
+                                  </div>
+                                  -->
+                                  <div class="selectProfile"> <a href="memberProfile.html"> <img src="images/html/profile_pic.gif" alt="" width="200" height="130" border="0" /></a>
+                                    <div class="pending_are_in" ><a href="memberProfile.html">&nbsp;</a></div>
+                                    <!--  <div class="pending_bg">Pending</div> -->
+                                  </div>
+                            </div>
+                            
+                  <div class="profile_bg">
+                                    <div class="profile_menu">
+                                        <h3>
+                                            Alice Smith
+                                        </h3>
+                                        <ul>
+                                            <li><span>Standard Access Member</span></li>
+                                           <li>Parental Controls: <span>Disabled</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdownmenu">
+                                        <div class="menu">
+                                            <ul>
+                                                <li><a href="#" id="current">Quick Links</a>
+                                                    <ul class="ieposition" style="*margin-left:-188px;  *margin-top:20px;">
+                                                        <li><a href="editFamilyMember.html">Edit Member Profile</a></li>
+                                                        <li><a href="editTop10.html">Top 10</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                      </div>
+                            <!-- end : Profile 2 -->
+                            <!-- start: Profile 3 -->
+                            <div class="profile" >
+                                <div class="profile_img">
+                                    <a href="child-memberProfile.html">
+                                     <img src="images/images/no_image_bg.png" alt="" width="200" height="130" border="0" /></a>                                </div>
+                                <div class="profile_bg">
+                                    <div class="profile_menu">
+                                        <h3>
+                                            Jackson Smith... (pending) 
+                                        </h3>
+                                        <ul>
+                                            <li><span>Basic Access Member</span></li>
+                                            <li>Parental Controls: <span>Enabled</span></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="dropdownmenu">
+                                        <div class="menu">
+                                            <ul>
+                                                <li><a href="#" id="current">Quick Links</a>
+                                                    <ul class="ieposition" style="*margin-left:-188px;  *margin-top:20px;">
+                                                        <li><a href="edit-childMember.html">Edit Member Profile</a></li>
+                                                        <li><a href="editTop10.html">Top 10</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                              </div>
+                            </div>
+                            <!-- end : Profile 3 -->
+                            <div class="clear"></div>
+                      <!-- start : Profile 4 -->
+                            <div class="profile">
+                                <a href="addFamilyMember-Step1.html"   class="add_fmember">
+									Add Household Member 
+								</a>
+                            </div>
+                            <!-- End : Profile 4 -->
+                            <!-- start : Profile 5 -->
+                            <div class="profile">
+                              <img src="images/add_family_memb_3.jpg" alt="" width="200" height="240" />
+                              <!-- <a href="addFamilyMember.html"  class="add_noimage">
+									No Image
+								</a>-->
+                           
+                              
+                        </div>
+                            <!-- End : Profile 5 -->
+                            <!-- start : Profile 6 -->
+                            <div class="profile">
+                                <img src="images/add_family_memb_3.jpg" alt="" width="200" height="240" />
+                            </div>
+                            <!-- end : Profile 6 -->
+                        </div>
+                    </div>
+                    <div class="right_panel">
+                    	<div class="cont_box1">
+                        	<div class="content_box">
+                        	<div class="quickview_tab" id="quickview">
+                                    <div class="quick_tip_title">QUICK TIP </div>
+								<div class="quicktip_arrows">
+                               
+									<a href="#" class="leftArrow" rel="previous"  title="Previous"  >
+										<img id="pre"  src="images/side_arrow_lft.gif"  border="0" alt="" onclick="ChangeImagePrevious(newscripts.currentpage)"/>
+                                      <!--  <img id="pr"  src="images/side_arrow_lft.gif"  border="0" alt="" />-->
+									</a>
+                                    <a href="#" rel="next" title="Next" >
+										<img onclick="ChangeImageNext(newscripts.currentpage)" id="nex" src="images/side_arrow_rght.gif" border="0" alt="" />
+									</a>
+                                   
+                                    
+								</div>
+                          </div>
+                          
+                          		<div class="quick_view_content">
+                                <div class="items1"  style="color:#ffffff;">Full Access members can add and edit all family members, permission settings, account information, and more.</div>
+                                <div class="items1">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, </div>
+                                 <div class="items1" >Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh</div>
+                                  <div class="items1" >Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, </div>
+                                  <div class="items1" >Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  </div>
+                                
+                                <script type="text/javascript">
+										var newscripts=new virtualpaginate({
+										piececlass: "items1",
+										piececontainer: 'div', 
+										//Let script know you're using "p" tags as separator (instead of default "div")
+										pieces_per_page: 1,
+										defaultpage: 0,
+										wraparound: false,
+										persist: true
+										})
+										newscripts.buildpagination(["quickview"])
+										</script>
+                                        
+					  </div>
+					  </div>
+                        	<div class="box_btm1"></div>
+                            
+                           
+                  </div>
+                  
+                  
+                  
+                  <div class="cont_boxnew">
+                        	
+                        	<div class="quickview_tab" id="quickview">
+                                    <div class="quick_tip_title">TOP HOUSEHOLD FAQs</div>
+                          
+								
+                          </div>
+                          
+                          
+                                
+					<div class="select_arrow">
+									<input type="hidden" value="" id="hidden" />
+									<div id="expand1" class="faq_arrow" style="display:none;">
+										<img src="images/expand.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:hidediv('collapse1', 'expand1', 'faq1')" />
+									</div>
+									<div id="collapse1" class="faq_arrow">
+										<img src="images/collapse.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:showdiv('collapse1', 'expand1', 'faq1')" />
+									</div>
+									
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How do I add family members to my household account?</div>
+								</div>
+								
+								
+								<div id="faq1" class="ans" style="display:none">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">You can add new family members right from your household Dashboard...</div>
+								</div>
+                                
+                                
+                                <div class="select_arrow">
+									<div id="expand2" class="faq_arrow" style="display:none;">
+										<a href="javascript:void(0)" onclick="javascript:hidediv('collapse2', 'expand2', 'faq2')"><img src="images/expand.gif" border="0" width="11" /></a>
+									</div>
+									<div id="collapse2" class="faq_arrow">
+										<a href="javascript:void(0)" onclick="javascript:showdiv('collapse2', 'expand2', 'faq2')"><img src="images/collapse.gif" border="0" width="11" /></a>
+									</div>
+									<div class="q_char">Q: </div>
+									<div class="faq_qust">How do I edit family member information?</div>
+								</div>
+								<div id="faq2" class="ans" style="display:none">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">To edit a family member's profile, simply go to his/her profile...</div>
+								</div>
+                            
+                           <div class="box_btm1"></div>
+                  </div>
+                      
+                        <div class="more_faq">
+                            <a href="help.html?f=family">More Household FAQs</a> | <a href="help.html">All FAQs</a></div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer_wrapper">
+				<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/welcomeTemplate.xhtml"> 
+	<ui:define name="portalHeader" >   
+       		<ui:include src="/resources/sections/common/unauthPortalHeader.xhtml"/> 
+ 	</ui:define>
+    <ui:define name="content">
+		<h:form id="helpPageFormId" styleClass="clear">
+			<div id="content_wrapper" >
+				<div id="bodycontent">
+					<ui:decorate template="/resources/sections/help/browseHelp.xhtml"/>
+					<ui:decorate template="/resources/sections/help/help.xhtml"/>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

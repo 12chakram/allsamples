@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ULTRAVIOLET</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/popup.js"></script>
+	<script language="javascript" type="text/javascript">
+		function showDiv(divid)
+		{
+			var sldivid = document.getElementById(divid);
+			sldivid.style.display = "";
+		}
+		function hideDiv(divid)
+		{
+			var sldivid = document.getElementById(divid);
+			sldivid.style.display = "none";
+		}
+	</script>
+</head>
+<body class="bodybg">
+
+ <div id="backgroundPopup">
+    </div>
+
+    <div id="main_wrapper">
+        <div id="container">
+            <!-- header begin -->
+            <div id="header">
+              <div id="logo_wrapper"> <a href="default.html"><img src="images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></a> </div>
+              <div class="right_header ">
+              <span class="fright">
+                    <div id="welcome_wrapper" >
+                        
+                        <a href="help.html">Help </a>             
+                    </div>
+                    <div id="home_btn">
+                       <a href="default.html">
+                            <img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>                    </div></span>
+              </div>
+			  <!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+            </div>
+            <!-- header end -->
+        <div id="content_wrapper">
+            <div id="bodycontent">
+				<div class="register_form">
+					<div class="titlestrip">
+						<span class="title1">Fill out the form below.</span> <span class="require">Fields denoted
+							with an asterisk <span style="color:#FF0000;">*</span> are required.</span>                
+					</div>
+					
+					<!-- start : Unlock Account  -->
+					
+					<div class="form_title"> Unlock My User Profile</div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="form_lable"> Username </div><span class="red">*</span>
+							<div class="form_field"> <input type="text" />
+								<span class="hide_error_msg"></span>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+						
+						<div class="reg_form_details1">
+							<div class="form_lable"> Secret Question</div> <span class="red">*</span>
+							<div class="form_field"> <select><option>-- Secret Question --</option></select>
+								<span class="hide_error_msg"></span>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+						<div class="reg_form_details">
+							<div class="form_lable"> Answer </div><span class="red">*</span>
+							<div class="form_field"> <input type="text" />
+								<span class="hide_error_msg"></span>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+						
+					</div>
+					<!-- start : Unlock Account  -->
+					
+					<!-- start : Verify Image  -->
+					<div class="form_title">Verify Image</div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="form_lable">Type the letters you see in the picture below </div><span class="red">*</span>
+							<div class="form_field"> <input type="text" />
+								<span class="hide_error_msg"></span>
+							</div>
+							<div class="reg_form_details">
+								<div class="form_lable"> &#160;</div><span class="red">&#160;</span>
+								<div class="form_field"> 
+									<img src="images/rand_img.jpg" alt="" /> 
+									<a href="#" class="refresh">Can’t read it? Click here</a>
+								</div>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+					</div>
+					<!-- start : Verify Image  -->
+					
+				  	
+					<!-- start : submit button -->
+					<div class="submitform_btn">
+						<div class="centeredBtn">
+							<ul>
+								<li><a href="unlock-user-Registration.html" class="anchor_btn"><span>Submit</span></a></li>
+								<li class="cancel_btn"><a href="default.html"><span>Cancel</span></a></li>
+							</ul>
+						</div>
+					</div>
+	 			 	<!-- end : submit button -->
+					
+					
+				</div>
+
+        </div>
+        <div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:c="http://java.sun.com/jstl/core">			
+	
+	<div id="DevicesListPopUp" class="popupContact" style="z-index:10003;">
+		<div class="popup_textarea">
+            <h3><div class="DeviceHeading">
+                   <span class="Label">#{labelMsgs.linkedOptDevices}</span>
+                 </div>
+            </h3><br/>  
+            <div class="Devicespanel">
+                <div class="DeviceDetail">
+                    <div class="DeviceLogo">
+                    	<img src="#{applicationScope.staticContentBaseUrl}/images/MediaPlayerIcon.png" alt="#{labelMsgs.alt_img_mediaPlayerIcon}" width="57" height="57" />
+                </div>
+                <div class="DeviceName">#{labelMsgs.windowsPlayer}</div>
+                </div>
+           </div>
+           <div id="deviceAddCode" class="PopUpButton Fleft" style="padding-left:190px; margin-top:15px;">
+                <a href="#" style="padding-top:10px;" title="#{labelMsgs.title_closeLabel}" onclick="javascript:disablePopup1('DevicesListPopUp', 'backgroundPopup')"  class="CommonBtn_Link">
+                       <div>#{labelMsgs.closeLabel}</div>                                                        
+                </a> 
+           </div>
+		</div>
+    </div>
+	<div class="DevicesBoxDiv">
+       <div class="HeadingText">#{labelMsgs.uvOptDevices}</div>
+       <div class="border_lineLightColor"></div>
+       <div class="LeftDevicePanel">
+       		<c:set var="itr" value="0"/> 
+       		<c:forEach items="#{householdDevicesBean.deviceList}" var="uvdevice">               	
+                  <c:if test="#{'DECE' == uvdevice.deviceType?true:false}">
+                  <c:set var="itr" value="#{itr+1}"/>
+					<c:if test="#{itr eq '1' || (itr % 2) eq '1'}">
+	                          <div class="MemberOptimizedDevice">
+	                          	<div class="LinkedOptimiseDevice">
+			                          <div class="DeviceLogo">
+			                               <img src="#{uvdevice.displayImageUrl}" alt="#{labelMsgs.alt_img_displayImageUrl}" />
+			                          </div>                                            
+			                          <div class="DeviceHolderDetail">
+				                          <div class="MemberName">
+				                          		<div class="UserPc" onclick="navigateViewDevice('DEVICE','#{uvdevice.deviceId}','DECE','#{sessionScope.viewFormName}');"><truncate:truncateText text="#{uvdevice.displayName}" start="0" end="13"/></div>
+				                          		<div class="DeviceStatus"></div>
+				                          </div>
+				                          <div class="OptimizedDeviceText">#{labelMsgs.uvOptDevices}</div>
+			                          </div>                                            
+		                          </div>
+		                          <div id="devicesList" class="deviceList">
+		                          		 <c:set var="plyrItr" value="0"/>		
+				                      	 <c:forEach items="#{uvdevice.playersDVO}" var="plyr">
+				                      	 	<c:set var="plyrItr" value="#{plyrItr+1}"/>
+				                      	 	<c:if test="#{plyrItr == 1}">	
+					                            <div class="DeviceDetail">
+				                            		<div class="DeviceLogo"><img height="57" width="57" alt="#{labelMsgs.alt_img_imageUrl}" class="#{plyr.playerImageUrl eq null || plyr.playerImageUrl eq '' ?'DisplayNone':''}" src="#{plyr.playerImageUrl}"/></div>
+				                               		<div class="DeviceName" onclick="navigateViewDevice('PLAYER','#{plyr.playerId}','DECE','#{sessionScope.viewFormName}');">#{plyr.playerName}</div>
+			                            		</div>
+		                            		</c:if>
+		                            		<!-- Start Cond1 -->
+		                            		<c:if test="#{plyrItr &gt; '1' }">
+		                            			<!-- Start Cond2 -->
+		                            			<c:if test="#{plyrItr == 2}">	
+			                            			<h:outputText value="&lt;div id=&quot;devicesList#{itr}&quot; style=&quot;display:none;&quot; &gt;" escape="false"/>
+			                            		</c:if>
+			                            		<!-- END COND2 -->
+				                            		<div class="DeviceDetail">
+					                            		<div class="DeviceLogo"><img height="57" width="57" class="#{plyr.playerImageUrl eq null || plyr.playerImageUrl eq '' ?'DisplayNone':''}" alt="#{labelMsgs.alt_img_imageUrl}" src="#{plyr.playerImageUrl}"/></div>
+					                               		<div class="DeviceName" onclick="navigateViewDevice('PLAYER','#{plyr.playerId}','DECE','#{sessionScope.viewFormName}');">#{plyr.playerName}</div>
+				                            		</div>
+			                            	 </c:if>
+		                            		<!-- END CODN1 -->
+		                            			
+		                      			 </c:forEach>
+		                      			 <!-- Start Cond3 -->
+		                      			 <c:if test="#{uvdevice.playersCount &gt; '1'  }">
+		                      			 	<h:outputText value="&lt;/div&gt;" escape="false"/>
+		                      			 </c:if>
+		                      			<!-- END COND3 -->
+                      			 	</div>     
+                      			 	<c:if test="#{uvdevice.playersCount &gt; '1'}">
+		                            	<div id="moreLbl#{itr}" class="MoreTxt" onclick="togglePlayerView('m','#{itr}');">#{labelMsgs.moreLabel}&#160;(#{plyrItr-1})</div>
+	                           	  		<div id="lessLbl#{itr}" class="LessTxt" onclick="togglePlayerView('l','#{itr}');">#{labelMsgs.lessLabel}</div>
+                           	  		</c:if>
+	                          </div>
+					</c:if>
+				</c:if>
+			</c:forEach>
+       </div>
+       <div class="RightDevicePanel">
+       		<c:set var="itr" value="0"/> 
+       		<c:forEach items="#{householdDevicesBean.deviceList}" var="uvdevice">               	
+                  <c:if test="#{'DECE' == uvdevice.deviceType?true:false}">
+                  <c:set var="itr" value="#{itr+1}"/>
+					<c:if test="#{itr eq '2' || (itr % 2) eq '0'}">
+	                          <div class="MemberOptimizedDevice">
+	                          	<div class="LinkedOptimiseDevice">
+			                          <div class="DeviceLogo">
+			                               <img src="#{uvdevice.displayImageUrl}" alt="#{labelMsgs.alt_img_displayImageUrl}" />
+			                          </div>                                            
+			                          <div class="DeviceHolderDetail">
+				                          <div class="MemberName">
+				                          		<div class="UserPc" onclick="navigateViewDevice('DEVICE','#{uvdevice.deviceId}','DECE','#{sessionScope.viewFormName}');"><truncate:truncateText text="#{uvdevice.displayName}" start="0" end="13"/></div>
+				                          		<div class="DeviceStatus"></div>
+				                          </div>
+				                          <div class="OptimizedDeviceText">#{labelMsgs.uvOptDevices}</div>
+			                          </div>                                            
+		                          </div>
+		                          <div id="devicesList" class="deviceList">
+		                          		 <c:set var="plyrItr" value="0"/>		
+				                      	 <c:forEach items="#{uvdevice.playersDVO}" var="plyr">
+				                      	 	<c:set var="plyrItr" value="#{plyrItr+1}"/>
+				                      	 	<c:if test="#{plyrItr == 1}">	
+					                            <div class="DeviceDetail">
+				                            		<div class="DeviceLogo"><img height="57" width="57" alt="#{labelMsgs.alt_img_imageUrl}" class="#{plyr.playerImageUrl eq null || plyr.playerImageUrl eq '' ?'DisplayNone':''}" src="#{plyr.playerImageUrl}"/></div>
+				                               		<div class="DeviceName" onclick="navigateViewDevice('PLAYER','#{plyr.playerId}','DECE','#{sessionScope.viewFormName}');">#{plyr.playerName}</div>
+			                            		</div>
+		                            		</c:if>
+		                            		<!-- Start Cond1 -->
+		                            		<c:if test="#{plyrItr &gt; '1' }">
+		                            			<!-- Start Cond2 -->
+		                            			<c:if test="#{plyrItr == 2}">	
+			                            			<h:outputText value="&lt;div id=&quot;devicesList#{itr}&quot; style=&quot;display:none;&quot; &gt;" escape="false"/>
+			                            		</c:if>
+			                            		<!-- END COND2 -->
+				                            		<div class="DeviceDetail">
+					                            		<div class="DeviceLogo"><img height="57" width="57" class="#{plyr.playerImageUrl eq null || plyr.playerImageUrl eq '' ?'DisplayNone':''}" alt="#{labelMsgs.alt_img_imageUrl}" src="#{plyr.playerImageUrl}"/></div>
+					                               		<div class="DeviceName" onclick="navigateViewDevice('PLAYER','#{plyr.playerId}','DECE','#{sessionScope.viewFormName}');">#{plyr.playerName}</div>
+				                            		</div>
+			                            	 </c:if>
+		                            		<!-- END CODN1 -->
+		                            			
+		                      			 </c:forEach>
+		                      			 <!-- Start Cond3 -->
+		                      			 <c:if test="#{uvdevice.playersCount &gt; '1'  }">
+		                      			 	<h:outputText value="&lt;/div&gt;" escape="false"/>
+		                      			 </c:if>
+		                      			<!-- END COND3 -->
+                      			 	</div>     
+                      			 	<c:if test="#{uvdevice.playersCount &gt; '1'}">
+		                            	<div id="moreLbl#{itr}" class="MoreTxt" onclick="togglePlayerView('m','#{itr}');">#{labelMsgs.moreLabel}&#160;(#{plyrItr-1})</div>
+	                           	  		<div id="lessLbl#{itr}" class="LessTxt" onclick="togglePlayerView('l','#{itr}');">#{labelMsgs.lessLabel}</div>
+                           	  		</c:if>
+	                          </div>
+					</c:if>
+				</c:if>
+			</c:forEach>
+       </div>
+   </div>
+</ui:composition>

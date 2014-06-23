@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:truncate="http://www.dece.com/jsf">
+	<h:form id="unAuthHeaderFormId">
+		<div class="header">
+			<div class="hdr_logo">
+				<h:commandLink id="logoLink" tabindex="1" title="#{labelMsgs.title_ultraviolet}" action="#{loginNavigationBean.navigateToHomePage}">
+			    	<img src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.png" title="#{labelMsgs.title_ultraviolet}" alt="#{labelMsgs.title_ultraviolet}" />
+			    </h:commandLink>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

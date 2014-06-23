@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- Collapse / Expand -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+
+<script type="text/javascript">
+function showdiv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+
+	for(i=1; i<=3; i++)
+	{
+		if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+		{
+			
+			collapse.style.display = "none";
+			expand.style.display = "inline";
+			faqs.style.display = "block";
+		}
+		else
+		{
+			var rcollapse = document.getElementById("collapse"+i);
+			var rexpand = document.getElementById("expand"+i);
+			var rfaqs = document.getElementById("faq"+i);
+			rcollapse.style.display = "inline";
+			rexpand.style.display = "none";
+			rfaqs.style.display = "none";
+		}
+	}
+}
+
+function hidediv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+	
+	
+			collapse.style.display = "inline";
+			expand.style.display = "none";
+			faqs.style.display = "none";
+		
+	
+} 
+</script>
+
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+<!-- popup  -->
+
+<!--[if lte IE 7]> 
+<style type="text/css">
+.tooltip { margin-top:0; }
+.fmember_img img {	display:block; margin:0; padding:0; }
+</style>
+<![endif]--> 
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+
+</head>
+
+<body class="bodybg">
+<!--Start : Terms & Conditions --> 
+      
+<!--End : privacy statement-->
+<!--Start : Popup - Continue with Device Removal-->
+    <div id="continue_devices_removal" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Continue with Device Removal?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('continue_devices_removal', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>Warning:</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you wish to continue with the removal of devices?</strong>           
+        </div>
+       
+			<div class="centeredBtn">
+				<ul>
+					<li><a href="ourDevices.html" class="anchor_btn"><span>Yes</span></a></li>
+					<li><a href="removeDevice.html" class="anchor_btn"><span>No. Cancel this operation</span></a></li>
+				</ul>
+			</div>
+        
+    </div>
+    <!--End : Popup - Continue with Device Removal-->
+	
+	
+	<!--Start : Popup - Continue with Unverified Device Removal-->
+    <div id="continue_unverified_device_removal" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Continue with Unverified Device Removal?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('continue_unverified_device_removal', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>This is your X unverified removal. You have X left.</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Do you wish to continue with this device removal?</strong>           
+        </div>
+       
+			<div class="centeredBtn">
+				<ul>
+					<li><a href="ourDevices.html" class="anchor_btn"><span>Yes</span></a></li>
+					<li><a href="removeDevice.html" class="anchor_btn"><span>No. Cancel this operation</span></a></li>
+				</ul>
+			</div>
+        
+    </div>
+    <div id="backgroundPopup">
+    </div>
+    <!--End : Popup - operationContinue with Unverified Device Removal-->
+
+<div id="main_wrapper">
+	<div id="container">
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+			<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+		</div>
+		<div id="nav_wrapper">
+			<ul>
+				<li><a href="detailOurMedia.html" class="our_media">OUR MEDIA <br /><em>125 Movies available</em></a></li>
+				<li><a href="myFamily.html" class="my_family">MY HOUSEHOLD <br /><em>3 of 6 Members active</em></a></li>
+				<li><a href="ourDevices.html" class="our_deviceselect">OUR DEVICES <br /><em>4 of 12 Devices active</em></a></li>
+			</ul>
+		</div>
+		<div id="nav_hr">
+			<img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+		
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+				<div class="left_panel">
+				
+					<!-- Start : My Profile Heading -->
+					<div class="device_heading_wrapper">
+						<div class="device_heading">
+							<h2>OUR DEVICES /</h2><span>Alice’s Zune HD</span><br />
+							Adipiscing elit, sed diam non ummy nibh euismod tincidunt
+						</div>
+						<div class="Back_to_ourdevices">
+							<a href="ourDevices.html"><span>Back to Our Devices</span></a>
+						</div>
+					</div>
+					<!-- Start : My Profile Heading -->
+					
+					<!-- Start : Manage Family Member -->
+					<div class="device_details">
+						<div style="float:left;">
+							<img src="images/device_img_1.jpg" width="148" height="91" border="0" />
+						 </div>
+						<div class="device">
+							<div class="device_name">Alice’s Zune HD</div>
+							<div class="permissions">
+								<ul>
+								 <li>Plays HD, SD, and PD content<span></span></li>
+								 </ul>
+						  </div>
+						</div>
+					  <div class="manage_device">
+							<ul>
+								<li><a href="editDevice.html" class="edit">Edit</a></li>
+								<li><a href="removeDevice.html" class="delete">Remove</a></li>
+							</ul>
+					  </div>
+						
+					</div>
+					<!-- End : Manage Family Member -->
+					
+					<!-- Start : Profile  -->
+								
+					<div class="profile_details_panel">
+						<div class="remove_device_title">Remove Device</div>
+						<div class="remove_device_info">Do you have the device and is it connected?</div>
+						<div class="device_options">
+							<div class="option_title"><h3>Option 1</h3> – Yes. The device is connected.</div>
+							<div class="option_image"><img src="images/device_option_2.jpg" height="98" alt=""/></div>
+							<div class="option_btns">
+								<div class="centeredBtn">
+									<ul>
+										<li><a href="#" class="anchor_btn" onclick="javascript:openPopup('continue_devices_removal', 'backgroundPopup')"><span>Select</span></a></li>
+										<li><a href="#" class="anchor_btn"><span>Help</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="device_options">
+							<div class="option_title"><h3>Option 2</h3> – No. I no longer have the device.</div>
+							<div class="option_image"><img src="images/device_img_1.jpg" width="148" height="91" border="0" /></div>
+							<div class="option_btns">
+								<div class="centeredBtn">
+									<ul>
+										<li><a href="#" class="anchor_btn" onclick="javascript:openPopup('continue_unverified_device_removal', 'backgroundPopup')"><span>Select</span></a></li>
+										<li><a href="#" class="anchor_btn"><span>Help</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>				
+						
+					</div>
+					<!-- End : Profile  -->
+					
+					
+					
+					<!-- End : Edit Family Member -->
+				</div>
+				<div class="right_panel">
+					<div class="cont_box1">
+						<div class="content_box" >
+							<div class="quickview_tab" id="quickview">
+								<div class="quick_tip_title">QUICK TIP </div>
+								<div class="quicktip_arrows">
+									<a href="#" class="leftArrow" rel="previous" title="Previous">
+										<img src="images/side_arrow_lft.gif"  border="0" alt="" />
+									</a><a href="#" rel="next" title="Next">
+										<img src="images/side_arrow_rght.gif" border="0" alt="" />
+									</a>
+								</div>
+							</div>
+						
+							<div class="quick_view_content">
+								<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso </div>
+								<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso</div>
+							 </div>
+							<script type="text/javascript">
+								var newscripts=new virtualpaginate({
+								piececlass: "items",
+								piececontainer: 'div', //Let script know you're using "p" tags as separator (instead of default "div")
+								pieces_per_page: 1,
+								defaultpage: 0,
+								wraparound: false,
+								persist: true
+							})
+
+							newscripts.buildpagination(["quickview"])
+							</script>
+						</div>
+						<div class="box_btm"></div>
+					</div>
+					
+					<!--Start : Top Devices Faqs  -->
+								<div class="cont_box1">
+									<div class="content_box">
+										<div class="quickview_tab">TOP DEVICES FAQs
+											<div style="float:right;">
+											</div>
+										</div>
+											
+										<div class="select_arrow">
+											<input type="hidden" value="" id="hidden" />
+											<div id="expand1" class="faq_arrow" style="display:none;">
+												<img src="images/expand.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:hidediv('collapse1', 'expand1', 'faq1')" />
+											</div>
+											<div id="collapse1" class="faq_arrow">
+												<img src="images/collapse.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:showdiv('collapse1', 'expand1', 'faq1')" />
+											</div>
+											
+											<div class="q_char" >Q: </div>
+											<div class="faq_qust">1How consectetuer adipiscing diam nonummy nibh euismod? </div>
+										</div>
+										
+										
+										<div id="faq1" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+										</div>
+										
+	
+										<div class="select_arrow">
+											<div id="expand2" class="faq_arrow" style="display:none;">
+												<a href="javascript:void(0)" onclick="javascript:hidediv('collapse2', 'expand2', 'faq2')"><img src="images/expand.gif" border="0" width="11" /></a>
+											</div>
+											<div id="collapse2" class="faq_arrow">
+												<a href="javascript:void(0)" onclick="javascript:showdiv('collapse2', 'expand2', 'faq2')"><img src="images/collapse.gif" border="0" width="11" /></a>
+											</div>
+											<div class="q_char">Q: </div>
+											<div class="faq_qust">2How consectetuer adipiscing diam nonummy nibh euismod? </div>
+										</div>
+										<div id="faq2" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+										</div>
+										
+										<div class="select_arrow">
+											<div id="expand3" class="faq_arrow" style="display:none;">
+												<a href="javascript:void(0)" onclick="javascript:hidediv('collapse3', 'expand3', 'faq3')"><img src="images/expand.gif" border="0" width="11" /></a>
+											</div>
+											<div id="collapse3" class="faq_arrow">
+												<a href="javascript:void(0)" onclick="javascript:showdiv('collapse3', 'expand3', 'faq3')"><img src="images/collapse.gif" border="0" width="11" /></a>
+											</div>
+											<div class="q_char" >Q: </div>
+											<div class="faq_qust">3How consectetuer adipiscing diam nonummy nibh euismod? </div>
+										</div>
+										<div id="faq3" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+										</div>
+											  
+									</div>
+									<div class="box_btm" style="clear:both;"></div>
+								</div>
+								<div class="more_faq"><a href="help.html?f=device">More Devices FAQs</a> | <a href="help.html">All FAQs</a></div>
+								<!--End : Top Device Faqs  -->
+				</div>
+			</div>
+		</div>
+		<div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

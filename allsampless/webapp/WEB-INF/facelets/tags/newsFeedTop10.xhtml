@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nt="http://www.dece.com/jsf">
+  <script type="text/javascript">
+
+      function fireEvent(obj,evt){     
+		 var fireOnThis = obj;
+		 if( document.createEvent ) {
+		   var evObj = document.createEvent('MouseEvents');
+		   evObj.initEvent( evt, true, false );
+		   fireOnThis.dispatchEvent(evObj);
+		 } else if( document.createEventObject ) {
+		   fireOnThis.fireEvent('on'+evt);
+		 }
+	  }
+	  function top10Display(){
+	       document.getElementById('Top10Div').style.display="block";
+	       document.getElementById('NewsFeedDiv').style.display="none";
+	       fireEvent(document.getElementById('newsFeedTop10FormId:mytop10HiddenLinkId'),'click');
+	       return false;
+	       }
+	  function flexcrollRefresh(){ 		   	  
+    	  fleXenv.fleXcrollMain('myTop10ScrollId');
+    	  fleXenv.fleXcrollMain('householdTop10ScrollId');    	     
+      }
+	  function newsFeedDisplay(){
+		    document.getElementById('NewsFeedDiv').style.display="block";
+		    document.getElementById('Top10Div').style.display="none";		    
+		    return false;
+	       }	
+	  function clearText(field){	
+		    if (field.defaultValue == field.value) field.value = '';
+		    else if (field.value == '') field.value = field.defaultValue;	
+	       }	 
+      function showContent(divid){
+		 	var newsid = document.getElementById(divid);		 	
+			if(newsid.id == "newsFeedTop10FormId:householdNewsLinkId"){				 
+				document.getElementById('myNewsFeedPagenationId').style.display = "none";
+				document.getElementById('householdPagenationId').style.display = "block";             
+                document.getElementById('dashBoardManagehide').style.display = "block";
+				document.getElementById('houseold_news').style.display = "block";
+				document.getElementById('houseold_news_link').style.display = "none";
+				document.getElementById('mynews').style.display = "none";
+				document.getElementById('mynews_link').style.display = "block";				
+				document.getElementById('householdNewsDivId').style.display = "block";
+				document.getElementById('myNewsDivId').style.display = "none";
+				document.getElementById('clearMyNewsHistoryId').style.display="none";
+				document.getElementById('clearHouseholdHistoryId').style.display="block";				
+				document.getElementById('newsFeedTop10FormId:houseHoldNewsFeedPanelId').style.display = "block";
+				document.getElementById('newsFeedTop10FormId:myNewsFeedPanelId').style.display = "none";				
+			 }
+			if(newsid.id == "newsFeedTop10FormId:myNewsLinkId"){
+				document.getElementById('dashBoardManagehide').style.display = "none";
+				document.getElementById('houseold_news').style.display = "none";
+				document.getElementById('householdPagenationId').style.display = "none";
+				document.getElementById('myNewsFeedPagenationId').style.display = "block";
+				document.getElementById('houseold_news_link').style.display = "block";
+				document.getElementById('mynews').style.display = "block";
+				document.getElementById('mynews_link').style.display = "none";				
+				document.getElementById('householdNewsDivId').style.display = "none";
+				document.getElementById('myNewsDivId').style.display = "block";
+				document.getElementById('newsFeedTop10FormId:houseHoldNewsFeedPanelId').style.display = "none";
+				document.getElementById('newsFeedTop10FormId:myNewsFeedPanelId').style.display = "block";
+				document.getElementById('clearHouseholdHistoryId').style.display="none";
+				document.getElementById('clearMyNewsHistoryId').style.display="block";
+			}
+		 }
+      function showTop10Content(divid){
+		 	var newsid = document.getElementById(divid);		 				
+			if(newsid.id == "newsFeedTop10FormId:householdTop10LinkId"){				
+				document.getElementById('household_top10').style.display = "block";
+				document.getElementById('household_top10_link').style.display = "none";
+				document.getElementById('myTop10').style.display = "none";
+				document.getElementById('myTop10_link').style.display = "block";
+				document.getElementById('householdTop10DivId').style.display = "block";			
+				document.getElementById('manageButtonHide').style.display = "none";
+				document.getElementById('myTop10DivId').style.display = "none";
+				document.getElementById('newsFeedTop10FormId:houseHoldTop10PanelId').style.display = "block";
+				document.getElementById('newsFeedTop10FormId:myTop10PanelId').style.display = "none";				
+			}
+			if(newsid.id == "newsFeedTop10FormId:myTop10LinkId"){					
+				document.getElementById('household_top10').style.display = "none";
+				document.getElementById('household_top10_link').style.display = "block";
+				document.getElementById('myTop10').style.display = "block";	
+				document.getElementById('myTop10_link').style.display = "none";
+				document.getElementById('householdTop10DivId').style.display = "none";
+				document.getElementById('manageButtonHide').style.display = "block";				
+				document.getElementById('myTop10DivId').style.display = "block";
+				document.getElementById('newsFeedTop10FormId:houseHoldTop10PanelId').style.display = "none";
+				document.getElementById('newsFeedTop10FormId:myTop10PanelId').style.display = "block";	
+			}
+		 }
+	</script> 	  
+
+ <h:form id="newsFeedTop10FormId">
+    <div id="newfeed_wrapper">
+      <nt:newsfeed/>      
+      <nt:top10/>      
+   </div> 
+ </h:form>
+</ui:composition>

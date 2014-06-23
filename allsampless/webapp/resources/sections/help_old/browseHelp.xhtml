@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+				<!--Start : Broswe Media -->
+				<div class="media_left">
+					<div class="browse_media">
+						#{msgs.browseHelpLabel}
+					</div>
+					<div class="media_list">
+						<div class="media_type" id="helpPageFormId:searchLabelTopicId">#{msgs.contactUsSearchByLabel}</div>
+						<div class="search">
+							<div class="search_left_corner">
+								<img src="#{applicationScope.staticContentBaseUrl}/images/search_left_corner.jpg" width="6" height="19" border="0" alt="searcb_left_corner" />
+							</div>
+							<div class="media_search_input">
+								<input type="text" onfocus="clearHelpSearchText('searchTextFieldId', 'onfocus')" onblur="clearHelpSearchText('searchTextFieldId', 'onblur')" 
+										maxlength="50" name="searchTextFieldId" id="searchTextFieldId"/>
+							</div>
+							<div class="search_btn">
+								<a href="#" onclick="javascript:loadFaqs('searchCategory','YES')">
+									<img src="#{applicationScope.staticContentBaseUrl}/images/search_btn.jpg" width="24" height="19" border="0" alt="search" />
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="media_list clear">
+						<div class="media_type">#{msgs.contactUsTopicByLabel}</div>
+						<div class="all_type"> &#160; </div>
+						<div class="options">
+							<ul id="listTopicId">
+								<li><p style="color: rgb(238, 238, 238);">#{msgs.browseHelpError}</p></li>
+							</ul>
+						</div>
+					</div>
+					<div class="media_list clear">
+						<div class="media_type">#{msgs.contactUsLabel}</div>
+						<div class="all_type">&#160; </div>
+						<div class="options">
+							<ul>
+								<li>
+									<h:commandLink value="Technical Support" action="#{userContactBean.userContactPageNavigation}" rendered="#{sessionScope.User!=null}" immediate="true"/>
+				    				<h:commandLink value="Technical Support" action="#{userContactBean.fromPublicContactUs}" rendered="#{sessionScope.User==null}" immediate="true"/>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+</ui:composition>

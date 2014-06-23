@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+<script  type="text/javascript">
+     
+     function input_load(){
+		
+			if (document.getElementById('inputUName').value.length==0)
+			{
+				document.getElementById('inputUName').style.opacity="0";
+				document.getElementById('inputUName').style.filter="alpha(opacity=0)";
+			}
+			else
+			{
+				document.getElementById('inputUName').style.opacity="1";
+				document.getElementById('inputUName').style.filter="alpha(opacity=100)";
+				document.getElementById('inputUName').style.border="1px solid #fff";
+			}
+			
+			
+			if (document.getElementById('inputselect').value.length==0)
+			{
+				document.getElementById('inputselect').style.opacity="0";
+				document.getElementById('inputselect').style.filter="alpha(opacity=0)";
+			}
+			else
+			{
+				document.getElementById('inputselect').style.opacity="1";
+				document.getElementById('inputselect').style.filter="alpha(opacity=100)";
+				document.getElementById('inputselect').style.border="1px solid #fff";
+				document.getElementById('inputselect').Value="";
+				
+			}		
+		}
+		
+			
+		function input_focus(ctrlId){
+			document.getElementById(ctrlId).style.opacity="1";
+			document.getElementById(ctrlId).style.filter="alpha(opacity=100)";
+			document.getElementById(ctrlId).style.border="1px solid #fff";
+		}
+
+		function input_blur(ctrlId){
+			var inputsel= document.getElementById(ctrlId).value
+			if(inputsel.length <= 0){
+			document.getElementById(ctrlId).style.opacity="0";
+			document.getElementById(ctrlId).style.filter="alpha(opacity=0)";
+			}
+		}
+		
+		
+		function clearText(field){
+		    if (field.defaultValue == field.value) field.value = '';
+		    else if (field.value == '') field.value = field.defaultValue;
+		}
+     </script>
+<!--[if IE]>
+    <style type="text/css">
+    .remember_me_ie{padding-top:3px;}
+    </style>
+<![endif]-->
+</head>
+<body class="bodybg" onload="javascript:input_load();">
+<div id="main_wrapper">
+  <div id="container">
+    <!-- header begin -->
+    <div id="header">
+      <div id="logo_wrapper"> <a href="default.html"><img src="images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></a> </div>
+      <div class="right_header "> <span class="fright">
+        <div id="welcome_wrapper" > <a href="help.html">Help </a> </div>
+        <div id="home_btn"> <a href="default.html"> <img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a> </div>
+        </span> </div>
+    </div>
+    <!-- header end -->
+    <div id="content_wrapper">
+      <div id="bodycontent">
+        <div class="register_form">
+          <div class="titlestrip" style="border-bottom:0px;"> <span class="beta_login_title" style=" text-transform:uppercase;">Welcome UltraViolet Beta Users!</span> <a href="Beta_user_trouble_Sign-in.html" class="trouble_sign_in">Having Trouble Signing In?</a> </div>
+          <!-- start : Confirm Account  -->
+          <div class="reg_form">
+            <div class="beta_login_body_left">
+              <div class="members_bg"> <img src="images/beta_user_members_img.jpg" width="452" height="118" /> </div>
+            </div>
+            <div class="beta_login_body_right">
+              <div class="user_sign-in-text"> Beta User Sign In</div>
+              <div class="beta_input_fields"></div>
+              <div class="beta_input_fields">
+                <table cellpadding="0" cellspacing="0" border="0" class="beta_input_table">
+                  <tr>
+                    <td><input id="inputUName" class="beta_user_inputbox" size="20" type="text" onfocus="input_focus(this.id)" onblur="	input_blur(this.id)" />
+                      <div class="beta_user_inputdiv">Username</div></td>
+                  </tr>
+                  <tr>
+                    <td ><input type="password" id="inputselect" class="beta_user_inputbox"   onfocus="input_focus(this.id)" onblur="input_blur(this.id)" />
+                      <div class="beta_user_inputdiv">Password</div></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="beta_input_fields">
+                <input class="input_none" type="checkbox"/>
+                <div class="remember_me_text remember_me_ie">Remember me on this computer</div>
+              </div>
+              <div class="beta_input_fields">
+                <div class="bet_sign-in">
+                  <ul>
+                    <li><a href="TermsCondtions.html" class="anchor_btn"  onclick="javascript:openPopup('set_password', 'backgroundPopup')"><span>SIGN IN</span></a></li>
+                    <li class="forgot_pwd"><a href="forgotPassword.html"><span>Forgot your password?</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer_wrapper">
+      <div  class="copyrights"> <span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> <a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> | </a> <a href="viewTermsofUse.html">Terms of Use</a> </div>
+      <div class="contact"> <a href="contactUs.html">Contact Us</a> </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

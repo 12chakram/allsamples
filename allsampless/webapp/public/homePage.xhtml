@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<link rel="shortcut icon" href="#{applicationScope.staticContentBaseUrl}/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/custom_style.css" />
+      <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/IEstyle.css" />        
+    <![endif]--> 
+    <f:loadBundle basename="biz.neustar.dece.decessp.i18n.labelTxts" var="labelMsgs"></f:loadBundle>
+	<title><h:outputFormat value="#{labelMsgs.applicationTitle}"/></title>
+	<body>
+	<h:form id="frmHomePage">
+		<div class="container">
+	   <!--  Header start  -->
+			<div class="header">
+	        	<div class="hdr_logo">
+	        		<img src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.png" alt="UltraViolet Logo" />
+	            </div>
+	            <iframe frameborder="0" style="width:360px; height:80px; border:0px solid #000; float:right; margin-top:20px;" scrolling="no" src="#{applicationScope.homePageUrl}/ssp/public/SigninIframe.jsf"/>
+			</div>
+	     <!--  Header end   -->
+	     <!--  main body start   -->
+	        <div class="main_body">
+	             <!-- body content start -->
+	             	<div class="HomePageImg">
+	                	<!--<div style="font-size:11pt; padding:10px 0 0 800px; position:absolute;">
+	                		<h:commandLink style="color:#fff;" action="troubleSignInHelpPage" value="#{labelMsgs.havingTroubleSign}?"/>
+	                	</div> -->
+						<img src="#{applicationScope.staticContentBaseUrl}/images/homepage_bg.jpg" width="979" height="743" border="0" usemap="#Map" alt="Homepage_background"/>
+						<map name="Map" id="Map">
+						  <area shape="rect" coords="770,210,963,243" href="registrationStep1Page.jsf"/>
+						</map>
+	             	</div>
+	              <!--  body content end    -->
+	        </div>
+	       <!--  main body end    -->
+	    </div>
+	    </h:form>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+.RememberMe{padding-top:4px; padding-left:0px; *padding-left:4px;}
+.CheckBoxDiv{padding-top:6px; *padding-top:3px; font-size:8pt;}
+.signInBox{width:357px; min-height:80px; background:#000; padding-left:2px;}
+.button_input .image_button{min-width:0px; padding:0px 11px 0px 13px; *min-width:none;}
+.BrandDetailsView input{background:none; border:0px;}
+.AccessLevels input{background:none; border:0px;}
+.DropDownText a{color:#fff; float:right; clear:both; *width:100%; *text-align:right; *padding-right:20px;}
+.menu_search_input input{ *padding:6px 5px 0px 5px; *border:0px; *margin-top:-1px; padding-top: 8px; height: 15px;  *height:18px;}
+.menu_go{*padding-left:5px;}
+.Security_Permissions .create_Access_Controls .levelOfAccess .access_permitions_title .Media_Permissions{*width:78px;}
+.TouWarningMsg{*float:left; *width:700px;}
+.userfield_input .select_month{*height:35px;}
+.iePaddingLeft5{padding-left:5px;}
+.Popup_readonly{position: absolute; width: 750px; *height:775px; background: none repeat scroll 0% 0% rgb(0, 0, 0); z-index: 999; opacity: 0.7; display: none; top:0px; left:0px; filter: alpha(opacity=70); }
+
+.popup_textarea .form_input_checkbox input{*margin-left:5px;}
+.DevicesContainerWrapper .DevicesBoxDiv{*border-color:#212121; *border-width:1px; *border-style:solid;}
+.OrText{ *width:100%;}
+.HrTag{*width:135px;}
+.CopyButton{*padding-bottom:0px;}
+.successMsg_AtPagetitle{ *clear:none; *width:auto;}
+.CheckBoxDiv{padding-top:8px; *padding-top:0px; font-size:8pt;}
+.DropDownText{background:#333; width:156px; padding:7px 17px; position:absolute; display:none; *margin:0px 0px 0px -172px; float:left; clear:both; z-index:99;}
+.PendingUser_div103 .PendingText{*left:0px; *width:104px;}
+.mediaBody_Container .mediaBody_left .BrowseMediaBox .Media_fields .Field_All{ *min-width:80px; float:left; clear:both; color:#fff; background:url(../images/Next-RightIconWhite.png) no-repeat right; padding-right:10px; margin-top:5px; font-size:8pt; font-weight:bold;}
+.DeviceImg{text-align:center; height:67px; padding:2px; width:85px; position:relative;*cursor:pointer;}
+.mediaBody_Container .mediaBody_left .BrowseMediaBox .Media_fields .Field_All{ *white-space:nowrap; float:left; clear:both; color:#fff; background:url(../images/Next-RightIconWhite.png) no-repeat right; padding-right:10px; margin-top:5px; font-size:8pt; font-weight:bold;}
+.DeviceImg{text-align:center; height:67px; padding:2px; width:85px; position:relative;*cursor:pointer;}
+.trueCopyButton {*padding-bottom:0px;}
+.trueCopyButton span{*padding-top:4px; *padding-bottom:4px}
+.RemoveThisMember{*padding-right:20px;}
+.borderWidth680{*width:680px;}
+.width720{*width:720px;}
+.DevicesContainerWrapper .DevicesBoxDiv .AddNewDeviceDull .DeviceImg{*cursor:default;}
+.DevicesBoxhomepage .DevicesBoxDiv .AddNewDeviceDull .DeviceImg{*cursor:default;}
+.DashboardBodyLeft .HeadingTitle h1{*font-size:20pt;}
+.OrText .Or{*margin-top:-8px;}
+.BodyPage_heading .MembersTitleName{*min-width:515px;}
+.BodyPage_heading .RightHeadLink{*min-width:190px;}
+.popup_textarea .EditMemberPhoto .UploadImageField .SelectTheImagesBelow{ *padding-top:0px;}
+.EditImage_SuccessMsg{*min-height:0px;}
+
+.falseCopyButton{*padding-bottom:0px;}
+.MemberEmailTitle{*height:30px;}
+.MemberImg140ie7{*left:0px;}
+.width145{*width:145px;}
+.falseCopyButton{*padding-bottom:0px;}

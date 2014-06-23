@@ -1,0 +1,338 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"	
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:truncate="http://www.dece.com/jsf">
+	<f:verbatim escape="true">
+		<script type="text/javascript">
+	  function ShowLessDetails(forDiv){
+	  	  	document.getElementById(forDiv+'ShowLessDiv').style.display="none";
+		  	document.getElementById(forDiv+'ShowMoreDiv').style.display="block";
+    	  }
+    	  						
+    	  function ShowMoreDetails(forDiv){
+    	  	document.getElementById(forDiv+'ShowLessDiv').style.display="block";
+    	  	document.getElementById(forDiv+'ShowMoreDiv').style.display="none";
+    	  }
+    	  function nodeNameForPopup(nodename,nodeId){
+      	  	document.getElementById('frmHouseholdSettings1:nodeNameInPopup1').innerHTML=nodename;
+      	  	document.getElementById('frmHouseholdSettings1:nodeNameInPopup2').innerHTML=nodename;
+      		document.getElementById('frmHouseholdSettings1:nodeId').value=nodeId;
+      	  }
+      	  function removeMemberFormService(nodeId,nodeUserId,userDisplayName,nodeName){
+      		document.getElementById('frmHouseholdSettings1:nodeUserName1').innerHTML=userDisplayName;
+      		document.getElementById('frmHouseholdSettings1:nodeUserName2').innerHTML=userDisplayName;
+      		document.getElementById('frmHouseholdSettings1:nodeNameOfRetailer1').innerHTML=nodeName;
+      		document.getElementById('frmHouseholdSettings1:nodeNameOfRetailer2').innerHTML=nodeName;
+      		document.getElementById('frmHouseholdSettings1:nodeId').value=nodeId;
+      		document.getElementById('frmHouseholdSettings1:nodeUserId').value=nodeUserId;
+      	  }
+    	</script>
+    </f:verbatim>
+<!-- Main body start -->
+			<div class="main_body">
+			<h:form id="frmHouseholdSettings1">
+			<h:inputHidden id="nodeId" value=""/>
+			<h:inputHidden id="nodeUserId" value=""/>
+		<!--  Changes Prompt Popup Start  -->
+			<div id="UnsavedChanges" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+					<h3>#{labelMsgs.saveChanges}</h3>
+					<div class="PopupBody">
+						<div class="PopupLeftContent">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" />
+						</div>
+						<div class="PopupRightContent">
+							<p>#{labelMsgs.UnsavedChangesProfile}</p>
+						</div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<a href="#" class="CommonBtn_Link" onclick="javascript:disablePopup1('UnsavedChanges', 'backgroundPopup');">
+							<div> #{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+						</a> 
+						<h:commandLink styleClass="CommonBtn_Link_Gray" action="myHouseholdPage">
+							<div> #{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+						</h:commandLink>
+					</div>
+				</div>
+			</div>
+	<!--  Changes Prompt Popup End  -->
+			
+	<!--  Remove this link Popup Start  -->
+			<div id="removeThisLink" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+						<h3>#{labelMsgs.removeLabel}<h:outputLabel id="nodeNameInPopup1"/>#{labelMsgs.serviceLabel}</h3>
+						<div class="PopupBody">
+							<div class="PopupLeftContent"><img src="#{applicationScope.staticContentBaseUrl}/images/RemoveIcon.png" width="81" height="81" /></div>
+							<div class="PopupRightContent" style="text-align: justify;">
+								<h4>#{labelMsgs.removeUnlinkMsg1}<h:outputLabel id="nodeNameInPopup2"/>#{labelMsgs.serviceFrm} 
+										<h:outputLabel id="renamedHouseholdNameInPopUp">
+										<truncate:truncateText text="#{householdSettingsBean.householdName}" start="0" end="-1"/>																			
+										</h:outputLabel>#{labelMsgs.accountLabel}?</h4>
+								<br />
+								<h:outputLabel value="#{labelMsgs.removeUnlinkNodeServiceInfo}"/>
+							</div>
+						</div>
+						<div class="PopUpButton Fleft MarginTop20">
+							<a href="#" class="CommonBtn_Link" onclick="javascript:disablePopup1('removeThisLink', 'backgroundPopup');">
+								<div>#{labelMsgs.cancelPop}</div>
+								<div class="SmallFont">#{labelMsgs.dntRemoveService}</div>
+							</a> 
+							<a4j:commandLink action="#{householdSettingsBean.removeLinkedAccounts}" styleClass="CommonBtn_Link" reRender="linkedAccountsUirepeat" oncomplete="javascript:disablePopup1('removeThisLink', 'backgroundPopup');">
+                                    <f:param value="" name="unlinkAccountNodeId" />
+                                <div>#{labelMsgs.continue}</div>
+								<div class="SmallFont">#{labelMsgs.removeService}</div>
+                            </a4j:commandLink>
+						</div>
+				</div>
+			</div>
+	<!--  Remove this link Popup End  -->
+	<!--  Remove household Account Popup Start  -->
+			<div id="removeAccount" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+						<h3>#{labelMsgs.removeAccountLabel}</h3>
+						<div class="PopupBody">
+							<div class="PopupLeftContent"><img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" /></div>
+							<div class="PopupRightContent">
+								<h4>#{labelMsgs.removeMsg}</h4><br/>
+								<h:outputLabel value="#{labelMsgs.removeMsgInfo}"/><br/><br/>
+							</div>
+						</div>
+						<div class="PopUpButton Fleft">
+							<a href="#" class="CommonBtn_Link" onclick="javascript:disablePopup1('removeAccount', 'backgroundPopup');">
+								<div>#{labelMsgs.cancelPop}</div>
+								<div class="SmallFont">#{labelMsgs.dontRemoveAccount}</div>
+							</a> 
+							<h:commandLink action="#{householdSettingsBean.removeHouseholdAction}" styleClass="CommonBtn_Link_Gray">
+                                <div>#{labelMsgs.continue}</div>
+								<div class="SmallFont">#{labelMsgs.removeAccount}</div>
+                            </h:commandLink>
+						</div>
+				</div>
+			</div>
+	<!--  Remove Household Account Popup End  -->
+	<!--  Unlink user from service Popup Start  -->
+		<div id="unlinkUserFromService" class="popupContact" style="z-index:10003;">
+			<div class="popup_textarea">
+				<h3><h:outputLabel value="#{labelMsgs.removeLabel}"/><h:outputLabel id="nodeUserName1"/><h:outputLabel value="#{labelMsgs.fromLabel}"/><h:outputLabel id="nodeNameOfRetailer1"/><h:outputLabel value="#{labelMsgs.serviceLabel}"/></h3>
+					<div class="PopupBody">
+						<div class="PopupLeftContent"><img src="#{applicationScope.staticContentBaseUrl}/images/RemoveIcon.png" width="81" height="81" /></div>
+						<div class="PopupRightContent">
+							<h4>#{labelMsgs.removeMsg1}<h:outputLabel id="nodeNameOfRetailer2"/>#{labelMsgs.serviceFrmLabel} <h:outputLabel id="nodeUserName2"/>#{labelMsgs.membershipLabel}?</h4>
+							<br />
+						</div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<a href="#" class="CommonBtn_Link" onclick="javascript:disablePopup1('unlinkUserFromService', 'backgroundPopup');">
+							<div>#{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.dntRemoveService}</div>
+						</a> 
+						<a4j:commandLink styleClass="CommonBtn_Link_Gray"  action="#{householdSettingsBean.removeUserFromLinkedAccounts}" reRender="linkedAccountsUirepeat" oncomplete="javascript:disablePopup1('unlinkUserFromService', 'backgroundPopup');">
+							<div>#{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.removeService}</div>
+						</a4j:commandLink>
+					</div>
+			</div>
+		</div>
+	<!--  Unlink user from service Popup End  -->
+	
+			
+				<div class="BodyPage_heading">
+					<div class="MemberName">
+						<h:commandLink action="myHouseholdPage" id="householdRenamed">
+		           			<h:outputLabel value="#{labelMsgs.theAccount}"/>
+		           			<truncate:truncateText text="#{householdSettingsBean.householdName}" start="0" end="-1"/>		           			
+							<h:outputLabel value=" #{labelMsgs.household}"/>
+						</h:commandLink>
+						
+					</div>						
+					<div class="RightHeadLink">
+						<h:outputLabel value="#{labelMsgs.havingTrouble} "/>
+						<h:commandLink  styleClass="Common_pointer"  value="#{labelMsgs.householdHelpFAQs}" action="authHelpPage" id="helpLink">
+							<f:setPropertyActionListener value="account" target="#{help.helpNav}"/>
+			      		</h:commandLink> 
+					</div>
+					<div class="Fright MembersTitleName">#{labelMsgs.householdSettings}</div>					
+				</div>
+			</h:form>
+					<div class="body_container_above_gradiant">
+						<div class="gradiant_box_left"></div>
+						<div class="gradiant_box_middle">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="White_Gray_Gradiant"/>
+						</div>
+						<div class="gradiant_box_right"></div>
+					</div>
+					<div class="body_wrapper">
+						<div class="body_wrapper_left_shadow"/>
+						<div class="body_wrapper_container">
+							<div class="MemberProfileContainer">
+								<div class="MemberProfileImgMenuDiv" id="householdNameDiv">
+								<div style="padding-top:10px;">
+									<h3><h:panelGroup id="renamedHouseholdName">
+											<h:outputLabel value="#{labelMsgs.theAccount}"/>
+											<truncate:truncateText text="#{householdSettingsBean.householdName}" start="0" end="-1"/>
+											<h:outputLabel value=" #{labelMsgs.household}"/>
+										</h:panelGroup>
+									</h3>
+								</div>	
+								</div>
+								<div class="ProfileDetailsMainDiv BackgroundNone BorderRightNone">
+									<h:form id="frmHouseholdSettings2">
+									<div class="ProfileHouseholdname" style="padding-top: 10px;">
+										<div class="userfield_input">
+											<b><h:outputLabel value="#{labelMsgs.householdNameLabel}:"/></b>
+												<div class="accountSettingsTopContent">                                            
+                                          			<span  class="RemoveThisMember"> 
+                                          				<a href="#" onclick="javascript:openPopup('removeAccount', 'backgroundPopup');">#{labelMsgs.closeThisAccount}</a>
+                                          			</span> 
+                                           		</div>
+											<br/>
+											<div class="form_inputfield">
+												<h:inputText styleClass="input" maxlength="50" value="#{householdSettingsBean.householdName}" id="householdName" onfocus="toggleHintMsg('field_hint','block');toggleHintMsg('errorDiv','none');" onblur="toggleHintMsg('field_hint','none');"/>
+											</div>
+											<div class="field_hint_Householdname" id="field_hint">
+												<label>#{labelMsgs.householdNameHintMesg}</label>
+											</div>
+											<div id="errorDiv">
+												<h:outputLabel id="errorDiv" rendered="#{householdSettingsBean.errorValueMap.houseHoldNameError ne null}"
+													styleClass="#{householdSettingsBean.errorValueMap.houseHoldNameError ne null?'err_msg':'display:none;'}"
+												 	value="#{householdSettingsBean.errorValueMap.houseHoldNameError}"/>
+											</div>
+										</div>
+										<div class="MemberContinue_btn clearBoth">
+											<div class="button_input">
+												<a4j:commandButton styleClass="image_button" action="#{householdSettingsBean.householdRename}" value="#{labelMsgs.saveTheChanges}" reRender="#{householdSettingsBean.errorValueMap.houseHoldNameError ne null ?'frmHouseholdSettings2':'frmHouseholdSettings2,householdName,renamedHouseholdName,renamedHouseholdNameInPopUp,householdRenamed'}"/>
+											</div>
+											 <div class="Cancel">
+		                                    	<a href="#" onclick="javascript:openPopup('UnsavedChanges', 'backgroundPopup');">
+		                                    		#{labelMsgs.cancel}
+		                                    	</a>
+		                                    </div>
+											<div id="PageSuccessHint">
+												<h:outputLabel styleClass="#{householdSettingsBean.householdSettingsMap.succMsg ne null?'FieldAvailableIcon MarginLeft10':'display:none;'}" style="display: block;"  rendered="#{householdSettingsBean.householdSettingsMap.succMsg ne null}" value="#{householdSettingsBean.householdSettingsMap.succMsg}"/>
+											</div>
+										</div>
+									</div>
+									</h:form>
+									<h:form id="frmHouseholdSettings3">
+                               <div class="LinkedAccountsContainer">
+                                 <div class="LinkedAccountsTitleHeading">
+                                   	<h3>#{labelMsgs.linkedServices}</h3>
+                                 </div>
+                                 <h:panelGroup id="linkedAccountsUirepeat">
+                                 <div class="LinkedActsScroll">
+                               <c:if test="#{householdSettingsBean.householdSettingsMap.householdLinkedAccounts ne 'false'}">
+                                    	<div class="BrandAccountsContainer">
+                                    	<c:forEach items="#{householdSettingsBean.accountConsents}" var="linkedAccountsObj">
+                                        	<div class="BrandLogoLeft">
+                                       	    	<img src="#{linkedAccountsObj.nodeImageURL}" width="103" height="70" />
+                                            </div>
+                                            <div class="BrandAccountDetails">
+                                            	<div class="AccontHeading">
+                                                	<h3 class="Fleft"><h:outputLabel value="#{linkedAccountsObj.nodeName}"/></h3>
+                                                     <span  class="RemoveThisMember">
+                                                     		<a href="#" onclick="nodeNameForPopup('#{linkedAccountsObj.nodeName}','#{linkedAccountsObj.nodeId}');javascript:openPopup('removeThisLink', 'backgroundPopup');">#{labelMsgs.removeThisLink}</a>
+                                                     </span> 
+                                                     <div class="Acconth4heading">
+                                                     	<span class="Fleft"><h:commandLink action="#" value="#{linkedAccountsObj.nodeImageURL}" styleClass="violet_color_link"/></span>
+                                                	</div>
+                                                     <h4 class="Acconth4heading">You may use this [business] to do [function].</h4>
+                                                </div>
+                                                
+                                                <div class="BrandDetailsView">
+                                                	<ul>
+														<c:forEach items="#{linkedAccountsObj.consentsObj}" var="consentsObj">                                                	
+                                                		<li>
+		                                                		<div class="Fleft">
+		                                                			<span class="Fleft">
+		                                                				<c:if test="#{consentsObj.consentHdnName eq 'shareMediaHistory' ? 'true':'false'}">
+		                                                				<c:if test="#{consentsObj.consentAccepted eq 'true'?'true':'false'}">
+		                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{consentsObj.consentHdnName}" checked="checked" onclick="this.checked='checked';"/> <h:outputLabel value="#{consentsObj.consentName}"/>
+		                                                				</c:if>
+		                                                				<c:if test="#{consentsObj.consentAccepted eq 'true'?'false':'true'}">
+		                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{consentsObj.consentHdnName}" disabled="disabled"/> <h:outputLabel value="#{consentsObj.consentName}"/>
+		                                                				</c:if>
+		                                                				</c:if>
+		                                                				<c:if test="#{consentsObj.consentHdnName eq 'shareMediaHistory' ? 'false':'true'}">
+		                                                					<c:if test="#{consentsObj.consentAccepted eq 'true'?'true':'false'}">
+		                                                						<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{consentsObj.consentHdnName}" checked="checked"/> <h:outputLabel value="#{consentsObj.consentName}"/>
+		                                                					</c:if>
+		                                                					<c:if test="#{consentsObj.consentAccepted eq 'true'?'false':'true'}">
+		                                                						<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{consentsObj.consentHdnName}" /> <h:outputLabel value="#{consentsObj.consentName}"/>
+		                                                					</c:if>
+		                                                				</c:if>
+		                                                			</span>
+		                                                			<div class="LinkedActsShowmoreContent" id="#{linkedAccountsObj.nodeId}#{consentsObj.consentHdnName}ShowMoreDiv">
+	                                                					<h:outputLabel value="#{consentsObj.consentShortDesc}"/><span class="showMore">...<a onclick="ShowMoreDetails('#{linkedAccountsObj.nodeId}#{consentsObj.consentHdnName}');"><h:outputLabel value="#{labelMsgs.moreLabel}"/></a></span>
+	                                                				</div>
+	                                                				<div class="LinkedActsShowmoreContent" id="#{linkedAccountsObj.nodeId}#{consentsObj.consentHdnName}ShowLessDiv" style="display:none;">
+                            											<div><h:outputLabel value="#{labelMsgs.linkMyAccountsConsent1}"/><h:outputLabel value="#{linkedAccountsObj.nodeName}"/><h:outputLabel value="#{labelMsgs.linkMyAccountsConsent2}"/></div>
+										                            	<span class="LessTxtDirection"></span>
+										                            	<div class="MoreContent"><h:outputLabel value="#{consentsObj.consentDesc}"/><span class="showLess">...<a onclick="ShowLessDetails('#{linkedAccountsObj.nodeId}#{consentsObj.consentHdnName}');"><h:outputLabel value="#{labelMsgs.lessLabel}"/></a></span></div>
+										                        	</div>
+		                                                		</div>
+                                                		</li>
+                                                		</c:forEach>                                            		
+                                                    </ul>
+                                                    <div class="Acconth4heading">
+                                                 	</div>	
+                                                    <div class="SameAccountUserList">
+                                                    <c:if test="#{linkedAccountsObj.linkedUsers ne null}">
+	                                                     <div class="MembersUseAccount"><h:outputLabel value="#{labelMsgs.membersofThe}"/><truncate:truncateText text="#{householdSettingsBean.householdName}" start="0" end="-1"/><h:outputLabel value="#{labelMsgs.accountLinkedThis}"/></div>
+		                                                     <c:forEach items="#{linkedAccountsObj.linkedUsers}" var="userdvoList">
+			                                                     <div class="AccountHolder">
+			                                                     	<span class="AccountName">
+			                                                     		<h:outputLabel value="#{userdvoList.displayName}"/>
+			                                                     	</span>
+			                                                     	<div class="UnlinkUser">
+			                                                     		<a href="#" onclick="removeMemberFormService('#{linkedAccountsObj.nodeId}','#{userdvoList.nodeUserId}','#{userdvoList.displayName}','#{linkedAccountsObj.nodeName}');javascript:openPopup('unlinkUserFromService', 'backgroundPopup');">Unlink this User</a>
+			                                                     	</div>
+			                                                     </div>
+		                                                     </c:forEach>
+		                                             </c:if>
+                                                	</div>
+                                               </div>
+                                              
+                                          	</div>
+                                          	 </c:forEach>
+                                       	</div>
+                                      
+	                                  <div class="MemberContinue_btn clearBoth">
+		                                     <div class="button_input">
+		                                     		<a4j:commandButton styleClass="image_button" value="#{labelMsgs.saveTheChanges}" action="#{householdSettingsBean.saveLinkedAccounts}" reRender="linkedAccountsUirepeat"
+														oncomplete="#{householdSettingsBean.errorValueMap.pageError eq null?'toggleHintMsg(\'PageSuccessHint1\',\'block\');':'' }" />
+		                                     </div>
+		                                    <div class="Cancel">
+		                                    	<a href="#" onclick="javascript:openPopup('UnsavedChanges', 'backgroundPopup');">
+		                                    		#{labelMsgs.cancel}
+		                                    	</a>
+		                                    </div>	
+		                                    <div id="PageSuccessHint1">
+		                                   	   <h:outputLabel value="#{householdSettingsBean.householdSettingsMap.successMsg}" id="successMsg" 
+		                                   	   rendered="#{householdSettingsBean.householdSettingsMap.successMsg ne null}" styleClass="#{householdSettingsBean.householdSettingsMap.successMsg ne null ?'FieldAvailableIcon MarginLeft10':'display:none;'}"/>
+		                                    </div>
+	                                  </div>
+	                          </c:if>
+	                          </div>
+	                          <c:if test="#{householdSettingsBean.errorValueMap.householdLinkedAccounts eq 'false'}">
+	                          	<div class="BrandAccountsContainer">
+	                          		<div class="NoLinkedAccounts" style="height:70pt;">
+	                          			<h:outputLabel>#{labelMsgs.noLinkedAccounts}</h:outputLabel>
+	                          		</div>
+	                          	</div>
+	                          </c:if></h:panelGroup>
+                           </div>
+                           </h:form>
+                         </div>
+                      </div>  
+                  </div>
+                	<div class="body_wrapper_right_shadow"/>
+     		    </div>
+    	     </div>
+	<!--Main body end-->     
+</ui:composition>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+<style type="text/css">
+.display_none{display:none;}
+.popupContactClose { margin:0; padding:0 10px 0 0; border:0; color:#fff; cursor:hand; cursor:pointer; }
+</style>
+</head>
+
+<body>
+
+	<div style="width:900px; margin:0px auto; background:#ccc; height:400px;">
+    
+    	
+    	<div style="width:70px; margin:50px 100px 0 0; float:right; height:30px; background:#ff0000; text-align:center;"><a href="javascript:void(0)" id="confirm_btn" onclick="openPopup('eee', 'backgroundPopup')" style="color:#fff;">button</a>
+      </div>
+       <div id="backgroundPopup">
+    </div>
+      <div id="eee" class="display_none" style="width:400px; height:300px; background:#000;">
+      
+                <a style="color:#fff; float:right;" class="popupContactClose" onclick="javascript:disablePopup1('eee', 'backgroundPopup');">Close</a>
+            
+            <iframe src ="http://www.yahoo.com"  style="width:98%; height:280px;">
+            	
+            </iframe>
+      </div>
+   
+    </div>
+</body>
+</html>

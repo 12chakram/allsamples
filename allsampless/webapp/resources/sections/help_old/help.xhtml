@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+		<div class="media_right">					
+<!--Start : Media Heading, search -->
+				<div class="media_header">
+					<div class="heading">
+						<h3>#{msgs.contactUsHelp}</h3>
+						<p>#{msgs.contactUsHelpInfo}</p>
+					</div>
+				</div>
+<!--End : Media Heading, search -->
+<!--Start : Help Wrapper -->
+				<div class="help_content">
+					<ui:decorate template="/resources/sections/help/faqSection.xhtml"/>
+
+					<div class="faq_questions">
+						<div id="faqsBlock" class="quick_view_content">
+						</div>
+                        <div id="quickview" style=" clear:both; text-align:right; padding-right:30px;">
+                           	<a class="leftArrow" rel="first" title="First" href="#" >
+                           		<img src="#{applicationScope.staticContentBaseUrl}/images/prevl-icon.png" alt=""  border="0" />
+                           	</a> 
+                           	&#160;&#160;
+                           	<a class="leftArrow" rel="previous" title="Previous"  href="#" >
+                           		<img  src="#{applicationScope.staticContentBaseUrl}/images/prev-icon.png" alt=""  border="0" />
+                           	</a>
+                            &#160;&#160;
+                             <a href="#" rel="next" title="Next">
+                             	<img src="#{applicationScope.staticContentBaseUrl}/images/next-icon.png" border="0" alt="" />
+                             </a>
+                             &#160;&#160;
+                             <a href="#" rel="last" title="Last">
+                             	<img src="#{applicationScope.staticContentBaseUrl}/images/nextl-icon.png" border="0" alt="" />
+                             </a>
+						</div>
+					</div>
+					<div class="faqs_ans_heading" id="faqQueAnsHeadingId"> #{msgs.helpAnswersTitle} </div>
+					<div class="faqs_ans" id="faqsAnsBlock"/>
+				</div>
+<!--End : Help Wrapper -->					
+		</div>
+</ui:composition>

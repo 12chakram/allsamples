@@ -1,0 +1,147 @@
+
+
+#Links ul li             a{list-style:none;margin:0px 0px 0px 0px;padding:0px;float:left;text-decoration:none;}
+.Clr                      {clear:both;}
+.flt                      {float:left}
+
+.Box3                     {padding-left:10px;float:left;}
+.Box3Middle               {width:234px;}
+.Box3submiddle            {float:left;width:230px;}
+.Box3Header               {background:#000000;height:35px; font-size:10px; letter-spacing:0; line-height:14px;}
+.Box3Gradient             {float:left;width:230px; height:245px;background:url(../images/news_grdnt.gif);}
+.Box3Header ul            {list-style:none;margin:0px;padding:0px;}
+.Box3Header ul li         {list-style:none;margin:0px;padding:0px;float:left;color:#cecdcd;padding:3px 0px 0px 5px;}
+.News                     {color:white;margin:0px;width:200px;padding:0px 0px 10px 0;line-height:18px;font-size:10px;color:#cecdcd;}
+.Date                     {color:#7c84bb;}
+
+.Box3Header ul li.LIPadding {float:right;
+padding-right:5px;
+padding-top:6px;}
+.Box3BottomCurve           {background:url(../images/news_btmcurv.gif);height:24px;max-height:21px;width:234px;clear:both;text-align:right;padding:3px 0px 0px 0px;color:#cecdcd; font-size:10px; letter-spacing:0.05em;}
+.Box3BottomCurve          a {text-decoration:none;color:#cecdcd;}
+.FooterSpace              {width:370px;max-width:360px}
+.Newsflt                  {width:214px;float:left}
+.Newsflt1                  {width:225px;}
+
+/*start  house hold  height */
+.householdsettings_set .NewsFeedBg{ background:url('../images/newsfeed_220.gif') no-repeat; height:16px;  border-bottom:1px solid #333; width:220px; padding-top:2px;}
+.householdsettings_set .Newsflt1{ width:218px;}
+.householdsettings_set .Box3Gradient{ width:218px;}
+.householdsettings_set .Box3submiddle{width:218px; border-right:1px solid #333;}
+.householdsettings_set .Box3Middle{ width:225px; clear:both;}
+.householdsettings_set .Box3BottomCurve{width:220px; background:url(../images/news_btmcurv_220.gif);}
+.householdsettings_set .Top10{ display:none;}
+.householdsettings_set .Box3Gradient{height:145px; width:218px;}
+.householdsettings_set .flexcroll{height:130px; width:200px; }
+.householdsettings_set .flt{background:#333;}
+.householdsettings_set .flt img{height:180px; width:1px; visibility:hidden;}
+
+.householdsettings_set .rgt img{height:180px; width:1px; visibility:hidden;}
+.householdsettings_set{margin:0px; padding:0px;}
+.householdsettings_set .padding_top_5{ padding:0px;}
+.householdsettings_set .content_container .content_c{ width:180px;}
+.householdsettings_set .NewsFeedBg a.Top10{display:none;}
+/*.householdsettings_height{margin:0px; padding:0px;}
+.householdsettings_height #NewsFeedBg{ }
+.householdsettings_height #newfeed_wrapper{}
+.householdsettings_height .Box3Middle{}
+
+.householdsettings_height .NewsFeedBg{ background:url('../images/newsfeed_220.gif') no-repeat; height:16px;  border-bottom:1px solid #767db1; width:220px; padding-top:2px;}
+.householdsettings_height .NewsFeedBg .NewsFeed{ margin-left:0px;  color:#7c84bb; height:16px; font-weight:bold; font-size:12px;}
+.householdsettings_height .Box3submiddle{width:216px;}
+.householdsettings_height .Box3Gradient{height:145px; width:216px;}
+.householdsettings_height .Newsflt1{}
+.householdsettings_height .flexcroll{height:130px; width:200px; visibility:visible;}
+.householdsettings_height .TxtStyle{}
+.householdsettings_height .padding_top_5{ padding:0px;}
+.householdsettings_height .Top10{ display:none;}
+.householdsettings_height .content_container{height:120px;}
+.householdsettings_height .content_container .content_c{ width:180px;}
+.householdsettings_height .flt img{height:180px; width:2px;}
+.householdsettings_height .rgt img{height:180px; width:2px;}
+.householdsettings_height .Box3BottomCurve{width:220px; background:url(../images/news_btmcurv_220.gif);}*/
+
+/*end  house hold  height */
+
+.profile_newfeed_panel .NewsFeedBg{ background:url('../images/tab_inactive_2.png') no-repeat; height:16px; margin-top:0px;  border-bottom:1px solid #333; width:220px; padding-top:2px;}
+.profile_newfeed_panel .NewsFeedBg a{padding:0 20px 0 15px; float:left;}
+.profile_newfeed_panel .NewsFeedBg a.NewsFeed {font:bold 14px Arial, Helvetica, sans-serif;color:#97BF0D;text-decoration:none; letter-spacing:0.05em; float:left;}
+.profile_newfeed_panel .NewsFeedBg a.Top10{color:#fff;}
+.profile_newfeed_panel .Top10Bg{ background:url('../images/tab_inactive_3.png') no-repeat; height:16px; margin-top:0px;  border-bottom:1px solid #333; width:220px; padding-top:2px;}
+.profile_newfeed_panel .Top10Bg a{padding:0 20px 0 15px; float:left;}
+.profile_newfeed_panel .Top10Bg a.NewsFeed {font:bold 14px Arial, Helvetica, sans-serif;color:#ffffff;text-decoration:none;letter-spacing:0.05em;}
+.profile_newfeed_panel .Top10Bg a.Top10 {font:bold 14px Arial, Helvetica, sans-serif;color:#97BF0D;text-decoration:none;letter-spacing:0.05em;}
+.profile_newfeed_panel .Newsflt1{ width:218px;}
+.profile_newfeed_panel .Box3Gradient{ width:218px;}
+.profile_newfeed_panel .Box3submiddle{width:218px; border-right:1px solid #333;}
+.profile_newfeed_panel .Box3Middle{ width:225px; clear:both;}
+.profile_newfeed_panel .Box3BottomCurve{width:220px; background:url(../images/news_btmcurv_220.gif);}
+.profile_newfeed_panel .Top10{ display:none;}
+.profile_newfeed_panel .Box3Gradient{height:145px; width:218px;}
+.profile_newfeed_panel .flexcroll{height:130px; width:200px; }
+.profile_newfeed_panel .flt{background:#333;}
+.profile_newfeed_panel .flt img{height:180px; width:1px; visibility:hidden;}
+.profile_newfeed_panel .Top10Bg a.Top10{display:block;}
+.profile_newfeed_panel .rgt img{height:180px; width:1px; visibility:hidden;}
+.profile_newfeed_panel{margin:0px; padding:0px;}
+.profile_newfeed_panel .padding_top_5{ padding:0px;}
+.profile_newfeed_panel .content_container .content_c{ width:180px;}
+
+
+#ScrollStyle {
+/* Typical fixed height and fixed width example */
+width: 225px;
+height: 220px;
+overflow: auto;
+/* IE overflow fix, position must be relative or absolute*/
+position: relative;
+margin-top:10px;
+}
+
+.paginationstyle{
+width: 180px;
+text-align: right;
+font-size:10px;
+color:#cecdcd;
+margin-right:10px;
+}
+
+.paginationstyle select{ 
+
+margin: 0 5px;
+}
+
+.paginationstyle a{ /*Pagination links style*/
+
+text-decoration: none;
+font-size:10px;
+color:#cecdcd;
+
+}
+
+
+.paginationstyle a.disabled, .paginationstyle a.disabled:hover{ 
+
+cursor: default;
+color: gray;
+border-color: transparent;
+}
+
+.TxtStyle {color:white;margin:0px;padding:0px 0px 10px 10px;line-height:18px;font-size:10px;color:#cecdcd;}
+.SearchTxtbox {border:none;background-color:#e6e6e6;width:150px;height:19px;_height:17px;}
+.SearchBg {float:left;background-color:#e6e6e6}
+
+.Box1Img ul li a#AddMember {background:url('../images/add_member2.gif') no-repeat;width:95px;max-height:22px;height:84px;display:block;color:#97bf0d;font:10px helvetica;text-decoration:none;padding-top:62px;text-align:center;}
+.Box1Img ul li a#AddMember1 {background:url('../images/add_mem.gif') no-repeat;width:95px;max-height:22px;height:84px;display:block;color:#97bf0d;font:10px helvetica;text-decoration:none;padding-top:62px;text-align:center;}
+.Box1Img ul li a#AddDevice {background:url('../images/adddevice2.gif') no-repeat;width:69px;max-height:20px;height:72px;display:block;color:#f8971d;font:10px helvetica;text-decoration:none;padding-top:52px;text-align:center;}
+.Box1Img ul li a#AddDevice1 {background:url('../images/adddev.gif') no-repeat;width:69px;max-height:20px;height:72px;display:block;color:#f8971d;font:10px helvetica;text-decoration:none;padding-top:52px;text-align:center;}
+
+.NewsFeedBg {background:url('../images/newsfeed.gif') no-repeat;width:234px;height:23px;}
+.NewsFeedBg a{padding:0 33px 0 20px;}
+.NewsFeedBg a.NewsFeed {font:bold 14px Arial, Helvetica, sans-serif;color:White;text-decoration:none; letter-spacing:0.05em; float:left;}
+.NewsFeedBg a.Top10 {font:bold 14px Arial, Helvetica, sans-serif;color:#737373;text-decoration:none; display:block; letter-spacing:0.05em;}
+
+.Top10Bg {background:url('../images/top10.gif') no-repeat;width:234px;height:23px;}
+.Top10Bg a{padding:0 18px;}
+.Top10Bg a.NewsFeed {font:bold 14px Arial, Helvetica, sans-serif;color:#737373;text-decoration:none;letter-spacing:0.05em;}
+.Top10Bg a.Top10 {font:bold 14px Arial, Helvetica, sans-serif;color:White;text-decoration:none;letter-spacing:0.05em;}

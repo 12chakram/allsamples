@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="FrmLogin">         
+       <div id="content_wrapper">
+    	        <div id="bodycontent">
+    	        <!-- *****************************  Start: New Beta Users Signin Help Content  *****************************  -->
+					<div class="register_form">
+			          <div class="titlestrip" style="border-bottom:0px;"> <span class="beta_login_title" style=" text-transform:uppercase;">#{msgs.betaSigninPageTitle}</span> 
+				         <span class="fright width105">
+			          		<img class="padding5 padding_top12 fleft" src="#{applicationScope.staticContentBaseUrl}/images/next_left.jpg" width="8" height="9" /> 
+			          		<h:commandLink  id="signinNav" action="homePage" styleClass="trouble_sign_in fleft">#{msgs.betaSigninHomeNav}</h:commandLink> 
+			          	</span> 
+          			</div>			          
+			          <div class="reg_form" style="padding-top:0px; padding-bottom:0px;">
+			            <div class="beta_login_trouble_body_left">
+			              <div class="beta_login_trouble_body_users_left"><img class="inside_img fleft" src="#{applicationScope.staticContentBaseUrl}/images/unlock_user.jpg" width="106" height="98" />
+			                <div class="beta_login_trouble_body_insde_content">
+			                <h:commandLink id="unlockProfilenav" action="unlockProfilePage">#{msgs.betaSigninHelpUnlock_1} <b>#{msgs.betaSigninHelpUnlock_2}</b> #{msgs.betaSigninHelpUnlock_3}</h:commandLink>
+			                </div>
+			              </div>
+			            </div>
+			            <div class="beta_login_trouble_body_right">
+			              <div class="beta_login_trouble_body_users_right"><img class="inside_img fleft" src="#{applicationScope.staticContentBaseUrl}/images/re-active_user.jpg" width="106" height="98" />
+			                <div class="beta_login_trouble_body_insde_content">
+			                	<h:commandLink id="reactiveHouseholdNav" action="reactivateHouseholdPage">#{msgs.betaSigninHelpReactivcate_1} <b>#{msgs.betaSigninHelpReactivcate_2}</b> #{msgs.betaSigninHelpReactivcate_3}</h:commandLink>
+			                </div>
+			              </div>
+			            </div>
+			          </div>          
+			        <div class="neither_take_me_to_help"> 
+			          	<h:commandLink id="unauthenticatedHelpPageNav" action="unAuthenticatedHelpPage">#{msgs.betaSigninHelpNav}</h:commandLink>
+			          	<span> <img src="#{applicationScope.staticContentBaseUrl}/images/next_all.png" width="8" height="9" /> </span>
+		          	</div>
+        			</div>
+	<!-- *****************************  End: New Beta Users Signin Help Content  *****************************  -->
+			</div>
+            </div>
+        
+	</h:form>          
+</ui:composition>

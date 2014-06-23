@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<!--Start of navigation  -->
+	<div id="nav_wrapper">
+	   <h:form>
+		  <ul>
+			 <li>
+			    <div class="width100p">
+			      <h:commandLink action="#{userDashBoardBean.doMyMedia}" styleClass="our_media">
+			        <span>
+			           <ul>
+			              <li>
+				           <span>
+				              <h:outputFormat value="#{msgs.ourMedialTabLabel}"/>
+				           </span><br />
+				           <em><h:outputFormat value="#{msgs.availableMediaTxt}">
+					             <f:param value="#{menu.mediaCount}"/>
+				               </h:outputFormat> 
+				           </em>
+				         </li>
+				       </ul>
+				     </span>
+			      </h:commandLink>
+			   </div>
+	        </li>
+	        <li>
+	           <div class="width100p">
+	              <h:commandLink action="#{userDashBoardBean.doMyFamily}" styleClass="my_family">
+	                <span>
+	                   <ul>
+	                     <li>
+	                       <span>
+				             <h:outputFormat value="#{msgs.myFamilyTabLabel}"/>
+				           </span><br />
+				           <em>			              
+				              <h:outputFormat value="#{msgs.myFamilySectionTitle}">
+					             <f:param value="#{menu.familyCount}"/>
+				              </h:outputFormat> 
+				          </em>
+				       </li>
+				    </ul>
+				  </span>
+			     </h:commandLink>
+			  </div>
+	       </li>
+		   <li>
+		      <div class="width100p">
+		         <h:commandLink action="#{userDashBoardBean.doMyDevices}" styleClass="our_devices">
+		           <span>
+		              <ul>
+		                 <li>
+		                    <span>
+		                       <h:outputFormat value="#{msgs.ourDevicesTabLabel}"/>
+		                    </span><br />
+		                    <em> 
+		                      <h:outputFormat value="#{msgs.ourDevicesSectionTitle}">
+		                        <f:param value="#{menu.devicesCount}"/>
+		                      </h:outputFormat>
+		                    </em>		                 
+		                  </li>
+		               </ul>		           
+		            </span>
+			     </h:commandLink>
+			 </div>
+		  </li>			
+		</ul>
+	</h:form>
+	<div id="nav_hr"><img src="#{applicationScope.staticContentBaseUrl}/images/nav_hr.jpg" width="900"
+		height="1" border="0" alt="" /></div>
+	</div>
+	<!--End of navigation. -->
+</ui:composition>

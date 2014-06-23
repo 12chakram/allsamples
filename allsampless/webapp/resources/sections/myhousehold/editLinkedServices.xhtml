@@ -1,0 +1,318 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jstl/core"	
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<f:verbatim escape="true">
+		<script type="text/javascript">
+	      function fireEvent(obj,evt){ 		   
+			 var fireOnThis = obj;
+			 if( document.createEvent ) {
+			   var evObj = document.createEvent('MouseEvents');
+			   evObj.initEvent( evt, true, false );
+			   fireOnThis.dispatchEvent(evObj);
+			 } else if( document.createEventObject ) {				 
+			   fireOnThis.fireEvent('on'+evt);
+			 }
+		  }
+	      function nodeNameForPopup(index,nodename,nodeId){
+				hdnNodeName=document.getElementById('frmUserLinkedAccounts:hdnNodeName'+index).value;
+	      	  	document.getElementById('frmUserLinkedAccounts:nodeNameInPopup1').innerHTML=hdnNodeName;
+	      	  	document.getElementById('frmUserLinkedAccounts:nodeNameInPopup2').innerHTML=hdnNodeName;
+	      		document.getElementById('frmUserLinkedAccounts:nodeId').value=nodeId;
+	      }
+	      function pageRender(nodeIdValue){		      
+		       document.getElementById('frmUserLinkedAccounts:nodeId').value=nodeIdValue;
+		       fireEvent(document.getElementById('frmUserLinkedAccounts:unlinkLinkedAccount'),'click');
+		       return true;
+		 }
+	      function ShowLessDetails(forDiv){
+    	  	document.getElementById(forDiv+'ShowLessDiv').style.display="none";
+    	  	document.getElementById(forDiv+'ShowMoreDiv').style.display="block";
+    	  }
+    	  						
+    	  function ShowMoreDetails(forDiv){
+    	  	document.getElementById(forDiv+'ShowLessDiv').style.display="block";
+    	  	document.getElementById(forDiv+'ShowMoreDiv').style.display="none";
+	   	  }
+	    </script>
+	  </f:verbatim>
+	<h:form id="frmUserLinkedAccounts">
+	<h:inputHidden id="hdnnodeUserId" value="#{userProfileBean.nodeUserId}"/>
+	<h:inputHidden id="nodeId" value=""/>
+	<!--  Changes Prompt Popup Start  -->
+			<div id="UnsavedChanges" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+					<h3>#{labelMsgs.saveChanges}</h3>
+					<div class="PopupBody">
+						<div class="PopupLeftContent">
+							<img src="#{applicationScope.staticContentBaseUrl}/images/warning_Icon.png" width="81" height="81" />
+						</div>
+						<div class="PopupRightContent">
+							#{labelMsgs.UnsavedChangesProfile}<br />							
+						</div>
+					</div>
+					<div class="PopUpButton Fleft">
+						<a href="#" class="CommonBtn_Link" onclick="javascript:disablePopup1('UnsavedChanges', 'backgroundPopup');">
+							<div> #{labelMsgs.cancelPop}</div>
+							<div class="SmallFont">#{labelMsgs.returnChanges}</div>
+						</a> 
+						<h:commandLink styleClass="CommonBtn_Link_Gray" action="myHouseholdPage">
+							<div> #{labelMsgs.continue}</div>
+							<div class="SmallFont">#{labelMsgs.discardChanges}</div>
+						</h:commandLink>
+					</div>
+				</div>
+			</div>
+			<div id="backgroundPopup"/>
+	<!--  Changes Prompt Popup End  -->
+		<!--  Remove this link Popup Start  -->
+			<div id="removeThisLink" class="popupContact" style="z-index:10003;">
+				<div class="popup_textarea">
+						<h3><h:outputLabel value="#{labelMsgs.removeLabel} "/><h:outputLabel id="nodeNameInPopup1"/><h:outputLabel value=" #{labelMsgs.serviceLabel}"/></h3>
+						<div class="PopupBody">
+							<div class="PopupLeftContent"><img src="#{applicationScope.staticContentBaseUrl}/images/RemoveIcon.png" width="81" height="81" /></div>
+							<div class="PopupRightContent" style="text-align: justify;">
+								<h4><h:outputLabel value="#{labelMsgs.removeMsg1}"/><h:outputLabel id="nodeNameInPopup2"/><h:outputLabel value="#{labelMsgs.serviceFrmLabel}"/> 
+										<h:outputLabel id="renamedHouseholdNameInPopUp">
+										<truncate:truncateText text="#{userProfileBean.userDVO.displayName}" start="0" end="-1"/>																			
+										</h:outputLabel><h:outputLabel value="#{labelMsgs.membershipLabel}?"/></h4>
+								<br />
+								<h:outputLabel value="#{labelMsgs.removeUnlinkNodeServiceInfo}"/>
+							</div>
+						</div>
+						<div class="PopUpButton Fleft MarginTop20">
+							<a href="#" class="CommonBtn_Link" onclick="javascript:disablePopup1('removeThisLink', 'backgroundPopup');">
+								<div><h:outputLabel value="#{labelMsgs.cancelPop}"/></div>
+								<div class="SmallFont"><h:outputLabel value="#{labelMsgs.dntRemoveService}"/></div>
+							</a> 
+							<a4j:commandLink action="#{userProfileBean.removeLinkedAccounts}" styleClass="CommonBtn_Link_Gray" reRender="userLinkedAccountsUirepeat" oncomplete="javascript:disablePopup1('removeThisLink', 'backgroundPopup');">
+                                <div><h:outputLabel value="#{labelMsgs.continue}"/></div>
+								<div class="SmallFont"><h:outputLabel value="#{labelMsgs.removeService}"/></div>
+                            </a4j:commandLink>
+						</div>
+				</div>
+			</div>
+	<!--  Remove this link Popup End  -->
+	<!-- main body start -->   
+        <div class="main_body">
+        	<div class="BodyPage_heading">
+            	<div class="MemberName">
+				<h:commandLink action="myHouseholdPage" id="householdRenamed">
+		           			<h:outputLabel value="#{labelMsgs.theAccount}"/>
+		           			<h:outputLabel value="#{headerBean.householdName}"/>		           			
+							<h:outputLabel value="#{labelMsgs.accountLabel}"/>
+				</h:commandLink>
+				</div>
+        		 <div class="RightHeadLink">
+					<h:outputLabel value="#{labelMsgs.havingTrouble}"/>&#160;
+					<h:commandLink  styleClass="Common_pointer"  value="#{labelMsgs.helpNfaq}" action="authHelpPage" id="helpLink">
+						<f:setPropertyActionListener value="profile" target="#{help.helpNav}"/>
+			      	</h:commandLink>
+				</div>
+                 	<div class="Fright MembersTitleName">
+                 	<span class="violet_color_link">                 		
+		           		<truncate:truncateText text="#{userProfileBean.userDVO.displayName}" start="0" end="-1"/>'s
+                 	</span>
+	                 	<h:outputLabel value="#{labelMsgs.memberDetails1}"/>
+                 	</div>
+            </div>
+            <div class="body_container_above_gradiant">
+            		<div class="gradiant_box_left"></div>
+                    <div class="gradiant_box_middle">
+               	    	<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="" />
+               	    </div>
+                    <div class="gradiant_box_right"></div>
+            </div>
+ <!--Body content start--> 
+             	<div class="body_wrapper">
+                	<div class="body_wrapper_left_shadow"></div>
+                       <div class="body_wrapper_container">
+                        	<div class="MemberProfileContainer">
+                            	<div class="MemberProfileImgMenuDiv">
+                                    <div class="Editmember_div140">
+                                        <div class="MemberText140">                                        	
+		           							<truncate:truncateText text="#{userProfileBean.userDVO.displayName}" start="0" end="-1"/>
+                                        </div>
+                                            <div class="memberImage140">
+                                                <h:graphicImage id="userImage123" url="#{userProfileBean.userDVO.displayImageUrl}" height="83px" width="98"/>
+                                         	</div>
+                                      	</div>
+                                        <div class="Profilemenu">
+                                        	<ul class="MemberDetailsMenu">
+                                            	<li>
+                                            		<h:commandLink action="#{userProfileBean.navigateToUserProfile}" value="#{labelMsgs.memberDetails}">
+														<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId"/>
+													</h:commandLink>
+                                            	</li>
+				                            	<li>
+				                            		<h:commandLink action="#{userProfileBean.navigateToUserParentalControls}" value="#{labelMsgs.parentalControls}">
+														<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId"/>
+													</h:commandLink>
+				                            	</li>
+				                            	<li><h:outputLabel value="#{labelMsgs.linkedAccounts}" styleClass="Active"/></li>
+                                        	</ul>
+                                        </div>
+                                </div>
+                                <h:panelGroup id="userLinkedAccountsUirepeat">
+	                                    <c:if test="#{userProfileBean.userProfileValueMap.linkedAccounts eq 'true'}">
+	                                    <div class="ProfileDetailsMainDiv">
+	                                    <c:set var="idx" value="0"/>
+	                                    <div class="LinkedActsScroll">
+	                                    <c:forEach items="#{userProfileBean.userLinkedServices}" var="linkedAccountsObj">
+	                                    	<c:forEach items="#{linkedAccountsObj.consentsObj}" var="linkedObj" >
+	                                    		<c:if test="#{linkedObj.consentHdnName eq 'LINKMYACCOUNT'}">
+	                                    			<c:set var="linkUserAccount" value="#{linkedObj.consentAccepted}"/>
+	                                    		</c:if>
+	                                    	</c:forEach>
+	                                    	<div class="BrandAccountsContainer" style="#{linkUserAccount eq 'true' ?'':'display:none'}">
+	                                        	<div class="BrandLogoLeft">
+	                                       	    	<h:graphicImage url="#{linkedAccountsObj.nodeImageURL}" width="103" height="70" />
+	                                            </div>
+	                                            <div class="BrandAccountDetails">
+	                                            	<div class="AccontHeading">
+	                                                	<h3 class="Fleft"><h:outputLabel value="#{linkedAccountsObj.nodeName}"/></h3> 
+	                                                	<c:set var="string" value="#{linkedAccountsObj.nodeName}"/>
+														<c:set var="find" value="'"/>
+														<c:set var="replaceWith" value=""/>
+														<c:set var="nodeName" value="#{fn:replace(string,find,replaceWith)}"/>
+														<c:if test="#{userProfileBean.userProfileValueMap.RemoveLinkedAccounts eq 'true' }">
+	                                                     	<span  class="RemoveThisMember">
+																<a href="#" onclick="return pageRender('#{linkedAccountsObj.nodeId}');">#{labelMsgs.removeThisLink}</a>
+	                                                    	 </span>
+	                                                    </c:if>	  
+	                                                    	<div class="Acconth4heading">
+	                                                     		<span class="Fleft"><h:commandLink action="#" value="#{linkedAccountsObj.nodeName}" style="display:none;" styleClass="violet_color_link"/></span>
+	                                                		</div>
+	                                                </div>
+	                                                <div class="BrandDetailsView">
+	                                                	<ul>
+	                                                		<c:forEach items="#{linkedAccountsObj.consentsObj}" var="cnsntObj">
+		                                                		<li>
+			                                                		<div class="Fleft">
+				                                                				<span class="Fleft">
+				                                                				<c:if test="#{cnsntObj.consentHdnName eq 'LINKMYACCOUNT'}">
+				                                                					<c:if test="#{cnsntObj.consentAccepted  eq 'true'}">
+				                                                						<c:if test="#{userProfileBean.userProfileValueMap.EDIT_LINKMYACCOUNT eq 'true'}">
+				                                                							<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked"/>#{cnsntObj.consentName}
+				                                                						</c:if>
+				                                                						<c:if test="#{userProfileBean.userProfileValueMap.EDIT_LINKMYACCOUNT ne 'true'}">
+				                                                							<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked" onclick="this.checked='checked';"/>#{cnsntObj.consentName}
+				                                                						</c:if>
+				                                                					</c:if>
+				                                                					<c:if test="#{cnsntObj.consentAccepted  ne 'true'}">
+				                                                						<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" disabled="disabled"/>#{cnsntObj.consentName}
+				                                                					</c:if>
+				                                                				</c:if>
+				                                                				<c:if test="#{cnsntObj.consentHdnName eq 'MANGEMYPROFILE'}">
+				                                                					<c:if test="#{userProfileBean.userProfileValueMap.EDIT_MANGEMYPROFILE eq 'true'}">
+					                                                					<c:if test="#{cnsntObj.consentAccepted  eq 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                				<c:if test="#{cnsntObj.consentAccepted  ne 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" />#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                			</c:if>
+						                                                			<c:if test="#{userProfileBean.userProfileValueMap.EDIT_MANGEMYPROFILE ne 'true'}">
+					                                                					<c:if test="#{cnsntObj.consentAccepted  eq 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked" onclick="this.checked='checked';"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                				<c:if test="#{cnsntObj.consentAccepted  ne 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" disabled="disabled"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                			</c:if>
+				                                                				</c:if> 
+				                                                				<c:if test="#{cnsntObj.consentHdnName eq 'RECOMMNEDMEDIAPDTSANDSERVICES'}">
+				                                                					<c:if test="#{userProfileBean.userProfileValueMap.EDIT_RECOMMNEDMEDIAPDTSANDSERVICES eq 'true'}">
+					                                                					<c:if test="#{cnsntObj.consentAccepted  eq 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                				<c:if test="#{cnsntObj.consentAccepted  ne 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" />#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                			</c:if>
+						                                                			<c:if test="#{userProfileBean.userProfileValueMap.EDIT_RECOMMNEDMEDIAPDTSANDSERVICES ne 'true'}">
+						                                                			<c:if test="#{userProfileBean.userProfileValueMap.age ne 'CHILD'}">
+					                                                					<c:if test="#{cnsntObj.consentAccepted  eq 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked" onclick="this.checked='checked';"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                				<c:if test="#{cnsntObj.consentAccepted  ne 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" disabled="disabled"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                			</c:if>
+						                                                			<c:if test="#{userProfileBean.userProfileValueMap.age eq 'CHILD'}">
+					                                                					<c:if test="#{cnsntObj.consentAccepted  eq 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" checked="checked"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                				<c:if test="#{cnsntObj.consentAccepted  ne 'true'}">
+						                                                					<input type="checkbox" name="#{linkedAccountsObj.nodeId}" value="#{cnsntObj.consentHdnName}" disabled="disabled"/>#{cnsntObj.consentName}
+						                                                				</c:if>
+						                                                			</c:if>
+						                                                			</c:if>
+				                                                				</c:if>
+				                                                				</span>
+				                                                				<div class="LinkedActsShowmoreContent" id="#{linkedAccountsObj.nodeId}#{cnsntObj.consentHdnName}ShowMoreDiv">
+				                                                					<h:outputLabel value="#{cnsntObj.consentShortDesc}"/><span class="ShowMore">...<a onclick="ShowMoreDetails('#{linkedAccountsObj.nodeId}#{cnsntObj.consentHdnName}');">#{labelMsgs.moreLabel}</a></span>
+				                                                				</div>
+				                                                				<div class="LinkedActsShowmoreContent" id="#{linkedAccountsObj.nodeId}#{cnsntObj.consentHdnName}ShowLessDiv" style="display:none;">
+			                            											<div><h:outputLabel value="#{cnsntObj.consentShortDesc}"/></div>
+													                            	<span class="LessTxtDirection"></span>
+													                            	<div class="MoreContent"><h:outputLabel value="#{cnsntObj.consentDesc}"/><span class="ShowMore">...<a onclick="ShowLessDetails('#{linkedAccountsObj.nodeId}#{cnsntObj.consentHdnName}');">#{labelMsgs.lessLabel}</a></span></div>
+													                        	</div>
+				                                                		 </div>		                                                		                        		 
+			                                                	</li>
+	                                                		</c:forEach>
+	                                                    </ul>
+	                                               </div>
+	                                          	</div>
+	                                       	</div>
+	                                       	<c:set var="idx" value="#{idx+1}"/>
+	                                       	</c:forEach>
+	                                       	</div>
+		                                      <div class="MemberContinue_btn clearBoth">
+		                                      <div style="#{(idx eq '1' &amp;&amp; linkUserAccount ne 'true')?'display:none':''}">
+		                                            <div class="button_input">
+			                                            <h:commandButton styleClass="image_button" value="#{labelMsgs.saveTheChanges}" action="#{userProfileBean.saveLinkedAccounts}" reRender="userLinkedAccountsUirepeat">
+															<f:param value="#{userProfileBean.userDVO.nodeUserId}" name="selectedUserId"/>
+														</h:commandButton>
+		                                            </div>
+		                                            <div class="Cancel">
+														<a href="#" onclick="javascript:openPopup('UnsavedChanges', 'backgroundPopup');" id="cancelChanges">#{labelMsgs.cancel}</a>
+													</div>
+		                                            <div id="pageError" style="float: left; margin-top:-5px; padding-left:10px;">
+														<h:outputLabel value="#{userProfileBean.errorValueMap.pageError}" id="pageError"
+															rendered="#{userProfileBean.errorValueMap.pageError ne null}" styleClass="#{userProfileBean.errorValueMap.pageError ne null?'err_msg':'err_msg_hide'}"/>
+													</div>
+												</div>
+													<div class="MarginLeft10 Fleft" id="PageSuccessHint">
+															<h:outputLabel value="#{userProfileBean.userProfileValueMap.successMsg}" id="successMsg"
+															rendered="#{userProfileBean.userProfileValueMap.successMsg ne null}" styleClass="#{userProfileBean.userProfileValueMap.successMsg ne null?'SuccessMsg':'SuccessMsgDull'}"/>
+													</div>
+		                                      </div>
+	                                    </div>
+	                                  </c:if>
+                                   <h:commandLink style="display: none;" action="#{userProfileBean.removeLinkedAccounts}" id="unlinkLinkedAccount"/>
+                                    <c:if test="#{userProfileBean.userProfileValueMap.linkedAccounts eq 'false'}">
+	                                    <div class="ProfileDetailsMainDiv">
+	                                    	<div class="NoLinkedAccounts">
+	                                    		<h:outputLabel value="#{labelMsgs.noLinkAccountUserInfo}"/>
+	                                    	</div>
+	                                    </div>
+                                    </c:if>
+                                     </h:panelGroup>
+                             </div>  
+                        </div>
+                        <div class="body_wrapper_right_shadow"></div>
+                </div>
+                
+            <!--Body content end--> 
+        </div>
+       <!-- Main body end-->     
+	
+	</h:form>
+	</ui:composition>

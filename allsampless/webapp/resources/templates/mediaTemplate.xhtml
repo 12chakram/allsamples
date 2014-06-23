@@ -1,0 +1,49 @@
+<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+<head>
+  <ui:decorate template="/resources/sections/common/headCommonCSS.xhtml"/>
+  <ui:decorate template="/resources/sections/common/headCommonJS.xhtml"/>
+  <link rel='stylesheet' type='text/css' href='#{applicationScope.staticContentBaseUrl}/css/skin.css'/>
+<script type="text/javascript" language="javascript">
+	var activeTab = 1;
+	function openTab(tabId) {
+		// reset old tab and content
+		document.getElementById("tabLink"+activeTab).className = "tabLink";
+		document.getElementById("tabContent"+activeTab).className = "tabContent";
+		// set new tab and content
+		document.getElementById("tabLink"+tabId).className = "tabLinkActive";
+		document.getElementById("tabContent"+tabId).className = "tabContentActive";
+		activeTab = tabId;
+	}
+</script>
+</head>
+<body class="bodybg">
+	<div id="main_wrapper">
+		<div id="container">
+<!--  Header -->
+			<ui:decorate template="/resources/sections/common/portalHeader.xhtml" />
+<!--  Menu -->
+			<ui:decorate template="/resources/sections/media/menu.xhtml" />
+<!--  Media Content -->
+		<div id="content_wrapper" style="width: 100%; clear: both;">
+			<div id="bodycontent">
+				<ui:decorate template="/resources/sections/media/browseMedia.xhtml"/>
+				<div class="media_right">					
+				<ui:insert name="mediaHeader">
+					<ui:include src="/resources/sections/media/header.xhtml"/>
+				</ui:insert>
+				<ui:insert name="mediaContent" />
+				</div>
+			</div>		
+		</div>
+<!--  Footer -->
+			<ui:decorate template="/resources/sections/common/portalFooter.xhtml" />
+		</div>
+	</div>	
+</body>
+</html>

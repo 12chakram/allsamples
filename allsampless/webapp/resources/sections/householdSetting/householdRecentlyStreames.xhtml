@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nt="http://www.dece.com/jsf">
+   <div style="clear:both; width:auto;">
+   <h:form id="householdSettingStreamsFormId">
+	    <div class="img_slide_panel">
+		<div class="rec_streamed">#{msgs.recentlyStreamedLabel}</div>
+		<div class="rec_streamed_clear">
+			<a4j:commandLink
+				id="recentlyStreamedClearHistoryLinkId"
+				action="#{mediaStreamsBean.recentlyStreamedClearHistoryAction}"
+				rendered="#{sessionScope.privilege=='FULL'}"
+				reRender="houseHoldNewsFeedPanelId">
+				<h:outputText escape="false"
+					value="&lt;span&gt;#{msgs.clearHistoryLink}&lt;/span&gt;"></h:outputText>
+			</a4j:commandLink>
+		</div>
+		<div class="rec_streamed_imageflow">
+		<div id="loopedCarousel">
+		<div class="pre"><a4j:commandLink id="previousStreamsId"
+			styleClass="previous"
+			action="#{mediaStreamsBean.previousStreamsAction}"
+			reRender="recentlyStreamedPanelId">
+			<h:graphicImage
+				url="#{applicationScope.staticContentBaseUrl}/images/left_arrow.png"
+				border="0" />
+		</a4j:commandLink></div>
+		<div class="imgflow">
+		<div class="container">
+		<div class="slides"><ui:repeat
+			value="#{mediaStreamsBean.recentlyStreamedDetailsList}"
+			var="recentlyStreamedListVar">
+			<div><h:commandLink
+				onmouseover="Tip('Streamed on '+ #{recentlyStreamedListVar.createdDateTime} +'.&lt;br /&gt;&lt;b&gt;LASP: Lorem Ipsum&lt;/b&gt;', BALLOON, true, ABOVE, true, OFFSETX, -17, PADDING, 8)"
+				onmouseout="UnTip();">
+				<h:graphicImage url="#{recentlyStreamedListVar.mediaImageUrl}"
+					height="100" alt="" />
+			</h:commandLink></div>
+		</ui:repeat></div>
+		</div>
+		</div>
+		<div class="nex"><a4j:commandLink id="nextStreamsId"
+			styleClass="next" action="#{mediaStreamsBean.nextStreamsAction}"
+			reRender="recentlyStreamedPanelId">
+			<h:graphicImage
+				url="#{applicationScope.staticContentBaseUrl}/images/right_arrow.png"
+				border="0" />
+		</a4j:commandLink></div>
+		</div>
+		<script type="text/javascript">
+				   $(function(){
+					$('#loopedCarousel').loopedCarousel({
+						spacing: 14
+					});
+				  });
+				</script></div>
+		</div>
+	
+   </h:form>
+   </div>
+</ui:composition>	

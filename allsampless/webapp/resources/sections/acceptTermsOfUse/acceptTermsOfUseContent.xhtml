@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+    <div class='BoxContainer'>
+       	<script type='text/javascript' src="#{applicationScope.staticContentBaseUrl}/js/flexcroll.js"></script>	
+		<script language="javascript" type="text/javascript">
+		function validate()
+		{
+			if(!document.getElementById("chkAccept").checked)
+				openPopup('alert_acceptance', 'backgroundPopup');
+			return document.getElementById("chkAccept").checked;	
+		}
+		</script>
+        <h:form id="frmtermsAndConditions">
+      	
+      		 <div id="alert_acceptance" class="popupContact">
+		        <div class="heading">
+		            <div class="forgot">
+		                <h2>#{msgs.termsAndConditionsPageTitle}</h2>
+		            </div>
+		            <div class="close">
+		                <a id="popupContactClose" class="popupContactClose" onclick="javascript:disablePopup1('alert_acceptance', 'backgroundPopup')">#{msgs.closeLabel}</a>
+		            </div>
+		        </div>
+		        <div class="worning" >
+		        	<h3>#{msgs.agreeToTermsWarningLabel}</h3>
+					<p>#{msgs.agreeToTermsMustLabel}</p>
+				</div>
+		        <div class="confirm">
+					<strong>#{msgs.agreeToTermsClickOk}</strong>           
+		        </div>
+		        <div class="centeredBtn">
+						<ul>
+							<li><a href="#" class="anchor_btn" onclick="javascript:disablePopup1('alert_acceptance', 'backgroundPopup')"><span>#{msgs.okButton}</span></a></li>
+							
+						</ul>
+					</div>
+		    </div>
+		 	<div id="backgroundPopup"></div>
+		
+
+
+            <div id="content_wrapper">
+                <div id="bodycontent">
+              <div class='termconbox'>
+                    <span class="titlehead">
+                        #{msgs.termsAndConditionsPageTitle}
+                     </span>
+                   	 <hr />
+                   	 <br />
+                   		 <div style='margin-right: 5px; width:96%; margin-bottom: 10px; padding-left:30px; margin-bottom:20px;'>
+                    		<iframe src="#{applicationScope.termsOfUseUrl}"   frameborder="0" scrolling="yes" class="termsofuse_iframe" />
+                    </div>
+                </div>
+
+
+				<div style="color:white;padding-left:50px;">
+                	<input id="chkAccept" type="checkbox" /> #{msgs.agreeToTerms1Label}
+                </div>
+
+                <div class="terms_accept_btn" >
+					<!-- start : submit button -->
+						<h:commandLink id="termsAndConditionsAccept" styleClass="anchor_btn" style="margin-right:	5px;" action="#{termsAndConditionsBean.termsAndConditionAcceptAction}" onclick="return validate();">
+							<h:outputText value="&lt;span&gt;" escape="false" />
+								<h:outputText value="#{msgs.acceptButton}"/>
+							<h:outputText value="&lt;/span&gt;" escape="false"/>
+						</h:commandLink>
+						<h:commandLink styleClass="anchor_btn" action="#{termsAndConditionsBean.termsAndConditionDeclineAction}" id="termsAndConditionsCancel">
+							<h:outputText value="&lt;span&gt;" escape="false" />
+								<h:outputText value="#{msgs.declineButton}"/>
+							<h:outputText value="&lt;/span&gt;" escape="false"/>
+						</h:commandLink>
+	 			 	<!-- end : submit button -->
+              </div>
+            </div>
+            </div>
+        </h:form>
+    </div>
+
+</ui:composition>

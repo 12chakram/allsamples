@@ -1,0 +1,56 @@
+#imageflow{
+	text-align:left;
+	margin-left:100px;
+}
+
+#imageflow img { 
+	position:absolute; 
+	top:0px;
+	border:none;
+}
+
+.clear{
+	clear:both;
+}
+
+#images img{
+	visibility:hidden;
+	display:none;
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+#preload{
+	visibility:hidden;
+}
+#captions{
+	font-weight:bold;
+	position:relative; 
+	text-align:center;
+	z-index:10000;
+	display:none;
+}
+#scrollbar{
+	position:relative; 
+	top:-20px;
+	border-bottom:3px solid #b3b3b3;
+	z-index:10001;
+	
+}
+#slider{
+	position:absolute;
+	margin-top:-4px;
+	margin-left:0px;
+	z-index:10002;
+	background-image:url(../images/slider.png);
+	background-repeat:no-repeat;
+	width:48px;
+	height:16px;	
+}
+
+#credits{
+	color:#777;
+	font_size:70%;
+}
+#credits a{
+	color:#777;
+}

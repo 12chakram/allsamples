@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<ui:decorate template="/resources/sections/common/headCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/headCommonJS.xhtml"/>
+	
+	<script type="text/javascript"> //jQuery(function() { jQuery('#form_tabs').tabs(); }); </script>
+	<script type="text/javascript">
+		function confirmPopup(validForm){
+			if(validForm){
+				openPopup('updateEmail_id', 'backgroundPopup')
+			}
+		}
+		function confirmPopup1(validForm){
+			if(validForm){
+				openPopup('sendEmailMessage_id', 'backgroundPopup')
+			}
+		}
+		
+	</script>
+</head>
+	
+<body class="bodybg">
+	<div id="main_wrapper">
+		<div id="container">
+			<div id="header">
+              <div id="logo_wrapper"> <img src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></div>
+            </div>
+			<h:form id="frmVerifyEmail">
+			
+				
+    <!-- Update Email Address Popup  -->
+		<div id="updateEmail_id" class="popupContact">
+			<div class="heading">
+				<div class="forgot">
+					<h2>
+						<h:outputFormat value="#{msgs.emailUpdateTitle}"/>
+					</h2>
+				</div>
+				<div class="close">
+					<a onclick="javascript:disablePopup1('updateEmail_id', 'backgroundPopup')" id="popupContactClose">#{msgs.closeLabel}</a>
+				</div>
+		  </div>
+		   <div class="worning">
+			<h3>
+				<h:outputText value="#{msgs.info}" />
+			</h3>
+			<p>
+				#{msgs.updateEmailContent} <h:outputText style="color:#676B9A" value="#{hostageBean.emailUpdate}" id="emailUpdateText"/>
+			</p>
+		 </div>
+		 
+			 <div class="confirm">
+					<strong>#{msgs.agreeToTermsClickOk}</strong>           
+		        </div>
+			<div class="centeredBtn" style="padding-top: 5px;">
+			   <ul>
+			     <li><h:commandLink action="checkEmail" styleClass="anchor_btn"  id="removeYesLink">
+						<h:outputText value="&lt;span&gt;#{msgs.okButton}&lt;/span&gt;" escape="false" />
+					</h:commandLink>
+			     </li>
+		     </ul>
+		  </div>
+		</div>
+		<div id="backgroundPopup">
+	    </div>
+<!--End : Popup-->	
+
+    <!-- Send Message Popup  -->
+		<div id="sendEmailMessage_id" class="popupContact">
+			<div class="heading">
+				<div class="forgot">
+					<h2>
+						<h:outputFormat value="#{msgs.sendEmailTitle}"/>
+					</h2>
+				</div>
+				<div class="close">
+					<a onclick="javascript:disablePopup1('sendEmailMessage_id', 'backgroundPopup')" id="popupContactClose">#{msgs.closeLabel}</a>
+				</div>
+		  </div>
+		   <div class="worning">
+			<h3>
+				<h:outputText value="#{msgs.info}" />
+			</h3>
+			<p>
+				#{msgs.sendEmailContent} <h:outputText value="#{hostageBean.userDVO.email}" style="color:#676B9A" id="emailUpdateSentMessage"/>
+			</p>
+		 </div>
+		 
+			 <div class="confirm">
+					<strong>#{msgs.agreeToTermsClickOk}</strong>           
+		        </div>
+			<div class="centeredBtn" style="padding-top: 5px;">
+			   <ul>
+			     <li><h:commandLink action="checkEmail" styleClass="anchor_btn" id="removeYesLink1">
+						<h:outputText value="&lt;span&gt;#{msgs.okButton}&lt;/span&gt;" escape="false" />
+					</h:commandLink>
+			     </li>
+		     </ul>
+		  </div>
+		</div>
+		<div id="backgroundPopup">
+	    </div>
+<!--End : Popup-->
+	    
+			
+		   		<div id="content_wrapper">
+		            <div id="bodycontent">
+						<div class="register_form">
+							<h:inputText style="visibility:hidden;size:0px;" value="#{hostageBean.userDVO.email}"/>
+							<div class="titlestrip">
+								<span class="title1" style="color:#604e9a;">#{msgs.verifyEmailTitle}</span>                 
+							</div>								
+							<div class="bodycontent padding_top_10 clear">
+								<div class="padding_top_15">
+									#{msgs.verifyEmailText1} <h:outputText value="#{hostageBean.userDVO.email}" style="color:#676B9A" id="emailUpdateDisplay"/>
+				                </div>
+				                <div class="padding_top_20">
+				                	#{msgs.verifyEmailText2}<a class="whiteTxt" style="color:#fff;" href="#">#{msgs.verifyEmailDonotreply}</a> #{msgs.verifyEmailText3}
+				                </div>
+				               	<div class="padding_top_20 clear">
+					                <span class="verifymail_inermailcontent">
+					                 	#{msgs.verifyEmailText4}
+					                </span>			
+					               	<span class="padding_left_23 fleft" >
+									   <h:inputText styleClass="inputbox" value="#{hostageBean.emailUpdate}" maxlength="100"/>
+									</span>
+									<span class="fright">
+									<a4j:commandLink styleClass="anchor_btn" action="#{hostageBean.updateUserEmail}" reRender="errorMessageId,emailUpdateText,emailUpdateDisplay,emailUpdateSentMessage" 
+													 oncomplete="confirmPopup(#{hostageBean.validateForm})">
+													
+										<span>#{msgs.verifyEmailUpdateAddress}</span>
+									</a4j:commandLink>
+					                </span>
+					                <span class="errorMessage" style="float:left; padding-left:24px;">
+					            	 	<h:outputText value="#{hostageBean.errorMessage}" id="errorMessageId"/>
+					            	</span>
+									<span class="successMessage" style="float:left; padding-left:24px;">
+					            		#{hostageBean.infoMessage}
+					            	</span>
+								</div>
+				                <div class="padding_top_20 clear">
+									<span class="verifymail_inermailcontent">
+										#{msgs.verifyEmailText5}
+									</span>
+					                <span class="fright">
+					                <a4j:commandLink styleClass="anchor_btn" action="#{hostageBean.resendEmail}" 
+													 oncomplete="confirmPopup1(#{hostageBean.validateForm})">
+										<span>#{msgs.verifyEmailSendMessage}</span>
+									</a4j:commandLink>
+									</span>
+								</div>
+			         		</div>
+						</div>
+		       		</div>       
+		        </div>
+			</h:form>
+			<ui:insert name="portalFooter">
+				<ui:include src="/resources/sections/common/portalFooter.xhtml"/>
+			</ui:insert>
+		</div>
+	</div>
+</body>
+</html>

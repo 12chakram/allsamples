@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<script type="text/javascript">
+ 	    function mediaClearText(fieldId, action){
+    				var field = document.getElementById(fieldId);
+    			    if ('#{labelMsgs.mediaSearchDefaultText}' == field.value &amp;&amp; action == 'onfocus') 
+    				    field.value = '';
+    			    else if ('' == field.value &amp;&amp; action == 'onblur')
+    				    field.value = '#{labelMsgs.mediaSearchDefaultText}';
+    			}
+	</script>
+	<div class="menu_search_input">
+	   	<div class="MagnifierLeft"></div>
+	 	<div class="Fleft"> 
+  	 		<h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+	            <h:panelGroup>		      
+			        <h:inputText value="#{ourMediaBean.searchMediaTxt}" id="text" title="#{labelMsgs.mediaSearchDefaultText}"  maxlength="50" 
+			        onfocus="mediaClearText(this.id, 'onfocus')" onblur="mediaClearText(this.id, 'onblur')" />
+			        <rich:suggestionbox id="suggestionBox" for="text"
+			        suggestionAction="#{ourMediaBean.autoComplete}" var="result" tokens="," height="150" width="220" cellpadding="2" cellspacing="2"   shadowOpacity="4" shadowDepth="4"
+			        fetchValue="#{result.displayName}" nothingLabel="#{labelMsgs.noMediaTitle}" usingSuggestObjects="true" rules="none">                  
+	                    <h:column>
+	                        <h:outputText value="#{result.displayName}" />
+	                    </h:column>
+	                    </rich:suggestionbox>
+	                    <div id="myDiv"></div>
+			    </h:panelGroup>
+	        </h:panelGrid>
+   	 	</div>
+   	 	<div class="MagnifierRight"></div>
+  	 </div>
+   	<div class="menu_go">
+		<h:commandButton id="searchMediaGoId" title="GO" value="GO" action="#{ourMediaBean.searchFilterAction}"/>
+	</div>
+</ui:composition>

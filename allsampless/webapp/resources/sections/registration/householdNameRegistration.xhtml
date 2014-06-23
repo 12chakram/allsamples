@@ -1,0 +1,125 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:comp="http://www.dece.com/jsf"
+	xmlns:rich="http://richfaces.org/rich">
+	<h:form id="frmHouseholdNameReg">
+		<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.dobMonthValue}"/> 
+		<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.dobDateValue}"/> 
+    	<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.dobYearValue}"/>  
+    	<h:inputHidden tabindex="-1" value="#{householdRegistrationBean.registrationValueMap.countryName}"/>
+    	   	
+		<div class="main_body">
+			<div class="create_h_hold_heading">
+				<h1>
+					<span class="Fleft">
+						<h:outputLabel value="#{labelMsgs.householdHeading1}"/><span class="content_standard_color"><h:outputLabel value="#{labelMsgs.householdHeading2}"/></span> <h:outputLabel value="#{labelMsgs.householdHeading3}"/>
+					</span>
+				</h1>
+  				<div class="Cancel_Registration"><a tabindex="2" title="#{labelMsgs.cancelRegistration}" id="cancelId" onclick="openPopup('cancelRegistration', 'backgroundPopup');" href="#">#{labelMsgs.cancelRegistration}</a></div>
+  			</div>
+            <div class="body_container_above_gradiant">
+    			<div class="gradiant_box_left">       			    	
+            	</div>
+            	<div class="gradiant_box_middle">
+       	   			<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="White_Gray_Gradiant" />
+       	   		</div>
+            	<div class="gradiant_box_right">                    	
+            	</div>            
+            </div> 
+<!-- Begin of household menu step-2 active -->  
+            <div class="h_hold_menu_step2_active">
+        		<div class="menu_bar_top_shadow">                
+            	</div>            
+       			<div class="menu_bar_steps">
+          			<div class="create_h_hold_step_1">
+                    	<div class="step_1_icon">                            
+                    	</div>
+                    	<div class="step_1_menu_text">
+                        	<table class="table" cellpadding="0" cellspacing="0">
+                        		<tr><td>                        			
+                        			<h:commandLink id="regsStep1MessageId" tabindex="3" title="#{labelMsgs.regsStep1Message}" action="#{householdRegistrationBean.goToStep1}" value="#{labelMsgs.regsStep1Message}"/>
+                        		</td></tr>
+                        	</table> 
+                    	</div>                    
+                 	</div>
+                 	<div class="create_h_hold_step_2_left">                             
+                    </div>
+                    <div class="create_h_hold_step_2">
+                    	<div class="step_2_icon">                            
+                		</div>
+                		<div class="step_2_menu_text">
+                        	<table class="table" cellpadding="0" cellspacing="0">
+                        		<tr><td>
+                        		     <h:outputLabel value="#{labelMsgs.regsStep2Message}"></h:outputLabel>                        			
+                        		</td></tr>
+                        	</table>  
+                		</div>
+                    </div>
+                    <div class="create_h_hold_step_3_left">                            
+                    </div>
+                    <div class="create_h_hold_step_3">
+              			<div class="step_3_icon">
+                  		</div>
+              			<div class="step_3_menu_text">
+                        	<table class="table" cellpadding="0" cellspacing="0">
+                        		<tr><td>
+                        			<h:outputLabel value="#{labelMsgs.regsStep3Message}"></h:outputLabel>     
+                        		</td></tr>
+                        	</table> 
+                  		</div>                    
+                    </div>
+                    <div class="create_h_hold_step_3_right">
+                    </div>
+               	</div>
+                <div class="menu_bar_bottom_shadow">
+        			<div class="menu_bar_bottom_shadow_left">
+                	</div>
+                	<div class="menu_bar_bottom_shadow_middle">
+                	</div>
+                	<div class="menu_bar_bottom_shadow_right">
+                	</div>
+                </div>
+            </div> 
+<!--End of household menu step-2 active -->
+<!--Begin of body content -->        
+           	<div class="body_wrapper">
+            	<div class="body_wrapper_left_shadow">                
+            	</div>
+            	<div class="body_wrapper_container">
+            		<div class="h_hold_Dob_content">            		
+            			<h:outputLabel value="#{labelMsgs.regsHouseholdNameInfo}"/> 
+                	</div>
+                	<div class="h_hold_email">
+		            	<div class="household_InputArea">
+		  					<strong><h:outputLabel value="#{labelMsgs.householdNameLabel}:" for="frmHouseholdNameReg:householdName"/></strong><br />
+	                  		<div class="household_InputField">
+	                  		    <h:inputText id="householdName" tabindex="4" styleClass="input" maxlength="50" title="#{labelMsgs.householdNameLabel}" value="#{householdRegistrationBean.registrationValueMap.householdName}" onfocus="toggleHintMsg('householdNameHint','block');toggleHintMsg('householdNameValidationHint','none');"  onblur="toggleHintMsg('householdNameHint','none');"/>
+	                  		</div>
+	                  		<div class="msg_hint" id="householdNameHint">	
+	                  			<h:outputLabel value="#{labelMsgs.householdNameHintMesg}"/>
+	                  		</div>
+                       		<div id="householdNameValidationHint">	                       	  		
+                       	  		<h:outputLabel id="householdNameValidationMesg" styleClass="#{householdRegistrationBean.errorValueMap.houseHoldNameError ne null?'err_msg':'display:none'}" rendered="#{householdRegistrationBean.errorValueMap.houseHoldNameError ne null}" value="#{householdRegistrationBean.errorValueMap.houseHoldNameError}"/>                       		
+                       		</div>
+		 			 	</div>
+                	</div>                	                 	 
+                        <div class="h_hold_continue_btn">
+							<div class="button_input">
+								<h:commandButton title="#{labelMsgs.continue}" tabindex="5" styleClass="image_button" id="continueToStep2" value="#{labelMsgs.continue}" action="#{householdRegistrationBean.continueStep2Action}"/>
+							</div>
+							<div style="margin-left: 10px;">
+								<h:outputLabel value="#{householdRegistrationBean.errorValueMap.pageError}" id="pageError"
+							    rendered="#{householdRegistrationBean.errorValueMap.pageError ne null}" styleClass="#{householdRegistrationBean.errorValueMap.pageError ne null?'err_msg':'err_msg_hide'}"/>
+							</div>
+	                	</div>           
+                </div>
+                <div class="body_wrapper_right_shadow">
+                </div>
+        	</div>
+       </div> 
+<!--End of body content. --> 
+	</h:form>
+</ui:composition>	

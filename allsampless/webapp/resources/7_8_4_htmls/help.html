@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+ <script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+	<script type="text/javascript" src="js/popup.js"></script>
+<!--lines for Seaerch field validation Focus -->
+<script type="text/javascript">
+function clearText(field){
+
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+
+}
+
+function msg()
+{
+	var fullURL = parent.document.URL
+	var x = fullURL.substring(fullURL.indexOf('?')+3, fullURL.length)
+	
+	if(x == "family") { family1.className = "media_link_active" }
+}
+</script>
+<script language="javascript" type="text/javascript">
+		function showDiv(divid)
+		{
+			var sldivid = document.getElementById(divid);
+			sldivid.style.display = "";
+		}
+		function hideDiv(divid)
+		{
+			var sldivid = document.getElementById(divid);
+			sldivid.style.display = "none";
+		}
+		function topicclose(){
+			document.getElementById("topicclose").style.display="none";	
+			
+		}
+		function topicopen(){
+			document.getElementById("topicclose").style.display="block";	
+			
+		}
+		
+			function ChangeImageNext(val)
+		{
+			var imgPre=document.getElementById('pre');
+			var imgNex=document.getElementById('nex');
+			
+			imgPre.src="images/side_arrow_lft.gif";
+			if(val<newscripts.pagecount-1)
+			{
+				imgNex.src="images/side_arrow_rght.gif";
+				imgPre.style.cursor="pointer"
+				imgNex.style.cursor="pointer"
+			}
+			else
+			{
+				imgNex.src="images/side_arrow_rght_disable.gif";
+				imgNex.style.cursor="default"
+			}
+		}
+		
+		
+		
+		function ChangeImagePrevious(val)
+		{
+			var imgPre=document.getElementById('pre');
+			var imgNex=document.getElementById('nex');
+			imgNex.src="images/side_arrow_rght.gif";
+			
+			if(val>0)
+			{
+				imgPre.src="images/side_arrow_lft.gif";
+				imgNex.style.cursor="pointer"
+				imgPre.style.cursor="pointer"
+			}
+			else
+			{
+				imgPre.src="images/side_arrow_lft_disable.gif";
+				imgPre.style.cursor="default"
+			}
+		}
+	</script>
+<!--end -->
+
+<!--[if lte IE 7]> 
+<style type="text/css">
+.select_tipic .dropdwonmenu .menu ul li ul.ieposition{ margin-left:-159px; margin-top:17px; }
+</style>
+<![endif]--> 
+
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+
+</head>
+
+<body class="bodybg" onload="javascript:msg();">
+<!--Start : Terms & Conditions --> 
+      
+<!--End : privacy statement-->
+ <div id="backgroundPopup">
+    </div>
+<div id="main_wrapper">
+	<div id="container">
+		
+		<!--Start : Header -->	
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg" border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+			<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5" style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+		</div>
+		<!--End : Header -->	
+		
+		<!--Start : Main Navigation -->	
+		<div id="nav_wrapper">
+                <ul>
+                    <li>
+                    <div class="width100p">
+                    <a href="detailOurMedia.html" class="our_media" >
+                   <span > <ul>
+                  			 <li>
+                   <span>OUR MEDIA </span><br />
+                      <em>125 Movies available </em>
+                      </li></ul></span>
+                  
+                        </a>
+                        </div>
+                        </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="myFamily.html" class="my_family">
+                   <span > <ul>
+                  			 <li>
+                     			<span>MY HOUSEHOLD </span><br />
+                      			<em>3 of 6 Members active </em>
+                                </li>
+                              </ul>
+                          </span>
+                    </a></div>
+                    </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="ourDevices.html" class="our_devices">
+                     <span > <ul>
+                  			 <li>
+                         		 <span>OUR DEVICES</span>
+                              	<br />
+                          		<em>4 of 12 Devices active</em>
+                        		 </li>
+                              </ul>
+                          </span>
+                        </a>
+                        </div>
+                        </li>
+                    
+                </ul>
+          </div>
+		<!--End : Main Navigation -->
+		
+		<div id="nav_hr">
+			<img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+		
+		<!--Start : Content -->
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+			
+				<!--Start : Broswe Media -->
+				<div class="help_left">
+					<div class="browse_help">
+						BROWSE HELP
+					</div>
+					<div class="help_list">
+						<div class="help_type ">by Search</div>
+						<div class="search" style="padding-top: 10px">
+							<div class="search_left_corner">
+								<img src="images/search_left_corner.jpg" width="6" height="19" border="0" alt="searcb_left_corner" />
+							</div>
+							<div class="media_search_input">
+								<input type="text" value="Search for a topic" onFocus="clearText(this)" onBlur="clearText(this)" name="search_title"/>
+							</div>
+							<div class="search_btn">
+								<img src="images/search_btn.jpg" width="24" height="19" border="0" alt="search" />
+							</div>
+						</div>
+					</div>
+					<!-- <div class="help_list clear">
+						<div class="help_type ">by type</div>
+						<div class="all_type"> &#160; </div>
+						<div class="options">
+							<ul>
+								<li><a href="#">Video Tutorial</a></li>
+								<li><a href="#">FAQs</a></li>
+							</ul>
+						</div>
+					</div> -->
+					<div class="help_list clear">
+						<div class="help_type ">by topic</div>
+						<div class="all_type"> &#160; </div>
+						<div class="options">
+							<ul>
+								<li><a href="#" id="dece">What is UltraViolet?</a></li>
+								<li><a href="#" id="household">UltraViolet Household</a></li>
+								<li><a href="#" id="profile">My Profile</a></li>
+								<li><a href="#" id="media">Our Media</a></li>
+								<li><a href="#" id="family1">My Family</a></li>
+								<li><a href="#" id="devices">Our Devices</a></li>
+								<li><a href="#">Our Linked Accounts</a></li>
+								<li><a href="#">Technical Support</a></li>
+								<li><a href="#">Participating Partners &amp; Retailers</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="help_list clear">
+						<div class="help_type ">Contact Us</div>
+						<div class="all_type">&#160; </div>
+						<div class="options">
+							<ul>
+								<li><a href="#">Technical Support</a></li>
+								<!--<li><a href="#">Partner/Retailer support</a></li>-->
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--End : Broswe Media -->
+				
+				<!--Start : Media Library-->
+				<div class="help_right">
+					
+					<!--Start : Media Heading, search -->
+					<div class="help_header">
+						<div class="heading">
+							<h3>HELP</h3>
+							<p>Having trouble? You can browse or search our library of help topics.</p>
+						</div>
+					</div>
+					<!--End : Media Heading, search -->
+					
+					<!--Start : Help Wrapper -->
+					<div class="help_content">
+						<div class="faqs_heading">
+							<div class="fheading">Frequently Asked Questions</div>
+							<div class="go"><a href="#"><img src="images/go.jpg" width="24" height="18" border="0" alt="" /></a></div>
+							<div class="select_box fright">
+								<div class="dropdwonmenu">
+										<div class="menu">
+											<ul>
+												<li><a href="#" onmouseover="javascript:topicopen()" id="current">Select Topic</a>
+													<div id="topicclose"><ul  class="ieposition"> 
+														<li><a href="#" onclick="javascript:topicclose()" style="padding-left:10px; width:150px;">UltraViolet Household</a></li>
+														<li><a href="#" onclick="javascript:topicclose()" style="padding-left:10px; width:150px;">My Profile</a></li>
+														<li><a href="#" onclick="javascript:topicclose()" style="padding-left:10px; width:150px;">Our Media</a></li>
+														<li><a href="#" onclick="javascript:topicclose()" style="padding-left:10px; width:150px;">My Family</a></li>
+														<li><a href="#" onclick="javascript:topicclose()" style="padding-left:10px; width:150px;">Our Devices</a></li>
+												   </ul></div>
+											  </li>
+											</ul>
+										</div>
+								  </div>
+							</div>
+							
+						</div>
+                        
+                       
+											 <!--<div id="scrollholder" class="scrollholder" style="overflow: hidden; clear:both;">
+                                            <div id="scroll" class="scroll"> 
+											  <div style="width: 675px; overflow-x: hidden;">
+                                            
+                                              <div class="flexcroll">-->
+                                              
+						<div class="faq_questions">
+						
+                            <div class="quick_view_content">
+                            <div class="items1" style="padding:5px 0px;">
+                            <div class="all_questions">
+								<div class="number">01.</div>
+								<div class="question"><a href="#">What is UltraViolet?</a></div><br />
+								<div class="number1">02.</div>
+								<div class="question"><a href="#">How can I manage Household?</a></div><br />
+								<div class="number1">03.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">04.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">05.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">06.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">07.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+							
+                                
+								
+							</div>
+                      
+							<div class="all_questions">
+								<div class="number1">11.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">12.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">13.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">14.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">15.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">16.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">17.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">18.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">19.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+							</div>
+                          </div> 
+                          <div class="items1" style="padding:5px 0px; ">
+                            <div class="all_questions">
+								<div class="number">21.</div>
+								<div class="question"><a href="#">What is UltraViolet?</a></div><br />
+								<div class="number1">22.</div>
+								<div class="question"><a href="#">How can I manage Household?</a></div><br />
+								<div class="number1">23.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">24.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">25.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">26.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">27.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">28.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">29.</div>
+					
+								
+							</div>
+                      
+							<div class="all_questions">
+								<div class="number1">31.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">32.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">33.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">34.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								
+							</div>
+                          </div>
+                          	<div class="items1" style="padding:5px 0px; ">
+                            <div class="all_questions">
+								<div class="number">41.</div>
+								<div class="question"><a href="#">What is UltraViolet?</a></div><br />
+								<div class="number1">42.</div>
+								<div class="question"><a href="#">How can I manage Household?</a></div><br />
+								<div class="number1">43.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">44.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">45.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">46.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">47.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">48.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">49.</div>
+					
+								
+							</div>
+                      
+							<div class="all_questions">
+								<div class="number1">51.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">52.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								<div class="number1">53.</div>
+								<div class="question"><a href="#">sed diam non ummy nibh euismod?</a></div><br />
+								<div class="number1">54.</div>
+								<div class="question"><a href="#">sAdipiscing elit, sed diam  euismod tincidunt?</a></div><br />
+								
+							</div>
+                          </div>
+                      </div>
+                          
+                           	<div id="quickview" style=" clear:both; text-align:right; padding-right:30px;">
+                            <a class="leftArrow"  rel="first"   title="Previous"  href="#" ><img   src="images/prevl-icon.png" alt=""  border="0" /> </a> &nbsp;&nbsp;
+                            <a class="leftArrow"  rel="previous"   title="Previous"  href="#" ><img   src="images/prev-icon.png" alt=""  border="0" /> </a>
+									
+                                    &nbsp;&nbsp;<a href="#" rel="next" title="Next"> <img   src="images/next-icon.png" border="0" alt="" /></a> 
+                                  &nbsp;&nbsp;   <a href="#" rel="last" title="Next"> <img   src="images/nextl-icon.png" border="0" alt="" /></a>
+                                    </div>
+                            
+                                <script type="text/javascript">
+										var newscripts=new virtualpaginate({
+										piececlass: "items1",
+										piececontainer: 'div', 
+										//Let script know you're using "p" tags as separator (instead of default "div")
+										pieces_per_page: 1,
+										defaultpage: 0,
+										wraparound: false,
+										persist: true
+										})
+										newscripts.buildpagination(["quickview"])
+										</script>      
+                      </div>
+                           
+						
+						
+                       <!-- </div></div></div></div>-->
+                        
+                        	<div class="faqs_ans_heading">
+							Answers to Frequently Asked Questions
+						</div>
+                        <div id="content_wrapperww">
+           
+                        <div class="flexcroll">
+						<div class="faqs_ans">
+							<span class="question" style="font-size:14px;">01. What is UltraViolet?</span>
+							<span class="answer">Adipiscing elit, sed diam  euismod tincidunt sAdipiscing elit, sed diam  euismod tincidunt</span>
+							<br />
+							<span class="question" style="font-size:14px;">02. How can I manage Household?</span>
+							<span class="answer">Adipiscing elit, sed diam  euismod tincidunt sAdipiscing elit, sed diam  euismod tincidunt</span>
+						</div></div>
+                        </div>
+						
+						<div class="backtotop">
+							<a href="#"> Back to Top</a>
+						</div>
+					</div>
+					<!--End : Help Wrapper -->
+					
+				</div>
+				<!--End : Media Library-->
+				
+			</div>
+		</div>
+		<!--End : Content -->
+		<div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

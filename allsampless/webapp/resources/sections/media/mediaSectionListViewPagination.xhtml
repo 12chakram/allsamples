@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j">				
+<div class="pagenationLeft">
+<c:set var="listViewpageTab" value="#{byretailerVal+2}"/>
+   	#{labelMsgs.titlesPerPage}: <a tabindex="#{listViewpageTab}" id="hdr4" title="4" onclick="setVal(this,'pageSize','4');"> <label class="Common_pointer" style="#{ourMediaBean.pageSize=='4'?'color:#fff;font-weight:bold':''}">4</label> </a>| <a tabindex="#{listViewpageTab+1}" id="hdr8" title="8"  onclick="setVal(this,'pageSize','8');"><label class="Common_pointer">8</label> </a>| <a tabindex="#{listViewpageTab+2}" id="hdr16" title="16" onclick="setVal(this,'pageSize','16');"><label class="Common_pointer">16</label></a> | <a tabindex="#{listViewpageTab+3}" id="hdr32" title="32" onclick="setVal(this,'pageSize','32');"><label class="Common_pointer">32</label> </a>| <a tabindex="#{listViewpageTab+4}" id="hdr#{applicationScope.mediaPageSizeAll}" title="All" onclick="setVal(this,'pageSize','#{applicationScope.mediaPageSizeAll}');"><label class="Common_pointer">#{labelMsgs.all}</label></a>
+</div>
+<div class="pagenationRight">	
+<c:set var="listViewPagenationtab" value="#{listViewpageTab+5}"/>
+<a tabindex="#{listViewPagenationtab}" id="hdrFirst" class="PrevFirst #{ourMediaBean.inFirstPage=='true'?'Common_pointerDefault':'Common_pointer'}"  onclick="#{ourMediaBean.inFirstPage=='true'?'':'setVal(this,\'paginationAction\',\'FIRST\');'}">
+	<c:if test="#{ourMediaBean.inFirstPage=='true'}">
+			<img title="#{labelMsgs.first}"  src="#{applicationScope.staticContentBaseUrl}/images/Prev-FirstIcon_Dull.png" />
+	</c:if>
+	<c:if test="#{ourMediaBean.inFirstPage=='false'}">
+			<img  title="#{labelMsgs.first}"  src="#{applicationScope.staticContentBaseUrl}/images/Prev-FirstIcon.png"  />
+	</c:if>
+</a>
+<a tabindex="#{listViewPagenationtab+1}" id="hdrPrev" class="Previous #{ourMediaBean.hasPrevPage=='true'?'Common_pointer':'Common_pointerDefault'}"  onclick="#{ourMediaBean.hasPrevPage=='false'?'':'setVal(this,\'paginationAction\',\'PREVIOUS\');'}">
+		<c:if test="#{ourMediaBean.hasPrevPage=='true'}">
+			<img title="#{labelMsgs.previous}" src="#{applicationScope.staticContentBaseUrl}/images/PrevDoubleIcon.png"  />
+		</c:if>
+		<c:if test="#{ourMediaBean.hasPrevPage=='false'}">
+				<img title="#{labelMsgs.previous}"  src="#{applicationScope.staticContentBaseUrl}/images/PrevDoubleIcon_Dull.png" />
+		</c:if>
+	
+</a>	
+#{ourMediaBean.currentPage} of #{ourMediaBean.totalPages}
+<a tabindex="#{listViewPagenationtab+2}" id="hdrNext" class="Next #{ourMediaBean.hasNextPage=='true'?'Common_pointer':'Common_pointerDefault'}"  onclick="#{ourMediaBean.hasNextPage=='false'?'':'setVal(this,\'paginationAction\',\'NEXT\');'}">
+		<c:if test="#{ourMediaBean.hasNextPage=='true'}">
+				<img title="#{labelMsgs.next}" src="#{applicationScope.staticContentBaseUrl}/images/NextDoubleIcon.png"  />
+		</c:if>
+		<c:if test="#{ourMediaBean.hasNextPage=='false'}">
+				<img title="#{labelMsgs.next}"  src="#{applicationScope.staticContentBaseUrl}/images/NextDoubleIcon_Dull.png" />
+		</c:if>
+
+</a>
+<a tabindex="#{listViewPagenationtab+3}" id="hdrLast"  class="NextEnd #{ourMediaBean.inLastPage=='true'?'Common_pointerDefault':'Common_pointer'}"  onclick="#{ourMediaBean.inLastPage=='true'?'':'setVal(this,\'paginationAction\',\'LAST\');'}">
+		<c:if test="#{ourMediaBean.inLastPage=='true'}">
+				<img title="#{labelMsgs.last}" src="#{applicationScope.staticContentBaseUrl}/images/Next_endIcon_Dull.png"  />
+		</c:if>
+		<c:if test="#{ourMediaBean.inLastPage=='false'}">
+				<img title="#{labelMsgs.last}" src="#{applicationScope.staticContentBaseUrl}/images/Next_endIcon.png" />
+		</c:if>
+
+</a>
+</div>
+</ui:composition>

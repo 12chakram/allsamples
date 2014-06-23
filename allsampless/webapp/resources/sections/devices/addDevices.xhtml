@@ -1,0 +1,177 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form>
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+				<div class="left_panel">
+					<div class="content_heading">
+						<div class="heading">
+							<h1 class="device_heading">Add New Device to Household</h1>
+						</div>
+						<div class="Back_to_ourdevices">
+								<h:commandLink action="devicesPage"><span>Back to Our Devices</span></h:commandLink>
+							</div>
+					</div>
+					<div class="device_wrapper">
+						<div class="device_option_steps">
+							
+							<script type="text/javascript">
+								function changeState()
+								{
+									document.form3.code.value = "345HB8732323";
+									//document.form3.code.readonly = "true";
+									document.getElementById("msg").style.display = "block";
+								}
+								
+							</script>
+							<div class="option_content">
+							<div class="content_box whiteTxt clear" style="padding-left:8px;width:610px;">
+							
+								Note: some retailers may support content downloads to older devices that are not
+								compatible with UltraViolet. Check with the retailer for your older device to
+								determine compatibility. If the device is compatible, the retailer should have a
+								means to register that device with UltraViolet via their own website. <br/><br/>
+								
+								To add a new UltraViolet Device to your Household, follow these easy steps:<br/><br/>
+								<ol style="padding-left: 20px"> 
+									<li >Generate an authorization token for your Device using the form below. Once
+									generated, the authorization token will be valid for 30 minutes. Device registration
+									must be completed within this time period or the process will have to be repeated.<br/></li>
+									
+									<li>On your UltraViolet Device, enter the authorization token via the Device's user
+									interface.<br/></li>
+									
+									<li>Submit the token to enable your Device to register with the UltraViolet system.<br/></li>
+									
+									<li>Within minutes, your Device should be registered and ready to use! Confirmation
+									of successful Device registration is available from the Our Devices page when your
+									new Device appears in the display of Household Devices.<br/></li>
+								
+								</ol>
+							</div>
+							</div>
+							<div class="option_content">
+								<div class="add_device_steps_info">Click to generate an authorization token for your Device
+									<div class="code_box"> 
+										<div class="code_input">
+											<form action="" id="form3" name="form3">
+											<input type="text" size="25" style="width:180px;cursor:hand;" name="code" value="" />
+											</form>
+										</div>
+										<div class="ok_btn" >
+											<div class="centeredBtn">
+												<ul>
+													<li><a href="javascript:void(0)" class="anchor_btn" id="genarate_code" onclick="javascript:changeState();"><span>Generate Token</span></a></li>
+												</ul>
+											</div>
+											
+										</div>
+										<div class="fleft clear" id="msg" style="display:none;">Input the above code in your device to join into DECE.</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right_panel">
+					<div class="cont_box1">
+						<div class="content_box" >
+							<div class="quickview_tab" id="quickview">
+								<div class="quick_tip_title">QUICK TIP </div>
+								<div class="quicktip_arrows">
+									<a href="#" class="leftArrow" rel="previous" title="Previous">
+										<img src="images/side_arrow_lft.gif"  border="0" alt="" />
+									</a><a href="#" rel="next" title="Next">
+										<img src="images/side_arrow_rght.gif" border="0" alt="" />
+									</a>
+								</div>
+							</div>
+							
+						<div class="quick_view_content">
+							<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso </div>
+							<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso</div>
+						 </div>
+							<script type="text/javascript">
+								var newscripts=new virtualpaginate({
+								piececlass: "items",
+								piececontainer: 'div', //Let script know you're using "p" tags as separator (instead of default "div")
+								pieces_per_page: 1,
+								defaultpage: 0,
+								wraparound: false,
+								persist: true
+								})
+								newscripts.buildpagination(["quickview"])
+								</script>
+						</div>
+						<div class="box_btm"></div>
+					</div>
+					<!--Start : Top Devices Faqs  -->
+								<div class="cont_box1">
+									<div class="content_box">
+										<div class="quickview_tab">TOP DEVICES FAQs
+											<div style="float:right;">
+											</div>
+										</div>
+											
+										<div class="select_arrow">
+											<input type="hidden" value="" id="hidden" />
+											<div id="expand1" class="faq_arrow" style="display:none;">
+												<img src="images/expand.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:hidediv('collapse1', 'expand1', 'faq1')" />
+											</div>
+											<div id="collapse1" class="faq_arrow">
+												<img src="images/collapse.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:showdiv('collapse1', 'expand1', 'faq1')" />
+											</div>
+											
+											<div class="q_char" >Q: </div>
+											<div class="faq_qust">1How consectetuer adipiscing diam nonummy nibh euismod? </div>
+										</div>
+										
+										
+										<div id="faq1" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+										</div>
+										
+	
+										<div class="select_arrow">
+											<div id="expand2" class="faq_arrow" style="display:none;">
+												<a href="javascript:void(0)" onclick="javascript:hidediv('collapse2', 'expand2', 'faq2')"><img src="images/expand.gif" border="0" width="11" /></a>
+											</div>
+											<div id="collapse2" class="faq_arrow">
+												<a href="javascript:void(0)" onclick="javascript:showdiv('collapse2', 'expand2', 'faq2')"><img src="images/collapse.gif" border="0" width="11" /></a>
+											</div>
+											<div class="q_char">Q: </div>
+											<div class="faq_qust">2How consectetuer adipiscing diam nonummy nibh euismod? </div>
+										</div>
+										<div id="faq2" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+										</div>
+										
+										<div class="select_arrow">
+											<div id="expand3" class="faq_arrow" style="display:none;">
+												<a href="javascript:void(0)" onclick="javascript:hidediv('collapse3', 'expand3', 'faq3')"><img src="images/expand.gif" border="0" width="11" /></a>
+											</div>
+											<div id="collapse3" class="faq_arrow">
+												<a href="javascript:void(0)" onclick="javascript:showdiv('collapse3', 'expand3', 'faq3')"><img src="images/collapse.gif" border="0" width="11" /></a>
+											</div>
+											<div class="q_char" >Q: </div>
+											<div class="faq_qust">3How consectetuer adipiscing diam nonummy nibh euismod? </div>
+										</div>
+										<div id="faq3" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+										</div>
+											  
+									</div>
+									<div class="box_btm" style="clear:both;"></div>
+								</div>
+								<div class="more_faq"><a href="help.html?f=device">More Devices FAQs</a> | <a href="help.html">All FAQs</a></div>
+								<!--End : Top Media Faqs  -->
+				</div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

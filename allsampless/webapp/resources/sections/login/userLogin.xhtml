@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<script type="text/javascript">
+		window.onload = function (){			
+			input_load();
+			}
+		
+		function myKeyPressed(e){
+			e = e || window.event;
+			var unicode=e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+			if (unicode == 13){
+				fireEventLogin();
+			}
+		}
+
+		function fireEventLogin(){
+				var fireOnThis = document.getElementById('FrmLogin:signinButton');
+				if(document.createEvent) {
+				  var evObj = document.createEvent('MouseEvents');
+				  evObj.initEvent( 'click', true, false );
+				  fireOnThis.dispatchEvent(evObj);
+				} else if( document.createEventObject ) {
+				  fireOnThis.fireEvent('onclick');
+				}
+			}
+		
+	</script>
+	<!-- header begin-->
+	<h:form id="FrmLoginHead">
+		<div id="header">
+		<div id="default_logo_wrapper"><h:commandLink id="brandLogo" action="homePage">
+			<img alt="#{msgs.HEADER_IMAGEALT_LOGO}" border="0" 
+			src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.jpg" />
+		</h:commandLink></div>
+		<div class="right_header "><span class="fright">
+		<div id="home_btn" style="float:right;"><h:commandLink id="logo" action="homePage">
+			<img src="#{applicationScope.staticContentBaseUrl}/images/home_btn.jpg"
+				width="25" height="24" border="0" alt="Home Button" />
+		</h:commandLink></div>
+		<div id="welcome_wrapper">
+		  <h:commandLink id="unauthenticatedHelpPageNav" action="unAuthenticatedHelpPage">#{msgs.helpLink}</h:commandLink>
+		</div>
+		</span>
+		<div class="select_box fright padding_top_20" style="clear: right;">
+		<div class="fleft">
+		<div class="dropdwonmenu">
+		<div class="menu2">
+		<ul class="add_permistions">
+			<li style="text-align: left;"><a class="flagname" href="#">
+			<div onmouseover="javascript:countriesflag('country_language');"
+				class="user_language" id="selectbox">#{msgs.languageDefaultSelect}</div>
+			</a>
+			<div id="flags">
+			<ul>
+				<li><h:commandLink value="#{msgs.englishLocaleLink}"
+					onclick="javascript:countriesflag('FrmLoginHead:English');countriesflagclose();"
+					id="English" actionListener="#{userLoginBean.changeLocale}">
+					<img
+						src="#{applicationScope.staticContentBaseUrl}/images/usa_flag_icon.png" />
+				</h:commandLink></li>
+				<li><h:commandLink value="#{msgs.frenchLocaleLink}"
+					onclick="javascript:countriesflag('FrmLoginHead:French');countriesflagclose();"
+					id="French" actionListener="#{userLoginBean.changeLocale}">
+					<img
+						src="#{applicationScope.staticContentBaseUrl}/images/france_flag_icon.png" />
+				</h:commandLink></li>
+			</ul>
+			</div>
+			</li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</h:form>
+</ui:composition>

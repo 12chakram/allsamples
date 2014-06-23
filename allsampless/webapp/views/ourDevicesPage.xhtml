@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:c="http://java.sun.com/jstl/core" 
+    xmlns:a4j="http://richfaces.org/a4j"  
+    template="/resources/templates/authenticatedTemplate.xhtml">
+
+	<ui:define name="authMenu">
+     	<ui:include src="/resources/sections/devices/devicesMenu.xhtml"/>     	
+    </ui:define>   
+            
+	<ui:define name="content">
+		<h:form id="frmDevicesDashboard">
+			<ui:include src="/resources/sections/devices/devicesHome.xhtml"/>
+		</h:form>		
+	</ui:define>
+	<script type="text/javascript" language="javascript">
+	window.onload=function(){
+		if('#{householdDevicesBean.viewAddForm}')
+			openPopup('AddDevicePopUp', 'backgroundPopup');
+	}
+	</script>
+ </ui:composition>

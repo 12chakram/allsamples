@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"	
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+   	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+		<ui:composition>
+			<f:subview rendered="#{text != null &amp;&amp; end == -1 &amp;&amp; fn:length(text)>labelMsgs.truncateTextDefault}">
+				#{fn:substring(text, 0, labelMsgs.truncateTextDefault)}...
+			</f:subview>
+			<f:subview rendered="#{text != null &amp;&amp; end == -1 &amp;&amp; end != null &amp;&amp; fn:length(text) &lt;= labelMsgs.truncateTextDefault}">
+				#{text}
+			</f:subview>
+			<f:subview rendered="#{text != null &amp;&amp; end != -1 &amp;&amp; end != null &amp;&amp; fn:length(text)>end}">
+				#{fn:substring(text,start,end)}...
+			</f:subview>
+			<f:subview rendered="#{text != null &amp;&amp; end != -1 &amp;&amp; end != null &amp;&amp; fn:length(text) &lt;= end}">
+				#{text}
+			</f:subview>
+		</ui:composition>
+</html>

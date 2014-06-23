@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/authenticatedTemplate.xhtml">
+    <ui:define name="authMenu">
+     	<ui:include src="/resources/sections/addUser/addUserMenu.xhtml"/>
+    </ui:define>           
+	<ui:define name="content">
+  		<c:if test="#{addUserBean.stepsRender eq 'step1Page'}">
+	  		<ui:include src="/resources/sections/addUser/addUserProfile.xhtml"/>
+		</c:if> 
+		<c:if test="#{addUserBean.stepsRender eq 'step2Page'}"> 
+	   		<ui:include src="/resources/sections/addUser/addUserSecurityPermissions.xhtml"/> 
+		</c:if>
+		<c:if test="#{addUserBean.stepsRender eq 'step3Page'}"> 
+	   		<ui:include src="/resources/sections/addUser/addUserParentalControls.xhtml"/> 
+		</c:if>
+	</ui:define>
+ </ui:composition>

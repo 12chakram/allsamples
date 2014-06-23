@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:form id="frmMediaSectionMenu">
+<div class="menu_bar">
+     	<div class="mediaRedMenuBgimage100">
+        
+       </div>
+          <div class="menuMainAera">      
+          <c:set var="mediaMenuTab" value="4"/>
+              <h:commandLink tabindex="#{mediaMenuTab}" id="mediaMenuTabId" title="#{labelMsgs.ourMedia}" action="#{ourMediaBean.loadMediaPage}" styleClass="ourMedia_menu_active">	
+              	<span class="ourMedia_menu_active_icon">
+              		<div class="mediaActiveIcon"></div>
+              		<div class="mediaActiveText">#{labelMsgs.ourMedia}</div>
+              	</span> 
+              	<div class="active_redMedia_icon">&#160;</div>
+              </h:commandLink>
+              <h:commandLink tabindex="#{mediaMenuTab+1}" id="myhouseholdtabId" title="#{labelMsgs.myhousehold}" styleClass="MyHousehold_menu" value="#{labelMsgs.myhousehold}" action="myHouseholdPage"/>
+              <div class="MenuMidBorder"></div>               
+          	  <h:commandLink tabindex="#{mediaMenuTab+2}" id="devicesTabId" title="#{labelMsgs.ourPlayers}" styleClass="ourDevices_menu" value="#{labelMsgs.ourPlayers}" action="ourDevicesPage"/>
+              <div class="SearchBox">
+              <ui:include src="/resources/sections/common/searchMedia.xhtml"/>
+              </div>
+       </div>    
+     </div>
+	</h:form>
+</ui:composition>

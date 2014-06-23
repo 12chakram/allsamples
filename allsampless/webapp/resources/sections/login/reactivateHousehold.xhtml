@@ -1,0 +1,164 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<script type="text/javascript">
+	function fireEvent(obj,evt){
+		var fireOnThis = obj;
+		if( document.createEvent ) {
+		  var evObj = document.createEvent('MouseEvents');
+		  evObj.initEvent( evt, true, false );
+		  fireOnThis.dispatchEvent(evObj);
+		} else if( document.createEventObject ) {
+		  fireOnThis.fireEvent('on'+evt);
+		}
+	}
+	function clearCaptcha() {			
+	    document.getElementById('reactivateHsFormId:captchaImageText').value='';       
+	 } 	
+	function checkForm()
+	{
+		var checkFieldsValuesAvailable=true;
+		document.getElementById('reactivateHsFormId:usernameError').innerHTML="";
+		document.getElementById('reactivateHsFormId:passwordError').innerHTML="";
+		document.getElementById('reactivateHsFormId:termsnCodnError').innerHTML="";
+		document.getElementById('reactivateHsFormId:captchaValueError').innerHTML="";
+		document.getElementById('reactivateHsFormId:pageError').innerHTML="";		
+		if(document.getElementById('reactivateHsFormId:usernameId').value=="")
+		{
+			document.getElementById('reactivateHsFormId:usernameError').innerHTML="#{errMsgs.userName_mandatory}";
+			checkFieldsValuesAvailable=false;
+		}		
+		
+		if(document.getElementById('reactivateHsFormId:createpassword').value=="")
+		{
+			document.getElementById('reactivateHsFormId:passwordError').innerHTML="#{errMsgs.password_mandatory}";
+			checkFieldsValuesAvailable=false;
+		}
+		
+		
+		if(!document.getElementById('reactivateHsFormId:acceptTermsCheckbox').checked)
+		{
+			document.getElementById('reactivateHsFormId:termsnCodnError').innerHTML="#{errMsgs.terms_and_cond_error}";
+			checkFieldsValuesAvailable=false;
+		}
+		
+			
+		if(document.getElementById('reactivateHsFormId:captchaImageText').value=="")
+		{
+			document.getElementById('reactivateHsFormId:captchaValueError').innerHTML="#{errMsgs.captchaValue_mandatory}";
+			checkFieldsValuesAvailable=false;
+		}		
+		
+		if(checkFieldsValuesAvailable)
+			fireEvent(document.getElementById('reactivateHsFormId:reactivateHhSubmit'),'click');
+	}
+	
+	</script>
+  <h:form id="reactivateHsFormId">
+     <div id="content_wrapper">
+      <div id="bodycontent">
+		<div class="register_form">
+		
+			<div class="titlestrip">
+						<span class="title1"><h:outputText value="#{msgs.fillFormMessage}"/></span> 
+						<span class="require"><h:outputText value="#{msgs.requiredFieldInfo1}"></h:outputText> <span style="color:#FF0000">*</span> <h:outputText value=" #{msgs.requiredFieldInfo2}"></h:outputText></span>             
+			</div>
+			<div class="form_title">#{msgs.reactivateMyHouseholdtitle}</div>
+			<div class="reg_form">
+				<div class="reg_form_details">
+					<div class="form_lable"> <h:outputLabel value="#{msgs.usernameLabel}" for="reactivateHsFormId:usernameId"></h:outputLabel></div><span class="red">*</span>  
+					<div class="form_field"> 
+							 <h:inputText id="usernameId" value="#{reactivateHouseHold.username}" maxlength="64">							      							     							      
+							   </h:inputText>
+							   <span class="show_error_msg">
+							   		<h:message for="usernameId" class="show_error_msg"></h:message>	
+							   		<h:outputText id="usernameError"/> 
+							   	</span>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+				</div>
+				<div class="reg_form_details1">
+					<div class="form_lable"> <h:outputLabel value="#{msgs.passwordLabel}" for="reactivateHsFormId:createpassword"/> </div><span class="red">*</span>
+							<div class="form_field"> 
+									<h:inputSecret id="createpassword" value="#{reactivateHouseHold.password}" maxlength="32" autocomplete="off">
+										<f:validateLength minimum="6" maximum="32"/>
+									</h:inputSecret>
+										<span class="show_error_msg"><h:message for="createpassword"/><h:outputText class="show_error_msg" id="passwordError"/></span>
+							</div>
+							 <div class="form_sup_txt">&#160;</div>
+				</div>			
+			</div>
+			<!-- start : Unlock Account  -->
+					<div class="form_title"><h:outputText value="#{msgs.agreeToTermsTitle}"/></div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="terms"><span class="red">*</span> <h:selectBooleanCheckbox id="acceptTermsCheckbox" value="#{reactivateHouseHold.acceptTermsCheckbox}" />
+								<h:outputLabel value="#{msgs.agreeToTerms1Label}" for="reactivateHsFormId:acceptTermsCheckbox"/>
+																
+							</div>
+							<span class="show_error_msg" style="width:600px;">		
+							    <h:message for="acceptTermsCheckbox"/>					
+								<h:outputText id="termsnCodnError" value=""/>								
+							</span>	
+							<div class="termsandcond">
+            		 			<iframe src="#{applicationScope.termsOfUseUrl}" id="printable_area"  frameborder="0" scrolling="yes" class="termsofuse_iframe" />
+							</div>						
+							<div class="form_sup_txt"></div>
+						</div>
+					</div>
+			<!-- start : Verify Image  -->
+					<div class="form_title"><h:outputText value="#{msgs.verifyImageTitle}"/></div>
+					<div class="reg_form">
+					<a4j:outputPanel ajaxRendered="true">
+						<div class="reg_form_details">
+							<div class="form_lable"><h:outputText value="#{msgs.captchaLabel}"/></div><span class="red">*</span>
+							<div class="form_field">							
+								<h:inputText id="captchaImageText" alt="#{msgs.REG_INPUTALT_CAPTHCA}" value="#{reactivateHouseHold.captchaValue}" maxlength="8"/>
+								<span class="show_error_msg">
+								  <h:message for="captchaImageText"/>
+								  <h:outputText id="captchaValueError" value="#{reactivateHouseHold.errorValueMap.captchaValueError}"/>
+						       </span>
+							</div>
+							<div class="reg_form_details">
+								<div class="form_lable"> &#160;</div><span class="red">&#160;</span>
+								<div class="form_field">									 
+									 <h:graphicImage id="captchaImage" url="/jcaptcha?dummy=#{reactivateHouseHold.currentTime}" immediate="true" alt="#{msgs.REG_IMAGEALT_CAPTHCA}"/><br />
+                                     <a4j:commandLink styleClass="refresh" value="#{msgs.refreshCaptchLink}" reRender="captchaImage,captchaImageText" oncomplete="clearCaptcha();"/>
+								</div>
+							</div>
+						</div>
+					</a4j:outputPanel>
+					</div>
+			<!-- Start : Page level error displayholder -->
+					<div class="reg_form_details">
+						<span class="show_error_msg" style="padding-left: 200px; padding-bottom:5px">                                 
+                             <h:outputText id="pageError" value="#{reactivateHouseHold.errorValueMap.pageError}" />
+                        </span>
+					</div>
+					<!-- End : Page level error displayholder -->		
+		  	<div class="submitform_btn" style="width:100%;">
+						<div class="centeredBtn">
+							<ul>
+								<li><h:commandLink styleClass="anchor_btn" id="createButton" onclick="checkForm();return false;">
+										<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.reactivatethishousehold}"/>
+										<h:outputText value="&lt;/span&gt;" escape="false"/>
+									</h:commandLink></li>
+								<li class="cancel_btn" ><h:commandLink style="color:#fff;" action="#{reactivateHouseHold.reactivateCancelAction}" immediate="true" id="cancelButton">
+										<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.cancelButton}"/>
+										<h:outputText value="&lt;/span&gt;" escape="false"/>									
+									</h:commandLink></li>
+								<li><h:commandLink action="#{reactivateHouseHold.reactivateSubmitAction}" id="reactivateHhSubmit" value="" style="colour:black"/></li>
+							</ul>
+						</div>
+					</div>			
+		      </div>
+          </div>
+      </div>
+	</h:form>
+</ui:composition>

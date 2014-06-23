@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form>
+		<div id="nav_wrapper">
+			<ul>
+				<li>
+				
+				<div class="width100p">
+				<h:commandLink action="#{mediaBean.initializeBean}" styleClass="our_media">
+					<span>
+					<ul>
+                  	 <li>
+						<span><h:outputFormat value="#{msgs.ourMedialTabLabel}" /></span> <br />
+						<em>
+							<h:outputFormat value="#{msgs.availableMediaTxt}">
+							<f:param value="#{menu.mediaCount}"/>
+							</h:outputFormat>
+						</em>
+						</li></ul></span>
+				</h:commandLink> 
+                    
+                        </div>
+				
+				</li>
+				<li>
+				<div class="width100p">
+					<h:commandLink action="#{addMemberBean.navigationtoFamilyPage}" styleClass="my_family">
+							<span>
+								<ul>
+			                  	 <li>
+									<span><h:outputFormat value="#{msgs.myFamilyTabLabel}" /></span> <br />
+									<em>
+										<h:outputFormat value="#{msgs.myFamilySectionTitle}">
+										<f:param value="#{menu.familyCount}" />
+										</h:outputFormat>
+									</em>
+									</li>
+								</ul>
+								</span>
+					</h:commandLink> 
+                    
+                 </div>
+					
+				</li>
+				<li>
+				<div class="width100p">
+					<h:commandLink action="devicesPage" styleClass="our_devices">
+							<span>
+								<ul>
+			                  	 <li>
+									<span><h:outputFormat value="#{msgs.ourDevicesTabLabel}" /> </span> <br />
+									<em>
+										<h:outputFormat value="#{msgs.ourDevicesSectionTitle}">
+											<f:param value="#{menu.devicesCount}" />
+										</h:outputFormat>
+									</em>
+								</li>
+								</ul>
+								</span>
+					</h:commandLink> 
+                    
+                 </div>
+				</li>
+				<!-- li>
+					<h:commandLink action="placeHolderPage" class="placeholder">
+					<h:outputFormat value="#{msgs.placeholderTabLabel}" /> <br />
+					<em>
+						<h:outputFormat value="#{msgs.placeholderSectionTitle}">
+						</h:outputFormat>
+					</em>
+					</h:commandLink>
+				</li -->
+			</ul>
+		
+		</div>			
+		<div id="nav_hr">
+			<img src="#{applicationScope.staticContentBaseUrl}/images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+	</h:form>
+</ui:composition>

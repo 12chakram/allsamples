@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"	
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nt="http://www.dece.com/jsf"	
+	xmlns:truncate="http://www.dece.com/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets">    
+   <script type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/js1.4.2.min.js"></script>
+   <script type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/jcarousel.min.js"></script>
+   <script type='text/javascript' src="#{applicationScope.staticContentBaseUrl}/js/tabs.js"></script>
+   <script  type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/jquery.tabs.pack.js"></script>
+   <script language="javascript" type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/loopedcarousel.js"/>  
+   <link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/skin.css" />  
+   <script type="text/javascript"> $(function() { $('#my_profile').tabs(); }); </script> 
+ <!-- Start : My Profile Heading -->
+   <div class="household_heading_wrapper">
+	  <div class="household_heading">
+		<h2>#{msgs.householdSettingsPageTitle}</h2>
+	  </div>	
+	 <div style="width: 100%;clear:both;font-size: 11px;letter-spacing: 0.025em;"> 
+	    <h:outputText style="color:green;"  value="#{householdSetting.errorValueMap.renameSuccessMesg}" id="houseHoldRenameSuccessId"/>
+	</div>
+   </div>  
+	<!-- Start : Manage Family Member -->
+		<div class="household_profile">
+			<div class="fmember_img"><img src="#{applicationScope.staticContentBaseUrl}/images/household_family_img.png" width="200" height="130"   border="0" alt="" /></div>
+			 <div class="household_details">
+							<div class="manage_details_values">
+								<div class="household_access">
+									<div class="household_member_name"> 
+									   <span class="household_name_heading">
+									      <h:panelGroup id="userNamePanelId">										       
+									        <truncate:truncateText text="#{householdSetting.familyDetails[0]}" start="0" end="20"/>									        	
+									       </h:panelGroup>								       
+									   </span>
+									   <span><h:outputText value="#{householdSetting.familyDetails[1]}"/></span>
+									</div>
+									<div class="permissions">
+										<ul>
+					                       <li><h:outputText value="#{householdSetting.familyDetails[2]}"/> #{msgs.familyMembersHouseholdlabel}</li>
+					                       <li><h:outputText value="#{householdSetting.familyDetails[3]}"/> #{msgs.devicesHouseholdlabel}</li>					                       
+					                       <li><h:outputText value="#{householdSetting.familyDetails[4]}"/> #{msgs.moviesHouseholdlabel}</li>
+					                   </ul>
+								  </div>
+								</div>							
+							</div>							
+						</div>			
+		        </div>
+		<!-- End : Manage Family Member -->		
+		<!-- Start : Profile  -->
+		<div class="household_details_panel">
+	 		<ui:include src="/resources/sections/householdSetting/newsfeed.xhtml"/>
+	       <!-- Start : Household Info. Panel -->					
+			<div class="household_info_panel" id="my_profile">
+			    <ul>
+			       <li><a href="#household_info" class="household_select_tab"><span>#{msgs.infoHousehold}</span></a></li>
+			       <li><a href="#accounts" class="household_select_tab" onclick="javascript:openTab('onload','onload');setDefaultLinkedConsentsValues();"><span>#{msgs.linkedAccountsLabel}</span></a></li>
+				</ul>	
+				<!-- Start : Rename,Remove household popup and Info tab -->
+                     <ui:include src="/resources/sections/householdSetting/householdInfoTab.xhtml"/>   
+                <!-- End : Rename,Remove household popup and Info tab  -->					
+				<!--Start : Linked Accounts --> 		
+				   <ui:include src="/resources/sections/householdSetting/householdLinkedAccountsTab.xhtml"/>  
+				 <!--End : Linked Accounts-->				  
+			</div>
+		</div>
+	<!-- End : Profile  -->
+	<!-- Start : Image Slide -->
+		<ui:include src="/resources/sections/householdSetting/householdRecentlyStreames.xhtml"/>
+	<!-- End : Image Slide -->		
+</ui:composition>

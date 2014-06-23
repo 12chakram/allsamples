@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="FrmHome">         
+       <div id="content_wrapper">
+    	        <div id="bodycontent">
+					<!-- Start : Stream Video Wrapper -->
+					<div class="fleft" style="min-height: 400px;">
+						<div class="def_heading">Haven&#8242;t set up your household yet?</div>
+						<div class="stream_video_wrapper">&#160;</div>					
+						<div class="create_household_wapper">
+							<div class="create_houshold">
+								<div class="centeredBtn">
+									<ul><li><h:commandLink id="CreateUserLink" styleClass="anchor_btn" action="#{userLoginBean.registerHousehold}">
+								<h:outputText value="&lt;span&gt;" escape="false" />
+									<h:outputText value="#{msgs.createHouseholdButton}"/>
+								<h:outputText value="&lt;/span&gt;" escape="false"/>							
+							</h:commandLink></li></ul>
+								</div>
+							</div>
+							<div class="create_household_desc">
+							<h3>Its free!</h3>
+							 <span>#{msgs.marketingCopyText1}</span>
+							</div>
+						</div>
+						<!-- End : Create Household Wrapper -->
+					</div>
+					<!-- Start : retailer Wrapper -->
+					<!-- div class="retailer_wrapper">
+						<div class="retailer_heading">Learn more about DECE from participating retailers:</div>
+						<div class="retailer_logos">
+							<a href="http://www.bestbuy.com" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/best_buy_logo.png" height="20" border="0" /></a>
+							<a href="http://www.foxmovies.com/" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/partners/20.png" height="20" border="0" /></a>
+							<a href="http://www.cisco.com/" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/partners/cisco.png" height="20" border="0" /></a>
+							<a href="http://lionsgate.com/?section=film" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/partners/lionsgate.png" height="20" border="0" /></a> 
+							<a href="http://www.sony.com/" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/partners/sony.png" height="20" border="0" /></a>
+							<a href="http://www.toshiba.com/" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/partners/toshiba.png" height="20" border="0" /></a>
+						<a href="http://www.warnerbros.com/" target="_blank"><img src="#{applicationScope.staticContentBaseUrl}/images/partners/wb.png" height="20" border="0" /></a></div>
+					</div-->
+					<!-- End : retailer Wrapper -->
+	            </div>
+            </div>
+        
+	</h:form>          
+</ui:composition>

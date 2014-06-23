@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<collections>
+	<collection id="items">
+		<item id="1" type="1">
+			<title>Avatar</title>
+			<link>http://www.google.com</link>
+			<image>raptor1.jpg</image>
+			<date_added>Wed Apr 21 11:00:50 GMT-0400 2010</date_added>
+			<meta>FOO: Foo the foo and foo the foot.  Foo foo footer.</meta>
+		</item>
+		<item id="2" type="1">
+			<title>Movie2</title>
+			<link>http://www.google.com</link>
+			<image>raptor2.jpg</image>
+			<date_added>Wed Apr 21 11:33:50 GMT-0400 2010</date_added>
+			<meta>Latest Date</meta>
+		</item>
+		<item id="3" type="1">
+			<title>Movie3</title>
+			<link>http://www.google.com</link>
+			<image>raptor3.jpg</image>
+			<date_added>Wed Apr 21 10:33:50 GMT-0400 2010</date_added>
+			<meta>FOO3: Foo the foo and foo the foot.  Foo foo footer.</meta>
+		</item>
+		<item id="4" type="1">
+			<title>Movie4</title>
+			<link>http://www.google.com</link>
+			<image>raptor4.jpg</image>
+			<date_added>Wed Apr 21 9:33:50 GMT-0400 2010</date_added>
+			<meta>Earliest Date</meta>
+		</item>
+		<item id="5" type="1">
+			<title>Movie5</title>
+			<link>http://www.google.com</link>
+			<image>raptor3.jpg</image>
+			<date_added></date_added>
+			<meta></meta>
+		</item>
+		<item id="6" type="1">
+			<title>Movie6</title>
+			<link>http://www.google.com</link>
+			<image>raptor2.jpg</image>
+			<date_added></date_added>
+			<meta>FOO6: Foo the foo and foo the foot.  Foo foo footer.FOO6: Foo the foo and foo the foot.  Foo foo footer.FOO6: Foo the foo and foo the foot.  Foo foo footer.</meta>
+		</item>
+		<item id="7" type="2">
+			<title>Movie7</title>
+			<link>http://www.google.com</link>
+			<image>raptor1.jpg</image>
+			<date_added></date_added>
+			<meta></meta>
+		</item>
+		<item id="8" type="2">
+			<title>BMovie</title>
+			<link>http://www.google.com</link>
+			<image>raptor3.jpg</image>
+			<date_added></date_added>
+			<meta>B Item</meta>
+		</item>
+		
+		<!-- This last item (type="999") will display if any type is empty of other elements -->
+		<item id="999" type="999">
+			<title>Nothing Found</title>
+			<link>http://www.google.com</link>
+			<image>nope.jpg</image>
+			<date_added></date_added>
+			<meta>Nothing Found</meta>
+		</item>
+	</collection>
+	
+	<collection id="types">
+		<type id="0">All</type>
+		<type id="1">Movies</type>
+		<type id="2">TV Shows</type>
+		<type id="3">Foot</type>
+		<type id="999">Games</type>
+	</collection>
+	<collection id="labels">
+		<type id="show">Sort:</type>
+		<type id="az">A-Z</type>
+		<type id="recently">Recently Added</type>
+	</collection>
+</collections>

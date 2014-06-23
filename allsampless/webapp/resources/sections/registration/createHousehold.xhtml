@@ -1,0 +1,233 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jstl/core"	
+	xmlns:rich="http://richfaces.org/rich">
+	<h:form id="frmCreateHousehold">	
+		<h:inputHidden value="#{householdRegistrationBean.registrationValueMap.dobMonthValue}" tabindex="-1" id="dobMonthValue"/>
+		<h:inputHidden value="#{householdRegistrationBean.registrationValueMap.dobDateValue}" tabindex="-1" id="dobDateValue"/>
+		<h:inputHidden value="#{householdRegistrationBean.registrationValueMap.dobYearValue}" tabindex="-1" id="dobYearValue"/>
+		<h:inputHidden value="#{householdRegistrationBean.registrationValueMap.householdName}" tabindex="-1" id="householdName"/>	
+		<h:inputHidden value="#{householdRegistrationBean.registrationValueMap.countryName}" tabindex="-1" id="countryName"/>	
+<!-- Begin of body content of registration step-3 -->		
+		<div class="main_body">
+			<div class="create_h_hold_heading">
+				<h1>
+					<span class="Fleft">
+						<h:outputLabel value="#{labelMsgs.householdHeading1} "/><span class="content_standard_color"><h:outputLabel value="#{labelMsgs.householdHeading2} "/></span><h:outputLabel value="#{labelMsgs.householdHeading3}"/>
+					</span>
+				</h1>
+				<div class="Cancel_Registration"><a tabindex="2" title="#{labelMsgs.cancelRegistration}" id="cancelId" onclick="openPopup('cancelRegistration', 'backgroundPopup');" href="#">#{labelMsgs.cancelRegistration}</a></div>
+			</div>
+			<div class="body_container_above_gradiant">
+				<div class="gradiant_box_left"></div>
+				<div class="gradiant_box_middle">
+					<img src="#{applicationScope.staticContentBaseUrl}/images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="White_Gray_Gradiant"/>
+				</div>
+				<div class="gradiant_box_right"></div>
+			</div>
+		<!-- Begin of Menu indicates steps of the registration  -->
+			<div class="h_hold_menu_step3_active">
+				<div class="menu_bar_top_shadow"></div>
+				<div class="menu_bar_steps">
+					<div class="create_h_hold_step_1">
+						<div class="step_1_icon"></div>
+						<div class="step_1_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:commandLink tabindex="3" title="#{labelMsgs.regsStep1Message}" id="regsStep1MessageId" action="#{householdRegistrationBean.goToStep1}" value="#{labelMsgs.regsStep1Message}"/></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_2_left"></div>
+					<div class="create_h_hold_step_2">
+						<div class="step_2_icon"></div>
+						<div class="step_2_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:commandLink tabindex="4" title="#{labelMsgs.regsStep2Message}" id="regsStep2MessageId" action="#{householdRegistrationBean.goToStep2}" value="#{labelMsgs.regsStep2Message}"/></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_3_left"></div>
+					<div class="create_h_hold_step_3">
+						<div class="step_3_icon"></div>
+						<div class="step_3_menu_text">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><h:outputLabel value="#{labelMsgs.regsStep3Message}"/></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="create_h_hold_step_3_right"></div>
+				</div>
+				<div class="menu_bar_bottom_shadow">
+            		<div class="menu_bar_bottom_shadow_left"></div>
+                    <div class="menu_bar_bottom_shadow_middle"></div>
+                    <div class="menu_bar_bottom_shadow_right"></div>
+                </div>
+			</div>
+		<!--  End of Menu indicates steps of the registration -->
+		<!-- Begin of main content of body  -->
+			<div class="body_wrapper">	
+				<div class="body_wrapper_left_shadow"></div>
+				<div class="body_wrapper_container">
+					<div class="h_hold_Dob_content">
+						<h:outputLabel value="#{labelMsgs.regStep3InfoMsg1}"/><h:outputLabel value="#{labelMsgs.regStep3InfoMsg2}"/><h:outputLabel value="#{labelMsgs.regStep3InfoMsg3}"/> 
+					</div>
+					<div class="h_hold_email">					
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.usernameLabel}:" for="frmCreateHousehold:userName" /></strong><br/>
+							<div class="form_inputfield">
+								<h:inputText id="userName" tabindex="5" title="#{labelMsgs.usernameLabel}" styleClass="input"  value="#{householdRegistrationBean.registrationValueMap.userName}" maxlength="64" 
+									onfocus="toggleHintMsg('field_hint','block'); toggleHintMsg('frmCreateHousehold:userNotAvailableRender','none');">
+									<a4j:support event="onblur" reRender="userNotAvailableRender"
+										action="#{householdRegistrationBean.checkAvailabilityAction}" 
+										oncomplete="toggleHintMsg('field_hint','none');toggleHintMsg('frmCreateHousehold:userNotAvailableRender','block');"/>
+								</h:inputText>
+							</div>
+							
+							<div class="field_hint_username" id="field_hint">
+								<h:outputLabel value="#{labelMsgs.usernameHintMsg}"/>
+							</div>
+							<h:panelGroup id="userNotAvailableRender">
+									<h:outputLabel id="userNotAvailableId" rendered="#{householdRegistrationBean.errorValueMap.usernameError ne null}"
+										styleClass="#{householdRegistrationBean.errorValueMap.usernameError ne null ? 'err_msg':'disply:none;'}"
+										value="#{householdRegistrationBean.errorValueMap.usernameError}"/>
+							</h:panelGroup>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.displaynameLabel}:" for="frmCreateHousehold:displayName"/></strong>
+							<span class="optional">#{labelMsgs.optionalMsg }</span><br/>
+							<div class="form_inputfield">
+								<h:inputText id="displayName" tabindex="6" styleClass="input" title="#{labelMsgs.displaynameLabel}" value="#{householdRegistrationBean.registrationValueMap.displayName}" maxlength="50" 
+									onfocus="toggleHintMsg('field_hint1','block');"
+									onblur="toggleHintMsg('field_hint1','none');"/>
+							</div>
+							<div class="field_hint" id="field_hint1">
+								<h:outputLabel value="#{labelMsgs.displaynameHintMsg}"/>
+							</div>							
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.emailAddrLabel}:" for="frmCreateHousehold:emailAddr"/></strong><br/>
+							<div class="form_inputfield">
+								<h:inputText id="emailAddr" tabindex="7" styleClass="input" title="#{labelMsgs.emailAddrLabel}" value="#{householdRegistrationBean.registrationValueMap.emailAddress}" maxlength="100"/>
+							</div>
+							<div id="emailError">
+								<h:outputLabel styleClass="#{householdRegistrationBean.errorValueMap.emailError ne null?'err_msg':'err_msg_hide'}" id="emailError"
+								value="#{householdRegistrationBean.errorValueMap.emailError}" rendered="#{householdRegistrationBean.errorValueMap.emailError ne null}" />
+							</div>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.passwordLabel1}:" for="frmCreateHousehold:password"/></strong><br />
+							<div class="form_inputfield">
+								<h:inputSecret id="password" tabindex="8" title="#{labelMsgs.passwordLabel1}" value="#{householdRegistrationBean.registrationValueMap.password}" maxlength="64"
+									onfocus="toggleHintMsg('field_hint2','block'); toggleHintMsg('passwordError','none'); " styleClass="input" autocomplete="off"
+									onblur="toggleHintMsg('field_hint2','none');toggleHintMsg('passwordError','block');"/>
+							</div>
+							<div class="field_hint" id="field_hint2">
+								<h:outputLabel value="#{labelMsgs.passwordHintMsg}"/>
+							</div>
+							<div id="passwordError">
+								<h:outputLabel value="#{householdRegistrationBean.errorValueMap.passwordError}" id="passwordError"
+								 styleClass="#{householdRegistrationBean.errorValueMap.passwordError ne null?'err_msg':'err_msg_hide'}" rendered="#{householdRegistrationBean.errorValueMap.passwordError ne null}"/>
+							</div>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.confPasswordLabel}:" for="frmCreateHousehold:confPassword"/></strong><br/>
+							<div class="form_inputfield">
+								<h:inputSecret id="confPassword" tabindex="9" autocomplete="off" styleClass="input" title="#{labelMsgs.confPasswordLabel}" value="#{householdRegistrationBean.registrationValueMap.confirmPassword}" maxlength="64"/>
+							</div>
+							<div id="cnfPasswordError">
+								<h:outputLabel rendered="#{householdRegistrationBean.errorValueMap.confirmPasswordError ne null}" id="cnfPasswordError"
+								value="#{householdRegistrationBean.errorValueMap.confirmPasswordError}" styleClass="#{householdRegistrationBean.errorValueMap.confirmPasswordError ne null?'err_msg':'err_msg_hide' }"/>
+							</div>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.secretQuestion1Label}:" for="frmCreateHousehold:secQue1"/></strong>
+							<span class="optional">#{labelMsgs.optionalMsg }</span><br/>
+							<div class="form_inputfield">
+								<h:selectOneMenu id="secQue1" tabindex="10" title="#{labelMsgs.secretQuestion1Label}" styleClass="input" value="#{householdRegistrationBean.registrationValueMap.secretQuestion1}">		                                   	
+			                    	<f:selectItems value="#{householdRegistrationBean.secretQuestionMap}"/>
+								</h:selectOneMenu>
+							</div>
+							<div id="secQuestion1Error">
+								<h:outputLabel value="#{householdRegistrationBean.errorValueMap.secQuestion1Error}" id="secQuestion1Error"
+								rendered="#{householdRegistrationBean.errorValueMap.secQuestion1Error ne null}" styleClass="#{householdRegistrationBean.errorValueMap.secQuestion1Error ne null?'err_msg':'err_msg_hide'}"/>
+							</div>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.secretAnswer1Label}:" for="frmCreateHousehold:secAnswer1"/></strong><br />
+							<div class="form_inputfield">
+								<h:inputText id="secAnswer1" tabindex="11" title="#{labelMsgs.secretAnswer1Label}" styleClass="input" alt="#{labelMsgs.secretAnswer1Label}" value="#{householdRegistrationBean.registrationValueMap.secretAnswer1}" maxlength="50"/>
+							</div>
+							<div id="secAns1Error">
+								<h:outputLabel value="#{householdRegistrationBean.errorValueMap.secAns1Error}" id="secAns1Error"
+								rendered="#{householdRegistrationBean.errorValueMap.secAns1Error ne null}" styleClass="#{householdRegistrationBean.errorValueMap.secAns1Error ne null?'err_msg':'err_msg_hide'}"/>
+							</div>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.secretQuestion2Label}:" for="frmCreateHousehold:secQue2"/></strong>
+							<span class="optional">#{labelMsgs.optionalMsg }</span><br/>	
+							<div class="form_inputfield">
+								<h:selectOneMenu id="secQue2" tabindex="12" title="#{labelMsgs.secretQuestion2Label}" styleClass="input" value="#{householdRegistrationBean.registrationValueMap.secretQuestion2}">		                                   	
+			                    	<f:selectItems value="#{householdRegistrationBean.secretQuestionMap}"/>
+								</h:selectOneMenu>
+							</div>
+							<div id="secQuestion2Error">
+								<h:outputLabel value="#{householdRegistrationBean.errorValueMap.secQuestion2Error}" id="secQuestion2Error"
+								rendered="#{householdRegistrationBean.errorValueMap.secQuestion2Error ne null}" styleClass="#{householdRegistrationBean.errorValueMap.secQuestion2Error ne null?'err_msg':'err_msg_hide'}"/>
+							</div>
+						</div>
+						<div class="userfield_input">
+							<strong><h:outputLabel value="#{labelMsgs.secretAnswer2Label}:" for="frmCreateHousehold:secAnswer2"/></strong><br/>
+							<div class="form_inputfield">
+								<h:inputText id="secAnswer2" tabindex="13" title="#{labelMsgs.secretAnswer2Label}" styleClass="input" alt="#{labelMsgs.secretAnswer2Label}" value="#{householdRegistrationBean.registrationValueMap.secretAnswer2}" maxlength="50"/>
+							</div>
+							<div id="secAns2Error">
+								<h:outputLabel value="#{householdRegistrationBean.errorValueMap.secAns2Error}" id="secAns2Error" 
+								styleClass="#{householdRegistrationBean.errorValueMap.secAns2Error ne null?'err_msg':'err_msg_hide'}" rendered="#{householdRegistrationBean.errorValueMap.secAns2Error ne null}"/>
+							</div>
+						</div>
+						<div class="userfield_textarea" style="padding-top: 10px;">
+							<strong><h:outputLabel value="#{labelMsgs.termsOfUseLabel}" for="frmCreateHousehold:termsOfUseCheckbox"/></strong> <br />
+							<div class="form_input_checkbox">
+								<h:selectBooleanCheckbox id="termsOfUseCheckbox" tabindex="14" title="#{labelMsgs.termsOfUseLabel}" value="#{householdRegistrationBean.registrationValueMap.termsOfUse}"/>
+								<div class="Fleft" style="padding-left: 5px;">
+									<h:outputLabel value="#{labelMsgs.agreeTermsOfUseLabel}"/>
+								</div>
+								<div class="printable_version">
+									<a id="prindLableId" tabindex="15" title="#{labelMsgs.printLabel}" onclick="javascript:Clickheretoprint('#{applicationScope.staticContentBaseUrl}','printable_area');">#{labelMsgs.printLabel}</a>
+								</div>
+								<div id="termsOfUseError">
+									<h:outputLabel value="#{householdRegistrationBean.errorValueMap.termsOfUseError}" id="termsOfUseError"
+									rendered="#{householdRegistrationBean.errorValueMap.termsOfUseError ne null}" styleClass="#{householdRegistrationBean.errorValueMap.termsOfUseError ne null?'err_msg':'err_msg_hide'}"/>
+								</div>
+								<div class="teatarea_field">
+									<iframe title="printable_area" src="#{applicationScope.consentBaseUrl}#{householdRegistrationBean.registrationValueMap.countryName}#{applicationScope.TOU_URL}" id="printable_area" frameborder="0" scrolling="yes" class="text_area" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="h_hold_continue_btn">
+						<div class="button_input">
+							<h:commandButton id="createHouseholdButton" tabindex="16" styleClass="image_button" title="#{labelMsgs.createHouseholdButtonLabel}" value="#{labelMsgs.createHouseholdButtonLabel}" action="#{householdRegistrationBean.registrationSubmitAction}"/>
+						</div>
+						<div style="margin-left: 10px;">
+							<h:outputLabel value="#{householdRegistrationBean.errorValueMap.pageError}" id="pageError"
+							rendered="#{householdRegistrationBean.errorValueMap.pageError ne null}" styleClass="#{householdRegistrationBean.errorValueMap.pageError ne null?'err_msg':'err_msg_hide'}"/>
+						</div>
+					</div>
+				</div>
+				<div class="body_wrapper_right_shadow"></div>
+			</div>
+			<!-- End of main content of body   -->
+		</div>
+		<!-- End of body content of registration step-3 -->
+	</h:form>
+</ui:composition>

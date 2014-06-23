@@ -1,0 +1,186 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:comp="http://www.dece.com/jsf"
+	xmlns:rich="http://richfaces.org/rich">	
+   <script type="text/javascript">
+     function clearCaptcha() {			
+       document.getElementById('frmUnlockProfile:captchaImageText').value='';       
+     } 
+	 function fireEvent(obj,evt){
+		var fireOnThis = obj;
+		if( document.createEvent ) {
+		  var evObj = document.createEvent('MouseEvents');
+		  evObj.initEvent( evt, true, false );
+		  fireOnThis.dispatchEvent(evObj);
+		} else if( document.createEventObject ) {
+		  fireOnThis.fireEvent('on'+evt);
+		}
+	 }
+	function checkForm()
+	{
+		var checkFieldsValuesAvailable=true;
+		var e;
+
+		//verify if input exists in Username field
+		e=document.getElementById('frmUnlockProfile:usernameId');
+		document.getElementById('frmUnlockProfile:pageError').innerHTML="";
+		
+		if(null==e || e.value=="")
+		{
+			document.getElementById('frmUnlockProfile:usernameError').innerHTML="#{errMsgs.userName_mandatory}";
+			checkFieldsValuesAvailable=false;
+		}
+		else		
+			document.getElementById('frmUnlockProfile:usernameError').innerHTML="";
+
+		//verify if a valid secret question as been selected
+		e=document.getElementById('frmUnlockProfile:secretQuestionId');		
+		if(null==e || e.value==0)
+		{
+			document.getElementById('frmUnlockProfile:secQuestionError').innerHTML="#{errMsgs.question_mandatory}";
+			checkFieldsValuesAvailable=false;
+		}
+		else
+			document.getElementById('frmUnlockProfile:secQuestionError').innerHTML="";
+
+		//verify if input exists in Secret Question Answer field
+		e=document.getElementById('frmUnlockProfile:secretAnswer');
+		if(null==e || e.value=="")
+		{
+			document.getElementById('frmUnlockProfile:secretAnswerError').innerHTML="#{errMsgs.enter_answer}";			
+			checkFieldsValuesAvailable=false;
+		}
+		else
+			document.getElementById('frmUnlockProfile:secretAnswerError').innerHTML="";
+
+		//verify if input exists in captcha field
+		e=document.getElementById('frmUnlockProfile:captchaImageText');
+		if(null==e || e.value=="")
+		{
+			document.getElementById('frmUnlockProfile:captchaValueError').innerHTML="#{errMsgs.captchaValue_mandatory}";
+			checkFieldsValuesAvailable=false;
+		}		
+		else
+			document.getElementById('frmUnlockProfile:captchaValueError').innerHTML="";
+
+		//if verification of form passes submit for validation and processing
+		if(checkFieldsValuesAvailable)
+			fireEvent(document.getElementById('frmUnlockProfile:unlockProfileFormSubmit'),'click');
+			//document.getElementById('frmUnlockProfile:unlockProfileFormSubmit').fireEvent('onclick');
+			
+			//fireEvent(document.getElementById('frmForgotPassword:forgotPwdSubmitId'),'click');
+		
+	}	
+	</script>
+	<!--Start : Popup -->
+	   <!-- p:dialog header="Header Text" footer="Footer Text" widgetVar="confirmDialog" modal="true" style="top: 20%" resizable="true"-->   	   
+	   	<h:form id="frmUnlockProfile"> 	   	
+	   	  <div id="content_wrapper">
+            <div id="bodycontent">                       
+				<div class="register_form">				 
+					<div class="titlestrip">
+						<span class="title1"><h:outputText value="#{msgs.fillFormMessage}"/></span> 
+						<span class="require"><h:outputText value=" #{msgs.requiredFieldInfo1} "></h:outputText> 
+						<span style="color:#FF0000;">*</span> <h:outputText value=" #{msgs.requiredFieldInfo2}"></h:outputText></span>						                
+					</div>					
+					<!-- start : Unlock Account -->	
+					<div class="form_title">					     		      
+					         <h:outputText value="#{msgs.unlockPageTitle}"/>
+					 </div>				    
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="form_lable"> <h:outputLabel value="#{msgs.usernameLabel}" for="frmUnlockProfile:usernameId"/> </div><span class="red">*</span>
+							<div class="form_field"> 
+							 <h:inputText alt="#{msgs.LOGIN_INPUTALT_USERNAME}" id="usernameId" value="#{unlockProfile.username}" maxlength="64"/>
+							   <span class="show_error_msg">
+							         <h:outputText id="usernameError" value="#{unlockProfile.errorValueMap.userNameError}"/>
+							   </span>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>						
+						<div class="reg_form_details1">
+							<div class="form_lable"><h:outputLabel value="#{msgs.secretQuestionLabel}" for="frmUnlockProfile:secretQuestionId"/></div> <span class="red">*</span>
+							<div class="form_field"><h:selectOneMenu id="secretQuestionId" value="#{unlockProfile.secretQuestionId}">							                            
+                             			                <f:selectItems value="#{unlockProfile.secretQuestionMap}" />                                                              
+                             	                     </h:selectOneMenu>                            
+                            <span class="show_error_msg">
+							         <h:outputText id="secQuestionError" value="#{unlockProfile.errorValueMap.secQuestionError}"/>
+							   </span>                             					
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+						<div class="reg_form_details">
+							<div class="form_lable"><h:outputLabel value="#{msgs.answerlabel}" for="frmUnlockProfile:secretAnswer"/> </div><span class="red">*</span>
+							<div class="form_field"><h:inputText alt="#{msgs.LOGIN_INPUTALT_ANSWER}" id="secretAnswer" value="#{unlockProfile.answer}" maxlength="50"/>
+							<span class="show_error_msg">
+							    <h:outputText id="secretAnswerError" value="#{unlockProfile.errorValueMap.secretAnswerError}"/>							   
+					        </span>	
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						 
+						</div>												
+					</div>
+					
+					
+					<!-- start : Unlock Account  -->
+					<!-- start : Verify Image  -->
+					<div class="form_title"><h:outputText value="#{msgs.verifyImageTitle}"></h:outputText></div>
+					<div class="reg_form">
+						<div class="reg_form_details"> 
+							<div class="form_lable"> <h:outputLabel value="#{msgs.captchaLabel}" for="frmUnlockProfile:captchaImageText"></h:outputLabel></div><span class="red">*</span>
+							<div class="form_field"> <h:inputText alt="#{msgs.LOGIN_INPUTALT_CAPTCHAVALUE}" id="captchaImageText" value="#{unlockProfile.captchaValue}" maxlength="8" />							    
+							     <span class="show_error_msg">							        
+							        <h:outputText id="captchaValueError" value="#{unlockProfile.errorValueMap.captchaValueError}"/>
+							   </span>								
+							</div>
+							<div class="reg_form_details">
+								<div class="form_lable"> &#160;</div><span class="red">&#160;</span>
+								<div class="form_field"> 								   
+								 <h:graphicImage id="captchaImage" url="/jcaptcha?dummy=#{unlockProfile.currentTime}" immediate="true" alt="#{msgs.REG_IMAGEALT_CAPTHCA}"/><br />
+                                 <a4j:commandLink styleClass="refresh" value="#{msgs.refreshCaptchLink}" reRender="captchaImage,captchaImageText" oncomplete="clearCaptcha();"/>
+								</div>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+					</div>
+					<!-- start : Verify Image  -->	
+					<!-- Start : Page level error displayholder -->
+					<div class="reg_form_details">
+						<span class="show_error_msg" style="padding-left: 200px; padding-bottom:5px">                                 
+                                 <h:outputText id="pageError" value="#{unlockProfile.errorValueMap.pageError}" />
+                        </span>
+					</div>
+					<!-- End : Page level error displayholder -->
+					
+				  	<!-- start : submit button -->
+					<div class="submitform_btn" style="width: 100%;">
+						<div class="centeredBtn">
+							<ul>
+								<li>
+									<h:commandLink class="anchor_btn"  id="idUnlockProfileSubmit" immediate="true" onclick="checkForm();return false;">
+										<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.submitButton}"/>
+										<h:outputText value="&lt;/span&gt;" escape="false"/>									
+										<!-- f:ajax execute="@form" onevent="showConfirm"/-->
+									</h:commandLink>
+								</li>
+								<li class="cancel_btn">
+									<h:commandLink id="idUnlockProfileCancel"  style="color:#fff;" action="#{unlockProfile.cancel}" immediate="true">
+										<h:outputText value="&lt;span&gt;" escape="false" />
+											<h:outputText value="#{msgs.cancelButton}"/>
+										<h:outputText value="&lt;/span&gt;" escape="false"/>								
+									</h:commandLink>
+								</li>
+								<li><h:commandLink action="#{unlockProfile.submit}" id="unlockProfileFormSubmit" value="" style="colour:black"/></li>
+							</ul>
+						</div>
+					</div>
+	 			 	<!-- end : submit button -->
+				</div>
+            </div>
+        </div>	   		
+	</h:form>	
+</ui:composition>

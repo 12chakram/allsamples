@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+  <!-- IMPLEMENTATION -->          
+    <ui:composition>
+    	<div class="content_heading">
+			<h:form styleClass="clear">
+				<h:inputHidden value="${category}"/>
+                      <div class="cont_box1">
+                            <div class="content_box">
+                                <div class="quickview_tab" id="quickview">
+                                    <div class="quick_tip_title"> #{msgs.quickTipTitle} </div>                                    
+                                     	<div style="width:16px; float:left;">	
+                                            <a href="#" class="leftArrow" rel="previous" title="Previous" style="float: left;cursor:default;width:16px">
+                                             <img id="pre" src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_lft_disable.gif" border="0" onclick="ChangeImagePrevious(newscripts.currentpage)"/>
+                                            </a>
+                                         </div>
+	                                     <div style="width:13px; float:left;">
+                                       	   <a href="#" rel="next" title="Next" style="float: left;">
+                                       		 <img src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_rght.gif" border="0" id="nex" onclick="ChangeImageNext(newscripts.currentpage)"/>
+                                         	</a>
+                                         </div>      
+                                   </div>
+                                <div id="tips" class="quick_view_content">                                    
+                                    <script type="text/javascript">
+				                     //<![CDATA[
+                                       if (window.XMLHttpRequest)
+                                            xhttp=new XMLHttpRequest();
+                                       else // Internet Explorer 5/6
+                                            xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+										xhttp.open("GET","#{applicationScope.staticContentBaseUrl}/quickTip/quickTip_#{category}_#{sessionScope.userLocale.language==null?'en':sessionScope.userLocale.language}_#{sessionScope.userLocale.country==null?'US':sessionScope.userLocale.country}.xml", false);
+                                        xhttp.send("");
+                                        xmlDoc=xhttp.responseXML;
+                                        var x=xmlDoc.getElementsByTagName("TIP");
+                                        for (i=0;i<x.length;i++) {
+                                          if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent)) && (parseInt(navigator.appVersion)<=4)) { 
+                                              document.write("<div class='items1'>");
+                                              document.write((i+1)+". "+x[i].childNodes[0].nodeValue);
+                                              document.write("</div>");
+                                          } else {
+					                       var divElement = document.createElement('div');
+					                       divElement.setAttribute('class','items1');
+					                       divElement.appendChild(document.createTextNode((i+1)+'. '+x[i].childNodes[0].nodeValue));
+					                       var scr = document.getElementById('tips');
+					                       scr.appendChild(divElement);
+					                      }
+                                        }
+				                    //]]>
+                                    </script>
+                                </div>
+                                <script type="text/javascript">
+                              //<![CDATA[
+									var newscripts=new virtualpaginate({
+									piececlass: "items1",
+									piececontainer: 'div', 
+									//Let script know you're using "p" tags as separator (instead of default "div")
+									pieces_per_page: 1,
+									defaultpage: 0,
+									wraparound: false,
+									persist: false
+									})
+
+									newscripts.buildpagination(["quickview"])
+
+								function ChangeImageNext(val) {
+									var imgPre=document.getElementById('pre');
+									var imgNex=document.getElementById('nex');
+									imgPre.src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_lft.gif";
+									if(val<newscripts.pagecount-2) {
+										imgNex.src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_rght.gif";
+										imgPre.style.cursor="pointer"
+										imgNex.style.cursor="pointer"
+									} else {
+										imgNex.src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_rght_disable.gif";
+										imgNex.style.cursor="default"
+									}
+								}
+								
+								function ChangeImagePrevious(val) {
+									var imgPre=document.getElementById('pre');
+									var imgNex=document.getElementById('nex');
+									imgNex.src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_rght.gif";
+									if(val>1) {
+										imgPre.src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_lft.gif";
+										imgNex.style.cursor="pointer"
+										imgPre.style.cursor="pointer"
+									} else {
+										imgPre.src="#{applicationScope.staticContentBaseUrl}/images/side_arrow_lft_disable.gif";
+										imgPre.style.cursor="default"
+									}
+								}
+									//]]>
+                                </script>
+
+                            </div>
+                            <div class="box_btm">
+                            </div>
+                        </div>
+
+	</h:form>	
+	</div>
+  </ui:composition>
+</html>

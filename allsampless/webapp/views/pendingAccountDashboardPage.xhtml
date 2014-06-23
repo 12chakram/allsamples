@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/accountDashboardTemplate.xhtml">
+     <ui:define name="authPortalHeader">
+     	<ui:include src="/resources/sections/dashboard/pendingAccountDashboardHeader.xhtml"/>
+    </ui:define>
+    <ui:define name="authMenu">
+     	<ui:include src="/resources/sections/dashboard/pendingAccountDashboardMenu.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+    	<div style="min-height: 550px;"></div>
+    </ui:define>
+    <ui:define name="authPortalFooter">
+			<h:form id="uiAuthFooter">
+				<input id="LOGIN_SUCCESS" type="hidden" value="LOGIN_SUCCESS"/>
+				<div id="backgroundPopup"></div>
+				<div class="footer_wrapper">
+					<div class="copyrights">  
+		      			<a tabindex="-1"><span>&#169; <h:outputLabel value="#{labelMsgs.copyRight2010DECE}"></h:outputLabel></span></a> 
+		      			<a tabindex="-1" class="midline">| </a> 
+		      			<c:if test="#{applicationScope.portalLocalization eq 'yes'}">
+		      				<a href="#" tabindex="-1" onclick="openPopup('selectLanguage', 'backgroundPopup');"> #{uiLocale.userSelectedLocale} </a>
+		      			</c:if>
+		      			<c:if test="#{applicationScope.portalLocalization ne 'yes'}">
+		      				<a tabindex="-1"><span><h:outputLabel value="#{labelMsgs.enus}"/></span></a>
+		      			</c:if>
+		             </div>
+		      		<div class="contact_us">
+		      			<h:commandLink value="#{labelMsgs.siteMap}" tabindex="-1" action="authSiteMapPage"/>
+		      			<a class="midline">|</a>
+		      			<h:commandLink action="authTermsOfUsePage" tabindex="-1" value="#{labelMsgs.termsOfUse}"/>
+		      			<a class="midline">|</a>
+		      			<h:commandLink action="authPrivacyStatementPage" tabindex="-1" value="#{labelMsgs.privacyStatement}"/>
+		      			<a class="midline">|</a>
+		  				<h:commandLink action="authDataCollectionPolicyPage" tabindex="-1" value="#{sessionScope.country eq 'UK'?labelMsgs.juniorPolicyLabel:labelMsgs.dataPolicyLabel}"/>
+		      			<a class="midline">|</a>
+		      			<h:commandLink action="authContactPage" tabindex="-1" value="#{labelMsgs.contactUs}"/> 
+		      		</div> 			
+				</div>
+			</h:form>	
+    </ui:define>
+ </ui:composition>

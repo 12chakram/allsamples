@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+  <!-- IMPLEMENTATION -->          
+	<ui:composition>
+		<h:inputHidden  id="${pgCtrlLoc}Loc" value="${pgCtrlLoc}"/>				
+		<h:inputHidden  id="${pgCtrlLoc}View" value="${pgCtrlView}"/>
+		<div class="pagenationLeft">
+		   	#{labelMsgs.titlesPerPage}: <a id="#{pgCtrlLoc}#{(pgCtrlView=='L'?'1':'2')*4}" href="#" onclick="setVal(this,'pageSize','#{(pgCtrlView=='L'?'1':'2')*4}');"> <label class="Common_pointer">#{(pgCtrlView=='L'?'1':'2')*4}</label> </a>| <a id="#{pgCtrlLoc}#{(pgCtrlView=='L'?'1':'2')*8}" href="#" onclick="setVal(this,'pageSize','#{(pgCtrlView=='L'?'1':'2')*8}');"><label class="Common_pointer">#{(pgCtrlView=='L'?'1':'2')*8}</label> </a>| <a id="#{pgCtrlLoc}#{(pgCtrlView=='L'?'1':'2')*16}" href="#" onclick="setVal(this,'pageSize','#{(pgCtrlView=='L'?'1':'2')*16}');"><label class="Common_pointer">#{(pgCtrlView=='L'?'1':'2')*16}</label></a> | <a id="#{pgCtrlLoc}#{(pgCtrlView=='L'?'1':'2')*32}" href="#" onclick="setVal(this,'pageSize','#{(pgCtrlView=='L'?'1':'2')*32}');"><label class="Common_pointer">#{(pgCtrlView=='L'?'1':'2')*32}</label> </a>| <a id="#{pgCtrlLoc}#{applicationScope.mediaPageSizeAll}" href="#" onclick="setVal(this,'pageSize','#{applicationScope.mediaPageSizeAll}');"><label class="Common_pointer">#{labelMsgs.all}</label></a>
+		</div>
+		<div class="pagenationRight">	
+			<a id="#{pgCtrlLoc}First" class="PrevFirst #{ourMediaBean.inFirstPage=='true'?'Common_pointerDefault':''}" href="#" onclick="#{ourMediaBean.inFirstPage=='true'?'':'setVal(this,\'paginationAction\',\'FIRST\');'}">
+				<img src="#{applicationScope.staticContentBaseUrl}/images/Prev-FirstIcon.png" width="9" height="10" />
+			</a>
+			<a id="#{pgCtrlLoc}Prev" class="PrevDouble #{ourMediaBean.hasPrevPage=='true'?'':'Common_pointerDefault'}" href="#" onclick="#{ourMediaBean.hasPrevPage=='false'?'':'setVal(this,\'paginationAction\',\'PREVIOUS\');'}">
+				<img src="#{applicationScope.staticContentBaseUrl}/images/PrevDoubleIcon.png" />
+			</a>
+			#{ourMediaBean.currentPage} of #{ourMediaBean.totalPages}
+			<a id="#{pgCtrlLoc}Nxt" class="NextDouble #{ourMediaBean.hasNextPage=='true'?'':'Common_pointerDefault'}" href="#" onclick="#{ourMediaBean.hasNextPage=='false'?'':'setVal(this,\'paginationAction\',\'NEXT\');'}">
+				<img src="#{applicationScope.staticContentBaseUrl}/images/NextDoubleIcon.png" />
+			</a>
+			<a id="#{pgCtrlLoc}Last" class="NextEnd #{ourMediaBean.inLastPage=='true'?'Common_pointerDefault':''}" href="#" onclick="#{ourMediaBean.inLastPage=='true'?'':'setVal(this,\'paginationAction\',\'LAST\');'}">
+				<img src="#{applicationScope.staticContentBaseUrl}/images/Next_endIcon.png" width="9" height="10" />
+			</a>
+		</div>
+	</ui:composition>
+</html>

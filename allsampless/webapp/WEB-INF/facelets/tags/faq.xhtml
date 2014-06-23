@@ -1,0 +1,246 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+  <!-- IMPLEMENTATION -->          
+    <ui:composition>
+   	<h:form styleClass="clear">
+    <h:inputHidden value="#{category}"/>
+      <div class="cont_boxnew">
+       
+          <div id="faqs" class="content_box">
+
+                        <div class="quickview_tab">
+              	             <div class="quick_tip_title" style="width: 100%">#{title}</div>
+              </div>  
+              
+                          
+                     <script type="text/javascript">
+                                     //<![CDATA[
+                                        xhttp =null;
+                                        var faqsTag;
+                                        if (window.XMLHttpRequest)
+                                        {
+                                            xhttp=new XMLHttpRequest();
+                                        }
+                                        else // Internet Explorer 5/6
+                                        {
+                                            xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                                        }
+                                        //xhttp.open("GET","#{facesContext.externalContext.requestContextPath}/resourceServlet?type=faqs&category=#{category}", false);
+                                        xhttp.open("GET","#{applicationScope.staticContentBaseUrl}/faqs/faqs_#{category}_#{sessionScope.userLocale.language==null?'en':sessionScope.userLocale.language}_#{sessionScope.userLocale.country==null?'US':sessionScope.userLocale.country}.xml", false);
+                                        xhttp.send("");
+                                        xmlDoc=xhttp.responseXML;
+                                        var x = xmlDoc.getElementsByTagName("FAQ");
+                                        if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent)) && (parseInt(navigator.appVersion)<=4))
+                                        {
+                                        	document.write('<div id="scrollholder" class="scrollholder" >');
+ 											document.write(' <div id="scroll" class="scroll">');
+ 											document.write('  <div  class="cont_boxcontent">');
+ 											document.write('<div class="TxtStyle" >');
+ 											document.write('<div class="flexcroll" id="flexsc" style="clear:both;">');
+                                                 
+                                        }else{
+
+
+                                          	 var faqsTagI = document.getElementById('faqs');
+                                        	 var a = document.createElement('div');
+					                           a.id = 'scrollholder';
+					                          a.setAttribute('class','scrollholder');
+					                          var b = document.createElement('div');
+					                           b.id = 'scroll';
+					                          b.setAttribute('class','scroll');
+					                          var c = document.createElement('div');
+					                          c.setAttribute('class','cont_boxcontent');
+					                          var d = document.createElement('div');
+					                          d.setAttribute('class','TxtStyle');
+					                          var e = document.createElement('div');
+					                          e.id='flexsc'
+					                          e.setAttribute('class','flexcroll'); 
+					                          e.setAttribute('style','clear:both');      
+					                          faqsTagI.appendChild(a);
+					                          a.appendChild(b);
+					                          b.appendChild(c);
+					                          c.appendChild(d);
+					                          d.appendChild(e);
+                                            }
+                                        
+                                        var faqCount = 10;
+                                        if(x.length < faqCount)
+                                        	faqCount = x.length; 
+                                        for (i=0;i<faqCount;i++)
+                                        {
+                                          if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent)) && (parseInt(navigator.appVersion)<=4))
+                                          {
+                                        	 
+											
+                                            document.write('<div class="select_arrow">');
+											document.write('<div id="expand'+ i +'" class="faq_arrow" style="display:none;">');
+											document.write('<img src="#{applicationScope.staticContentBaseUrl}/images/expand.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:hidediv(\'collapse'+ i +'\', \'expand'+ i +'\', \'faq'+ i + '\')" />');
+											document.write('</div>');
+											document.write('<div id="collapse'+ i +'" class="faq_arrow">');
+											document.write('<img src="#{applicationScope.staticContentBaseUrl}/images/collapse.gif" border="0" width="11" style="cursor:hand;"  onclick="javascript:showdiv(\'collapse'+ i +'\', \'expand'+ i +'\', \'faq'+ i +'\')" />');
+											document.write('</div>');
+											document.write('<div class="q_char">Q: </div>');
+											document.write('<div class="faq_qust">'+ x[i].getElementsByTagName("Q")[0].childNodes[0].nodeValue + '</div>');
+										    document.write('</div>');
+										    document.write('<div id="faq'+ i +'" class="ans" style="display:none">');
+											document.write('<div class="a_char"> A: </div>');
+											document.write('<div class="faq_answer">'+ x[i].getElementsByTagName("A")[0].childNodes[0].nodeValue +'</div>');
+										    document.write('</div>');
+                                          }
+                                          else
+                                          {
+                                        	  
+                                             faqsTag = document.getElementById('flexsc');
+
+                                               //question block
+                                               var qTag = document.createElement('div');
+					                           qTag.setAttribute('class','select_arrow');
+					                           faqsTag.appendChild(qTag);
+					                           //Expand div
+					                           var qExpTag = document.createElement('div');
+					                           qExpTag.id = 'expand' + i;
+					                           qExpTag.setAttribute('class','faq_arrow');
+					                           qExpTag.style.display = 'none';
+					                           
+					                           
+					                           //Expand img div
+					                           var imgExpandDiv = document.createElement('img');
+					                           imgExpandDiv.setAttribute('src','#{applicationScope.staticContentBaseUrl}/images/expand.gif');
+					                           imgExpandDiv.setAttribute('onclick','javascript:hidediv(\'collapse'+ i +'\', \'expand'+ i +'\', \'faq'+ i + '\')');
+					                           imgExpandDiv.style.cursor = 'hand';
+					                           qExpTag.appendChild(imgExpandDiv);
+
+					                           //collapse div
+					                           
+					                           var qColTag = document.createElement('div');
+					                           qColTag.id = 'collapse' + i;
+					                           qColTag.setAttribute('class','faq_arrow');
+					                         
+					                           //Collapse image div
+					                           var imgCollapseDiv = document.createElement('img');
+					                           imgCollapseDiv.setAttribute('src','#{applicationScope.staticContentBaseUrl}/images/collapse.gif');
+					                           imgCollapseDiv.setAttribute('onclick','javascript:showdiv(\'collapse'+ i +'\', \'expand'+ i +'\', \'faq'+ i +'\')');
+					                           imgCollapseDiv.style.cursor = 'hand';
+					                           qColTag.appendChild(imgCollapseDiv);
+					                           
+					                           //Question Header Tag
+					                           var qHeadTag =  document.createElement('div');
+					                           qHeadTag.setAttribute('class','q_char');
+					                           qHeadTag.innerHTML = 'Q: ';
+					                           
+					                           var qTextTag = document.createElement('div');
+					                           qTextTag.setAttribute('class','faq_qust');
+					                           qTextTag.innerHTML = x[i].getElementsByTagName("Q")[0].childNodes[0].nodeValue;
+
+					                           var fa= document.createElement('div');
+					                           fa.setAttribute('class','faq_qustnotremove');
+					                         
+					                           //answer block
+					                           var aTag = document.createElement('div');
+					                           aTag.id = 'faq' + i;
+					                           aTag.setAttribute('class','ans');
+					                           aTag.style.display = 'none';
+					                           faqsTag.appendChild(aTag);
+					                           
+					                           var aHeadTag =  document.createElement('div');
+					                           aHeadTag.setAttribute('class','a_char');
+					                           aHeadTag.innerHTML = 'A: ';
+					                           
+					                           var aTextTag = document.createElement('div');
+					                           aTextTag.setAttribute('class','faq_answer');
+					                           aTextTag.innerHTML = x[i].getElementsByTagName("A")[0].childNodes[0].nodeValue;
+					                           
+					                         
+					                           qTag.appendChild(qExpTag);
+					                           qTag.appendChild(qColTag);
+					                           qTag.appendChild(qHeadTag);
+					                           qTag.appendChild(qTextTag);
+					                           qTag.appendChild(fa);
+
+					                           aTag.appendChild(aHeadTag);
+					                           aTag.appendChild(aTextTag);
+					                          
+											}
+                                        }
+                                        if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent)) && (parseInt(navigator.appVersion)<=4))
+                                        {
+                                        	//document.write(' <div id="bs" style="width:50px;">&nbsp;<div id="bsd" style="height:150px; width:50px;"></div></div>');
+                                        	document.write('</div></div></div></div></div>');
+                                        	
+                                        }else{
+                                        	
+                                        	//var faqsTag = document.getElementById('flexsc');
+                                        	//var edadd =  document.createElement('div'); 
+                                        	// edadd.setAttribute('style','height:150px; clear:both;');
+                                        	//faqsTag.appendChild(edadd);
+                                        	
+                                            }
+
+                                        
+                                        function showdiv(cid, eid, faqid)
+                                        {
+	                                        var collapse = document.getElementById(cid);
+	                                        var expand = document.getElementById(eid);
+	                                        var faqs = document.getElementById(faqid);
+	                                        
+
+	                                        for(i=0; i<x.length; i++)
+	                                        {
+		                                        if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+		                                        {
+                                        			
+			                                        collapse.style.display = "none";
+			                                        expand.style.display = "inline";
+			                                        faqs.style.display = "block";
+			                                        faqsFlexcrollRefresh();
+		                                        }
+		                                        else
+		                                        {
+			                                        var rcollapse = document.getElementById("collapse"+i);
+			                                        var rexpand = document.getElementById("expand"+i);
+			                                        var rfaqs = document.getElementById("faq"+i);
+			                                        rcollapse.style.display = "inline";
+			                                        rexpand.style.display = "none";
+			                                        rfaqs.style.display = "none";
+			                                        faqsFlexcrollRefresh();
+		                                        }
+	                                        }
+	                                        
+                                        }
+                                        function faqsFlexcrollRefresh(){ 
+                                     	   fleXenv.fleXcrollMain('flexsc');	  
+                                     	  }
+                                        function hidediv(cid, eid, faqid)
+                                        {
+	                                        var collapse = document.getElementById(cid);
+	                                        var expand = document.getElementById(eid);
+	                                        var faqs = document.getElementById(faqid);
+	                                        collapse.style.display = "inline";
+	                                        expand.style.display = "none";
+	                                        faqs.style.display = "none";
+	                                        faqsFlexcrollRefresh();
+                                        }                                         
+					                    //]]>
+                                 </script>
+          </div>
+          <div class="box_btm" style="clear: both;">
+          </div>
+        </div>
+      </h:form>
+      <h:form>	
+		<div class="more_faq" style="width: 250px"> 
+			<h:commandLink value="#{moreTitle}" action="#{help.helpAuthNavigation}">
+				<f:setPropertyActionListener value="#{category}" target="#{help.helpNav}"/>
+			</h:commandLink>
+			 |
+			<h:commandLink value="#{allTitle}" action="#{help.helpAuthNavigation}">
+				<f:setPropertyActionListener value="AllTitle" target="#{help.helpNav}"/>
+			</h:commandLink>
+		 </div>
+	</h:form>
+  </ui:composition>
+</html>

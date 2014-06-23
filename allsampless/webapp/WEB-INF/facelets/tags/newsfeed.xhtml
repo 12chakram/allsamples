@@ -1,0 +1,199 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:truncate="http://www.dece.com/jsf"> 	
+	<script type="text/javascript">				
+      function newsFeedOnload() {     	  
+	    if(document.getElementById('newsFeedFormId:householdNewsLinkId')== null){	    	 	   
+	      fireEvent(document.getElementById('newsFeedTop10FormId:householdNewsLinkId'),'click');
+	    }else{	    	
+	      fireEvent(document.getElementById('newsFeedFormId:householdNewsLinkId'),'click');
+	    }
+	  } 
+	 function newsFeedFlexcrollRefresh(){
+	   fleXenv.fleXcrollMain('newsFeedFlexCrollId');	    	     	     
+	  }
+  	 </script>
+  	 <f:subview rendered="#{category eq 'myProfileNewsFeedTop10'}">		
+	   <script type="text/javascript">	
+	 	  window.onload = function() {
+	 		 faqsFlexcrollRefresh();
+	 	     fireEvent(document.getElementById('newsFeedTop10FormId:householdNewsLinkId'),'click');	 	  
+	 	  }
+	   </script>
+  	</f:subview>	
+<!-- Start of News Feed Page-->
+    <div id="NewsFeedDiv">
+          <div class="NewsFeedBg">
+             <div class="padding_top_5">
+                 <a href="#" class="NewsFeed">#{msgs.newsFeedsTitle}</a> 
+                 <h:commandLink onclick="return top10Display();" styleClass="Top10">
+					  <span><h:outputText value="#{msgs.top10Title}"></h:outputText></span>							               		                          							                         
+		 		  </h:commandLink>                
+             </div>
+         </div>
+         <div class='Box3Middle'>
+              <div class='flt'>
+                  <img src="#{applicationScope.staticContentBaseUrl}/images/news_ltline.gif" width="2" height="281" border="0" alt=""/>
+              </div>
+              <div class='Box3submiddle'>
+                <div class='Box3Header'>
+                   <ul>
+                     <li style='width:150px'> 
+                     <div class="dashboard_my_news" id="dashboard_news">
+                         <span id="houseold_news" class="no_uline_textbold">#{msgs.householdNewsLink}</span>
+						 <span id="houseold_news_link" style="display:none;" >
+						      <a4j:commandLink id="householdNewsLinkId" action="#{newsFeed.loadHouseholdNewsFeedLinkDetails}" reRender="houseHoldNewsFeedPanelId,myNewsFeedPanelId,householdPagingCountTextId,householdPanelGrpPagenationId,myNewsFeedPanelGrpPagenationId,newsFeedErrorMessageId" onclick="showContent(this.id)" oncomplete="newsFeedFlexcrollRefresh();">
+								  <h:outputText escape="false" value="&lt;span&gt;#{msgs.householdNewsLink}&lt;/span&gt;"></h:outputText>
+			 			      </a4j:commandLink>								
+						 </span>						 
+						 <c:choose>	
+						     <c:when test="#{editProfileBean.editUserDVO.nodeUserId != '' &amp;&amp; editProfileBean.editUserDVO.nodeUserId != null &amp;&amp; category eq 'myProfileNewsFeedTop10' &amp;&amp; editProfileBean.editUserDVO.nodeUserId != portalHeader.userId}">							
+								  <span id="mynews" style="display:none;" class="no_uline_textbold">
+								  	<truncate:truncateText text="#{editProfileBean.editUserDVO.displayName}" start="0" end="-1"/>&#39;s&#160;#{msgs.newsLabel}
+								  </span> 
+								  <span id="mynews_link">
+					                <a4j:commandLink id="myNewsLinkId" action="#{newsFeed.loadMyNewsFeedLinkDetails}" reRender="myNewsFeedPanelId,houseHoldNewsFeedPanelId,myNewsFeedPagingCountTextId,myNewsFeedPanelGrpPagenationId,householdPanelGrpPagenationId,newsFeedErrorMessageId" onclick="showContent(this.id)" oncomplete="newsFeedFlexcrollRefresh();">
+								       <span>
+									       <truncate:truncateText text="#{editProfileBean.editUserDVO.displayName}" start="0" end="-1"/>&#39;s&#160;#{msgs.newsLabel}
+								       </span>
+			 			            </a4j:commandLink>
+			                      </span>
+						     </c:when>
+						      <c:otherwise test="#{(category eq 'householdNewsFeed' || category eq 'dashBoardNewsFeedTop10' || editProfileBean.editUserDVO.nodeUserId == portalHeader.userId}">	
+							      <span id="mynews" style="display:none;" class="no_uline_textbold">#{msgs.myNewsLink}</span>
+						          <span id="mynews_link">
+						             <a4j:commandLink id="myNewsLinkId" action="#{newsFeed.loadMyNewsFeedLinkDetails}" reRender="myNewsFeedPanelId,houseHoldNewsFeedPanelId,myNewsFeedPagingCountTextId,myNewsFeedPanelGrpPagenationId,householdPanelGrpPagenationId,newsFeedErrorMessageId" onclick="showContent(this.id)" oncomplete="newsFeedFlexcrollRefresh();">
+									     <h:outputText escape="false" value="&lt;span&gt;#{msgs.myNewsLink}&lt;/span&gt;"></h:outputText>
+				 			         </a4j:commandLink>
+				                  </span>						      
+						      </c:otherwise>
+						 </c:choose> 
+			           </div>
+                     </li>                     
+                     <c:choose>	
+                       <c:when test="#{(category eq 'householdNewsFeed')}"> 
+                         <li class='LIPadding'>
+                           <div id="managehide" class="sml_buttons"> 
+                             <h:commandLink action="#{householdSetting.loadNewsFeedCategories}" id="manageButtonId">
+							   <h:outputText escape="false" value="&lt;span&gt;#{msgs.manageButton}&lt;/span&gt;"></h:outputText>							                          							                         
+		 			        </h:commandLink>
+                          </div>
+                        </li>
+                       </c:when>
+                       <c:when test="#{(category eq 'dashBoardNewsFeedTop10') || (category eq 'myProfileNewsFeedTop10')}"> 
+                         <li class='LIPadding'>
+                           <div id="dashBoardManagehide" class="sml_buttons">
+                            <c:if test="#{(category eq 'dashBoardNewsFeedTop10')}">                                                
+		                       <h:commandLink id="dashBoardManageButtonId" rendered="#{sessionScope.privilege=='FULL'}" action="#{householdSetting.dashBoardhouseholdSettingsAction}">
+			                     <span><h:outputText value="#{msgs.manageButton}"></h:outputText></span>			                    						                          							                         
+		                       </h:commandLink>
+		                      </c:if>		                      
+		                      <c:if test="#{(category eq 'myProfileNewsFeedTop10')}">                                                
+		                       <h:commandLink id="myProfileManageButtonId" rendered="#{sessionScope.privilege=='FULL'}" action="#{householdSetting.dashBoardhouseholdSettingsAction}">
+			                     <span><h:outputText value="#{msgs.manageButton}"></h:outputText></span>			                    						                          							                         
+		                       </h:commandLink>
+		                      </c:if>
+		                   </div>
+		                 </li>     		            
+				       </c:when>				       
+                    </c:choose> 
+                  </ul>
+              </div>
+             <div class='Box3Gradient'>
+                  <div class='Newsflt1'>                         
+                   <div id="scrollholder" class="scrollholder" style="overflow: hidden;">
+                    <div id="scroll" class="scroll">
+                      <!-- Scroll and pagenation width--> 					 
+                    <div style="width: 220px; overflow-x: hidden;">
+                       <!-- Start : Scroll Area -->
+                     <div class="TxtStyle">
+                        <div class="flexcroll" id="newsFeedFlexCrollId">
+                           <div class="content_container">
+							    <div  class="content_c">
+								  	<div id="householdNewsDivId" style="display:block;">
+										<ul>
+										    <h:panelGroup id="houseHoldNewsFeedPanelId" style="word-wrap:break-word;">										      									   
+										        <ui:repeat value="#{newsFeed.houseHoldNewsFeedDetailsList}" var="houseHoldNewsFeedListVar">											          
+										              <li>
+										                 <em>
+										                    <h:outputText value="#{houseHoldNewsFeedListVar.eventDate}">
+										                       <f:convertDateTime pattern="MM/dd/yyyy" />
+					                                        </h:outputText>                      
+					                                    </em> 
+					                                    <h:outputText value="#{houseHoldNewsFeedListVar.eventDesription}"/> 
+					                                   </li>
+										           </ui:repeat>
+										    </h:panelGroup>
+										</ul>
+									</div>
+						           <div id="myNewsDivId" style="display:none;">
+									   <ul>									   
+									      <h:panelGroup id="myNewsFeedPanelId" style="word-wrap:break-word;"> 
+										     <ui:repeat value="#{newsFeed.myNewsFeedDetailsList}" var="myNewsFeedListVar">										             
+										         <li>
+										            <em>
+										               <h:outputText value="#{myNewsFeedListVar.eventDate}">
+										                  <f:convertDateTime pattern="MM/dd/yyyy" />
+					                                   </h:outputText>					                        
+					                                </em> 
+					                                <h:outputText value="#{myNewsFeedListVar.eventDesription}"/> 
+					                            </li>											      
+										    </ui:repeat>
+										 </h:panelGroup>
+								       </ul>
+							       </div>
+							    </div>
+						      </div>
+                           </div>
+					    </div>
+			<!-- End : Scroll Area -->
+                     </div>
+           <!-- pagenation width ends-->
+                   </div>
+                 </div>                
+               </div>                
+              </div>
+            </div>
+            <div class='rgt'>
+                  <img src="#{applicationScope.staticContentBaseUrl}/images/news_rtline.gif" alt=""/></div>
+            </div>
+            <div class='Box3BottomCurve'>              
+               <div id="clearMyNewsHistoryId" class="width60 fleft displaynone dashboard_my_news clear_history"> 									       
+			      <a4j:commandLink id="clearMyNewsHistoryLinkId" action="#{newsFeed.clearMyNewsFeedHistoryAction}" reRender="myNewsFeedPanelId,myNewsFeedPanelGrpPagenationId,householdPanelGrpPagenationId">
+			         <h:outputText escape="false" value="&lt;span&gt;#{msgs.clearHistoryLink}&lt;/span&gt;"></h:outputText>
+		 	      </a4j:commandLink> 
+		 	   </div>		 	 
+		 	   <div id="clearHouseholdHistoryId" class="width60 fleft clear_history fleft dashboard_my_news">    
+		 	      <a4j:commandLink id="clearHouseholdHistoryLinkId" action="#{newsFeed.clearHouseholdFeedHistoryAction}" rendered="#{sessionScope.privilege=='FULL'}" reRender="houseHoldNewsFeedPanelId,householdPanelGrpPagenationId,myNewsFeedPanelGrpPagenationId">
+			          <h:outputText escape="false" value="&lt;span&gt;#{msgs.clearHistoryLink}&lt;/span&gt;"></h:outputText>
+		 	      </a4j:commandLink> 
+		       </div>					      
+              <div id="householdPagenationId" class="nextprevicons"> 
+                    <a4j:outputPanel id="householdPanelGrpPagenationId">
+	                  <a4j:commandLink value="" styleClass="previcon_last" rendered="#{newsFeed.householdNewsFeedPaginationFlag eq 'true'}" action="#{newsFeed.pageFirst}" id="firstId"  disabled="#{newsFeed.firstRow == 0}" reRender="firstId,previousId,nextId,lastId,householdPagingCountTextId,houseHoldNewsFeedPanelId">&#160;</a4j:commandLink>
+					  <a4j:commandLink value="" rendered="#{newsFeed.householdNewsFeedPaginationFlag eq 'true'}" styleClass="previcon" action="#{newsFeed.pagePrevious}" id="previousId"   disabled="#{newsFeed.firstRow == 0}" reRender="firstId,previousId,nextId,lastId,householdPagingCountTextId,houseHoldNewsFeedPanelId">&#160;</a4j:commandLink>
+					  <h:outputText value="#{newsFeed.currentPage} of #{newsFeed.totalPages}" rendered="#{newsFeed.householdNewsFeedPaginationFlag eq 'true'}" id="householdPagingCountTextId" />
+					  <a4j:commandLink value="" styleClass="nexticon" rendered="#{newsFeed.householdNewsFeedPaginationFlag eq 'true'}" action="#{newsFeed.pageNext}"  id="nextId"  disabled="#{newsFeed.firstRow + newsFeed.rowsPerPage >= newsFeed.totalRows}" reRender="firstId,previousId,nextId,lastId,householdPagingCountTextId,houseHoldNewsFeedPanelId">&#160;</a4j:commandLink>
+				      <a4j:commandLink value="" styleClass="nexticon_last" rendered="#{newsFeed.householdNewsFeedPaginationFlag eq 'true'}" action="#{newsFeed.pageLast}" id="lastId" disabled="#{newsFeed.firstRow + newsFeed.rowsPerPage >= newsFeed .totalRows}"  reRender="firstId,previousId,nextId,lastId,householdPagingCountTextId,houseHoldNewsFeedPanelId">&#160;</a4j:commandLink>
+				    </a4j:outputPanel>					
+          	  </div>
+	          <div id="myNewsFeedPagenationId" style="display:none;" class="nextprevicons">
+	               <a4j:outputPanel id="myNewsFeedPanelGrpPagenationId">
+		              <a4j:commandLink value="" styleClass="previcon_last" rendered="#{newsFeed.myNewsPaginationFlag eq 'true'}" action="#{newsFeed.pageFirst1}" id="myNewsFirstId"  disabled="#{newsFeed.firstRow1 == 0}" reRender="myNewsFirstId,myNewsPreviousId,myNewsNextId,myNewsLastId,myNewsFeedPagingCountTextId,myNewsFeedPanelId">&#160;</a4j:commandLink>
+	               	  <a4j:commandLink value="" styleClass="previcon"  rendered="#{newsFeed.myNewsPaginationFlag eq 'true'}" action="#{newsFeed.pagePrevious1}" id="myNewsPreviousId"   disabled="#{newsFeed.firstRow1 == 0}" reRender="myNewsFirstId,myNewsPreviousId,myNewsNextId,myNewsLastId,myNewsFeedPagingCountTextId,myNewsFeedPanelId">&#160;</a4j:commandLink>
+	                  <h:outputText value="#{newsFeed.currentPage1} of #{newsFeed.totalPages1}" rendered="#{newsFeed.myNewsPaginationFlag  eq 'true'}" id="myNewsFeedPagingCountTextId"/>
+	                  <a4j:commandLink value="" styleClass="nexticon" rendered="#{newsFeed.myNewsPaginationFlag eq 'true'}" action="#{newsFeed.pageNext1}"  id="myNewsNextId"  disabled="#{newsFeed.firstRow1 + newsFeed.rowsPerPage1 >= newsFeed.totalRows1}" reRender="myNewsFirstId,myNewsPreviousId,myNewsNextId,myNewsLastId,myNewsFeedPagingCountTextId,myNewsFeedPanelId">&#160;</a4j:commandLink>
+	                  <a4j:commandLink value="" styleClass="nexticon_last" rendered="#{newsFeed.myNewsPaginationFlag eq 'true'}" action="#{newsFeed.pageLast1}" id="myNewsLastId" disabled="#{newsFeed.firstRow1 + newsFeed.rowsPerPage1 >= newsFeed .totalRows1}"  reRender="myNewsFirstId,myNewsPreviousId,myNewsNextId,myNewsLastId,myNewsFeedPagingCountTextId,myNewsFeedPanelId">&#160;</a4j:commandLink>
+	               </a4j:outputPanel> 	             
+               </div>                                      
+	       </div>
+	       <span class="show_error_msg">						
+			    <h:outputText value="#{newsFeed.newsFeedErrorMessageMap.pageError}" rendered="#{newsFeed.newsFeedErrorMessageMap.pageError !=null}" id="newsFeedErrorMessageId"/>
+	       </span>  
+      </div>       
+<!-- End of News Feed Page-->	
+</ui:composition>

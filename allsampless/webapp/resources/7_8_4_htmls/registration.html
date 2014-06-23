@@ -1,0 +1,1318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ULTRAVIOLET</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+<script src="js/decessp.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+function showdiv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+
+	for(i=1; i<=3; i++)
+	{
+		if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+		{
+			
+			collapse.style.display = "none";
+			expand.style.display = "inline";
+			faqs.style.display = "block";
+		}
+		else
+		{
+			var rcollapse = document.getElementById("collapse"+i);
+			var rexpand = document.getElementById("expand"+i);
+			var rfaqs = document.getElementById("faq"+i);
+			rcollapse.style.display = "inline";
+			rexpand.style.display = "none";
+			rfaqs.style.display = "none";
+		}
+	}
+}
+
+function hidediv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+	
+	
+			collapse.style.display = "inline";
+			expand.style.display = "none";
+			faqs.style.display = "none";
+		
+	
+} 
+</script>
+<script type="text/javascript">
+
+
+function expand(divId) {
+
+document.getElementById(divId).style.width = '350px';
+}
+function collapse(divId) {
+
+document.getElementById(divId).style.width = '250px';
+}
+</script>
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+<!-- popup  -->
+
+<!-- Verticle Scrolling -->
+<script type='text/javascript' src="js/flexcroll.js"></script>
+<!-- Verticle Scrolling -->
+</head>
+<body class="bodybg">
+    <div id="backgroundPopup">
+    </div>
+    
+
+
+
+    <div id="main_wrapper">
+        <div id="container">
+            <!-- header begin -->
+            <div id="header">
+                <div id="logo_wrapper">
+                  <div id="div"> <a href="default.html"><img src="images/deceBrand_logo.jpg" border="0" alt="DeceBrand Logo" /></a> </div>
+                </div>
+                <div class="right_header ">
+                <span class="fright">
+                    <div id="welcome_wrapper" >
+                        
+                        <a href="help.html">Help </a>             
+                    </div>
+                    <div id="home_btn">
+                       <a href="default.html">
+                            <img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>                    </div>
+                            </span>
+              </div>
+			  <!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+            </div>
+            <!-- header end -->
+        <div id="content_wrapper">
+            <div id="bodycontent">
+				<div class="register_form">
+				
+					<div class="titlestrip">
+						<span class="title1">Fill out the form below.</span> <span class="require">Fields denoted
+							with an asterisk <span style="color:#FF0000">*</span> are required.</span>                
+					</div>
+					<div style="width:620px;" class="fleft">
+					
+					<div class="form_title">Create Household</div>
+					<div id="form_tabs">
+						<div class="reg_form">
+							<!-- start : Personal Info Form  -->
+							<div class="reg_form_tabs">
+								<div class="reg_form_details">
+								<div style="padding-bottom: 4px;"><p>First you will need to create a friendly name for your household's account.  Something  like "Jeff's place" or, "The Wilsons."</div>
+									<div class="form_lable"><label for="FrmReg:HouseHoldName">Household Name</label> </div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form_title">Create First Household Member</div>
+					<div id="form_tabs">
+						<div class="reg_form">
+							<!-- start : Personal Info Form  -->
+							<div class="reg_form_tabs">
+								<div class="reg_form_details">
+								<div style="padding-bottom: 4px;"><p>Next you will need to set up yourself as the first member in that household.  You will be able to add additional members to the household after you have created the account.</div>
+									<div class="form_lable"> <label for="FrmReg:uname">Username</label></div><span class="red">*</span>
+									<div class="form_field"> <input id="username" type="text" title="Enter username" onfocus="toggleHint(this.id)" onblur="toggleHint(this.id)"/>
+										<a href="#" style="padding-bottom:0px;" class="check" title="Check the availability of the username">Check Availability</a>
+										<div class="pass_info_main" id='usernameHint'>
+										<div class="username_info" style="font-family: verdana;">At least 6 letters or numbers, no spaces.  May include characters @ - . _</div>
+										</div>
+									</div>
+									
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"><label for="FrmReg:disName"> Display Name</label></div><span class="red">&#160;</span>
+									<div class="form_field"> <input id="displayname" type="text" title="Enter username" onfocus="toggleHint(this.id)" onblur="toggleHint(this.id)"/>
+										
+										<div class="pass_info_main" id='displaynameHint'>
+										<div class="username_info" style="font-family: verdana;">How would you like your name to appear on this site? Ex: "Dad", "Mom", "Dave"</div>
+										</div>
+									</div>
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"><label for="FrmReg:selectSecq1"> Date of Birth</label></div> <span class="red">*</span>
+									<div class="form_field">
+									<select name="dob_mon" style="width:70px;font-size:12px; padding:2px 3px; border:1px solid #555;">
+                                                        <option>Month</option>
+                                                        <option>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                        <option>04</option>
+                                                        <option>05</option>
+                                                        <option>06</option>
+                                                        <option>07</option>
+                                                        <option>08</option>
+                                                        <option>09</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                        </select>
+                                                         <select name="dob_date" style="width:55px;font-size:12px; padding:2px 3px; border:1px solid #555;">
+                                                         <option>Day</option>
+                                                        <option>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                        <option>04</option>
+                                                        <option>05</option>
+                                                        <option>06</option>
+                                                        <option>07</option>
+                                                        <option>08</option>
+                                                        <option>09</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                        <option>13</option>
+                                                        <option>14</option>
+                                                        <option>15</option>
+                                                        <option>16</option>
+                                                        <option>17</option>
+                                                        <option>18</option>
+                                                        <option>19</option>
+                                                        <option>20</option>
+                                                        <option>21</option>
+                                                        <option>22</option>
+                                                        <option>23</option>
+                                                        <option>24</option>
+                                                        <option>25</option>
+                                                        <option>26</option>
+                                                        <option>27</option>
+                                                        <option>28</option>
+                                                        <option>29</option>
+                                                        <option>30</option>
+                                                        <option>31</option>
+                                                        </select>
+                                                         
+                                                         <select name="dob_year"   style="width:60px;font-size:12px; padding:2px 3px; border:1px solid #555;">
+                                                         <option>Year</option>
+                                                         <option>2010</option>
+                                                         <option>2009</option>
+                                                        <option>2008</option>
+                                                        <option>2007</option>
+                                                         <option>2006</option>
+                                                        <option>2005</option>
+                                                        <option>2004</option>
+                                                        <option>2003</option>
+                                                        <option>2002</option>
+                                                        <option>2001</option>
+                                                        <option>2000</option>
+                                                        <option>1999</option>
+                                                        <option>1998</option>
+                                                        <option>1997</option>
+                                                        <option>1996</option>
+                                                        <option>1995</option>
+                                                        <option>1994</option>
+                                                        <option>1993</option>
+                                                        <option>1992</option>
+                                                        <option>1991</option>
+                                                        <option>1990</option>
+                                                        <option>1989</option>
+                                                        <option>1988</option>
+                                                        <option>1987</option>
+                                                        <option>1986</option>
+                                                        <option>1985</option>
+                                                        <option>1984</option>
+                                                        <option>1983</option>
+                                                        <option>1982</option>
+                                                        <option>1981</option>
+                                                        <option>1980</option>
+                                                        <option>1979</option>
+                                                        <option>1978</option>
+                                                        <option>1977</option>
+                                                        <option>1976</option>
+                                                        <option>1975</option>
+                                                        <option>1974</option>
+                                                        <option>1973</option>
+                                                        <option>1972</option>
+                                                        <option>1971</option>
+                                                        <option>1970</option>
+                                                        <option>1969</option>
+                                                        <option>1968</option>
+                                                        <option>1967</option>
+                                                        <option>1966</option>
+                                                        <option>1965</option>
+                                                        <option>1964</option>
+                                                        <option>1963</option>
+                                                        <option>1962</option>
+                                                        <option>1961</option>
+                                                        <option>1960</option>
+                                                        <option>1959</option>
+                                                        <option>1958</option>
+                                                        <option>1957</option>
+                                                        <option>1956</option>
+                                                        <option>1955</option>
+                                                        <option>1954</option>
+                                                        <option>1953</option>
+                                                        <option>1952</option>
+                                                        <option>1951</option>
+                                                        <option>1950</option>
+                                                        <option>1949</option>
+                                                        <option>1948</option>
+                                                        <option>1947</option>
+                                                        <option>1946</option>
+                                                        <option>1945</option>
+                                                        <option>1944</option>
+                                                        <option>1943</option>
+                                                        <option>1942</option>
+                                                        <option>1941</option>
+                                                        <option>1940</option>
+                                                        <option>1939</option>
+                                                        <option>1938</option>
+                                                        <option>1937</option>
+                                                        <option>1936</option>
+                                                        <option>1935</option>
+                                                        <option>1934</option>
+                                                        <option>1933</option>
+                                                        <option>1932</option>
+                                                        <option>1931</option>
+                                                        <option>1930</option>
+                                                        <option>1929</option>
+                                                        <option>1928</option>
+                                                        <option>1927</option>
+                                                        <option>1926</option>
+                                                        <option>1925</option>
+                                                        <option>1924</option>
+                                                        <option>1923</option>
+                                                        <option>1922</option>
+                                                        <option>1921</option>
+                                                        <option>1920</option>
+                                                        <option>1919</option>
+                                                        <option>1918</option>
+                                                        <option>1917</option>
+                                                        <option>1916</option>
+                                                        <option>1915</option>
+                                                        <option>1914</option>
+                                                        <option>1913</option>
+                                                        <option>1912</option>
+                                                        <option>1911</option>
+                                                        <option>1910</option>
+                                                        </select>
+									  								
+										
+										<span class="hide_error_msg">Error Messages Here</span>
+									</div>
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"><label for="FrmReg:emailAddress"> Email Address </label></div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"> <label for="FrmReg:alternateEmailAddress">Alternate Email Address</label> </div><span class="red">&#160;</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								
+								<div class="reg_form_details1">
+									<div class="form_lable"><label for="FrmReg:createpassword"> Password </label></div><span class="red">*</span>
+									<div class="form_field"> <input id="pwd" type="password"  onfocus="toggleHint(this.id)" onblur="toggleHint(this.id)"/>
+										<span class="hide_error_msg"></span>
+										<div id='pwdHint' class="pass_info_main">
+											
+											<div class="username_info" style="font-family: verdana;">At least 8 characters, one of which must be a number.  Capitalization matters. May also contain any of these characters  ! @ . # $ % & *   and spaces are not allowed.</div>
+										</div>
+									</div>
+									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"> <label for="FrmReg:confirmPassword">Confirm Password </label></div><span class="red">*</span>
+									<div class="form_field"> <input type="password" />
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"><label for="FrmReg:countrymenu"> Country</label></div><span class="red">&#160;</span>
+									<div class="form_field"> <select name="country" >
+												<option>-- Select Country --</option>
+												<option selected="selected">USA</option>
+												<!-- <option>Japan</option>
+												<option>France</option> -->
+												</select>
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<!--<div class="reg_form_details">
+									<div class="form_lable"> First Name</div> <span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="show_error_msg">First Name Required</span>
+									</div>
+									
+								</div>
+								
+								<div class="reg_form_details1">
+									<div class="form_lable"> Last Name</div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg">Last Name Required</span>
+									</div>
+									
+								</div>-->								
+								<div class="reg_form_details1">
+									<div class="form_lable"><label for="FrmReg:selectSecq1"> Secret Question 1</label></div> <span class="red">*</span>
+									<div class="form_field"> 
+									<select  id="my_select1"  onfocus="expand(this.id);" onblur="collapse(this.id);">
+                                        <option>-- Secret Question --</option>
+                                         <option>-- Secret Question  Secret Question Secret Question --</option>
+                                          <option>-- Secret Question --</option>
+                                           <option>-- Secret Question --</option>
+                                       
+                                        </select>
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"><label for="FrmReg:SecAnswer1"> Answer</label> </div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<div class="reg_form_details1">
+									<div class="form_lable"><label for="FrmReg:selectSecq2"> Secret Question 2 </label></div><span class="red">*</span>
+									<div class="form_field"> 
+									<select id="my_select2" onfocus="expand(this.id);" onblur="collapse(this.id);">
+                                        <option>-- Secret Question --</option>
+                                         <option>-- Secret Question  Secret Question Secret Question --</option>
+                                          <option>-- Secret Question --</option>
+                                           <option>-- Secret Question --</option>
+                                       
+                                        </select>
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<div class="reg_form_details">
+									<div class="form_lable"><label for="FrmReg:SecAnswer2">Answer </label></div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>
+								<!--<div class="reg_form_details">
+									
+										<div class="form_lable">&#160;</div><span class="red">*</span>
+										<div class="formfield"><input type="checkbox"/> I am 18 years of age or older</div>
+									
+									
+								</div>-->							
+								
+								<!--<div class="reg_form_details">
+									<div class="form_lable"> &#160;</div><span class="red">*</span>
+									<div class="form_field"> <input type="checkbox" style="width:16px;"/> I am 18 years of age or older
+										<span class="hide_error_msg"></span>
+									</div>
+									
+								</div>-->
+							</div>
+							<!-- start : Household Info.  -->
+						</div>
+					</div>
+					
+					
+					
+					
+					<!-- start : Age of Majority  -->
+					<!--
+					<div class="form_title">Age of Member</div>
+                    <div class="reg_form">
+						<div class="reg_form_details">
+							<div class="age_majority"><span class="red">*</span> <input type="checkbox" /> 
+								I am 18 or older 
+								<span class="hide_error_msg"></span>
+							</div>
+							
+							
+						</div>
+					</div>
+					-->
+                    <!-- start : Age of Majority  -->
+                    
+                    <!-- start : Agree to Terms  -->
+                    <div class="form_title">Agree to Terms of Use and Privacy Policy</div>
+                    
+					<div class="reg_form">
+                    <div class="terms"><span class="red">*</span> <input type="checkbox" /> 
+								I acknowledge that I have read and agree to the Terms of Use and Privacy Policy. 
+								<span class="hide_error_msg"></span>
+							</div>
+                            <div style="padding:0 8px 5px 8px;">
+						<div class="reg_form_details">
+							
+							<div class="termsandcond ">
+                            	<div class="big_textarea">
+							  
+			<div class="terms_ofuse_container">
+            		 <div class="flexcroll terms_ofuse_container_flexarea" >
+            		 <div class="terms_ofuse_container">
+        			<div class="terms_main-heading">ULTRAVIOLET&reg; BETA TERMS OF USE<br /><br />
+PLEASE READ THESE TERMS OF USE CAREFULLY</div><br/>
+		<p>Thank you for choosing to participate in the Ultraviolet beta
+testing program. UltraViolet is a service offering designed to enhance your
+experience with certain digital entertainment content (<b>"UltraViolet Digital Content"</b>) by allowing you to purchase
+UltraViolet Digital Content at retail locations and enabling UltraViolet
+account holders to use a cloud-based rights locker to access that content. In order
+to participate in the beta testing program, you must be over eighteen years of
+age.</p><br/>
+ 
+<p>UltraViolet is made available and managed by Digital Entertainment Content Ecosystem, LLC
+(<b>"DECE"</b>), by and through its licensors, contractors and business partners. DECE reserves the right to make
+changes from time to time, with or without notice to you, in how it operates UltraViolet. Any description of how UltraViolet works
+contained herein should not be considered a representation or obligation with
+respect to how UltraViolet will always work.</p><br/>
+ 
+<p>You acknowledge and agree
+that during the beta program, UltraViolet is being provided as an experimental "beta" version
+solely for the purpose of pre-release testing, and that UltraViolet may
+contain bugs, glitches, errors, or other problems that may impede
+performance. You acknowledge and agree that DECE
+is under no obligation to provide you with any error corrections, updates,
+upgrades, patches, security enhancements, or other increased features or
+functionality, and that DECE is not
+obligated to provide any technical or other support associated with your use of UltraViolet. You are solely responsible for
+determining the appropriateness of your use of UltraViolet
+and you hereby assume the entire risk and any associated costs or expenses
+associated with the quality, performance, installation and use of UltraViolet. From time
+to time, and in its sole discretion, DECE may modify, terminate or update (which may mean adding
+or deleting) the features and functionality of UltraViolet, 
+including modifications and/or patches to address issues
+such as security, interoperability, and performance. DECE reserves
+the right to withdraw the UltraViolet service offering during the beta program,
+and never release it as a commercial service. DECE's plans and decisions with
+respect to UltraViolet are subject to DECE's internal business and technical
+reviews. You acknowledge and agree that DECE
+has no express or implied obligation to
+provide, or continue to provide, UltraViolet (or
+any part thereof) now or in the future.</p><br/>
+ 
+ 
+<p>Additionally, you acknowledge that any feedback provided under these
+UltraViolet Beta Term of use is
+voluntary and DECE may use or not use such feedback in its sole discretion. In the event that DECE uses your feedback, 
+you, to the extent necessary and
+unless otherwise agreed in writing, grant to DECE a
+fully paid, transferable, worldwide, irrevocable right to use, display, copy,
+license, and make derivative works of any such feedback. </p><br/>
+ 
+ 
+<p><b>Acceptance of UltraViolet Beta Terms of Use</b></p><br/>
+ 
+<p>Your use of UltraViolet is governed by the terms and conditions set forth in this 
+UltraViolet Beta Terms Of Use,
+including any terms, policies or guidelines incorporated herein by reference
+(collectively, the <b>"UltraViolet Beta Terms of Use"</b>). By accessing or using UltraViolet
+through our website (<a href="http://www.uvvu.com">http://www.uvvu.com</a>)
+(the <b>"UltraViolet Website"</b>) or any
+third-party websites<span class=GramE>, you accept and agree to be bound by these UltraViolet Beta Terms
+of Use.The UltraViolet Beta Terms of
+Use is a legally binding agreement between you and DECE. If you do not wish to agree to these UltraViolet
+Beta Terms of Use, do not use UltraViolet.</p><br/>
+ 
+<p><b>Changes to UltraViolet Beta Terms of Use</b></p><br/>
+ 
+<p>DECE reserves the
+right, from time to time at any time and in its sole
+discretion,with or without notice to you, to
+change these UltraViolet Beta Terms of Use. You should review the UltraViolet
+Beta Terms of Use frequently to understand the terms and conditions that apply to your use
+of UltraViolet. The most current version of these terms can
+be viewed at any time by visiting the UltraViolet Website and clicking on
+"Terms of Use" at the bottom of the page. Such changes shall be effective upon the earlier of (i)
+your explicit acceptance of these updated terms via a "click-through" consent
+or other industry standard mechanism, or (ii) the date these new UltraViolet Beta
+Terms of Use are presented and available to you by posting on the UltraViolet Web Site. 
+The most current version of the UltraViolet Beta Terms of Use will
+supersede all previous versions. If you
+do not agree to, or cannot comply with, the new Ultraviolet Beta Terms of Use, you must stop using UltraViolet 
+and, cancel any existing UltraViolet accounts by navigating to the "Household Settings" link
+at the UltraViolet Website, and following instructions to delete individual
+accounts or the entire Household (defined below). Your continued use of UltraViolet, including
+the UltraViolet Website, after explicit acceptance of these terms or the
+posting of such changes constitutes acceptance of the changes.</p><br/>
+ 
+<p><b>Jurisdictional Issues</b></p><br/>
+ 
+<p>UltraViolet is intended for individuals who are located in the United States of
+America. DECE does not represent or warrant that services, UltraViolet Digital Content or other materials provided
+through UltraViolet are appropriate or available for use in other locations. Persons who choose to access UltraViolet from
+other locations do so on their own initiative, and are responsible for
+compliance with local laws, if and to the extent local laws are applicable.</p><br/>
+ 
+<p><b>Households; Members; Parental Controls and Access Restrictions </b></p><br/>
+ 
+<p><i>Setting up a Household</i></p><br/>
+ 
+<p>In order to use UltraViolet, you must create a valid UltraViolet account to be
+used by members of your household (a <b>"Household"</b>).You may create a Household through a
+participating retailer&#8482;'s website. In order to create a Household you must be at least eighteen (18) years old.
+By creating a Household, you represent that you have the right, authority and capacity to use UltraViolet and enter into a
+legally binding contract and that all age and other information provided in
+connection with the establishment of such Household is true and accurate.</p><br/>
+ 
+<p><i>Setting up Members</i></p><br/>
+ 
+<p>Each Household may have up to a total of six (6) authorized users including yourself 
+(each a <b>"Member"</b>). Additional
+Members can be added to a Household by registering such individual through the UltraViolet
+Website, participating third party retailer sites, or certain UltraViolet
+Devices. Once registered, each Member will have access to the UltraViolet
+Digital Content in the Household purchased by that Member, in addition to UltraViolet
+Digital Content purchased by the other Members of the Household. Notwithstanding the foregoing, the
+administrative and account management rights of any particular Member will
+depend on the access level granted to such Member. In addition, a Member's
+access to the UltraViolet Digital Content in the Household may be limited by
+the parental control settings established for such Member.</p><br/>
+ 
+<p>Each Member of a Household will be assigned one of three access levels: a Basic Access Member, a Standard Access
+Member, or a Full Access Member. Your rights in connection with the Household will depend on your access level.
+As the first Member of a Household, the
+Household creator will be a Full Access Member. Subsequent Members of the Household may be assigned any of the three
+levels. Each access level has the ability to perform the functions set forth below: </p><br/>
+ 
+<div align=center>
+ 
+<table cellpadding="0" cellspacing="0" align="center" class="mso_table">
+		<tr>
+        	<td>&nbsp;</td>
+            <td>Basic Access</td>
+            <td>Standard Access</td>
+            <td>Full Access</td>
+         </tr>
+         <tr>
+        	<td class="inertd">Access UltraViolet Digital Content in the Household</td>
+            <td>X</td>
+            <td>X</td>
+            <td>X</td>
+         </tr>
+         <tr>
+        	<td class="inertd">Associate/Disassociate a retailer account</td>
+            <td>X</td>
+            <td>X</td>
+            <td>X</td>
+         </tr>
+         <tr>
+        	<td class="inertd">Launch a Dynamic Streaming Service *</td>
+            <td>&nbsp;</td>
+            <td>X</td>
+            <td>X</td>
+         </tr>
+         <tr>
+        	<td class="inertd">Add/remove Members</td>
+            <td>&nbsp;</td>
+            <td>X</td>
+            <td>X</td>
+         </tr>
+         <tr>
+        	<td class="inertd">Set access levels of other Members</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>X</td>
+         </tr>
+         <tr>
+        	<td class="inertd">Set parental controls for other Members</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>X</td>
+         </tr>
+         
+   </table>
+ 
+</div>
+ 
+<p><i>*As these terms are defined below</i></p><br/>
+ 
+<p><i>Parental Controls</i></p><br/>
+ 
+<p>You may wish to limit the types of UltraViolet Digital Content certain Members of
+your Household may access. UltraViolet
+is not intended for use by children without the involvement and supervision of a
+parent or legal guardian.Accordingly, UltraViolet
+offers parental controls designed to allow parents and legal guardians to
+control the UltraViolet Digital Content accessible by certain Members. Each
+Full Access Member has the ability to set parental controls for other Members
+of a Household. To limit an individual Member's access to UltraViolet Digital
+Content the parental controls in such Member's UltraViolet profile must be set. You must also maintain 
+the integrity of your password and
+not reveal it to a Member subject to parental control restrictions.</p><br/>
+ 
+<p><b><i>Once content is placed into a Household, all Members of the Household will have
+access to it regardless of the age of the Member or the ratings for the content
+unless you set the parental control functionality offered to you in UltraViolet.
+Similarly, despite setting the parental controls offered in UltraViolet, once
+specific content is downloaded, it may be accessible to others unless the
+access control settings, if available, are also used.</b></i></p><br/>
+ 
+<p><i>Confidentiality and Passwords</i></p><br/>
+ 
+<p>Maintaining the confidentiality and security of your Household is solely the responsibility
+of you and the other Members of your Household. Each Member of a Household will have his or her own password. To
+maintain the confidentiality and security of your Household, you should not
+reveal your password to anyone else and it is important that other Members of
+your Household also do not reveal their passwords to anyone else. In the event
+of any breach of security, which may include unauthorized access or use of your
+Household, immediately notify DECE at <a href="mailto:html.admin@decellc.com">admin@decellc.com</a>.
+DECE shall not be responsible for any losses incurred as a result of
+unauthorized access to or use of your Household.</p><br/>
+ 
+<p><i>Termination and Suspension of
+a Member or Household</i></p><br/>
+ 
+<p>If for any reason you no longer wish to participate in UltraViolet, you may delete
+yourself as a Member of a Household account at any time by navigating to the
+"Household Settings" link, and following instructions to delete individual
+accounts or the entire Household. Your cancellation will be effective immediately. 
+If you wish to retain the UltraViolet Digital
+Content purchased by you prior to termination, you must download the content to
+an UltraViolet Device or save the content to a form of discrete media, such as
+a DVD, prior to termination.</p><br/>
+ 
+<p>DECE may restrict, suspend or terminate your access to part or all of UltraViolet if
+DECE believes you are in breach of the UltraViolet Beta
+Terms of Use or applicable law, or for any other reason, without notice or
+liability. Without limiting the
+preceding, DECE may suspend your access to your Household upon reasonable
+notice to you, which may be communicated electronically, if DECE reasonably
+believes that your Household has been created
+fraudulently, (ii) your Household has been accessed fraudulently, (iii) a
+Member of your Household has committed fraud, or (iv) you or a Member of your Household
+is using UltraViolet in violation of the UltraViolet Beta Terms of Use or any
+applicable law.</p><br/>
+ 
+<p> ON TERMINATION OF YOUR ACCOUNT YOU WILL LOSE ALL
+ACCESS TO THE ULTRAVIOLET DIGITAL CONTENT IN YOUR HOUSEHOLD
+UNLESS YOU HAVE (A) DOWNLOADED THE ULTRAVIOLET
+DIGITAL CONTENT TO AN ULTRAVIOLET DEVICE, OR (B) SAVED THE ULTRAVIOLET DIGITAL
+CONTENT TO A FORM OF DISCRETE MEDIA, SUCH AS A DVD.</p><br/>
+ 
+<p><i>DECE Access To Your Account</i></p><br/>
+ 
+<p>So that UltraViolet may remain a high-quality service that is responsive to your
+needs, DECE and/or its contractors will have administrative access to your
+account to provide customer service, maintenance and support, investigate
+complaints, and/or fix errors.</p><br/>
+ 
+<p><i>How Your UltraViolet Household Works</i></p><br/>
+ 
+<p>Once you have set up your Household, to begin enjoying your UltraViolet experience you will need to
+purchase UltraViolet Digital Content and designate the UltraViolet Devices on
+which your UltraViolet Digital Content can be accessed.</p><br/>
+ 
+<p><i>Adding, Using and Storing UltraViolet Digital Content</i></p><br/>
+ 
+<p>UltraViolet Digital Content can be purchased through participating retailers.</p><br/>
+ 
+<p>If your purchase of a digital copy of UltraViolet Digital Content includes the
+option to burn or copy the digital file onto a physical disc, you may copy or
+burn UltraViolet Digital Content which you have purchased a total of (1) time,
+unless expressly permitted otherwise by the applicable retailer.If you lose this physical copy it cannot be
+replaced for any reason.</p><br/>
+ 
+<p>When you purchase UltraViolet Digital Content for your Household
+it remains subject to the intellectual property rights of the copyright owner
+and other third parties. You may only use and make available the UltraViolet Digital Content for your personal and
+noncommercial use and as expressly authorized in connection with your Household.</p><br/>
+ 
+<p><i>Streaming UltraViolet Digital Content</i></p><br/>
+ 
+<p>Each UltraViolet Account is authorized to access three (3) streams of UltraViolet
+Digital Content simultaneously.</p><br/>
+ 
+<p>Dynamic Streaming Services are services that are not linked to a particular designated device. 
+When using Dynamic Streaming Services you will be required to log-in when you choose to stream UltraViolet Digital
+Content.</p><br/>
+ 
+<p><i>Objectionable UltraViolet Digital Content</i></p><br/>
+ 
+<p>You are aware and understand that by using UltraViolet, you may have access to UltraViolet
+Digital Content that may be deemed offensive, objectionable, unpleasant or
+indecent, and that such UltraViolet Digital Content may not be identified as
+such. You agree to use UltraViolet at
+your sole risk and that DECE and its contractors will have no liability to you
+for such content.</p><br/>
+ 
+<p><b>Conduct Requirements</b><p>
+ 
+<p>In addition to any other requirements associated with the use of UltraViolet you
+may not</p><br/> 
+<ul>
+<li> share your password with anyone, and you
+may not obtain or attempt to gain unauthorized access to accounts to which you
+are not a registered user or obtain or attempt to gain unauthorized access to UltraViolet
+Digital Content to which you do not have permission or authority to access;</p><br/>
+<li> lter, edit, delete, remove, fail to display,
+otherwise change the meaning or appearance of, or repurpose any of the
+UltraViolet Content (as defined below),or attempt to do any of the foregoing,
+including, without limitation, any trademarks, trade names, logos, service
+marks, promotional taglines, or any other proprietary content or proprietary
+rights notices included therein or thereon;</p><br/>
+<li> engage in spidering,
+"screen scraping," "database scraping," harvesting of e-mail addresses or other
+personal information, or any other automatic or unauthorized means of
+accessing, logging-in or registering for UltraViolet, or obtaining lists of
+Members or other information from or through UltraViolet, including, without
+limitation, any information residing on any server or database connected to UltraViolet;</p><br/>
+<li> use UltraViolet in any manner that
+could interrupt, damage, disable, overburden or impair UltraViolet or interfere
+with any other Member's use and enjoyment of UltraViolet;</p><br/>
+<li> circumvent, reverse engineer,
+decrypt, or otherwise alter or interfere (or attempt, encourage or support
+anyone else's attempt to do any of the foregoing) with any part or portion of UltraViolet;</p><br/>
+<li> upload, post, transmit, distribute
+or otherwise publish to, on or through UltraViolet, any information, content or
+materials which are false, fraudulent, misleading, unlawful, threatening,
+abusive, harassing, hateful, racially, ethnically or otherwise objectionable,
+libelous, defamatory, obscene, vulgar, offensive, incendiary, pornographic,
+profane, sexually explicit or indecent, including without limitation, any
+material which encourages conduct that would constitute a criminal offense,
+give rise to civil liability or otherwise violate any local, state, national or
+international law;</p><br/>
+<li> use UltraViolet to violate,
+plagiarize or infringe the rights of third parties, including without
+limitation, copyright, trademark, trade secret, confidentiality, contract,
+patent, rights of privacy or rights of publicity or any other proprietary or
+legal right;</p><br/>
+<li> upload, post, publish, distribute or
+otherwise transmit any information or material which constitutes or contains a
+virus, spyware, or other harmful component, or which contains any embedded
+links, advertising, chain letters or pyramid schemes of any kind;</p><br/>
+<li> circumvent, reverse engineer,
+decrypt or otherwise alter or interfere (or attempt, encourage or support
+anyone else&#8482; attempt to do any of the foregoing) with any security technology
+or any other part or portion of the UltraViolet Digital Content, UltraViolet
+Devices or Households that would result in the degradation in any way of UltraViolet,
+including, without limitation, circumventing, or attempting to circumvent the
+requirements and restrictions set forth in Sections 2, 7, 8 and 9 above; or use
+UltraViolet, in whole or in part, in violation of any applicable law.</p><br/>
+</ul>
+ 
+<p>IF YOU VIOLATE OR CIRCUMVENT, OR ATTEMPT TO VIOLATE OR CIRCUMVENT, ANY SECURITY OR
+OTHER TECHNOLOGY OR ANY APPLICABLE LAWS, REGULATIONS OR REQUIREMENTS ASSOCIATED
+WITH USE OF ULTRAVIOLET, YOU MAY BE SUBJECT TO CIVIL OR CRIMINAL LIABILITY.</p><br/>
+ 
+<p><b>Intellectual Property</b></p><br/>
+ 
+<p>As between you and DECE, DECE owns, solely and exclusively, all rights, title and
+interest in and to the UltraViolet Website, UltraViolet and all of the content,
+software, code, data and other materials thereon (collectively, the "UltraViolet
+Content"), and the look and feel, design and organization of any aspect of the UltraViolet
+Content, including but not limited to any copyrights, trademark rights, patent
+rights and other intellectual property and proprietary rights therein. Your use of UltraViolet does not grant to you
+ownership or title of, in or to any UltraViolet Content or any other part of UltraViolet.
+UltraViolet and the UltraViolet Digital
+Content are for your personal and noncommercial use only.</p><br/>
+ 
+<p>Subject to the terms and conditions of the UltraViolet Beta Terms of Use and your
+activation of an UltraViolet account, DECE grants to you a limited,
+non-exclusive, non-transferrable license to access the UltraViolet Website and
+any UltraViolet Digital Content in your Household for your personal and
+noncommercial use, and to access, view, use and display the UltraViolet Digital
+Content on UltraViolet Devices in accordance with the terms and conditions
+established herein and in accordance with any limitations imposed by third
+parties on the UltraViolet Digital Content. Except for the foregoing license, no other right, title, or interest
+shall be granted to you. You may not
+reproduce, distribute, copy, perform, display, modify,
+create derivative works from, or offer for sale any information contained on or
+obtained from or through the UltraViolet Website, UltraViolet, or the UltraViolet
+Digital Content, without the express written consent of DECE. </p><br/>
+ 
+<p>The trademarks, logos, service marks and trade names that may be displayed on any
+part of the UltraViolet Website, UltraViolet or the UltraViolet Content are
+registered and unregistered trademarks of DECE and third parties (collectively,
+the "Trademarks"), and may not be used unless authorized expressly in the UltraViolet
+Beta Terms of Use, or by the applicable Trademarks owner. Nothing contained in or provided through UltraViolet
+should be construed as granting, by implication, estoppel,
+or otherwise, any license or right to use any Trademark without DECE's written
+permission or that of the third -party rights holder.</p><br/>
+ 
+<p><b>Provision and Use of Information</b></p><br/>
+ 
+<p><i>Privacy Policy</i></p><br/>
+ 
+<p>In order to create a Household, add additional Members to a Household, be added as a new Member to an
+existing Household, make purchases of UltraViolet Digital Content, sign-up for
+e-newsletters and/or participate in certain activities provided on or through UltraViolet,
+you may be required to submit certain personally identifying information to
+DECE and its contractors. Any personally
+identifying information submitted through UltraViolet is subject to the UltraViolet Beta Privacy Policy <b
+style='mso-bidi-font-weight:normal'>[<i style='mso-bidi-font-style:normal'>INSERT
+HYPERLINK</i>]</b></span> which is incorporated herein by reference for all
+purposes. Please review our privacy
+policy. You hereby consent to DECE's disclosure of your personally identifying
+information and UltraViolet usage of such information (including information
+about what UltraViolet Digital Content you purchase or otherwise access through
+your Household) as described herein and in our Privacy Policies.</p><br/>
+ 
+<p >When submitting information to and through UltraViolet, you agree to provide only
+true, accurate, current and complete information. You also agree to maintain
+and update the information you provide as required to keep such information
+accurate.</p><br/>
+ 
+<p><i>Sharing with UltraViolet Partners</i></p><br/>
+ 
+<p>DECE works with third parties to provide UltraViolet, including the publishers that
+create UltraViolet Digital Content, the retailers who sell UltraViolet
+Digital Content, the service providers that host and/or stream UltraViolet
+Digital Content for your use, and the service providers who implement and
+maintain UltraViolet (collectively, "UltraViolet Partners"). In order to provide you with UltraViolet and
+its various features, DECE may share your personally identifiable information
+and UltraViolet usage information with UltraViolet Partners. For example, DECE may share such information
+with retailers who sell UltraViolet Digital Content so that, during initiation
+of a purchase of UltraViolet Digital Content, the retailer may check your Household
+to verify that you have not already purchased that UltraViolet Digital Content.></p><br/>
+ 
+<p>You hereby consent to DECE's disclosure of your personal information and UltraViolet
+usage information (including information about what UltraViolet Digital Content
+you purchase or otherwise access through your account) as described herein and
+in our Privacy Policy.</p><br/>
+ 
+<p><i>Electronic Communications</i></p><br/>
+ 
+<p>You hereby consent to receive communications from DECE electronically. You agree
+that all disclosures, notices, agreements, and other communications you receive
+from DECE electronically satisfy any legal requirement for such communications
+to be in writing. DECE does not accept any liability or responsibility for
+e-mails or other electronic communications that are filtered, intercepted,
+garbled, lost or not received.</p><br/>
+ 
+<p><i>Submitted Materials</i></p><br/>
+ 
+<p>Any information, creative works, demos, ideas, suggestions, concepts, methods,
+systems, designs, plans, techniques or other materials submitted or sent to
+DECE or its contractors through the UltraViolet Website, through UltraViolet,
+by e-mail, or in any other way, with the exception of UltraViolet Digital
+Content (<b>"Submitted Materials"</b>) will
+be deemed not to be confidential or secret, and may be used by DECE, by and
+through its contractors, in any manner consistent with the UltraViolet Beta Terms of Use and
+the Beta Privacy Policy <b style='mso-bidi-font-weight:normal'>[<i
+style='mso-bidi-font-style:normal'>INSERT HYPERLINK</i></b></span><b
+style='mso-bidi-font-weight:normal'>]</b>. By submitting, posting or sending Submitted Materials 
+through the UltraViolet Website,
+through UltraViolet, by e-mail, or in any other way, to DECE, you (i) represent and warrant that the Submitted Materials are
+original to you, that no other party has any rights thereto, and that any "moral rights" in Submitted Materials have been waived, and (ii) you
+grant DECE and DECE's contractors a royalty-free, unrestricted, worldwide,
+perpetual, irrevocable, non-exclusive and fully transferable, assignable and sublicensable right and license to use, copy, reproduce,
+modify, adapt, publish, translate, create derivative works from, distribute,
+perform, display, make, sell and export such material (in whole or part) and/or
+to incorporate it in other works in any form, media, or technology now known or
+later developed. DECE cannot be responsible
+for maintaining any Submitted Materials that you provide to DECE, and DECE may
+delete or destroy any such Submitted Materials at any time.</p><br/>
+ 
+<p>DECE
+DOES NOT NECESSARILY ENDORSE, SUPPORT, SANCTION, ENCOURAGE OR AGREE WITH ANY
+SUBMITTED MATERIALS, OR ANY OPINION, RECOMMENDATION, CONTENT, LINK, DATA OR
+ADVICE EXPRESSED OR IMPLIED THEREIN, AND DECE EXPRESSLY DISCLAIMS ANY AND ALL
+LIABILITY IN CONNECTION WITH SUBMITTED MATERIALS AND ANY OTHER CONTENT,
+MATERIALS OR INFORMATION AVAILABLE ON OR THROUGH THE ULTRAVIOLET WEBSITE OR ULTRAVIOLET
+CREATED OR PROVIDED BY MEMBERS OR OTHER THIRD PARTIES. USE OF THE ULTRAVIOLETWEBSITE,
+ULTRAVIOLET, THE CREATION OF AN ACCOUNT OR THE SUBMISSION OF ANY SUBMITTED
+MATERIALS DOES NOT GUARANTEE ACCEPTANCE BY DECE OR USE THEREOF.</p><br/>
+ 
+<p><i>Right to Monitor and Editorial Control</i></p><br/>
+ 
+<p>DECE and its contractors reserve the right (but do not have nor assume any
+obligation) to monitor and/or review all information and materials submitted to
+or through the UltraViolet Website or UltraViolet. DECE and its contractors are not responsible
+for any such materials.However, DECE and its contractors reserve the right at all times to edit, refuse to post or
+to remove any information or materials, in whole or in part, that in DECE's or
+its contractor's sole discretion, are objectionable or in violation of the UltraViolet
+BetaTerms of Use, any of DECE's policies or
+applicable law. DECE or its contractors
+may also impose limits on certain features or restrict DECE's access to part or
+all of UltraViolet, without notice or penalty, if DECE believes you are in
+breach of the UltraViolet Beta Terms of Use or applicable law, or for any other
+reason without notice or liability.</p><br/>
+ 
+<p><b>Indemnification</b></p><br/>
+ 
+<p>You agree to defend, indemnify and hold DECE, its affiliates, contractors and
+licensors and each of their respective officers, directors, employees, agents
+and representatives harmless from and against any and all claims, liabilities,
+suits, losses, damages, costs and expenses, including reasonable attorneys'
+fees, arising in any way from (i) your use of the UltraViolet
+Website or UltraViolet, (ii) your Submitted Materials, in whole or in part,
+(iii) your failure to comply with any applicable laws or regulations, or (iv)
+your breach or violation of the UltraViolet Beta Terms of Use. DECE reserves the right, at DECE's own
+expense, to assume the exclusive defense and control of any matter otherwise
+subject to indemnification by you, and in such case, you agree to cooperate in
+full at your own expense with any such defense.</p><br/>
+ 
+<p><b>Third-Party Web Sites</b></p><br/>
+ 
+<p>You may be able to link from the UltraViolet Website or through UltraViolet to
+third-party web sites, and third-party web sites may link to the UltraViolet
+Website or UltraViolet ("Linked Sites").DECE is not responsible for the availability, quality or performance of
+these Linked Sites. You acknowledge and
+agree that DECE has no responsibility for any information, content,
+advertising, products, services or other materials on any Linked Sites, that links
+to Linked Sites do not necessarily constitute an endorsement, approval or
+sponsorship thereof by DECE, and that DECE is not responsible or liable,
+directly or indirectly, for any damage or loss caused by or in connection with
+your use of or reliance on any Linked Site. If you choose to rely on any Linked Site, you are doing so at your own
+risk and you assume all responsibilities and consequences resulting from such
+choice.</p><br/>
+ 
+<p><b>DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</b></p><br/>
+ 
+<p><b>ULTRAVIOLET AND THE ULTRAVIOLET WEBSITE,
+INCLUDING, WITHOUT LIMITATION, ANY AND ALL CONTENT, FUNCTIONS, DOWNLOADS, USER
+INTERFACES, AND MATERIALS THEREOF OR OTHERWISE AVAILABLE ON OR THROUGH
+ULTRAVIOLET AND THE ULTRAVIOLET WEBSITE, ARE PROVIDED "AS IS," WITH
+ALL FAULTS "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR
+IMPLIED, INCLUDING, WITHOUT LIMITATION, (a) ANY WARRANTY FOR INFORMATION, DATA,
+DATA PROCESSING SERVICES, UPTIME OR UNINTERRUPTED ACCESS, (b) ANY WARRANTIES
+CONCERNING THE AVAILABILITY, ACCURACY, USEFULNESS, CORRECTNESS, PRECISION,
+THOROUGHNESS, COMPLETENESS OR CONTENT OF INFORMATION, (c) ANY WARRANTIES OF
+TITLE, NON-INFRINGEMENT, SATISFACTORY QUALITY, MERCHANTABILITY OR FITNESS FOR A
+PARTICULAR PURPOSE; (d) THAT ULTRAVIOLET OR THE ULTRAVIOLET DIGITAL CONTENT OR
+ANY ULTRAVIOLET CONTENT WILL BE TIMELY, SECURE, UNINTERRUPTED OR ERROR -FREE,
+(e) THAT DEFECTS WILL BE CORRECTED IN A TIMELY MANNER OR AT ALL, (f) THAT ANY
+OF THE FEATURES OR FUNCTIONALITY ASSOCIATED WITH ULTRAVIOLET WILL BE AVAILABLE
+AT ANY GIVEN TIME OR FOR ANY DURATION, (g) THAT ANY DEVICE IS OR WILL BE
+COMPATIBLE WITH ULTRAVIOLET, (h) THAT ULTRAVIOLET, IN WHOLE OR IN PART, WILL
+MEET USERS&#8482; REQUIREMENTS, OR (i) THAT YOUR USE OF
+ULTRAVIOLET WILL BE FREE FROM LOSS, CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING,
+OR OTHER SECURITY INTRUSION. DECE, ITS AFFILIATES, CONTRACTORS, LICENSORS, AND
+EACH OF THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, AGENTS AND
+REPRESENTATIVES (COLLECTIVELY THE "DECE ENTITIES") HEREBY DISCLAIM ANY AND ALL
+SUCH WARRANTIES, EXPRESS AND IMPLIED.</b></p><br/>
+ 
+<p>THE DECE ENTITIES ALSO ASSUME NO RESPONSIBILITY, AND
+SHALL NOT BE LIABLE FOR, ANY DAMAGES TO, OR VIRUSES THAT MAY INFECT, YOUR
+COMPUTER EQUIPMENT, ULTRAVIOLET DEVICE OR OTHER PROPERTY ON ACCOUNT OF YOUR
+ACCESS TO, USE OF, THE ULTRAVIOLET WEBSITE, ULTRAVIOLET OR YOUR DOWNLOADING, STREAMING OR
+UPLOADING OF ANY MATERIALS, DATA, TEXT, IMAGES, VIDEO, OR AUDIO FROM OR TO THE ULTRAVIOLET WEBSITE OR ULTRAVIOLET. 
+YOUR ACCESS TO AND USE OF ULTRAVIOLET IS AT YOUR SOLE RISK. IF YOU ARE DISSATISFIED WITH ULTRAVIOLET, YOU
+SHOULD DISCONTINUE USING ULTRAVIOLET.</p><br/>
+ 
+<p>IN NO EVENT SHALL ANY DECE ENTITY BE LIABLE TO YOU FOR ANY DIRECT, INDIRECT,
+SPECIAL, INCIDENTAL, CONSEQUENTIAL, EXEMPLARY OR PUNITIVE DAMAGES ARISING FROM,
+OR DIRECTLY OR INDIRECTLY RELATED TO, THE USE OF, OR THE INABILITY TO USE, THE 
+WEB SITE, ULTRAVIOLET OR THE ULTRAVIOLET DIGITAL CONTENT, OR ANY FEATURES
+OR FUNCTIONALITY THEREOF, INCLUDING, BUT NOT LIMITED TO, ANY ERRORS OR
+OMISSIONS IN ANY ULTRAVIOLET DIGITAL CONTENT, OR ANY LOSS OR DAMAGE OF ANY KIND INCURRED
+AS A RESULT OF ANY ULTRAVIOLET DIGITAL CONTENT ACCESSED OR OTHERWISE MADE AVAILABLE
+THROUGH ULTRAVIOLET, EVEN IF SUCH DECE ENTITY HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES. SOME
+JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR
+INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO IN SUCH JURISDICTIONS, LIABILITY SHALL
+BE LIMITED TO THE EXTENT PERMITTED BY LAW. IN NO EVENT SHALL THE DECE ENTITIES BE RESPONSIBLE OR LIABLE FOR OR IN
+CONNECTION WITH ANY DISPUTE BETWEEN OR AMONGST MEMBERS OF ULTRAVIOLET AND THIRD
+PARTIES FROM WHOM ULTRAVIOLET DIGITAL CONTENT IS ACQUIRED, OR IN CONNECTION WITH ANY
+CONTENT POSTED, TRANSMITTED, EXCHANGED OR RECEIVED BY OR ON BEHALF OF ANY
+MEMBER OR OTHER PERSON ON OR THROUGH ULTRAVIOLET. DECE AND
+YOU UNDERSTAND AND AGREE THAT (I) THE MUTUAL AGREEMENTS MADE IN THIS SECTION
+REFLECT A REASONABLE ALLOCATION OF RISK GIVEN THAT ULTRAVIOLET IS FREE TO
+MEMBERS, AND (II) THE PARTIES HERETO WOULD NOT HAVE ENTERED INTO THE ULTRAVIOLET BETA TERMS OF USE WITHOUT THESE LIMITATIONS ON
+LIABILITY.</p><br/>
+ 
+<p><b>Claims of Copyright Infringement</b></p><br/>
+ 
+<p>DECE respects the intellectual property rights of others, and requires that the people who use UltraViolet do
+the same. If you believe that your work
+has been copied in a way that constitutes copyright infringement, please
+forward the following information to DECE's Copyright Agent, designated as such
+pursuant to the Digital Millennium Copyright Act, 17 U.S.C. &sect;512(c)(2), named
+below:</p><br/>
+ 
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:7.5pt;
+     text-align:justify;text-justify:inter-ideograph;line-height:12.0pt;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in;'><span
+     style='mso-bidi-font-size:10.0pt;mso-fareast-font-family:SimSun'>Your
+     address, telephone number, and email address;<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:7.5pt;
+     text-align:justify;text-justify:inter-ideograph;line-height:12.0pt;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='mso-bidi-font-size:
+     10.0pt;mso-fareast-font-family:SimSun'>A description of the copyrighted
+     work that you claim has been infringed;<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:7.5pt;
+     text-align:justify;text-justify:inter-ideograph;line-height:12.0pt;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='mso-bidi-font-size:
+     10.0pt;mso-fareast-font-family:SimSun'>A description of where the alleged
+     infringing material is located;<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:7.5pt;
+     text-align:justify;text-justify:inter-ideograph;line-height:12.0pt;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='mso-bidi-font-size:
+     10.0pt;mso-fareast-font-family:SimSun'>A statement by you that you have a
+     good faith belief that the disputed use is not authorized by the copyright
+     owner, its agent, or the law;<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:7.5pt;
+     text-align:justify;text-justify:inter-ideograph;line-height:12.0pt;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='mso-bidi-font-size:
+     10.0pt;mso-fareast-font-family:SimSun'>An electronic or physical signature
+     of the person authorized to act on behalf of the owner of the copyright
+     interest; and<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;margin-bottom:7.5pt;
+     text-align:justify;text-justify:inter-ideograph;line-height:12.0pt;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='mso-bidi-font-size:
+     10.0pt;mso-fareast-font-family:SimSun'>A statement by you, made under penalty
+     of perjury, that the above information in your notice is accurate and that
+     you are the copyright owner or authorized to act on the copyright owner's
+     behalf.<o:p></o:p></span></li>
+</ul>
+ 
+<br>Copyright Agent:</br>
+<br>Morgan Seibert</br>
+<rt>DECE Administration</br>
+<rt>3855 SW 153 Drive</br>
+<rt>Beaverton, OR 97006</br>
+<rt>voice: (503) 619-0566</br>
+<rt>fax: (503) 644-6708</br>
+<rt>email: <a href="mailto:html.admin@decellc.com">admin@decellc.com</a></br>
+ 
+<p><b>System Requirements</b></p><br/>
+ 
+<p>Use of UltraViolet requires one or more compatible UltraViolet Devices, Internet
+access (fees may apply), and may require certain software (fees may apply) and
+obtaining updates or upgrades thereto from time to time. Because use of UltraViolet involves hardware,
+software, and Internet access, your ability to use UltraViolet may be affected
+by the performance of these factors. High speed Internet access is strongly
+recommended.In addition, all devices
+may not support all of the features and functionality of the UltraViolet
+Digital Content available, for example to view HD content you will need a HD
+compatible device. You acknowledge and agree that such system requirements,
+which may be revised from time to time, are your responsibility. You also acknowledge and agree that you are
+responsible for setting up your account, creating Members, and that DECE is not
+responsible for a failure or degradation of UltraViolet due to a failure in
+proper configuration or limitations of your devices. UltraViolet is independent of other products
+and offerings, and the purchase (as applicable) or obtaining of any such
+product or offering does not guarantee your access to the full features and
+functionality of UltraViolet.</p><br/>
+ 
+<p><b>Miscellaneous</b></p><br/>
+ 
+<p>The UltraViolet Beta Terms of Use represent the entire agreement between you and
+DECE and supersede any proposal or prior agreement, oral or written, and any
+other communications relating to the subject matter of this agreement.</p><br/>
+ 
+<p>The
+UltraViolet Beta Terms of Use and the relationship between you and DECE shall
+be governed by the laws of the United States and the State of New York, without
+regard to its conflict of law provisions. You agree that any cause of action that may arise under the UltraViolet Beta
+Terms of Use shall be commenced and be heard in the appropriate court in the
+State of New York, County of New York. You agree to submit to the personal and
+exclusive jurisdiction of the courts located within New York County in the
+State of New York.</p><br/>
+ 
+<p>DECE's failure to exercise or enforce any right or provision of the UltraViolet Beta Terms
+of Use shall not constitute a waiver of such right or provision. If any provision of the UltraViolet Beta Terms
+of Use is found by a court of competent jurisdiction to be invalid or
+unenforceable, the parties nevertheless agree that the court should endeavor to
+give effect to the parties' intentions as reflected in the provision, and the
+other provisions of the UltraViolet Beta Terms of Use remain in full force and
+effect.</p><br/>
+ 
+<p>Effective: November 9, 2010 </p><br/>
+ 
+
+ 
+        </div>
+                                    
+										
+									  
+								
+                    </div>
+        	</div>
+        		</div>
+							</div>
+							
+						</div>
+                        	</div>
+					</div>
+					<!-- start : Agree to Terms  -->
+                    
+                    <!-- start : Verify Image  -->
+					<div class="form_title">Verify Image</div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="form_lable"><label for="FrmReg:captchaImageText">Type the letters you see in the picture below</label></div><span class="red">*</span>
+							<div class="form_field"> <input type="text" />
+								<span class="hide_error_msg"></span>
+							</div>
+							<div class="reg_form_details">
+								<div class="form_lable"> &#160;</div><span class="red">&#160;</span>
+								<div class="form_field"> 
+									<img src="images/rand_img.jpg" alt="refresh" /> 
+									<a href="#" class="refresh">Can’t read it? Click here</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- start : Verify Image  -->
+					
+				  	<!-- start : submit button -->
+					<div class="submitform_btn" style="width:620px;">
+						<div class="centeredBtn">
+							<ul>
+								<li><a href="confirmRegistration.html" class="anchor_btn" title="create your Household"><span>Create Your Household</span></a></li>
+								<li class="cancel_btn"><a href="default.html" title="cancel"><span>Cancel</span></a></li>
+							</ul>
+						</div>
+					</div>
+	 			 	<!-- End : submit button -->
+					
+				</div>
+				<!--Start : Right Panel-->
+				<div class="right_panel" style="margin-top:40px;">
+					<div class="cont_box1">
+						<div class="content_box" >
+							<div class="quickview_tab" id="quickview">
+								<div class="quick_tip_title">QUICK TIP </div>
+								<div class="quicktip_arrows">
+									<a href="#" class="leftArrow" rel="previous" title="Previous">
+										<img src="images/side_arrow_lft.gif"  border="0" alt="previous" />
+									</a><a href="#" rel="next" title="Next">
+										<img src="images/side_arrow_rght.gif" border="0" alt="next" />
+									</a>
+								</div>
+							</div>
+							
+						<div class="quick_view_content">
+							<div class="items">You must be 18 years of age or older to create a Household account.</div>
+							<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso</div>
+						 </div>
+							<script type="text/javascript">
+								var newscripts=new virtualpaginate({
+								piececlass: "items",
+								piececontainer: 'div', //Let script know you're using "p" tags as separator (instead of default "div")
+								pieces_per_page: 1,
+								defaultpage: 0,
+								wraparound: false,
+								persist: true
+								})
+								newscripts.buildpagination(["quickview"])
+								</script>
+						</div>
+						<div class="box_btm"></div>
+					</div>
+					<!--Start : Top Devices Faqs  -->
+								<div class="cont_box1">
+									<div class="content_box">
+										<div class="quickview_tab">TOP FAQs
+											<div style="float:right;">
+											</div>
+										</div>
+											
+										<div class="select_arrow">
+											<input type="hidden" value="" id="hidden" />
+											<div id="expand1" class="faq_arrow" style="display:none;">
+												<img src="images/expand.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:hidediv('collapse1', 'expand1', 'faq1')" />
+											</div>
+											<div id="collapse1" class="faq_arrow">
+												<img src="images/collapse.gif" border="0" width="11" style="cursor:hand;" onclick="javascript:showdiv('collapse1', 'expand1', 'faq1')" />
+											</div>
+											
+											<div class="q_char" >Q: </div>
+											<div class="faq_qust">Who can be part of my household account? </div>
+										</div>
+										
+										
+										<div id="faq1" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Your household account is intended for immediate family members who share devices in the home. Extended family members and adult children with separate households and their own devices will probably not find it convenient to share an account. </div>
+										</div>
+										
+	
+										<div class="select_arrow">
+											<div id="expand2" class="faq_arrow" style="display:none;">
+												<a href="javascript:void(0)" onclick="javascript:hidediv('collapse2', 'expand2', 'faq2')"><img src="images/expand.gif" border="0" width="11" /></a>
+											</div>
+											<div id="collapse2" class="faq_arrow">
+												<a href="javascript:void(0)" onclick="javascript:showdiv('collapse2', 'expand2', 'faq2')"><img src="images/collapse.gif" border="0" width="11" /></a>
+											</div>
+											<div class="q_char">Q: </div>
+											<div class="faq_qust">How many household accounts can I join?  </div>
+										</div>
+										<div id="faq2" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">You can only be part of one household at a time.</div>
+										</div>
+										
+										<div class="select_arrow">
+											<div id="expand3" class="faq_arrow" style="display:none;">
+												<a href="javascript:void(0)" onclick="javascript:hidediv('collapse3', 'expand3', 'faq3')"><img src="images/expand.gif" border="0" width="11" /></a>
+											</div>
+											<div id="collapse3" class="faq_arrow">
+												<a href="javascript:void(0)" onclick="javascript:showdiv('collapse3', 'expand3', 'faq3')"><img src="images/collapse.gif" border="0" width="11" /></a>
+											</div>
+											<div class="q_char" >Q: </div>
+											<div class="faq_qust">Who can add to or edit my household account? </div>
+										</div>
+										<div id="faq3" class="ans" style="display:none">
+											<div class="a_char"> A: </div>
+											<div class="faq_answer">Any &quot;Full Access&quot; members of your household can add, edit and delete members, including themselves. Each household is limited to 6 members.</div>
+										</div>
+											  
+									</div>
+									<div class="box_btm" style="clear:both;"></div>
+								</div>
+								<div class="more_faq"><a href="help.html?f=device">More FAQs</a> | <a href="help.html">All FAQs</a></div>
+					<!--End : Top Device Faqs  -->
+				</div>
+				<!--End : Right Panel-->
+				</div>
+				
+            </div>
+        </div>
+        <div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs_u.html">Contact Us</a>			
+			</div>
+		</div>
+        </div>
+    </div>
+</body>
+</html>

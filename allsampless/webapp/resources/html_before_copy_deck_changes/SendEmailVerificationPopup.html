@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<title>ULTRAVIOLET</title>
+<link rel="stylesheet" type="text/css" href="css/custom_style.css" />
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+
+ <script type="text/javascript">
+			function dropdown_Icon(){
+				document.getElementById('DropDown').style.display='block';
+				document.getElementById('DropdownIcon').style.backgroundColor='#333';
+				document.getElementById('DropdownIcon').style.margin='0';
+				document.getElementById('DropdownIcon').style.padding='0 3px';
+			
+			}
+			function dropdown_mouseOut(){
+				
+				document.getElementById('DropDown').style.display='none';
+				document.getElementById('DropdownIcon').style.backgroundColor='#000';
+				document.getElementById('DropdownIcon').style.margin='0 3px';
+				document.getElementById('DropdownIcon').style.padding='0';
+				
+			}
+</script>
+        
+</head>
+<body onload="javascript:openPopup('EmailVrification	', 'backgroundPopup');">
+			
+                   
+                
+                <!--  Email Verification popup start -->
+                
+                <div id="EmailVrification" class="popupContact" style="z-index:10003;">
+		            <div class="popup_textarea">
+                            				<h3>Email Verification Pending</h3>
+                                            <div class="VerifyEmailText">
+                                                       Click the link contained in the confirmation email sent to: email@provider.com.
+                                                        <br /><br />
+                                                <span class="Verify_text"> If you do not see this email in your inbox, check your junk email folder.</span>  
+                                                        </div>
+                                                        <div  class="SuspendedBoxMsg">	
+                                                        	Your account will be suspended on:<br />
+                                                            <h3>December 23, 2012 at 11:59pm EST</h3>
+                                                            unless you verify your email address.<br />
+                                                        </div>
+                                                        <div>
+                                                        	<span class="FontWeight">Didn’t receive the email?</span> Check your junk email folder, or<br />
+<a href="#" class="violet_color_link">resend the Confirmation Email</a>
+                                                        </div>
+                                                        
+                                            <div class="OkButton">
+                                            <div class="button_input">
+                            					<input class="image_button" type="button" onclick="javascript:disablePopup1('EmailVrification', 'backgroundPopup'); openPopup('ADMIN_POPUP', 'backgroundPopup');" value="OK" />
+                                    		</div>
+                                            </div>
+                           			 </div>
+                    </div>
+                    
+                    <!--  Email Verification popup end -->
+                  
+            
+           
+            
+            
+                 
+            
+            
+		 	<div id="backgroundPopup"></div>
+	
+	<div class="container">
+    
+    <!-- ////////////////  Header start //////////////////////////   -->
+    	<div class="authenticated_header">
+        	<div class="authenticated_hdr_logo">
+   		    	<img src="images/deceBrand_logo.png" width="328" height="25" alt="UltraViolet Logo" />
+            </div>
+           <div class="help_faqs"><a href="#">Help & FAQ's</a> <a class="a_noUnderline" href="#"> |</a> <a href="#">John Doe</a> <a id="DropdownIcon"   onclick="dropdown_Icon();" onblur="dropdown_mouseOut();" href="#"><div class="DropDownIcon"></div></a>
+           <div class="DropDownText" id="DropDown" onclick="dropdown_mouseOut();" ><a href="#">Sign Out</a></div>
+           </div>
+         </div>
+     <!-- ////////////////  Header end //////////////////////////   -->
+     
+     
+      <!-- ////////////////  menu start //////////////////////////   -->
+     <div class="menu_bar">
+     		<div class="DashboardMenuBgimage100">
+        </div>
+     <div class="menuMainAera">
+     	 <a href="OurMedia_ListView.html" class="ourMedia_menu">OUR MEDIA</a>
+          <a href="HouseholdMember_Details.html" class="MyHousehold_menu">MY HOUSEHOLD </a>
+     	<a href="#" class="ourDevices_menu"> OUR PLAYERS  &amp; DEVICES </a>
+        <div class="menu_search_input"> <input type="text" border="0" /></div>
+        <div class="menu_go">
+                            		<input type="button" border="0" value="GO" />
+                                    </div>
+     	 </div>
+     </div>
+     
+     <!-- ////////////////  menu end //////////////////////////   -->
+     
+     
+     
+     <!-- //////////////// main body start //////////////////////////   -->   
+        <div class="main_body">
+        	<div class="FlashImage" >
+	      		<img src="images/flashImage.png" width="979" height="384" />
+          </div>
+            <div class="body_container_above_gradiant">
+            		<div class="gradiant_box_left">
+       			    	
+                    </div>
+                    <div class="gradiant_box_middle">
+               	    <img src="images/container_top_gradiant.jpg" width="978" height="2" align="top" alt="" /></div>
+                    <div class="gradiant_box_right">
+                    	
+                    </div>
+             </div>
+             
+             <!-- //////////////// household menu step-2 active start //////////////////////////   -->  
+             
+            
+            
+            <!-- //////////////// household menu step-2 active end //////////////////////////   -->
+            
+            
+             <!-- //////////////// body content start //////////////////////////   --> 
+             	<div class="body_wrapper">
+                		
+                        <div class="body_wrapper_left_shadow">
+                
+                		</div>
+                        
+                		<div class="body_wrapper_container">
+                        	
+                			
+                  <img src="images/dashboard_bodyimg.png" width="952" height="622" /></div>
+                        
+                        <div class="body_wrapper_right_shadow">
+                
+                		</div>
+                
+                
+                </div>
+                
+                
+             <!-- //////////////// body content end //////////////////////////   --> 
+        
+        </div>
+       <!-- //////////////// main body end //////////////////////////   -->     
+       
+       
+       <!-- //////////////// footer start //////////////////////////   --> 
+       
+       	<div class="footer_wrapper">
+        		
+      				<div  class="copyrights"> <a ><span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC.  All rights reserved. </span></a> <a class="midline">| </a> <a href="#"> English (US) </a> <a href="#" onmouseover="LanguageDropdown_Icon();" onblur="LanguageDropdown_mouseOut();" id="DropdownLanguage"  ><div class="DropDown_languageIcon"></div></a>
+                    <div class="LanguagesText" id="Languagetext" onclick="LanguageDropdown_mouseOut();"><a href="#">French</a></div>
+                    </div>
+      				<div class="contact_us"><a href="#">Site Map</a> <a class="midline">|</a><a href="#">Privacy Statement</a> <a class="midline">|</a><a href="#">Terms of Use</a> <a class="midline">|</a><a href="#">Contact Us</a> </div>
+  <script type="text/javascript">
+  		
+			function LanguageDropdown_Icon(){
+				
+				document.getElementById('Languagetext').style.display='block';
+				document.getElementById('DropdownLanguage').style.backgroundColor='#333';
+				document.getElementById('DropdownLanguage').style.margin='0';
+				document.getElementById('DropdownLanguage').style.padding='0 3px';
+				
+			}
+			
+			function LanguageDropdown_mouseOut(){
+			
+				document.getElementById('Languagetext').style.display='none';
+				document.getElementById('DropdownLanguage').style.backgroundColor='#000';
+				document.getElementById('DropdownLanguage').style.margin='0 3px';
+				document.getElementById('DropdownLanguage').style.padding='0';
+				
+			}
+  
+  </script>
+        
+        </div>
+       
+       
+       <!-- //////////////// footer end //////////////////////////   -->     
+       
+        
+    </div>
+
+</body>
+</html>

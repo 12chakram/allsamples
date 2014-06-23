@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- Collapse / Expand -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+<script src="js/slider.js" type="text/javascript"></script>
+<script type="text/javascript">
+function showdiv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+
+	for(i=1; i<=3; i++)
+	{
+		if(collapse.id == "collapse"+i && expand.id=="expand"+i && faqs.id=="faq"+i)
+		{
+			
+			collapse.style.display = "none";
+			expand.style.display = "inline";
+			faqs.style.display = "block";
+		}
+		else
+		{
+			var rcollapse = document.getElementById("collapse"+i);
+			var rexpand = document.getElementById("expand"+i);
+			var rfaqs = document.getElementById("faq"+i);
+			rcollapse.style.display = "inline";
+			rexpand.style.display = "none";
+			rfaqs.style.display = "none";
+		}
+	}
+}
+
+function hidediv(cid, eid, faqid)
+{
+	var collapse = document.getElementById(cid);
+	var expand = document.getElementById(eid);
+	var faqs = document.getElementById(faqid);
+	
+	
+			collapse.style.display = "inline";
+			expand.style.display = "none";
+			faqs.style.display = "none";
+		
+	
+} 
+</script>
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+<!-- popup  -->
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+
+<!-- Tabs -->
+<script type='text/javascript' src="js/tabs.js"></script>
+<!-- script src="js/jquery-1.1.3.1.pack.js" type="text/javascript"></script -->
+<script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
+<script type="text/javascript"> $(function() { $('#form_fields').tabs(); }); </script>
+<!-- Tabs -->
+</head>
+
+<body class="bodybg" > <!--onload="document.form1.uname.focus()}catch(e){}"-->
+<!--Start : Terms & Conditions --> 
+      
+<!--End : privacy statement-->
+ 
+<div id="backgroundPopup">
+    </div>
+	
+<form name="form1" method="post" >
+<!--Start : Popup-->
+    <div id="confirm_add_member" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Continue Adding Family Member X?</h2>
+            </div>
+            <div class="close">
+                <a id="add_member_popupClose" class="popupContactClose" onclick="javascript:disablePopup1('confirm_add_member', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="info1">
+        	<span style="font-size:16px">Info:</span>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you wish to continue? </strong>           
+        </div>
+		
+			<div class="centeredBtn">
+				<ul>
+					<li><a href="myFamily.html" class="anchor_btn"><span>Yes</span></a></li>
+					<li><a href="addFamilyMember.html" class="anchor_btn"><span>No. Cancel this operation</span></a></li>
+				</ul>
+			</div>
+        
+    </div>
+    
+    <!--start : Upload Avatar Popup-->
+    <div id="popupUploadAvatar" class="popupContact" style="width:600px;" >
+        <div class="heading">
+            <div class="forgot"><h2>Upload Avatar</h2></div>
+            <div class="close">
+                <a id="A1" class="popupContactClose" onclick="javascript:disablePopup1('popupUploadAvatar', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+		<div class="confirm">
+			
+			<div class="fleft" style="float:left; width:100%; text-align:right">
+					<div style="float:left; width:20%;">Browse Your Photo </div><span class="red">*</span>
+				
+					<div class="box_info">
+						<div class="manage_btns">
+							<div class="centeredBtn">
+							<ul>
+								<li><a href="#" class="anchor_btn"><span>Select Image</span></a></li>
+								<li><a href="#" class="anchor_btn"><span>Upload Image</span></a></li>
+								<li style="margin-left:10px; float:left; margin-top:5px;"></li>
+							</ul>
+							</div>
+						</div>
+						<div class="upload_img_info">
+							<span class="image_file_name">image_file_name.jpg</span>
+							<span class="remove_imag"><a href="#">Cancel</a></span>				</div>
+					</div>
+				<div class="fleft clear padding_top_15" style="width:100%;">
+						<div style="float:left; width:20%;">&#160;</div><span class="red">&#160;</span>		
+						<div class="default_images">
+							<ul>
+								<li class="padding_top_15">Or select from below : </li>
+								<li><a href="#"><img src="images/default_img1.jpg" alt="" border="0"/></a></li>
+								<li><a href="#"><img src="images/default_img2.jpg" alt="" border="0"/></a></li>
+								<li><a href="#"><img src="images/default_img3.jpg" alt="" border="0"/></a></li>
+								<li><a href="#"><img src="images/default_img4.jpg" alt="" border="0"/></a></li>
+							</ul>
+						</div>
+					</div>
+			</div>
+			
+			
+			
+		</div>
+    </div>
+    <!--end : Upload Avatar Popup-->
+	
+    <div id="backgroundPopup">
+    </div>
+    <!--End : Popup-->
+	
+	
+<div id="main_wrapper">
+	<div id="container">
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+			<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+		</div>
+		<div id="nav_wrapper">
+			<ul>
+				<li><a href="detailOurMedia.html" class="our_media">OUR MEDIA <br /><em>125 Movies available</em></a></li>
+				<li><a href="myFamily.html" class="my_familyselect">MY HOUSEHOLD <br /><em>3 of 6 Members active</em></a></li>
+				<li><a href="ourDevices.html" class="our_devices">OUR DEVICES <br /><em>4 of 12 Devices active</em></a></li>
+			</ul>
+		</div>
+		<div id="nav_hr">
+			<img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+		
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+				<div class="register_form">
+					<div class="form_title">Validate Token</div>
+					<div id="form_tabs">
+						<div class="reg_form">
+							<div class="reg_form_tabs">
+								<div class="reg_form_details">
+									<div class="form_lable"> Token </div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+									<div class="form_sup_txt">&#160;</div>
+								</div>
+							
+								<div class="reg_form_details">
+									<div class="form_lable"> Email Address </div><span class="red">*</span>
+									<div class="form_field"> <input type="text" />
+										<span class="hide_error_msg"></span>
+									</div>
+									<div class="form_sup_txt">&#160;</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- start : submit button -->
+					<div class="submitform_btn" style="width:100%">
+						<div class="centeredBtn">
+							<ul>
+								<li><a href="createProfile.html" class="anchor_btn"><span>Validate Token</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- End : submit button -->
+				</div>
+			</div>
+		</div>
+		<div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+	</div>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+   	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+  <!-- IMPLEMENTATION -->          
+    <ui:composition>
+    <div class="content_heading">
+	<h:form>
+		<h:inputHidden value="#{category}"/>
+		<div class="cont_box1">
+			<div class="content_box">
+				<div class="quickview_tab" id="quickview"> QUICK TIP
+					<a4j:commandLink action="#{quickTip.previousQuickTip}" style="align:right" styleClass="leftArrow" reRender="quickTip">
+						<h:graphicImage  url="#{applicationScope.staticContentBaseUrl}/images/side_arrow_lft.gif" border="0" />
+					</a4j:commandLink>&#160;&#160;
+					<a4j:commandLink action="#{quickTip.nextQuickTip}" reRender="quickTip">
+						<h:graphicImage  url="#{applicationScope.staticContentBaseUrl}/images/side_arrow_rght.gif" border="0" />
+					</a4j:commandLink>
+				</div>
+				<div class="quick_view_content">
+				<p><h:outputLabel id="quickTip" value="#{quickTip.quickTipText}"/> </p>
+				</div>
+			</div>
+			<div class="box_btm"></div>
+		</div>
+	</h:form>	
+	</div>
+  </ui:composition>
+</html>

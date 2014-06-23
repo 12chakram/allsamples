@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>ULTRAVIOLET</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- Collapse / Expand -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/animatedcollapse.js"></script>
+<script language="javascript" type="text/javascript" src="js/quickview.js"></script>
+
+<!-- start : drop and drag top 10 list 
+<script language="JavaScript" type="text/javascript" src="js/core.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/events.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/css.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/coordinates.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/drag.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/dragsort.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/cookies.js"></script>
+<script language="JavaScript" type="text/javascript">
+	var dragsort = ToolMan.dragsort()
+	var junkdrawer = ToolMan.junkdrawer()
+
+	window.onload = function() {
+		
+		junkdrawer.restoreListOrder("top10")
+		dragsort.makeListSortable(document.getElementById("top10"),	saveOrder)
+	}
+
+	function verticalOnly(item) {
+		item.toolManDragGroup.verticalOnly()
+	}
+
+	function speak(id, what) {
+		var element = document.getElementById(id);
+		element.innerHTML = 'Clicked ' + what;
+	}
+
+	function saveOrder(item) {
+		var group = item.toolManDragGroup
+		var list = group.element.parentNode
+		var id = list.getAttribute("id")
+		if (id == null) return
+		group.register('dragend', function() {
+			ToolMan.cookies().set("list-" + id, 
+					junkdrawer.serializeList(list), 365)
+		})
+	}
+
+
+</script>
+ end : drop and drag top 10 list -->
+
+<script type="text/javascript">
+
+animatedcollapse.addDiv('faq1', 'fade=0,speed=400,group=pets')
+animatedcollapse.addDiv('faq2', 'fade=0,speed=400,group=pets,persist=1,hide=1')
+animatedcollapse.addDiv('faq3', 'fade=0,speed=400,group=pets,hide=1')
+
+animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+	//$: Access to jQuery
+	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+	//state: "block" or "none", depending on state
+}
+
+animatedcollapse.init()
+
+</script>
+<!--[if lte IE 7]> 
+<style type="text/css">
+.tooltip { margin-top:0; }
+.fmember_img img {	display:block; margin:0; padding:0; }
+</style>
+<![endif]--> 
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="pngfix.js"></script>
+<![endif]-->
+<!-- popup  -->
+<script type="text/javascript" src="js/popup.js"></script>
+<!-- popup  -->
+</head>
+
+<body class="bodybg">
+<script type="text/javascript" src="js/wz_tooltip.js"></script>
+<script type="text/javascript" src="js/tip_balloon.js"></script>
+
+<!--Start : Popup-->
+    <div id="remove_member" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Remove Alice Smith from Smith Family?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('remove_member', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>Warning:</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you wish to continue with the removal of this family member? </strong>           
+        </div>
+        <div class="btns">
+			<div class="btn">
+				<div class="btn_left"><img src="images/btn_left.png" width="4" height="22" border="0" /></div>
+				<span class="btn_middle" ><a href="myFamily.html" class="anchor">Yes</a></span>
+				<div class="btn_left"><img src="images/btn_right.png" width="4" height="22" border="0" /></div>
+			</div>
+			<div class="btn">
+				<div class="btn_left"><img src="images/btn_left.png" width="4" height="22" border="0" /></div>
+				<span class="btn_middle" ><a href="memberProfile.html" class="anchor">No. Cancel this operation</a></span>
+				<div class="btn_left"><img src="images/btn_right.png" width="4" height="22" border="0" /></div>
+			</div>
+        </div>
+    </div>
+    <div id="backgroundPopup">
+    </div>
+    <!--End : Popup-->
+	
+<div id="main_wrapper">
+	<div id="container">
+		<div id="header">
+			<div id="logo_wrapper">
+				<a href="welcome.html"><img src="images/deceBrand_logo.jpg" border="0" alt="DeceBrand Logo" /></a>
+			</div>
+			<div class="right_header ">
+     
+      		<div class="welcome_txt header_welcome_txt" >
+            <div class="namediv">    
+            
+            <span class="welcometext">Welcome</span>
+            <div class="username"> <a href="myProfile.html">Bob Smith Willi...</a></div></div>
+                </div>
+			<div id="welcome_wrapper" >
+				 
+                <div style="float:left;"> | <a href="householdSettings.html">Household Settings</a>|<a href="default.html"> Logout</a> </div>
+          		<!--<div style="float:left;"> |<a href="default.html"> House Hold</a> </div>-->
+                <div style="float:left;">| <a href="help.html"> Help</a>  </div>          
+			</div>
+			<div id="home_btn">
+			   <a href="welcome.html">
+					<img src="images/home_btn.jpg" width="25" height="24" border="0" alt="Home Button" /></a>
+			</div>
+		
+        <div class="select_box fright padding_top_20 padding_right_18" style="clear:right; display:none; ">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu2">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" href="#"   >
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">Select Language</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul >
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('en');countriesflagclose()" id="en">
+                                                    		<img src="images/usa_flag_icon.png"/>&nbsp;English
+                                                         </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#" onclick="javascript:countriesflag('fr');countriesflagclose()" id="fr"  >
+                                                    	    <img src="images/france_flag_icon.png"/> French
+                                                        </a>
+                                                    </li>
+													<li>
+                                                    	<a href="#"  onclick="javascript:countriesflag('ja');countriesflagclose()" id="ja" >
+                                                        	<img src="images/japan_flag_icon.png"/> Japanese
+                                                        </a>
+                                                     </li>
+											   	</ul>
+                                         	</div>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                </div>
+			<!--Start : Select Languages-->
+				
+				<div class="select_box fright clear padding_top_5 " style="display:none">
+					<div class="fleft">
+						<div class="dropdwonmenu">
+							<div class="menu">
+								<ul>
+									<li style="text-align:left;"><a href="#">Select Language</a>
+										<ul class="ieposition">
+													<li><a href="#" style="background:url(images/usa_flag_icon.png) left no-repeat"> English</a></li>
+													<li><a href="#" style="background:url(images/france_flag_icon.png) left no-repeat"> French</a></li>
+													<li><a href="#" style="background:url(images/japan_flag_icon.png) left no-repeat"> Japanese</a></li>
+											   </ul>
+								  </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--End : Select Languages-->
+		</div>
+		<div id="nav_wrapper">
+                <ul>
+                    <li>
+                    <div class="width100p">
+                    <a href="detailOurMedia.html" class="our_media" >
+                   <span > <ul>
+                  			 <li>
+                   <span>OUR MEDIA </span><br />
+                      <em>125 Movies available </em>
+                      </li></ul></span>
+                  
+                        </a>
+                        </div>
+                        </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="myFamily.html" class="my_familyselect">
+                   <span > <ul>
+                  			 <li>
+                     			<span>MY HOUSEHOLD </span><br />
+                      			<em>3 of 6 Members active </em>
+                                </li>
+                              </ul>
+                          </span>
+                    </a></div>
+                    </li>
+                    <li>
+                    <div class="width100p">
+                    <a href="ourDevices.html" class="our_devices">
+                     <span > <ul>
+                  			 <li>
+                         		 <span>OUR DEVICES</span>
+                              	<br />
+                          		<em>4 of 12 Devices active</em>
+                        		 </li>
+                              </ul>
+                          </span>
+                        </a>
+                        </div>
+                        </li>
+                    
+                </ul>
+          </div>
+		<div id="nav_hr">
+			<img src="images/nav_hr.jpg" width="900" height="1" border="0" alt="" />
+		</div>
+		
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+				<div class="left_panel">
+				
+					<!-- Start : My Profile Heading -->
+					<div class="myprofile_heading_wrapper">
+						<div class="myprofile_heading">
+							<h2>MY HOUSEHOLD /</h2><span>BOB SMITH</span><br />
+							Adipiscing elit, sed diam non ummy nibh euismod tincidunt
+						</div>
+						<div class="Back_to_myfamily">
+							<a href="myProfile.html"><span>Back to My Profile</span></a>
+						</div>
+					</div>
+					<!-- Start : My Profile Heading -->
+					
+					<!-- Start : Manage Family Member -->
+					<div class="member_profile">
+						<div style="float:left;">
+							<div class="selectProfile">
+								<a href="myProfile.html">
+									<img src="images/html/profile_you.jpg" width="200" height="130" border="0" />
+								</a>
+								<div class="you_are_in" >&nbsp;</div>
+								<div class="you_bg">YOU</div>
+							 </div>
+						 </div>
+						 <div class="member_details">
+							 <div class="manage_details_values">
+								<div class="member_access">
+									<div class="fmember_name">Jackson Smith</div>
+									<div class="permissions">
+										<ul>
+										 <li>Access Level:<span>Full </span></li>
+										 <li>Movies: <span>All</span></li>
+										 <li>TV Shows: <span>All</span></li>
+										</ul>
+									</div>
+								</div>
+								<!--<div class="manage_member">
+									<ul>
+										<li><a href="editMyProfile.html" class="edit">Edit</a></li>
+										<li><a href="#" class="delete" onclick="javascript:openPopup('remove_member', 'backgroundPopup')">Remove</a></li>
+									</ul>
+								</div>-->
+							</div>
+							<!--<div class="manage_details_values clear">
+								<div class="member_submenu">
+										<a href="javascript:void(0)" onclick="javascript:openPopup('member_info', 'backgroundPopup')" class="active">Info</a> | <a href="editTop10.html">Top 10</a>						
+								</div>
+							</div>-->
+						</div>
+					</div>
+					<!-- End : Manage Family Member -->
+					
+					<!-- Start : Profile  -->
+								
+					<div class="profile_details_panel">
+
+						
+						
+						<!-- End : News Feed Panel -->
+						<div class="profile_top10_panel">
+							<div class="newsfeed_titles">
+								<div class="left_curve"><img src="images/subheading_tab_left.png" border="0" alt=""/></div>
+								<div class="middle_panel">Top 10</div>
+								<div class="right_curve"><img src="images/subheading_tab_right.png" border="0"  alt=""/></div>
+								<div class="blank_sp_top10">&#160;</div>
+							</div>
+							<!-- Start : Top 10 Titles -->
+							<div class="profile_content_box">
+								<div class="select_title">
+									<div class="select_top10">
+										Find and Select a Title <input type="text" />
+										Select a position <select><option>10</option></select>
+									</div>
+									<div class="subbtn" style="float:right;">
+										<div class="btn_left"><img src="images/subbtn_left.png" width="5" height="20" border="0" /></div>
+										<span class="btn_middle" ><a href="#" class="anchor">Add to Your Top 10</a></span>
+										<div class="btn_left"><img src="images/subbtn_right.png" width="5" height="20" border="0" /></div>
+									</div>
+								</div>
+								<div class="top10_titles">
+								  <ul id="top10">
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>1</span><a href="#">30 Rock - S3 | Ep24 – TV14 (SD, PD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>6</span><a href="#">Transformers – PG-13 (HD, PD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>2</span><a href="#">The Dark Knight – R (HD, PD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>7</span><a href="#">Weeds – S3 | Ep05 – TV18 (SD, PD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>3</span><a href="#">The Matrix – R (HD, PD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>8</span><a href="#">Harry Potter and the Half Blood Prince – PG (SD, PD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>4</span><a href="#">Lorem Ipsum Movie Title – PG-13 (HD, SD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>9</span><a href="#">Lorem Ipsum Movie Title – PG-13 (HD, SD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>5</span><a href="#">Lorem Ipsum TV Show Title – TV18 (HD, SD)</a><span class="cross"><a href="#">X</a></span></li>
+									<li class="top10list" onmouseover="Tip('Drag your choices to the desired spot on your top 10 list.', BALLOON, true, ABOVE, true, OFFSETX, -17)" onmouseout="UnTip()"><span>10</span><a href="#">Lorem Ipsum TV Show Title – TV18 (HD, SD)</a><span class="cross"><a href="#">X</a></span></li>
+								</ul>
+								</div>
+							</div>
+						</div>
+						<!-- End : Top 10 Titles -->
+					</div>
+					<!-- End : Profile  -->
+					
+				</div>
+				<div class="right_panel">
+					<div class="cont_box1">
+						<div class="content_box" >
+							<div class="quickview_tab" id="quickview">
+								<div class="quick_tip_title">QUICK TIP </div>
+								<div class="quicktip_arrows">
+									<a href="#" class="leftArrow" rel="previous" title="Previous">
+										<img src="images/side_arrow_lft.gif"  border="0" alt="" />
+									</a><a href="#" rel="next" title="Next">
+										<img src="images/side_arrow_rght.gif" border="0" alt="" />
+									</a>
+								</div>
+							</div>
+						
+							<div class="quick_view_content">
+								<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso </div>
+								<div class="items">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso</div>
+							 </div>
+							<script type="text/javascript">
+								var newscripts=new virtualpaginate({
+								piececlass: "items",
+								piececontainer: 'div', //Let script know you're using "p" tags as separator (instead of default "div")
+								pieces_per_page: 1,
+								defaultpage: 0,
+								wraparound: false,
+								persist: true
+							})
+
+							newscripts.buildpagination(["quickview"])
+							</script>
+						</div>
+						<div class="box_btm"></div>
+					</div>
+					
+					<div class="cont_box1">
+						<div class="content_box">
+								<div class="quickview_tab">TOP PROFILE FAQs
+									<div style="float:right;">
+									</div>
+								</div>
+								<div class="select_arrow">
+									<div class="faq_arrow">
+										<a href="#" rel="toggle[faq1]" data-openimage="images/expand.gif" data-closedimage="images/collapse.gif">
+											<img src="images/expand.gif" border="0" width="11" />
+										</a>
+									</div>
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How consectetuer adipiscing diam nonummy nibh euismod? </div>
+								</div>
+								<div id="faq1" class="ans">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+								</div>
+								
+								<div class="select_arrow">
+									<div class="faq_arrow">
+										<a href="#" rel="toggle[faq2]" data-openimage="images/expand.gif" data-closedimage="images/collapse.gif">
+											<img src="images/expand.gif" border="0" width="11" />
+										</a>
+									</div>
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How consectetuer adipiscing diam nonummy nibh euismod? </div>
+								</div>
+								<div id="faq2" class="ans">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+								</div>
+								
+								<div class="select_arrow">
+									<div class="faq_arrow">
+										<a href="#" rel="toggle[faq3]" data-openimage="images/expand.gif" data-closedimage="images/collapse.gif">
+											<img src="images/expand.gif" border="0" width="11" />
+										</a>
+									</div>
+									<div class="q_char" >Q: </div>
+									<div class="faq_qust">How consectetuer adipiscing diam nonummy nibh euismod? </div>
+								</div>
+								<div id="faq3" class="ans">
+									<div class="a_char"> A: </div>
+									<div class="faq_answer">Adipiscing elit, sed diam non ummy nibh euismod tincidunt ut laore et dolore magna  tuioso aliquam erat volutpat.</div>
+								</div>
+							</div>
+							<div class="box_btm" style="clear:both;"></div>
+					</div>
+					<div class="more_faq"><a href="help.html?f=profile">More Profile FAQs</a> | <a href="help.html">All FAQs</a></div>
+				</div>
+			</div>
+		</div>
+		<div id="footer_wrapper">
+			<div  class="copyrights"> 
+					<span>&#169; 2010 Digital Entertainment Content Ecosystem (DECE) LLC. All rights reserved.</span> <a class="midline">| </a> 
+					<a href="viewPrivacyStatement.html">Privacy Statement</a> <a class="midline"> |  </a>
+					<a href="viewTermsofUse.html">Terms of Use</a>			
+				</div>
+			<div class="contact">
+				<a href="contactUs.html">Contact Us</a>			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

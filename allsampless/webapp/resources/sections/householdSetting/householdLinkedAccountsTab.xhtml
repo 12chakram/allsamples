@@ -1,0 +1,251 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nt="http://www.dece.com/jsf">
+	 <script type="text/javascript">
+	   jQuery(document).ready(function() {
+	    jQuery('#mycarousel').jcarousel({
+	       vertical: true,
+	       scroll:2
+	    });
+	  });
+	function consetParams(nodeId, Idx){
+		document.getElementById('consentPopUp:nodeId').value=nodeId;		
+		document.getElementById('consentPopUp:nodeIdx').value=Idx;
+		fireEvent(document.getElementById("consentPopUp:whatAreTheseLinkId"),'click');	
+		return;	
+	}		  
+  </script> 
+   <!--Start : Retailer Policy Statement popup -->
+   <h:form id="consentPopUp"> 
+     <div id="retailer_policy" class="popupContact">
+     <a4j:commandLink id="whatAreTheseLinkId" styleClass="retailer_policy" reRender="consentPopUp" oncomplete="setValuesForConsentsPopup(document.getElementById('consentPopUp:nodeIdx').value);javascript:openPopup('retailer_policy', 'backgroundPopup');"/>				    
+	 <h:inputHidden id="nodeId" value="#{householdSetting.consentsStatementsByNodeIdAction}"/>	 
+	 <h:inputHidden id="nodeIdx" />	 
+        <div class="heading">
+            <div class="forgot">
+                <h2>#{msgs.userConsentHeading}</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('retailer_policy', 'backgroundPopup');setConsentsOnCloseClick();">#{msgs.closeLabel}</a>
+            </div>
+        </div>
+        <div class="popup_content">			
+        	<div class="popup_scroll">
+        	  <h:panelGroup id="houseHoldLinkedAccountsPanelId">	
+			    <div class="controls">
+				   <div class="account_control_lable">
+				      <input id="manageMyHouseholdPopupCheckBoxId" value="" type="checkbox"/> 				      
+				      <h:outputLabel value="#{msgs.manageUVHouseholdLabel}" />
+				   </div>					
+				    <textarea class="policy_txt">#{householdSetting.consentsStatemenstdvoDetails.manageMyHouseholdStatement}</textarea>
+			      </div>			
+			    <div class="controls">
+				    <div class="account_control_lable">
+				       <input id="shareMediaHistoryPopupCheckBoxId" value="" type="checkbox"/>				       
+				       <h:outputLabel value="#{msgs.shareMediaHistoryLabel}"/>
+				    </div>
+				   <textarea class="policy_txt">#{householdSetting.consentsStatemenstdvoDetails.shareMediaHistoryStatement}</textarea>
+			    </div>
+    		    <div class="controls">
+				  <div class="account_control_lable">
+				     <input id="shareMemberProfilePopupCheckBoxId" value="" type="checkbox"/>				    
+				     <h:outputLabel value="#{msgs.shareMemberProfileLabel}"/>
+				  </div>
+				  <textarea class="policy_txt">#{householdSetting.consentsStatemenstdvoDetails.enableSharingMemberProfileStatement}</textarea>
+			     </div>
+			   </h:panelGroup>   
+			</div>			  
+		</div>
+	</div>
+	</h:form>
+ <!--End : Retailer Policy Statement popup -->	  
+ <!--Start : Linked Accounts --> 			  			              
+   <div id="accounts">
+      <h:form id="householdLinkedAccountsFormId">
+        <h:inputHidden id="linkedManageHiddenId" value=""></h:inputHidden>
+        <h:inputHidden id="linkedShareMediaHiddenId" value=""></h:inputHidden>
+        <h:inputHidden id="linkedEnableSharingHiddenId" value=""></h:inputHidden>         
+      <script type="text/javascript">
+            jQuery('#mycarousel').jcarousel({vertical: true,scroll:2});  
+            var globalRowCount="";            
+      		var linkedAccounts = {"accounts" : [
+			<ui:repeat value="#{householdSetting.linkedAccountConsentsDVOList}" var="householdLinkedAccountsList">
+			       {"manage":"#{householdLinkedAccountsList.manageMyHousehold}", 
+ 					"shareMedia":"#{householdLinkedAccountsList.shareMediaHistory}",
+					"enableSharing":"#{householdLinkedAccountsList.enableSharingMemberProfile}"}, 
+	        </ui:repeat>
+			]};	
+          function setAfterSaveValues(){        	 
+           	 for (var i = 0; i &lt; linkedAccounts.accounts.length; i++) {					   
+				   if(linkedAccounts.accounts[i] == null)break;					  
+				   document.getElementById('manageMyHouseholdCheckBoxId'+i).disabled=true;					   
+				   document.getElementById('shareMediaHistoryCheckBoxId'+i).disabled=true;
+				   document.getElementById('shareMemberProfileCheckBoxId'+i).disabled=true; 
+				    if(linkedAccounts.accounts[i].manage == 'true'){						    
+					    var selectAllId=document.getElementById('manageMyHouseholdCheckBoxId'+i);
+						selectAllId.checked = "checked";							
+				     }
+				    if(linkedAccounts.accounts[i].shareMedia == 'true'){						   
+					    var selectAllId=document.getElementById('shareMediaHistoryCheckBoxId'+i);
+						selectAllId.checked = "checked";							
+				     }
+				    if(linkedAccounts.accounts[i].enableSharing == 'true'){						   
+					    var selectAllId=document.getElementById('shareMemberProfileCheckBoxId'+i);
+						selectAllId.checked = "checked";							
+				 }										
+		      }
+            }
+			function setDefaultLinkedConsentsValues() {			  
+			   for (var i = 0; i &lt; linkedAccounts.accounts.length; i++) { 					   
+				   if(linkedAccounts.accounts[i] == null)break;					  
+				   document.getElementById('manageMyHouseholdCheckBoxId'+i).disabled=true;					   
+				   document.getElementById('shareMediaHistoryCheckBoxId'+i).disabled=true;
+				   document.getElementById('shareMemberProfileCheckBoxId'+i).disabled=true;    
+				    if(linkedAccounts.accounts[i].manage == 'true'){						    
+					    var selectAllId=document.getElementById('manageMyHouseholdCheckBoxId'+i);
+						selectAllId.checked = "checked";							
+				     }
+				    if(linkedAccounts.accounts[i].shareMedia == 'true'){						    
+					    var selectAllId=document.getElementById('shareMediaHistoryCheckBoxId'+i);
+						selectAllId.checked = "checked";							
+				     }		
+				    if(linkedAccounts.accounts[i].enableSharing == 'true'){						   
+					    var selectAllId=document.getElementById('shareMemberProfileCheckBoxId'+i);
+						selectAllId.checked = "checked";							
+				    }											
+				}			    
+			  } 
+			 function setValueForSubmission() {										 
+				 var manageMyHouseHold = "";
+				 var shareMediaHistory = "";
+				 var shareMemberProfile = "";
+				 for (var i = 0; i &lt; linkedAccounts.accounts.length; i++) {
+					if(linkedAccounts.accounts[i] == null)break; 
+					manageMyHouseHold = manageMyHouseHold + document.getElementById('manageMyHouseholdCheckBoxId'+i).checked + ",";					
+					shareMediaHistory= shareMediaHistory + document.getElementById('shareMediaHistoryCheckBoxId'+i).checked+",";					
+					shareMemberProfile= shareMemberProfile+document.getElementById('shareMemberProfileCheckBoxId'+i).checked+",";									   
+				 }
+				 document.getElementById('householdLinkedAccountsFormId:linkedManageHiddenId').value = manageMyHouseHold;
+				 document.getElementById('householdLinkedAccountsFormId:linkedShareMediaHiddenId').value= shareMediaHistory;
+				 document.getElementById('householdLinkedAccountsFormId:linkedEnableSharingHiddenId').value=shareMemberProfile;	
+			 }				 
+			 function setDefaultValuesForEditClick(){									 		   
+				   for (var i = 0; i &lt; linkedAccounts.accounts.length; i++) { 
+					   if(linkedAccounts.accounts[i] == null)break;
+					   document.getElementById('manageMyHouseholdCheckBoxId'+i).disabled=false;
+					   document.getElementById('shareMediaHistoryCheckBoxId'+i).disabled=false;
+					   document.getElementById('shareMemberProfileCheckBoxId'+i).disabled=false; 
+					    if(linkedAccounts.accounts[i].manage == 'true'){						    
+						    var selectAllId=document.getElementById('manageMyHouseholdCheckBoxId'+i);
+							selectAllId.checked = "checked";												
+					     }
+					    if(linkedAccounts.accounts[i].shareMedia == 'true'){						    
+						    var selectAllId=document.getElementById('shareMediaHistoryCheckBoxId'+i);
+							selectAllId.checked = "checked";												
+					     }		
+					    if(linkedAccounts.accounts[i].enableSharing == 'true'){						   
+						   var selectAllId=document.getElementById('shareMemberProfileCheckBoxId'+i);
+						   selectAllId.checked = "checked";														
+					    }											
+				  }
+			 }
+			function setValuesForConsentsPopup(rowCount){				
+				globalRowCount=rowCount;								
+				var manageCheckedResult=document.getElementById('manageMyHouseholdCheckBoxId'+rowCount);
+				var shareMediaCheckedResult=document.getElementById('shareMediaHistoryCheckBoxId'+rowCount);
+				var sharerProfileCheckedResult=document.getElementById('shareMemberProfileCheckBoxId'+rowCount);				
+                var popUpManage=document.getElementById('manageMyHouseholdPopupCheckBoxId');
+                var popUpShareMedia=document.getElementById('shareMediaHistoryPopupCheckBoxId');
+                var popUpSharerProfile=document.getElementById('shareMemberProfilePopupCheckBoxId');
+                popUpManage.disabled=manageCheckedResult.disabled;
+                popUpShareMedia.disabled=shareMediaCheckedResult.disabled;
+                popUpSharerProfile.disabled=sharerProfileCheckedResult.disabled;
+                popUpManage.checked=manageCheckedResult.checked;
+                popUpShareMedia.checked=shareMediaCheckedResult.checked;
+                popUpSharerProfile.checked=sharerProfileCheckedResult.checked;
+			  }  
+		    function setConsentsOnCloseClick(){            
+	            var popUpManage=document.getElementById('manageMyHouseholdPopupCheckBoxId');
+	            var popUpShareMedia=document.getElementById('shareMediaHistoryPopupCheckBoxId');
+	            var popUpSharerProfile=document.getElementById('shareMemberProfilePopupCheckBoxId');
+	            document.getElementById('manageMyHouseholdCheckBoxId'+globalRowCount).checked=popUpManage.checked;
+	            document.getElementById('shareMediaHistoryCheckBoxId'+globalRowCount).checked=popUpShareMedia.checked;
+	            document.getElementById('shareMemberProfileCheckBoxId'+globalRowCount).checked=popUpSharerProfile.checked;
+		    }    
+       </script> 
+			<div class="form" style="width:380px;">
+			  <div class="ver_menu" style="padding-left:10px;">
+			    <div style="position: absolute; visibility: hidden;" id="linkedAccountsIdsReferenceJS">
+				  <ui:repeat value="#{householdSetting.linkedAccountConsentsDVOList}" var="householdLinkedAccountsList">
+			           #{householdLinkedAccountsList.nodeId},
+	              </ui:repeat>		
+			   </div>
+				  <ul id="mycarousel" class="jcarousel-skin-tango" style="padding-top:30px;">
+				    <ui:repeat id="linkedAccountConsentsDVOId" value="#{householdSetting.linkedAccountConsentsDVOList}" var="householdLinkedAccountsList">
+                      <li>                                        					
+					    <div class="ver_menu_item">
+			                <a href="javascript:void(0)" class="active" id="aca#{householdLinkedAccountsList.nodeId}" onclick="javascript:openTab(this.id,'acdiv#{householdLinkedAccountsList.nodeId}')">
+							   <img src="#{householdLinkedAccountsList.nodeImageURL}" />
+						    </a>
+					    </div>
+					 </li>
+					 </ui:repeat>
+                   </ul>		
+                 <a href="javascript:void(0)">
+		         </a>							  
+				</div>	
+				<a4j:repeat value="#{householdSetting.linkedAccountConsentsDVOList}" var="householdLinkedAccountsList" rowKeyVar="idx">							  	
+				   <div class="accounts_content" id="acdiv#{householdLinkedAccountsList.nodeId}">										
+					<div class="tab_inner_content clear">										   
+						<div class="controls">												
+                            <div class="account_control_lable">
+                              <div class="control_checkbox">
+                                <input id="manageMyHouseholdCheckBoxId#{idx}" value="" type="checkbox"/>
+                              </div>
+                              <div class="control_content">#{msgs.manageUVHouseholdLabel}</div>                                                
+                            </div> 
+						</div>
+						<div class="controls">
+							<div class="account_control_lable">
+                              <div class="control_checkbox">
+                                 <input id="shareMediaHistoryCheckBoxId#{idx}" value="" type="checkbox"/> 
+                              </div>
+                              <div class="control_content">#{msgs.shareMediaHistoryLabel}</div> 
+                           </div>
+						</div>
+						<div class="controls">
+							<div class="account_control_lable">
+                               <div class="control_checkbox">
+                                  <input id="shareMemberProfileCheckBoxId#{idx}" type="checkbox" value=""/> 
+                               </div>
+                               <div class="control_content">#{msgs.shareMemberProfileLabel}</div>
+                              </div>
+						</div>										  
+					</div>	
+				   <div class="tab_inner_content" style="padding-left:40px;">										
+					 <a class="retailer_policy" href="#" onclick="return consetParams('#{householdLinkedAccountsList.nodeId}','#{idx}');"><span><h:outputText value="#{msgs.whatAreTheseLabel}"/></span></a>
+			       </div>                                      
+				</div>
+			</a4j:repeat>			  													
+			</div>
+			  <div class="edit_profile" style="padding:5px 10px 0 0;">			    
+			      <f:subview rendered="#{sessionScope.buttonsRenderedFlag eq null}">  								    
+			          <a4j:commandLink styleClass="#{householdSetting.linkedAccountConsentsSize=='0'?'delete_dull':'edit'}" id="linkedAccountsEditId" disabled="#{householdSetting.linkedAccountConsentsSize=='0'?'true':'false'}" action="#{householdSetting.linkedAccountsEditAction}" reRender="householdLinkedAccountsFormId"  
+			               oncomplete="setDefaultValuesForEditClick();javascript:openTab('aca#{householdSetting.linkedAccountConsentsDVOList[0].nodeId}','acdiv#{householdSetting.linkedAccountConsentsDVOList[0].nodeId}');">
+                         <h:outputText escape="false" value="&lt;span&gt;#{msgs.editMemberButton}&lt;/span&gt;"></h:outputText>			                              		                                 
+                      </a4j:commandLink>	
+                  </f:subview>
+                 <f:subview rendered="#{sessionScope.buttonsRenderedFlag eq 'true'}">   
+                     <a4j:commandLink  styleClass="edit" id="saveLinkId" onclick="setValueForSubmission();" action="#{householdSetting.linkedAccountsSaveAction}" reRender="householdLinkedAccountsFormId" oncomplete="setAfterSaveValues();javascript:openTab('aca#{householdSetting.linkedAccountConsentsDVOList[0].nodeId}','acdiv#{householdSetting.linkedAccountConsentsDVOList[0].nodeId}');">                           	
+                       <h:outputText escape="false" value="&lt;span&gt;#{msgs.saveButtonLabel}&lt;/span&gt;"></h:outputText>
+                     </a4j:commandLink>                 
+                 </f:subview>
+          </div>
+	  </h:form>			
+	</div>
+<!--End : Linked Accounts-->	
+</ui:composition>	

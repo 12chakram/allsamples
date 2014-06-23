@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<ui:decorate template="/resources/sections/common/unAuthCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/unAuthCommonJS.xhtml"/>	
+</head>	
+<body>		
+	<div class="container">
+		<ui:insert name="unAuthPortalHeader">
+		    <ui:include src="/resources/sections/common/unAuthHeader.xhtml"/>
+		</ui:insert>		 
+		<ui:insert name="unAuthContent"/>
+		<ui:insert name="unAuthPortalFooter">
+			<f:subview id="unauthfootersubview1" rendered="#{geoProfileBean.country ne 'UK'}">
+			    <ui:include src="/resources/sections/common/unAuthFooter_US.xhtml"/>
+			</f:subview>
+			<f:subview id="unauthfootersubview2" rendered="#{geoProfileBean.country eq 'UK'}">
+			    <ui:include src="/resources/sections/common/unAuthFooter_UK.xhtml"/>			</f:subview>
+		</ui:insert>	
+	</div>	
+</body>
+</html>

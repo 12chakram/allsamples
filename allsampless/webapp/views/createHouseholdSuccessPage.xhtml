@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" template="/resources/templates/unAuthenticatedTemplate.xhtml">
+	<ui:define name="unAuthPortalHeader">
+		<ui:include src="/resources/sections/common/authHeader.xhtml"/>
+	</ui:define>
+	<ui:define name="unAuthContent">
+		<ui:include src="/resources/sections/registration/createHouseholdSuccess.xhtml"/>
+	</ui:define>
+	<ui:define name="unAuthPortalFooter">
+    	<f:subview id="authCreatefootersubview1" rendered="#{sessionScope.country ne 'UK'}">
+		    <ui:include src="/resources/sections/common/authFooter_US.xhtml"/>
+		</f:subview>
+		<f:subview id="authCreatefootersubview2" rendered="#{sessionScope.country eq 'UK'}">
+		    <ui:include src="/resources/sections/common/authFooter_UK.xhtml"/>
+		</f:subview>
+	</ui:define>
+</ui:composition>

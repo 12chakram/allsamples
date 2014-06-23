@@ -1,0 +1,28 @@
+<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+<head>
+	<ui:decorate template="/resources/sections/common/headCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/headCommonJS.xhtml"/>		
+</head>
+<body class="bodybg">
+   <div id="main_wrapper">
+       <div id="container">  
+		     <ui:decorate template="/resources/sections/common/portalHeader.xhtml"></ui:decorate>
+		     <ui:insert name="menus" />
+		     <div id="banner_wrapper">
+		          <ui:insert name="header" />
+		          <ui:insert name="slider" />
+		     </div>
+		    <div id="content_wrapper">
+		         <ui:insert name="content" />
+		    </div>
+		     <ui:decorate template="/resources/sections/common/portalFooter.xhtml" />
+	    </div>
+   </div>
+</body>
+</html>

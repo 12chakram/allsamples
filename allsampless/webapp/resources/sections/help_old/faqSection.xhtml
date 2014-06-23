@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition>
+		<script type="text/javascript"> 
+			function loadFaqs(categorySelected, searchText){
+					if(categorySelected == undefined) {
+						categorySelected = 'faqs_OurMedia';
+					}
+					var ul = document.getElementById("listTopicId");
+					var items = ul.getElementsByTagName("li");
+					for (var i = 0; i &lt; items.length; ++i) {
+					  	var anc = items[i].getElementsByTagName("a");
+					  	anc[0].style.color = '';
+					  	anc[0].style.fontWeight = '';
+					}
+					if(categorySelected != 'searchCategory'){
+						var id = categorySelected+'BrowseTopic';
+						var topicId = document.getElementById(id);
+						topicId.style.color = '#FFFFFF';
+						topicId.style.fontWeight = 'bold';
+						category = categorySelected;
+					}
+					if (window.XMLHttpRequest) {
+						xhttp=new XMLHttpRequest();
+					} else {
+						xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					if(searchText == 'YES'){
+						var searchTextValue = document.getElementById('searchTextFieldId').value
+						if(searchTextValue != '' &amp;&amp; searchTextValue != 'Search for a topic')
+							xhttp.open("GET","#{facesContext.externalContext.requestContextPath}/resourceServlet?type=helpSearch&amp;searchText="+searchTextValue+"&amp;topicFileNameList="+topicFileNameList, false);
+					} else {
+						topicId = document.getElementById('helpPageFormId:searchLabelTopicId');
+						topicId.style.color = '';
+						topicId.style.fontWeight = '';
+						if('Search for a topic' != document.getElementById('searchTextFieldId'))
+						document.getElementById('searchTextFieldId').value = 'Search for a topic';
+						xhttp.open("GET","#{applicationScope.staticContentBaseUrl}/faqs/"+category+"_#{sessionScope.userLocale.language}_#{sessionScope.userLocale.country}.xml", false);
+					}
+					xhttp.send("");
+					xmlDoc=xhttp.responseXML;
+					var x=xmlDoc.getElementsByTagName("FAQ");
+					var faqHtmlTags = "";
+					var faqAnsHtmlTags = "";
+					faqHtmlTags = faqHtmlTags + '&lt;div class="items1" style="padding:5px 0px;"&gt;';
+					faqHtmlTags = faqHtmlTags + '&lt;div class="all_questions"&gt;';
+					var count = x.length;
+					for (i=0;i &lt; count;i++) {
+						faqHtmlTags = faqHtmlTags + '&lt;div class="number1"&gt;'+(i+1)+'. &lt;/div&gt;';
+						faqHtmlTags = faqHtmlTags + '&lt;div class="question"&gt;';
+						faqHtmlTags = faqHtmlTags + '&lt;a href="#'+(i+1)+'bookmark"&gt;';
+						if(x[i].getElementsByTagName("Q")[0].childNodes[0] != undefined)
+						faqHtmlTags = faqHtmlTags + x[i].getElementsByTagName("Q")[0].childNodes[0].nodeValue;
+						faqHtmlTags = faqHtmlTags + '&lt;/a&gt;&lt;/div&gt;&lt;br/&gt;';
+						if(i != 0 &amp;&amp; ((i+1)%10 == 0)?true:false){
+							faqHtmlTags = faqHtmlTags + '&lt;/div&gt;&lt;div class="all_questions"&gt;';							
+						}
+						if(i != 0 &amp;&amp; ((i+1)%20 == 0)?true:false){
+							faqHtmlTags = faqHtmlTags + '&lt;/div&gt;';
+							faqHtmlTags = faqHtmlTags + '&lt;/div&gt;'
+							faqHtmlTags = faqHtmlTags + '&lt;div class="items1" style="padding: 5px 0px;"&gt;';
+							faqHtmlTags = faqHtmlTags + '&lt;div class="all_questions"&gt;';
+						}
+						if((i != 0 &amp;&amp; i%10 == 0)?true:false){
+							faqAnsHtmlTags = faqAnsHtmlTags + '&lt;div class="backtotop">&lt;a href="#"> Back to Top&lt;/a>&lt;/div>';
+						}
+						faqAnsHtmlTags = faqAnsHtmlTags + '&lt;a href="#" name="'+(i+1)+'bookmark"&gt; &lt;/a&gt;';
+						faqAnsHtmlTags = faqAnsHtmlTags + '&lt;span class="question" style="font-size:14px;"&gt;'+(i+1)+'. '+ x[i].getElementsByTagName("Q")[0].childNodes[0].nodeValue +' &lt;/span&gt;';
+						if(x[i].getElementsByTagName("A")[0].childNodes[0] != undefined)
+						faqAnsHtmlTags = faqAnsHtmlTags + '&lt;span class="answer"&gt;'+ x[i].getElementsByTagName("A")[0].childNodes[0].nodeValue +' &lt;/span&gt;';
+						faqAnsHtmlTags = faqAnsHtmlTags + '&lt;br/&gt;';
+					}
+					faqHtmlTags = faqHtmlTags + '&lt;/div&gt;'
+					faqHtmlTags = faqHtmlTags + '&lt;/div&gt;';
+					var faqsBlock = document.getElementById('faqsBlock');
+					if(count != 0){						
+						document.getElementById('faqQueAnsHeadingId').setAttribute("style","display:block;");
+						document.getElementById('faqQueHeadingId').setAttribute("style","display:block;")
+						faqsBlock.innerHTML = faqHtmlTags;
+					}
+					else {						
+						faqsBlock.innerHTML = '&lt;span class="errorMessage">#{msgs.noSearchResultsFound}&lt;/span>';
+						//document.getElementById('faqQueAnsHeadingId').setAttribute("style","display:none;");
+						//document.getElementById('faqQueHeadingId').setAttribute("style","display:none;");
+						document.getElementById('faqQueAnsHeadingId').style.display = "none";
+						document.getElementById('faqQueHeadingId').style.display = "none";
+					}
+					var faqsAnsBlock = document.getElementById('faqsAnsBlock');
+					faqsAnsBlock.innerHTML = faqAnsHtmlTags;	
+					document.getElementById('current').innerHTML = 'Select Topic';
+					var newscripts=new virtualpaginate({
+						piececlass: "items1",
+						piececontainer: 'div', 
+						//Let script know you're using "p" tags as separator (instead of default "div")
+						pieces_per_page: 1,
+						defaultpage: 0,
+						wraparound: false,
+						persist: false
+						})
+					newscripts.buildpagination(["quickview"]);				
+			}	
+			window.onload = function () {
+								loadHelpBrowseContent('#{applicationScope.staticContentBaseUrl}/faqs/helpBrowseContent.xml');
+								loadFaqs('#{sessionScope.helpCategory}', '');
+			}
+
+		function helpDropDown(helpCat){
+			document.getElementById('helpdropdown').onclick=function () {
+																loadFaqs(helpCat, '');
+																document.getElementById('current').innerHTML = document.getElementById(helpCat+'BrowseTopic').innerHTML;
+															}
+			document.getElementById('current').innerHTML = document.getElementById(helpCat+'BrowseTopic').innerHTML;
+		}
+
+		function clearHelpSearchText(fieldId, action){
+			var field = document.getElementById(fieldId);
+		    if ('Search for a topic' == field.value &amp;&amp; action == 'onfocus') 
+			    field.value = '';
+		    else if ('' == field.value &amp;&amp; action == 'onblur')
+			    field.value = 'Search for a topic';
+		}
+		
+		</script> 
+		<div class="faqs_heading">
+			<div class="fheading" id="faqQueHeadingId">#{msgs.helpFaqSection}</div>
+			<div class="go"><a href="#" id="helpdropdown" ><img src="#{applicationScope.staticContentBaseUrl}/images/go.jpg" width="24" height="18" border="0" alt="" /></a></div>
+			<div class="select_box fright">
+				<div class="dropdwonmenu">
+						<div class="menu">
+							<ul>
+								<li><a href="#" id="current">#{msgs.helpSelectTopic}</a>
+									<div style="display: block;">
+									<ul class="ieposition" id="helpTopicDropdown">
+										<!-- Li List from javaScript loadHelpBrowseContent Function  -->
+										<li><p style="padding-left:10px; width:150px;color:#333333">#{msgs.browseHelpError}</p></li>
+								   </ul>
+								   </div>
+							  </li>
+							</ul>
+						</div>
+				  </div>
+			</div>
+			
+		</div>
+</ui:composition>
+</html>

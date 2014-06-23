@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">	
+	<link rel="shortcut icon" href="#{applicationScope.staticContentBaseUrl}/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/custom_style.css" />
+    <link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/richStyles.css" /> 
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="#{applicationScope.staticContentBaseUrl}/css/IEstyle.css" />        
+    <![endif]-->  
+	<f:loadBundle basename="biz.neustar.dece.decessp.i18n.labelTxts" var="labelMsgs"></f:loadBundle>
+	<f:loadBundle basename="biz.neustar.dece.decessp.i18n.errorTxts" var="errorMsgs"></f:loadBundle>
+	<title>
+		<h:outputFormat value="#{labelMsgs.applicationTitle}"/>
+	</title>
+</ui:composition>

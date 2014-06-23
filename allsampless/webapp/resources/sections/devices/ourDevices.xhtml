@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form id="ourDevicesFormId">
+	<input type="hidden" id="nUVDevManageURL"/>
+		<ui:include src="/resources/sections/devices/addDevicesPopup.xhtml"/>
+		
+		<script type="text/javascript">
+		function nonUVVUPopUpRender(manageURL)
+		{	
+			document.getElementById('nUVDevManageURL').value=manageURL;		
+			openPopup('manage_non_dece_device', 'backgroundPopup');
+		}
+
+		function nonUVVUManageLink()
+		{
+			window.open(document.getElementById('nUVDevManageURL').value,'_blank');
+			document.getElementById('nUVDevManageURL').value='';
+			disablePopup1('manage_non_dece_device', 'backgroundPopup');
+		}
+		</script>
+		
+		<div class="content_heading">
+			<div class="heading">
+				<h1 class="device_heading">#{msgs.ourDevicesPageTitle}</h1> 
+					<p class="ourdevice_content_heading">#{msgs.ourDevicesPageSubTitle}</p>
+			</div>
+		</div>
+		<div class="device_msg" id="message" style="display:none;">			
+		</div>
+		<div class="device_wrapper">
+		<ui:repeat value="#{ourDevices.deviceList}" var="deviceList">
+			<f:subview rendered="#{(!(deviceList.displayImageUrl=='Add') and !(deviceList.displayImageUrl=='None'))}">
+				<div class="devices">
+					<div class="device_img">
+						<div class="dece_ready">							
+								<h:graphicImage url="#{deviceList.displayImageUrl}" alt="" border="0" />	
+						</div>
+					</div>
+					<div class="device_bg">
+						<div class="device_menu">
+						   <h3><h:outputText value="#{deviceList.displayName}"/></h3>
+							<ul>
+							   
+							</ul>
+					   </div>
+					   <div class="manage_device">
+					   <div style="margin-top: 0px;" class="centeredBtn">
+							<ul>
+								<li><h:commandLink rendered="#{!(deviceList.deviceType=='LEGACY')}"  disabled="true" class="edit" value="Edit"/></li>
+								<li><h:commandLink rendered="#{!(deviceList.deviceType=='LEGACY')}"  disabled="true" class="delete" value="Remove" onclick="javascript:openPopup('continue_unverified_device_removal', 'backgroundPopup')"/></li>
+								<li class="manage_legacy_device"><a style="display:#{(deviceList.deviceType=='LEGACY')?'block;':'none;'}" onclick="javascript:nonUVVUPopUpRender('#{deviceList.deviceManagementUrl}')"><span>#{msgs.manageButton}</span></a></li>
+							</ul>
+					  </div>
+					  </div>
+					</div>
+				</div>
+			</f:subview>
+			<f:subview rendered="#{deviceList.displayImageUrl eq 'Add'}">
+				<div class="devices">
+					<h:graphicImage url="#{applicationScope.staticContentBaseUrl}/images/add_device_big_btn.jpg"  alt="" />
+				</div>
+			</f:subview>
+			<f:subview rendered="#{deviceList.displayImageUrl eq 'None'}">
+				<div class="devices">
+					<h:graphicImage url="#{applicationScope.staticContentBaseUrl}/images/add_device_big_btn.jpg"  alt="" />
+				</div>
+			</f:subview>
+		</ui:repeat>
+		</div>
+	</h:form>
+	</ui:composition>

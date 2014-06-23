@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j">
+  <h:form>
+     <div id="content_wrapper">
+        <div id="bodycontent">
+		   <div class="register_form">
+		       <div class="titlestrip">
+				   <span class="title1">#{msgs.confirmUnlockAccountTitleMessage}</span>             
+			   </div>
+			   <div class="form_title">&#160;</div>
+			   <div class="reg_form">
+				 <span style="font-size:13px">#{msgs.confirmUnlockAccountFormTitleMessage}</span>
+			   </div>					
+			   <div class="submitform_btn">
+				   <div class="btn_center_confirm">
+					  <div class="btns">						  
+						  <div class="fleft" style="width:40%;float:right">
+						        <div class="centeredBtn">
+									<ul>
+									   <li>
+									      <h:commandLink id="unlockConfirmContinueButtonId" class="anchor_btn" action="#{unlockProfile.confirmContinueAction}" immediate="true">
+									 	           <h:outputText value="&lt;span&gt;" escape="false" />
+											            <h:outputText value="#{msgs.confirmRegContinueButtonName}"/>
+										            <h:outputText value="&lt;/span&gt;" escape="false"/>								
+									     </h:commandLink>
+									   </li>
+									</ul>
+								</div>
+						   </div>
+						</div>
+					</div>
+				</div>
+			  </div>
+           </div>
+       </div>
+  </h:form>
+</ui:composition>

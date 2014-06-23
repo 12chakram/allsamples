@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> 
+<h:form id="frmtermsFooter">
+  <!--Start : Terms & Conditions -->
+      
+<!--End : Terms and Conditions -->
+<!--Start : privacy statement-->
+     <div id="privacy_statement" class="popupContact">
+           <div class="heading">
+                <div class="forgot">
+                   <h2>#{msgs.privacyStatementTitle}</h2>
+                </div>
+                <div class="close">
+                   <a id="popupContactClose" onclick="javascript:disablePopup1('privacy_statement', 'backgroundPopup')">#{msgs.closeLabel}</a>
+                </div>
+          </div>
+           <div class="popup_content">			
+        	    <div style="height:280px; margin-top:20px; overflow:auto">
+        	       #{msgs.privacystatementText}
+			   </div>
+		  </div>
+   </div>
+<!--End : privacy statement-->
+<!--Start : Copyright statement-->
+    <div id="copyright_statement" class="popupContact">
+           <div class="heading">
+              <div class="forgot">
+                <h2>&#169;#{msgs.copyrightStatementTitle}</h2>
+              </div>
+               <div class="close">
+                   <a id="popupContactClose" onclick="javascript:disablePopup1('copyright_statement', 'backgroundPopup')">#{msgs.closeLabel}</a>
+              </div>
+           </div>
+           <div class="popup_content">			
+        	  <div style="height:280px; margin-top:20px; overflow:auto">
+        	     #{msgs.copyrightstatementText}						  
+			  </div>
+		  </div>
+   </div>
+<!--End : Copyright statement-->
+   <div id="backgroundPopup"></div>   
+   <div id="footer_wrapper">
+	          <div class="copyrights">
+				  <span style="cursor: default;">&#169;#{msgs.copyrightStatementLink}</span> <a class="midline">|</a>
+				  <h:commandLink disabled="true" style="cursor:not-allowed;" action="privacyStatement">#{msgs.privacyStatement}</h:commandLink> <a class="midline">|</a>
+				  <h:commandLink disabled="true" style="cursor:not-allowed;" action="termsOfUse">#{msgs.termsAndConditionsLink}</h:commandLink>    
+			 </div>				
+	         <div class="contact"> 
+			    <h:commandLink disabled="true" style="cursor:not-allowed;" id="contactUsLink" value="#{msgs.contactUsLink}" action="#{userContactBean.userContactPageNavigation}" rendered="#{sessionScope.User!=null}"/>
+			    <h:commandLink disabled="true" style="cursor:not-allowed;" id="ContactUsPublicLink" value="#{msgs.contactUsLink}" action="#{userContactBean.fromPublicContactUs}" rendered="#{sessionScope.User==null}"/>
+	         </div>
+    </div>
+</h:form>	
+</ui:composition>

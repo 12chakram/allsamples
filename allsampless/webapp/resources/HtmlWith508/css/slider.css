@@ -1,0 +1,36 @@
+body:{ font-family:Verdana, Arial, Helvetica, sans-serif;}
+.clearfix {clear:both;}
+.floatl {float:left;} .floatr {float:right;} .inline{display:inline;}
+.fontbold{font-weight:bold;}  .fontwhite {color:#ffffff !important;} .fontblack {color:#333333 !important;} .fontgreen {color:#1ABE07 !important;} .fontblue {color:#0198D1 !important;} .fontgrey {color:#9d9d9d !important;} .fontred {color:#A30004 !important;}
+
+/* Slider Style */
+
+.slider_outer{margin: 10px 10px 30px 10px; padding:5px;}
+.slider_gutter_item{position: relative;	float: left; left: 100%;}
+
+.knob {	position: absolute;	height:25px; width:9px; background: url(../images/slider_knob.png) no-repeat;cursor: pointer; margin-top:-8px;}
+
+/* for Slider C */
+.slide_container .slider {float:left; display: block;position: relative; margin-top:6px; }
+.slide_container #slider_C{width:660px; margin:0px 0px 0px 10px; border:0px solid red; }
+.slide_container #slider_C_2{width:660px; margin:0px 0px 0px 10px; border:0px solid red; }
+.slide_container  .slider_gutter_C{width:660px; margin-left:-660px;	height:9px; background:url(../images/slider-bg.png) repeat-x;}
+.slide_container  .slider_gutter_C .slider_gutter_titles{ width:660px; clear:both; float:left;}
+.slide_container  .slider_gutter_C .slider_gutter_titles div{ width:100px; padding:3px 55px 0 1px; float:left;}
+.slide_container  .slider_gutter_C .slider_gutter_titles .div_last{ width:20px; padding:3px 0px 0 3px; float:left;}
+.slide_container  .slider_gutter_C .slider_gutter_titles .div_R{ width:85px; padding:3px 55px 0 18px; float:left;}
+
+.slide_container  .slider_gutter_C .slider_2_gutter_titles{ width:670px; clear:both; float:left;}
+.slide_container  .slider_gutter_C .slider_2_gutter_titles div{ width:100px; padding:3px 24px 0 1px; float:left;}
+.slide_container  .slider_gutter_C .slider_2_gutter_titles .div_last{ width:40px; padding:3px 0px 0 3px; float:left;}
+
+.slide_container  #slider_bkg_img_C{position: absolute; height:8px; margin:0px 0px 0px 0px; width:660px;}
+.slide_container  #slider_bkg_img_C_2{position: absolute; height:8px; margin:0px 0px 0px 0px; width:660px;}
+.slide_container  .slider_gutter_r{width: 10px;margin-left:-10px;height:9px; 	background:url(../images/slider_r.gif) no-repeat; border:1px }
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:a4j="http://richfaces.org/a4j">      
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<ui:decorate template="/resources/sections/common/headCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/headCommonJS.xhtml"/>
+	
+	<script type="text/javascript"> //jQuery(function() { jQuery('#form_tabs').tabs(); }); </script>
+</head>
+	
+<body class="bodybg">
+	<div id="main_wrapper">
+		<div id="container">
+		<h:form id="FrmRegHead">
+			<div id="header">
+                <div id="logo_wrapper">
+                  <div id="div">  <h:commandButton id="logoLink" action="#{portalHeader.logout}" image="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.jpg" width="218" height="17" border="0" alt="#{msgs.HEADER_IMAGEALT_LOGO}" /></div>
+                </div>
+                <div class="right_header ">
+                <span class="fright">
+                    <div id="welcome_wrapper" >
+          
+                        <h:commandLink value="#{msgs.helpLink}" action="unAuthenticatedHelpPage" id="helpLink">
+                        	<f:setPropertyActionListener value="AllTitle" target="#{help.helpNav}"/>
+                        </h:commandLink>             
+                    </div>
+                    <div id="home_btn">                    
+                       <h:commandButton id="HomeLink" action="#{portalHeader.logout}" image="#{applicationScope.staticContentBaseUrl}/images/home_btn.jpg" width="25" height="24" border="0" alt="#{msgs.REG_BTNALT_HOME}" />                    </div>
+                       </span>
+              	</div>
+            </div>
+        </h:form>
+			<ui:insert name="content" >   
+       			<ui:include src="/resources/sections/registration/confirmRegistration.xhtml"/> 
+ 			</ui:insert>
+			<ui:insert name="portalFooter">
+				<ui:include src="/resources/sections/common/portalFooter.xhtml"/>
+			</ui:insert>
+       </div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+ 

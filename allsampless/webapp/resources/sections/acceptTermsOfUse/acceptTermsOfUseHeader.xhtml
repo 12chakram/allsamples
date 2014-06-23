@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:truncate="http://www.dece.com/jsf"> 
+	<h:form id="frmTermsHeader">
+		<div id="header">
+                <div id="logo_wrapper">
+                	<img id="logoLink" src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.jpg" border="0" alt="#{msgs.HEADER_IMAGEALT_LOGO}"/>
+                </div>
+                <div class="right_header">
+                <div class="welcome_txt header_welcome_txt" style="float: right;">
+            <div class="namediv">
+            <span class="welcometext">#{msgs.greeting}</span>
+            <div class="username">
+            	<a style="cursor:not-allowed;">
+            		<truncate:truncateText text="#{portalHeader.userName}" start="0" end="-1"/>
+            	</a>
+             </div></div>
+                </div>
+                </div>
+				<!--Start : Select Languages-->
+				<div class="select_box fright clear padding_top_5">
+					<div class="fleft">
+						<div class="dropdwonmenu" style="width:138px;">
+							<div class="menu2">
+								<c:if test="#{initParam.enableLocalization == 'true'}">
+								<ul class="add_permistions">
+									<li style="text-align:left;">
+                                            <a class="flagname" style="width:131px;" href="#">
+                                                <div onmouseover="javascript:countriesflag('country_language');" class="agegroup" id="selectbox">#{msgs.languageDefaultSelect}</div>
+                                            </a>
+                                    		<div  id="flags">
+												<ul style="width:141px;">
+													<li>
+														<h:commandLink id="english" actionListener="#{userLoginBean.changeLocale}"
+																		onclick="javascript:countriesflag('FrmCommonHeader:english');">
+															<img src="#{applicationScope.staticContentBaseUrl}/images/usa_flag_icon.png"/>#{msgs.englishLocaleLink}
+														</h:commandLink>
+                                                    </li>
+													<li>
+														<h:commandLink id="french"  actionListener="#{userLoginBean.changeLocale}"  onclick="javascript:countriesflag('FrmCommonHeader:french');">
+														 		<img src="#{applicationScope.staticContentBaseUrl}/images/france_flag_icon.png"/>#{msgs.frenchLocaleLink}
+														 </h:commandLink>
+                                                    </li>
+											  </ul>
+                                      </div>
+								  </li>
+								</ul>
+								</c:if>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--End : Select Languages-->
+          </div>
+	</h:form> 
+ </ui:composition>

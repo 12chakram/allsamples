@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<ui:decorate template="/resources/sections/common/headCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/headCommonJS.xhtml"/>
+	
+	<script type="text/javascript"> //jQuery(function() { jQuery('#form_tabs').tabs(); }); </script>
+</head>
+<body class="bodybg">
+	<div id="main_wrapper">
+		<div id="container">
+			<div id="header">
+	        	<div id="logo_wrapper"> <img src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.jpg"  border="0" alt="DeceBrand Logo" /></div>
+			</div>
+			<div id="content_wrapper">
+		    	<div id="bodycontent">
+					<div class="register_form">
+						<div class="titlestrip">
+							<span class="title1" style="color:#604e9a;">#{msgs.checkEmailTitle}</span>                 
+						</div>
+						<div class="bodycontent">
+							<div class="padding_top_20">
+								#{msgs.checkEmailText1}
+		                	</div>
+		                	<div class="padding_top_20">
+		                		#{msgs.verifyEmailText2} <a class="whiteTxt" style="color:#fff;" href="#">#{msgs.verifyEmailDonotreply}</a> #{msgs.checkEmailText2}
+		               		</div>
+		               		<div class="padding_top_20">
+		              			#{msgs.checkEmailThanks}
+							</div>
+						</div>
+					</div>
+	        	</div>
+			</div>
+			<ui:insert name="portalFooter">
+				<ui:include src="/resources/sections/common/portalFooter.xhtml"/>
+			</ui:insert>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+ 

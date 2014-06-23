@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--Start : Popup - Add Device-->
+    <div id="continue_adding_devices" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Continue Adding Devices?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('continue_adding_devices', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>Warning:</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you wish to continue?</strong>           
+        </div>
+       
+			<div class="centeredBtn">
+				<ul>
+					<li>
+						<h:commandLink action="addDevicesPage" class="anchor_btn">
+							<span>Yes</span>
+						</h:commandLink>
+					</li>
+					<li>
+						<h:commandLink  onclick="javascript:disablePopup1('continue_adding_devices', 'backgroundPopup')" class="anchor_btn">
+							<span>No. Cancel this operation</span>
+						</h:commandLink>
+					</li>
+				</ul>
+			</div>
+        
+    </div>
+<!--End : Popup - Add Device-->	
+<!--Start : Popup - Manage non-dece Device-->
+    <div id="manage_non_dece_device" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Manage Non-UVVU Device</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('manage_non_dece_device', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>Manage Non-UVVU Device</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Are you sure you want to navigate from UV page?</strong>           
+        </div>
+       
+			<div class="centeredBtn">
+				<ul>
+					<li><a href="" target="_blank" class="anchor_btn" onclick="javascript:nonUVVUManageLink();"><span>Yes</span></a></li>
+					<li><h:commandLink  onclick="javascript:disablePopup1('manage_non_dece_device', 'backgroundPopup')" class="anchor_btn">
+							<span>No. Cancel this operation</span>
+						</h:commandLink></li>
+				</ul>
+			</div>
+        
+    </div>
+    
+    <!--End : Popup - Manage non-dece Device-->
+	
+<!--Start : Popup - Continue with Unverified Device Removal-->
+    <div id="continue_unverified_device_removal" class="popupContact">
+        <div class="heading">
+            <div class="forgot">
+                <h2>Continue with Unverified Device Removal?</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('continue_unverified_device_removal', 'backgroundPopup')">Close</a>
+            </div>
+        </div>
+        <div class="worning">
+        	<h3>This is your X unverified removal. You have X left.</h3>
+			<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.</p>
+		</div>
+        <div class="confirm">
+			<strong>Do you wish to continue with this device removal?</strong>           
+        </div>
+       
+			<div class="centeredBtn">
+				<ul>
+					<li>
+						<h:commandLink onclick="javascript:disablePopup1('continue_unverified_device_removal', 'backgroundPopup')" class="anchor_btn">
+							<span>Yes</span>
+						</h:commandLink>
+					</li>
+					<li>
+						<h:commandLink onclick="javascript:disablePopup1('continue_unverified_device_removal', 'backgroundPopup')" class="anchor_btn">
+							<span>No. Cancel this operation</span>
+						</h:commandLink>
+					</li>
+				</ul>
+			</div>
+        
+    </div>
+    <div id="backgroundPopup">
+    </div>
+  </ui:composition>

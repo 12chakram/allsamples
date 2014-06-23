@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:truncate="http://www.dece.com/jsf">
+<!-- Start of Top10 Page-->
+     <div id="Top10Div" style="display:none;">
+                <div class="Top10Bg">
+                     <div class="padding_top_5">
+                        <h:commandLink onclick="return newsFeedDisplay();" styleClass="NewsFeed" >
+						 <span><h:outputText value="#{msgs.newsFeedsTitle}"></h:outputText></span>							               		                          							                         
+	 			       </h:commandLink>
+                       <a href="#" class="Top10">#{msgs.top10Title}</a>
+                     </div> 
+                     <c:choose>	                    
+                        <c:when test="#{category eq 'dashBoardNewsFeedTop10'}"> 
+                          <a4j:commandLink id="mytop10HiddenLinkId" value=""  reRender="myTop10PanelId" styleClass="display:none;" action="#{top10.loadMyTop10LinkDetails}" oncomplete="flexcrollRefresh();">
+                            <f:param value="#{portalHeader.userId}" name="selectedUserId"/>
+                          </a4j:commandLink>	
+                       </c:when>
+                       <c:otherwise test="#{category eq 'myProfileNewsFeedTop10'}"> 
+                         <a4j:commandLink id="mytop10HiddenLinkId" value="" reRender="myTop10PanelId" styleClass="display:none;" action="#{top10.loadMyTop10LinkDetails}" oncomplete="flexcrollRefresh();">
+                           <f:param value="#{editProfileBean.editUserDVO.nodeUserId}" name="selectedUserId"/>
+                         </a4j:commandLink>	
+                       </c:otherwise>
+                     </c:choose>                     
+                 </div>
+                <div class='Box3Middle'>
+                       <div class='flt'>
+                          <img src="#{applicationScope.staticContentBaseUrl}/images/news_ltline.gif" width="2" height="281" border="0" alt="" />
+                       </div>
+           <div class='Box3submiddle'>
+                 <div class='Box3Header'>
+                       <ul>
+                         <li style='width:145px'>
+                             <div class="dashboard_top10" id="top10Id">							 	
+							 	<div id="household_top10" style="display:none;" class="no_uline_textbold">#{msgs.householdTop10Link}</div>
+								<div id="household_top10_link">
+								   <a4j:commandLink id="householdTop10LinkId" action="#{top10.loadHouseholdTop10LinkDetails}" reRender="houseHoldTop10PanelId" onclick="showTop10Content(this.id)" oncomplete="flexcrollRefresh();">
+								       <h:outputText escape="false" value="&lt;span&gt;#{msgs.householdTop10Link}&lt;/span&gt;"></h:outputText>
+			 			            </a4j:commandLink>
+								</div>
+								<c:choose>	
+								   <c:when test="#{editProfileBean.editUserDVO.nodeUserId != portalHeader.userId &amp;&amp; category == 'myProfileNewsFeedTop10'}">							
+								    <div id="myTop10" class="no_uline_textbold">
+								       <span>
+								    	   <truncate:truncateText text="#{editProfileBean.editUserDVO.displayName}" start="0" end="-1"/>&#39;s&#160;#{msgs.top10Link}
+								       </span>
+								    </div>
+								    <div id="myTop10_link" style="display:none;">
+								      <a4j:commandLink id="myTop10LinkId" action="#{top10.loadMyTop10LinkDetails}" reRender="myTop10PanelId" onclick="showTop10Content(this.id)" oncomplete="flexcrollRefresh();">
+								        <f:param value="#{editProfileBean.editUserDVO.nodeUserId}" name="selectedUserId"/>
+								        <span>
+								        	<truncate:truncateText text="#{editProfileBean.editUserDVO.displayName}" start="0" end="-1"/>&#39;s&#160;#{msgs.top10Link}
+								        </span>
+			 			              </a4j:commandLink>								  
+								    </div>
+								  </c:when> 								
+								 <c:otherwise>							
+								    <div id="myTop10" class="no_uline_textbold">#{msgs.myTop10Link}</div>
+								    <div id="myTop10_link" style=" display:none; clear:both;">
+								      <a4j:commandLink id="myTop10LinkId" action="#{top10.loadMyTop10LinkDetails}" reRender="myTop10PanelId,houseHoldTop10PanelId" onclick="showTop10Content(this.id)" oncomplete="flexcrollRefresh();">
+								        <f:param value="#{portalHeader.userId}" name="selectedUserId"/>
+								        <h:outputText escape="false" value="&lt;span&gt;#{msgs.myTop10Link}&lt;/span&gt;"></h:outputText>
+			 			              </a4j:commandLink>								  
+								    </div>
+								  </c:otherwise>  
+								</c:choose>	
+							  </div>									                          
+                           </li>
+				           <li class='LIPadding'>
+				                <div id="manageButtonHide" style="display:block;" class="sml_buttons"> 
+				                   <c:choose>	
+				                      <c:when test="#{(category eq 'dashBoardNewsFeedTop10')}">                        
+						               <h:commandLink action="#{top10.loadUserTop10ProfileAction}" id="myTop10ManageButtonId">
+							               <span><h:outputText value="#{msgs.manageButton}"></h:outputText></span>
+							               <f:param value="#{portalHeader.userId}" name="manageUserTop"/>						                          							                         
+		 			                    </h:commandLink>		            
+				                      </c:when> 
+				                     <c:when test="#{(editProfileBean.editUserDVO.nodeUserId == portalHeader.userId || sessionScope.privilege =='FULL') &amp;&amp; category == 'myProfileNewsFeedTop10'}">                        
+						               <h:commandLink action="#{top10.manageButtonAction}" id="familyManageButtonId">
+						                   <f:param value="#{editProfileBean.editUserDVO.nodeUserId}" name="manageUserTop"/>		
+						                   <span><h:outputText value="#{msgs.manageButton}"></h:outputText></span>	
+					 			      </h:commandLink>			            
+				                     </c:when>
+				                     <c:otherwise test="#{(editProfileBean.editUserDVO.nodeUserId != portalHeader.userId) &amp;&amp; category eq 'myProfileNewsFeedTop10'}" >                        
+						                <h:commandLink action="#{top10.viewButtonAction}" id="familyViewButtonId">
+						                    <f:param value="#{editProfileBean.editUserDVO.nodeUserId}" name="manageUserTop"/>
+						                    <span><h:outputText value="#{msgs.viewButton}"></h:outputText></span>						                    					                    										    						                          							                         
+					 			         </h:commandLink>
+				                     </c:otherwise>
+				                    </c:choose>
+                                </div>
+				            </li>
+                       </ul>
+                 </div>
+                 <div class='Box3Gradient'>
+                       <div class='Newsflt1'>                  
+                         <div id="scrollholder" class="scrollholder" style="overflow: hidden;">
+                           <div id="scroll" class="scroll">
+                      <!-- Scroll and pagenation width -->
+                             <div style="width: 220px; overflow-x: hidden;">
+                               <div class="TxtStyle" >                                 
+                          <!-- Start : Scroll Area -->
+                            	  <div class="content_container">
+								    <div  id="householdTop10DivId" class="content_c" style="display:none;">
+									  <ul>									  
+									     <h:panelGroup id="houseHoldTop10PanelId">
+									       <div class="flexcroll" id="householdTop10ScrollId">										                
+										      <ui:repeat value="#{top10.householdTop10DetailsList}" var="householdTop10ListVar">										             
+										        <li><h:outputText value="#{householdTop10ListVar.mediaTitle}"/></li>										       
+										      </ui:repeat>
+										    </div>		           
+									     </h:panelGroup>									  
+								     </ul>
+								  </div>
+                                   <div  id="myTop10DivId" class="content_c" style="display:block;">
+									 <ul>
+									   <h:panelGroup id="myTop10PanelId">
+									      <div class="flexcroll" id="myTop10ScrollId">										                
+										    <ui:repeat value="#{top10.myTop10DetailsList}" var="myTop10ListVar">										             
+										       <li><h:outputText value="#{myTop10ListVar.mediaTitle}"/></li>										         											      
+										    </ui:repeat>
+										  </div>								                     
+									   </h:panelGroup>
+								     </ul>
+								   </div>							  	 
+							  	</div> 
+					          </div>
+						<!-- End : Scroll Area -->
+                          </div>
+                      <!-- pagenation width ends-->
+                        </div>
+                     </div>
+                 </div>
+              </div>              
+         </div>
+          <div class='rgt'><img src="#{applicationScope.staticContentBaseUrl}/images/news_rtline.gif" alt=""/></div>
+        </div>
+     <div class='Box3BottomCurve'></div>
+      <span class="show_error_msg">         
+         <h:outputText id="globalTop10PageErrorMesgId" rendered="#{top10.globalTop10PageErrorMessageMap.pageError !=null}" value="#{top10.globalTop10PageErrorMessageMap.pageError}"/>      				
+	 </span>  
+   </div>
+<!--End of Top10 Page  -->	  
+</ui:composition>

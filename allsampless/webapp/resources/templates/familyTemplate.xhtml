@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+	<head>
+	  	<ui:decorate template="/resources/sections/common/headCommonCSS.xhtml"/>
+	  	<ui:decorate template="/resources/sections/common/headCommonJS.xhtml"/>
+	  	<link rel='stylesheet' type='text/css' href='#{applicationScope.staticContentBaseUrl}/css/skin.css'/>
+		<script type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/jcarousel.min.js"></script>
+		<script language="javascript" type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/loopedcarousel.js"/>
+		<script type="text/javascript">
+			jQuery(function() { jQuery('#form_fields').tabs(); });
+		</script>
+		<script type="text/javascript">
+			jQuery(function() { jQuery('#my_profile').tabs(); });
+		</script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+		    jQuery('#mycarousel').jcarousel({
+		        vertical: true,
+		        scroll:2
+		    });
+		});
+	</script>
+
+	</head>
+	<body class="bodybg">
+	    <script type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/wz_tooltip.js"></script>
+	    <script type="text/javascript" src="#{applicationScope.staticContentBaseUrl}/js/tip_balloon.js"></script>
+		<div id="main_wrapper">
+			<div id="container">
+				<!--  Header -->
+				<ui:decorate template="/resources/sections/common/portalHeader.xhtml" />
+				<!--  Menu -->
+				<ui:decorate template="/resources/sections/family/menu.xhtml" />
+				<!--  Family Content -->
+				<ui:insert name="familyContent" />
+				<!--  Footer -->
+				<ui:decorate template="/resources/sections/common/portalFooter.xhtml" />
+			</div>		
+		</div>
+	</body>
+</html>

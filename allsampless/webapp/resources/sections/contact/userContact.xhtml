@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<!-- content begin -->
+	<!--Start : Content -->
+	<h:form id="contactUsFormId">
+	   <!--Start : Content -->
+		<div id="content_wrapper" >
+			<div id="bodycontent">			
+				<!--Start : Broswe Media -->
+					<ui:decorate template="/resources/sections/contact/contactUsBrowseHelp.xhtml"/>
+				<!--End : Broswe Media -->				
+				<!--Start : Help-->
+				<div class="help_right">					
+					<!--Start : Media Heading, search -->
+					<div class="help_header">
+						<div class="heading">
+							<h3>#{msgs.contactUsHelp}</h3>
+							<p>#{msgs.contactUsHelpInfo}</p>
+						</div>						
+					</div>
+					<!--End : Media Heading, search -->					
+					<!--Start : Help Wrapper -->
+					<div class="help_content">
+						<div class="faqs_heading">
+							<div class="fheading">#{msgs.contactUsLabel}</div>
+						</div>
+						 <div class="show_error_msg" style="width: 85%; text-align: center;">
+						     <h:outputText id="contactUsSuccessMsgId" value="#{userContactBean.errorValueMap.contactUsSuccessMsg}" rendered="#{userContactBean.errorValueMap.contactUsSuccessMsg !=null}" style="color:green;font-family:arial;font-size:12px;"/>
+						     <h:outputText id="errorMessageId" value="#{userContactBean.errorValueMap.pageError}" rendered="#{userContactBean.errorValueMap.pageError !=null}"/>
+						 </div>
+						<!--Start : Contact Us -->
+						<div class="contactus_form">						  						   
+							<div class="contactus_form_details">
+								<div class="form_lable">#{msgs.contactUsTopicLabel}</div> <span class="red">*</span>
+								<div class="form_field">
+								     <h:selectOneMenu id="topicId" value="#{userContactBean.topicValue}" required="true">
+								         <f:selectItem itemLabel="-- Select Topic --"  itemValue=""/>
+			                             <f:selectItems value="#{userContactBean.topicDetailsList}"></f:selectItems>
+		                             </h:selectOneMenu>
+									<span class="show_error_msg">
+									    <h:message for="topicId"></h:message>
+									 </span>						
+								</div>
+							</div>							
+							<div class="contactus_form_details clear">
+								<div class="form_lable">#{msgs.contactUsMessageLabel}</div><span class="red">*</span>
+							    <div class="form_field">
+							        <h:inputTextarea id="messageId" rows="6" value="#{userContactBean.contactMessage}" maxlength="4000" required="true"></h:inputTextarea>
+							        <span class="show_error_msg">
+								       <h:message for="messageId"></h:message>
+								    </span>									    							
+							   </div>
+							</div>
+							
+							<div class="contactus_form_details clear">
+								<div class="form_lable">#{msgs.youremailAddressLabel} </div><span class="red">*</span>
+								<div class="form_field">
+								     <h:inputText id="emailAddressId" styleClass="text" maxlength="100" value="#{userContactBean.contactEmailAddress}" required="true" alt="#{msgs.CONTACT_INPUTALT_EMAIL}">
+								     </h:inputText>
+								     <span class="show_error_msg">
+									    <h:message for="emailAddressId"></h:message>
+									    <h:outputText value="#{userContactBean.emailErrorMesg}"></h:outputText>
+									 </span>									 								
+								</div>								 
+							</div>
+							<div class="contactus_form_details clear">
+								<div class="form_lable"> &#160; </div><span class="red">&#160;</span>
+								<div class="form_field">								 
+								    <h:selectBooleanCheckbox id="emailMeId" style="width:16px; *margin-right:3px;" value="#{userContactBean.contactEmailChkBoxRender}"/>
+								      <h:outputText value="#{msgs.contactUsEmailCheckBoxValue}"/>								  
+							   </div>
+							</div>
+							<div class="contactus_form_details clear">
+								<div class="centeredBtn">
+									<ul>
+										<li>
+							                <h:commandLink action="#{userContactBean.contactUsSubmitAction}" styleClass="anchor_btn">									
+									            <h:outputText value="&lt;span&gt;#{msgs.submitButton}&lt;/span&gt;" escape="false"></h:outputText>
+									        </h:commandLink>
+									   </li>
+									   <li class="cancel_btn">
+										   	<h:commandLink  onclick="history.go(-1); return false" style="color:#fff;" immediate="true" id="cancelButton">
+												<h:outputText value="&lt;span&gt;" escape="false" />
+													<h:outputText value="#{msgs.cancelButton}"/>
+												<h:outputText value="&lt;/span&gt;" escape="false"/>									
+											</h:commandLink>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					<!-- start : Contact Us  -->
+					</div>
+					<!--End : Help Wrapper -->					
+				</div>
+				<!--End : Help-->				
+			</div>
+		</div>
+		<!--End : Content -->		
+	</h:form>
+</ui:composition>
+		

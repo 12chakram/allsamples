@@ -1,0 +1,180 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nt="http://www.dece.com/jsf">
+	<script type="text/javascript">
+			  function checkedAll(idValue,checkedResult) {			
+				var box=document.getElementById("checkBoxId").getElementsByTagName("input");				
+				if (checkedResult == true ){					
+					 for(i&#61;0&#59;i&#60;box.length&#59;i&#43;&#43;){							
+						 var test=document.getElementById(box[i].id);							
+							  test.checked = "checked";
+						}
+				    } else{
+				    	 for(i&#61;0&#59;i&#60;box.length&#59;i&#43;&#43;){							
+							 var test=document.getElementById(box[i].id);								
+								test.checked = "";
+							}
+				    }						
+			    }			
+			  function selectCheckedAll() {			
+					var box=document.getElementById("checkBoxId").getElementsByTagName("input");
+					count=0;				
+					for(i&#61;0&#59;i&#60;box.length&#59;i&#43;&#43;){							
+						 var test=document.getElementById(box[i].id);
+						    if(test.checked ==true){
+                             count++;                               
+						    }
+						}					
+					if(count == box.length){
+						var selectAllId=document.getElementById("newsFeedFormId:editNewsfeedId:checkall");	
+						selectAllId.checked = "checked"; 
+					}else{						
+						var selectAllId=document.getElementById("newsFeedFormId:editNewsfeedId:checkall");
+						selectAllId.checked = ""; 
+					}
+				 }				
+    </script>
+	<h:form id="newsFeedFormId">
+	<!--Start : Popup - Edit Newsfeed-->
+	<a href="javascript:void(0)" id="saveOpen" onclick="javascript:openPopup('edit_newsfeed', 'backgroundPopup')"></a>
+   <div id="edit_newsfeed" class="popupContact">
+    <a4j:outputPanel  id="editNewsfeedPanelId">
+      <f:subview id="editNewsfeedId" rendered="#{householdSetting.editNewsFeedRender=='true'}">
+        <div class="heading">
+            <div class="forgot">
+                <h2>#{msgs.editFeedSettingLabel}</h2>
+            </div>
+            <div class="close">
+                <a id="popupContactClose" onclick="javascript:disablePopup1('edit_newsfeed', 'backgroundPopup');newsFeedOnload();">#{msgs.closeLabel}</a>
+            </div>
+        </div>
+        <div class="confirm">
+			<div class="info_titles">
+				<div class="left_curve"><img src="#{applicationScope.staticContentBaseUrl}/images/subheading_tab_left.png" border="0"  alt=""/></div>
+				<div class="household_middle_panel">#{msgs.editNewsFeedEventTitle}</div>
+				<div class="right_curve"><img src="#{applicationScope.staticContentBaseUrl}/images/subheading_tab_right.png" border="0"  alt=""/></div>
+			</div>
+	        <div class="household_box_info">
+				<div class="select_all">
+				   <h:selectBooleanCheckbox name="checkall" id="checkall" onclick='checkedAll(this.id, this.checked );' value="#{householdSetting.booleanCheckRender}">				      		   
+				       </h:selectBooleanCheckbox>
+				   <h:outputLabel value="#{msgs.householdCheckBoxLabel}" for="newsFeedFormId:checkall" />
+				</div>				
+				<div class="household_newsfeed_options" id="checkBoxId">
+				   <ul>
+				     <li>				      			
+				        <h:selectManyCheckbox id="newsFeedCheckBoxId" onclick='selectCheckedAll();' value="#{householdSetting.newsFeedCheckBoxValue}" layout="pageDirection" > 
+				           <f:selectItems value="#{householdSetting.newsFeedCategoryDetailsList}"/>
+				        </h:selectManyCheckbox>
+				     </li>
+				   </ul>		
+				</div>			
+			</div>					 
+         </div>
+		<div class="confirm">
+			<div class="info_titles">
+				<div class="left_curve"><img src="#{applicationScope.staticContentBaseUrl}/images/subheading_tab_left.png" border="0"  alt=""/></div>
+				<div class="household_middle_panel">#{msgs.editNewsFeedFamilyMembersTitle}</div>
+				<div class="right_curve"><img src="#{applicationScope.staticContentBaseUrl}/images/subheading_tab_right.png" border="0"  alt=""/></div>
+			</div>			
+			<div class="household_box_info">
+			  <div class="household_box_infoiner">
+			     <h:panelGroup id="publishFamilyMemebersPanelId">
+			          <h:selectManyCheckbox id="familyMemebersCheckBoxId" value="#{householdSetting.familyMemebersCheckBoxValue}" layout="lineDirection"> 
+                          <f:selectItems value="#{householdSetting.familyMemebersSelectOneList}"/>
+                      </h:selectManyCheckbox>	
+			     </h:panelGroup>
+			  </div>			  
+		      <div style="position:absolute;">
+				<ui:repeat value="#{householdSetting.publishFamilyMemebersList}" var="familyMemebersVar">
+				    <div class="household_box_infoinerdiv">
+				       <h:graphicImage url="/resourceServlet?type=avatar&amp;nodeUserId=#{familyMemebersVar.nodeUserId}" style="width:91px;height:58px" alt=""/>				       
+				    </div>
+				 </ui:repeat>		  	 
+			   </div>
+			 </div>
+		   </div>
+		   <div class="show_error_msg" style="width:100%;text-align:center;padding-bottom:5px;">
+			    <h:outputText  value="#{householdSetting.errorValueMap.pageError}" id="errorMessageId" rendered="#{householdSetting.errorValueMap.pageError !=null}"/>				        				        				
+		    </div>	
+		   </f:subview> 
+		</a4j:outputPanel>
+         <div class="centeredBtn">
+				<ul>
+					<li>					  
+					   <a4j:commandLink id="saveId" action="#{householdSetting.houseHoldSetAction}" reRender="editNewsfeedPanelId,editNewsfeedId" oncomplete="#{(householdSetting.errorValueMap.pageError eq null)?'disablePopup1(\'edit_newsfeed\', \'backgroundPopup\');':'return false'};newsFeedOnload();"  styleClass="anchor_btn">
+					       <h:outputText value="&lt;span&gt;#{msgs.saveButtonLabel}&lt;/span&gt;" escape="false"></h:outputText>	
+					       <f:param name="saveClick" value="true"/>						    
+				       </a4j:commandLink>
+					</li>					   
+					<li>					  
+					  <a id="cancelId" class="anchor_btn" onclick="javascript:disablePopup1('edit_newsfeed', 'backgroundPopup');newsFeedOnload();"><span>#{msgs.cancelButton}</span></a>	
+				  </li>
+				</ul>
+			</div>
+    </div>
+    <div id="backgroundPopup">
+    </div>
+    <!--End : Popup -  Edit Newsfeed -->
+	
+   	<script type="text/javascript">
+		             function showContent(divid){
+		     		 	var newsid = document.getElementById(divid);		 	
+		     			if(newsid.id == "newsFeedFormId:householdNewsLinkId"){ 	
+		     				document.getElementById('myNewsFeedPagenationId').style.display = "none";   
+		     				document.getElementById('houseold_news').style.display = "block";	
+		     				document.getElementById('managehide').style.display = "block";
+		     				document.getElementById('householdPagenationId').style.display = "block";
+		     				document.getElementById('houseold_news_link').style.display = "none";
+		     				document.getElementById('mynews').style.display = "none";
+		     				document.getElementById('mynews_link').style.display = "block";				
+		     				document.getElementById('householdNewsDivId').style.display = "block";
+		     				document.getElementById('myNewsDivId').style.display = "none";
+		     				document.getElementById('clearMyNewsHistoryId').style.display="none";
+		     				document.getElementById('clearHouseholdHistoryId').style.display="block";				
+		     				document.getElementById('newsFeedFormId:houseHoldNewsFeedPanelId').style.display = "block";
+		     				document.getElementById('newsFeedFormId:myNewsFeedPanelId').style.display = "none";				
+		     			 } 
+		     			if(newsid.id == "newsFeedFormId:myNewsLinkId"){			     			
+			     			document.getElementById('householdPagenationId').style.display = "none";
+		     				document.getElementById('myNewsFeedPagenationId').style.display = "block";
+		     				document.getElementById('houseold_news').style.display = "none";
+		     				document.getElementById('managehide').style.display = "none";		     						     				
+		     				document.getElementById('houseold_news_link').style.display = "block";
+		     				document.getElementById('mynews').style.display = "block";
+		     				document.getElementById('mynews_link').style.display = "none";				
+		     				document.getElementById('householdNewsDivId').style.display = "none";
+		     				document.getElementById('myNewsDivId').style.display = "block";
+		     				document.getElementById('newsFeedFormId:houseHoldNewsFeedPanelId').style.display = "none";
+		     				document.getElementById('newsFeedFormId:myNewsFeedPanelId').style.display = "block";
+		     				document.getElementById('clearHouseholdHistoryId').style.display="none";
+		     				document.getElementById('clearMyNewsHistoryId').style.display="block";
+		     			}
+		     		 }
+   		</script>
+	 <!-- Start : News Feed Panel -->
+		     <div class="household_newsfeed_panel">
+               <div class="householdsettings_set">
+                 <nt:newsfeed category="householdNewsFeed"/>
+             </div>
+	        </div>		
+			<!-- End : News Feed Panel -->
+ 	</h:form>
+	<f:subview rendered="#{householdSetting.popupRenderer}">	
+	<script type="text/javascript">				
+	   window.onload = function() {			      	  	   	  
+	    document.getElementById("saveOpen").onclick();	    	    
+	  } 
+  	 </script>	
+  	</f:subview>  	
+  	<f:subview rendered="#{!householdSetting.popupRenderer}">	
+	   <script type="text/javascript">				
+		   window.onload = function() {				  
+			fireEvent(document.getElementById('newsFeedFormId:householdNewsLinkId'),'click'); 	    
+		  } 
+      </script>	
+  	</f:subview>
+ </ui:composition>

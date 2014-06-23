@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+
+.Accordion {
+	
+	overflow: hidden;
+	color:#000;
+}
+
+.AccordionPanel {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.AccordionPanelTab {
+	background:none;
+	color:#9AA2DC;
+	margin: 0px;
+	padding: 2px;
+	min-height:20px;
+	font-size:12pt;
+	font-weight:bold;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+}
+
+
+.AccordionPanelContent {
+	
+	margin: 0px;
+	padding: 0px 0px 0px 20px;
+	color:#fff;
+	
+}
+
+
+.AccordionPanelOpen .AccordionPanelTab {
+	background:none;
+	width:100%;
+	float:left;
+}
+
+
+.AccordionPanelTabHover {
+	color:#fff;
+}
+.AccordionPanelOpen .AccordionPanelTabHover {
+	color:#fff;
+}
+
+
+.AccordionFocused .AccordionPanelTab {
+	background:none;
+}
+
+
+.AccordionFocused .AccordionPanelOpen .AccordionPanelTab {
+	background:none;
+}

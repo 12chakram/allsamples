@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en"/>
+	<ui:decorate template="/resources/sections/common/unAuthCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/unAuthCommonJS.xhtml"/>	
+</head>	
+<body style="background:#000;">	
+	<h:form id="authHeaderfrm">
+		<div class="authenticated_header" style="width:330px; min-height:60px;">
+        	<div class="authenticated_hdr_logo" style="padding:21px 0px; width:330px;">
+   		    	<h:commandLink tabindex="1" id="logoLink" action="#{headerBean.goHome}">
+   		    		<img  src="#{applicationScope.staticContentBaseUrl}/images/deceBrand_logo.png" alt="UltraViolet Logo" />
+   		    	</h:commandLink>
+            </div>         
+        </div>
+	</h:form>	
+	<div class="container" style="width:330px;">
+		<ui:include src="/resources/sections/login/tou.xhtml"/>
+	</div>	
+</body>
+</html>

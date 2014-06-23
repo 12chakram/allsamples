@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="confirmAccFormId">
+
+            <!-- header end -->
+        <div id="content_wrapper">
+            <div id="bodycontent">
+				<div class="register_form">
+					<div class="titlestrip">
+						<span class="title1"><h:outputText value="#{msgs.fillFormMessage}"/></span> 
+						<span class="require"><h:outputText value=" #{msgs.requiredFieldInfo1} "></h:outputText> <span style="color:#FF0000">*</span> <h:outputText value=" #{msgs.requiredFieldInfo2}"></h:outputText></span>             
+					</div>
+					
+					<!-- start : Confirm Account  -->
+					<div class="form_title">#{msgs.confirmUserEmailLabel}</div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="form_lable"><h:outputLabel value="#{msgs.tokenLabel}" for="confirmAccFormId:tokenId"/></div><span class="red">*</span>
+							<div class="form_field">
+							  <h:inputText  alt="#{msgs.LOGIN_INPUTALT_TOKEN}" value="#{confirmAccount.token}" id="tokenId"/>
+						    <span class="show_error_msg"><h:outputText value="#{confirmAccount.tokenError}" /></span>							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+						<div class="reg_form_details">
+							<div class="form_lable"> <h:outputLabel value="#{msgs.usernameLabel}" for="confirmAccFormId:userName"/> </div><span class="red">*</span>
+							<div class="form_field"> <h:inputText alt="#{msgs.LOGIN_INPUTALT_USERNAME}" id="userName" value="#{confirmAccount.userName}"  maxlength="64"/>
+								<span class="show_error_msg"><h:outputText value="#{confirmAccount.userNameError}" /></span>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>			
+					</div>
+					<!-- start :Confirm Account  -->
+					
+					<!-- start : Verify Image  -->
+					<div class="form_title"> <h:outputText value="#{msgs.verifyImageTitle}" /></div>
+					<div class="reg_form">
+						<div class="reg_form_details">
+							<div class="form_lable"> <h:outputLabel value="#{msgs.captchaLabel}" for="confirmAccFormId:captchaValue"/></div>
+							<span class="red">*</span>
+							<div class="form_field"> 
+							 <h:inputText alt="#{msgs.LOGIN_INPUTALT_CAPTCHAVALUE}" id="captchaValue" value="#{confirmAccount.captchaValue}"/>
+                                <h:outputText value="#{confirmAccount.captchaError}" class="show_error_msg" />
+							</div>
+							<div class="reg_form_details">
+								<div class="form_lable"> &#160;</div><span class="red">&#160;</span>
+								<div class="form_field"> 
+									 <h:graphicImage url="/jcaptcha" alt="#{msgs.LOGIN_IMAGEALT_CAPTCHAVALUE}"/><br/>
+                                    <h:commandLink styleClass="refresh" value="#{msgs.refreshCaptchLink}">
+                                    </h:commandLink>
+								</div>
+							</div>
+							<div class="form_sup_txt">&#160;</div>
+						</div>
+					</div>
+					<!-- start : Verify Image  -->
+					
+				  	<h:outputText value="#{confirmAccount.message}" class="show_error_msg" />
+				  	<!-- start : submit button -->
+					<div class="submitform_btn">
+						<div class="btn_center">
+							<div class="btn">
+								<div class="btn_left"><img src="#{applicationScope.staticContentBaseUrl}/images/btn_left.png" width="4" height="22" border="0" /></div>
+								<span class="btn_middle" ><h:commandLink  id="dlg" styleClass="anchor" value="#{msgs.submitButton}" action="#{confirmAccount.submit}"></h:commandLink>
+								</span>
+								<div class="btn_left"><img src="#{applicationScope.staticContentBaseUrl}/images/btn_right.png" width="4" height="22" border="0" /></div>
+							</div>
+							<div class="btn">
+								<div class="btn_left"><img src="#{applicationScope.staticContentBaseUrl}/images/btn_left.png" width="4" height="22" border="0" /></div>
+								<span class="btn_middle" ><h:commandLink styleClass="anchor" value="#{msgs.cancelButton}" action="#{loginNavigationBean.navigateToHomePage}"/></span>
+								<div class="btn_left"><img src="#{applicationScope.staticContentBaseUrl}/images/btn_right.png" width="4" height="22" border="0" /></div>
+							</div>
+						</div>
+					</div>
+	 			 	
+	 			 	<!-- end : submit button -->
+					
+					
+				</div>
+            </div>
+        </div>
+        
+  
+</h:form>
+</ui:composition>

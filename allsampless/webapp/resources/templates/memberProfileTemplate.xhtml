@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets" 
+				template="/resources/templates/familyTemplate.xhtml" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+	<ui:define name="familyContent">
+		<div id="content_wrapper" >
+			<div id="bodycontent">
+				<div class="left_panel">
+					<ui:insert name="editHead"/>
+					<ui:insert name="addFamilyMember"/>
+					<ui:insert name="addFamilyLinksCommon"/>
+				</div>
+				<!--  Start : QuickTip and Faq Block -->
+				<div class="right_panel">
+					<div>
+						<ui:insert name="familyRightTopPane" >	
+							<ui:include src="/resources/sections/family/quickTipProfile.xhtml" />
+						</ui:insert>
+					</div>
+					<div>
+						<ui:insert name="familyRightBottomPane" >
+							<ui:include src="/resources/sections/family/profileFaq.xhtml"/>
+						</ui:insert>
+					</div>
+				</div>
+				<!--  End : QuickTip and Faq Block -->
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

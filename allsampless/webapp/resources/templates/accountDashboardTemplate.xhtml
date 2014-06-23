@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="#{sessionScope.userLocale.language eq '' || sessionScope.userLocale.language eq null?'en':sessionScope.userLocale.language}">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<ui:decorate template="/resources/sections/common/authCommonCSS.xhtml"/>
+	<ui:decorate template="/resources/sections/common/authCommonJS.xhtml"/>	
+	<script type="text/javascript">
+		if (top != self) top.location.href = self.document.location;
+	</script>
+</head>
+
+	<body target="_self">
+		<div class="container">
+			<ui:insert name="authPortalHeader">
+		    	<ui:include src="/resources/sections/common/authHeader.xhtml"/>
+			</ui:insert>
+			<ui:insert name="authMenu"/>
+			<ui:insert name="content"/>
+			<ui:insert name="authPortalFooter">
+		    	<f:subview id="unauthfootersubview1" rendered="#{sessionScope.country ne 'UK'}">
+				    <ui:include src="/resources/sections/common/authFooter_US.xhtml"/>
+				</f:subview>
+				<f:subview id="unauthfootersubview2" rendered="#{sessionScope.country eq 'UK'}">
+				    <ui:include src="/resources/sections/common/authFooter_UK.xhtml"/>
+				</f:subview>
+			</ui:insert>		  
+		</div>
+	</body>
+</html>
