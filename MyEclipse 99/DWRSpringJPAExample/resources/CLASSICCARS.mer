@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="MyEclipse Derby" database="CLASSICCARS" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="CUSTOMER">
+      <Drawing expanded="true" location="21,196" dimensions="262,289" />
+      <Columns>
+        <Column name="CUSTOMERNUMBER" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="CUSTOMERNAME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="CONTACTLASTNAME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="CONTACTFIRSTNAME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="PHONE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="ADDRESSLINE1" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="ADDRESSLINE2" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="CITY" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="STATE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="POSTALCODE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="COUNTRY" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="SALESREPEMPLOYEENUMBER" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="CREDITLIMIT" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DOUBLE" size="52" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="EMPLOYEE">
+      <Drawing expanded="true" location="307,0" dimensions="229,188" />
+      <Columns>
+        <Column name="EMPLOYEENUMBER" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="LASTNAME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="FIRSTNAME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="EXTENSION" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="10" />
+        </Column>
+        <Column name="EMAIL" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="100" />
+        </Column>
+        <Column name="OFFICECODE" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="VARCHAR" size="10" />
+        </Column>
+        <Column name="REPORTSTO" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="JOBTITLE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="OFFICE">
+      <Drawing expanded="true" location="324,288" dimensions="195,209" />
+      <Columns>
+        <Column name="OFFICECODE" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="10" />
+        </Column>
+        <Column name="CITY" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="PHONE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="ADDRESSLINE1" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="ADDRESSLINE2" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="STATE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="COUNTRY" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="POSTALCODE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="TERRITORY" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="ORDERDETAIL">
+      <Drawing expanded="true" location="223,542" dimensions="264,128" />
+      <Columns>
+        <Column name="PURCHASEORDERNUMBER" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="PRODUCTCODE" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="QUANTITYORDERED" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="PRICEEACH" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DOUBLE" size="52" />
+        </Column>
+        <Column name="ORDERLINENUMBER" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="SMALLINT" size="5" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="PAYMENT">
+      <Drawing expanded="true" location="17,0" dimensions="228,108" />
+      <Columns>
+        <Column name="CUSTOMERNUMBER" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="CHECKNUMBER" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="PAYMENTDATE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="AMOUNT" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DOUBLE" size="52" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="PRODUCT">
+      <Drawing expanded="true" location="424,751" dimensions="285,209" />
+      <Columns>
+        <Column name="PRODUCTCODE" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="PRODUCTNAME" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="70" />
+        </Column>
+        <Column name="PRODUCTLINE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="PRODUCTSCALE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="10" />
+        </Column>
+        <Column name="PRODUCTVENDOR" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="PRODUCTDESCRIPTION" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONG VARCHAR" size="32700" />
+        </Column>
+        <Column name="QUANTITYINSTOCK" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="BUYPRICE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DOUBLE" size="52" />
+        </Column>
+        <Column name="MSRP" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DOUBLE" size="52" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="PRODUCTLINE">
+      <Drawing expanded="true" location="742,542" dimensions="241,109" />
+      <Columns>
+        <Column name="PRODUCTLINE" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="TEXTDESCRIPTION" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="4000" />
+        </Column>
+        <Column name="HTMLDESCRIPTION" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="CLOB" size="2147483647" />
+        </Column>
+        <Column name="IMAGE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BLOB" size="2147483647" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="PURCHASEORDER">
+      <Drawing expanded="true" location="11,769" dimensions="312,169" />
+      <Columns>
+        <Column name="PURCHASEORDERNUMBER" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INTEGER" size="10" />
+        </Column>
+        <Column name="ORDERDATE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="REQUIREDDATE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="SHIPPEDDATE" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="STATUS" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="COMMENTS" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="LONG VARCHAR" size="32700" />
+        </Column>
+        <Column name="CUSTOMERNUMBER" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INTEGER" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="SQL070512054942661">
+      <Details primary_table="OFFICE" foreign_table="EMPLOYEE">
+        <PrimaryKeys>
+          <ColumnName name="OFFICECODE" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="OFFICECODE" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="SQL070512054949881">
+      <Details primary_table="PURCHASEORDER" foreign_table="ORDERDETAIL">
+        <PrimaryKeys>
+          <ColumnName name="PURCHASEORDERNUMBER" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="PURCHASEORDERNUMBER" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="SQL070512054949882">
+      <Details primary_table="PRODUCT" foreign_table="ORDERDETAIL">
+        <PrimaryKeys>
+          <ColumnName name="PRODUCTCODE" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="PRODUCTCODE" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="SQL070512054942231">
+      <Details primary_table="CUSTOMER" foreign_table="PAYMENT">
+        <PrimaryKeys>
+          <ColumnName name="CUSTOMERNUMBER" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="CUSTOMERNUMBER" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+

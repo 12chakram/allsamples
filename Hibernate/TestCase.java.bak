@@ -1,0 +1,33 @@
+//TestCase.java
+
+import org.hibernate.*;
+import org.hibernate.cfg.*;
+
+import com.st.spring.vo.Employee
+
+public class TestCase {
+
+public stativc void main (String s[]) throws Exception {
+
+	// 1.  create configuration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}//class

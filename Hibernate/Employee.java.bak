@@ -1,0 +1,48 @@
+ package com.st.HIbernate 
+ 
+ public class  Employee
+ 
+{
+	private String name;
+	private int empno,deptno;       
+	private double sal;
+
+// properties 
+
+// write setter and getter methods 
+
+public void setEmpno (int i)
+	{
+	   empno=i;
+	}
+	public int getEmpno()
+	{
+		return empno;
+	}
+
+public void setDeptno(int i)
+	{
+	deptno=i;
+	}
+public int getDeptno()
+	{
+	return deptno;
+	}
+	public void setSal(double d)
+	{
+		sal=d;
+	}
+	public double getSal()
+	{ 
+		return sal;
+	}
+	public void  setName(String s)
+	{
+		name=s;
+	}
+	public String getName()
+	{
+		return name;
+	}
+
+}// class 

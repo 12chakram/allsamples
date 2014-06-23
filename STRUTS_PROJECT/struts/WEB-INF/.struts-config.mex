@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/validate.do" location="50,50" dimension="228,96" />
+  <StrutsActivity path="/Welcome.jsp" location="350,50" dimension="103,51" />
+  <StrutsActivity path="/validate.html" location="650,50" dimension="104,51" />
+  <StrutsTransition id="/validate.do,fail,/validate.html,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="278,116" />
+      <AbsolutePoint location="702,116" />
+      <AbsolutePoint location="702,101" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/validate.do,sucess,/Welcome.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="278,75" />
+      <AbsolutePoint location="350,75" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

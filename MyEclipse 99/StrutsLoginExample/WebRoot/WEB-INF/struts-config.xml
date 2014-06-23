@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="userLoginForm"
+			type="com.myeclipseide.examples.struts.form.UserLoginForm" />
+	</form-beans>
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action attribute="userLoginForm" input="/userLogin.jsp"
+			name="userLoginForm" path="/userLogin" scope="request"
+			validate="true"
+			type="com.myeclipseide.examples.struts.action.UserLoginAction">
+			<forward name="success" path="/userLoginSuccess.jsp" />
+			<forward name="failure" path="/userLogin.jsp" />
+		</action>
+	</action-mappings>
+	<message-resources
+		parameter="com.myeclipseide.examples.struts.ApplicationResources" />
+</struts-config>
+

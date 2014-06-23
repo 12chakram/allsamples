@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+	                    http://www.springframework.org/schema/tx 
+	                    http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+	                    http://www.directwebremoting.org/schema/spring-dwr
+	                    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="CLASSICCARS" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="ProductDAO" class="com.myeclipseide.examples.dwrspring.spring.ProductDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="CustomerDAO"
+		class="com.myeclipseide.examples.dwrspring.spring.CustomerDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="EmployeeDAO"
+		class="com.myeclipseide.examples.dwrspring.spring.EmployeeDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="OfficeDAO" class="com.myeclipseide.examples.dwrspring.spring.OfficeDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="ProductlineDAO"
+		class="com.myeclipseide.examples.dwrspring.spring.ProductlineDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="PurchaseorderDAO"
+		class="com.myeclipseide.examples.dwrspring.spring.PurchaseorderDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="PaymentDAO" class="com.myeclipseide.examples.dwrspring.spring.PaymentDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="OrderdetailDAO"
+		class="com.myeclipseide.examples.dwrspring.spring.OrderdetailDAO">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	<bean id="carManager" name="CarManager"
+		class="com.myeclipseide.examples.dwrspring.bean.CarManager" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="customerDao">
+			<ref bean="CustomerDAO" />
+		</property>
+		<property name="employeeDao">
+			<ref bean="EmployeeDAO" />
+		</property>
+		<property name="productlineDao">
+			<ref bean="ProductlineDAO" />
+		</property>
+	</bean>
+	<bean id="carViewer" name="CarViewer"
+		class="com.myeclipseide.examples.dwrspring.bean.CarViewer" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default"
+		depends-on="carManager">
+		<property name="carManager">
+			<ref bean="carManager" />
+		</property>
+		<dwr:remote javascript="RemoteCarViewer"/>
+	</bean>
+
+	<dwr:controller id="dwrController" debug="true" />
+</beans>

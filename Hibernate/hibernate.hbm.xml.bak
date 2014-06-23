@@ -1,0 +1,30 @@
+<!-- Employee.hbm.xml-- 
+it is not mandatory to specifiy .hbm.xml extenstion, but is recommended to use-->
+
+
+< ! DOCTYPE --------  >
+
+<!-- the rootelement -->
+
+<hibernate-mapping>
+
+< class name = com.st.hibernate.Employee" 
+      table = "emp">
+
+	  <!-- configurating the identity/primary key-->
+	   
+	   <id name  = "empno"
+	        column = "empno" >
+		<generator class = "assigned"/>
+		</id>
+
+<!-- the generatorclass specifies the identity generator to use for generating the primary key
+value for the new record. the 'assigned' describes to use the value assigned to the respective property as an identity -->
+
+<!-- configuring the identity p[roperty is mandatory for the persistent class-->
+
+<!-- configure the other properties-->
+<property name = "name"
+
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JSFFlowViewLayout version="1.0">
+  <Drawing gridVisible="true" snapOn="true" />
+  <JSFFlowResource path="/pages/inputname.xhtml" location="30,30" dimension="161,36" />
+  <JSFFlowResource path="/pages/greeting.xhtml" location="330,30" dimension="151,36" />
+  <JSFFlowNavigationCase id="/pages/inputname.xhtml,/pages/greeting.xhtml,greeting,null" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="191,48" />
+      <AbsolutePoint location="330,48" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/pages/greeting.xhtml,/pages/inputname.xhtml,input,null" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="330,63" />
+      <AbsolutePoint location="191,63" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+</JSFFlowViewLayout>
+
