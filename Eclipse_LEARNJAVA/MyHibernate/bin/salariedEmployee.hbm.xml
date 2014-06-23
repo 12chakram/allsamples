@@ -1,0 +1,51 @@
+<!-- SalariedEmployee.hbm.xml
+HourlyEmployee.hbm.xml
+it is not mandatory to specifiy .hbm.xml extenstion, but is recommended to use-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+        
+<!-- the rootelement -->
+
+<hibernate-mapping
+package="com.st.hibernate.vo">
+
+<class name ="SalariedEmployeePc"  
+      table = "salariedemployee">
+
+	  <!-- configurating the identity/primary key-->
+	   
+	   <id name  = "empno"  >
+		<generator class = "assigned"/>
+		</id>
+
+		<property name="name"/>
+		<property name="sal"/>
+		</class>
+		
+		
+		<!-- ============================================  -->
+		
+		
+		<class name="HourlyEmployeePc" table="hourlyemployee">
+		<id name="empno">
+		
+		<generator class="assigned"/>
+		
+		</id>
+		
+		<property name="name"/>
+		<property name="maxHoursPerDay" column="max_hrs_per_day"/>
+		
+		
+		<property name="ratePerHour" column="rate_per_hr"/>
+		
+		
+		</class>
+		
+	</hibernate-mapping>
+	

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23 Aug, 2011 8:09:27 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ku.real.hibernate.persist.Flights" table="FLIGHTS">
+        <id name="flightname" type="java.lang.String">
+            <column name="FLIGHT_NAME" />
+            <generator class="assigned" />
+        </id>
+        <property name="fare" type="double">
+            <column name="FLIGHT_FARE" />
+        </property>
+        <property name="avilabledate" type="java.sql.Date">
+            <column name="AVILABLE_DATE" />
+        </property>
+        <property name="flightsource" type="int">
+            <column name="FLIGHT_SOURCE" />
+        </property>
+        <property name="flightdestination" type="int">
+            <column name="FLIGHT_DESTINATION" />
+        </property>
+    </class>
+</hibernate-mapping>

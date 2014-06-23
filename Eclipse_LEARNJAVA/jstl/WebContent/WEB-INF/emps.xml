@@ -1,0 +1,33 @@
+<!-- emps.xml -->
+<emps>
+    <emp id="e101">
+    
+   <name>kumar</name> 
+    <sal>50000</sal>
+    <deptno>10</deptno>
+    </emp>
+
+<emp id="e102">
+    
+   <name>vayyala</name> 
+    <sal>40000</sal>
+    <deptno>40</deptno>
+    </emp>
+
+
+
+<emp id="e103">
+    
+   <name>kumarv</name> 
+    <sal>30000</sal>
+    <deptno>30</deptno>
+    </emp>
+
+
+
+
+
+
+
+
+</emps>

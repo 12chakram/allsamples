@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+<data-sources>
+  
+                  
+<data-source type="oracle.jdbc.pool.OracleConnectionPollDataSource">
+<set-property property="URL" value=
+"jdbc:oracle:thin:@localhost:1521:myorcl"/>
+<set-property property="user" value="learn"/>
+<set-property property="password" value="learn"/>
+</data-source>
+</data-sources>
+
+      
+  <action-mappings >
+  
+ 
+  <action type="com.st.struts.actions.RetriveDispalyDataSource"   path="/rd" >
+  
+ <forward name="done" path="/display.jsp"/>
+ 
+
+ </action>
+  
+
+
+ </action-mappings>
+  
+  
+  <message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+
+
+ 
+</struts-config>
+

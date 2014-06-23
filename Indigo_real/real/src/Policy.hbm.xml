@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 Aug, 2011 1:25:26 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ku.real.hibernate.persist.Policy" table="POLICIES">
+        <id name="formno" type="int">
+            <column name="FORMNO" />
+            <generator class="assigned" />
+        </id>
+        <property name="policeno" type="int">
+            <column name="POLICENO" />
+        </property>
+        <property name="policename" type="java.lang.String">
+            <column name="POLICENAME" />
+        </property>
+        <property name="policeprimium" type="double">
+            <column name="POLICEPRIMIUM" />
+        </property>
+        <property name="paymenttype" type="java.lang.String">
+            <column name="PAYMENTTYPE" />
+        </property>
+        <property name="lifecover" type="int">
+            <column name="LIFECOVER" />
+        </property>
+        <property name="cname" type="java.lang.String">
+            <column name="CNAME" />
+        </property>
+        <property name="age" type="int">
+            <column name="AGE" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="SEX" />
+        </property>
+        <property name="mobile" type="java.lang.String">
+            <column name="MOBILE" />
+        </property>
+        <property name="mail" type="java.lang.String">
+            <column name="MAIL" />
+        </property>
+    </class>
+</hibernate-mapping>

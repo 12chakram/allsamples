@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Course.hbm.xml -->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping
+
+package="com.st.hibernate.vo">
+
+<class name = "Course">
+
+<id name = "cid">
+<generator class="assigned"/>
+</id>
+
+<property name="cname"/>
+
+<property name="dur"/>
+
+<property name="fee"/>
+
+
+<set name="emps"
+table="emp_course" inverse="false">
+
+<key column="cid"/>
+<many-to-many class="Employee1" column="eno"/>
+
+
+</set>
+
+
+
+
+
+
+
+
+
+
+
+
+</class>
+
+
+</hibernate-mapping>

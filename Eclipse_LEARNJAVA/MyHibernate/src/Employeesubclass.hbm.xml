@@ -1,0 +1,57 @@
+
+<!-- Employee.hbm.xml
+it is not mandatory to specifiy .hbm.xml extenstion, but is recommended to use-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+        
+<!-- the rootelement -->
+
+<hibernate-mapping
+package="com.st.hibernate.vo">
+
+<class name ="EmployeeSub"  
+      table = "emp_general">
+
+	  <!-- configurating the identity/primary key-->
+	   
+	   <id name  = "empno"  >
+		<generator class = "assigned"/>
+		</id>
+
+
+<!-- configure the other properties-->
+<property name = "name" column ="name"/>
+
+<joined-subclass name="SalariedEmployee" table = "emp_salgrade">
+<key column = "empno"/>
+<!-- THIS SPECIFIES THE FK COLUMN MAPPING TO THE PARENT CLASS ID  -->
+
+<property name="sal"></property>
+
+</joined-subclass>
+
+<!-- OTHER SUB CLASS -->
+
+<joined-subclass name="HourlyEmployee" table="emp_hourly">
+
+<key column = "empno"/>
+
+<property name="maxHoursPerDay" column="max_hrs_per_day"/>
+<property name="ratePerHour" column="rate_per_hr"/>
+
+</joined-subclass>
+
+
+</class>
+</hibernate-mapping>
+
+
+
+
+
+

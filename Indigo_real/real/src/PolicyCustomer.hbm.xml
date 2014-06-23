@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 22 Aug, 2011 1:46:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ku.real.hibernate.persist.PolicyCustomer" table="customer_details">
+        <id name="customerid" type="int">
+            <column name="CUSTOMER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="customername" type="java.lang.String">
+            <column name="CUSTOMER_NAME" />
+        </property>
+        <property name="customerage" type="int">
+            <column name="CUSTOMER_AGE" />
+        </property>
+        <property name="customermobile" type="java.lang.String">
+            <column name="CUSTOMER_MOBILE" />
+        </property>
+        
+        <one-to-one name="policyc" cascade="save-update"></one-to-one>
+    </class>
+</hibernate-mapping>

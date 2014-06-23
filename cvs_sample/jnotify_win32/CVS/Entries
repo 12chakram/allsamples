@@ -1,0 +1,21 @@
+/.cdtbuild/1.2/Thu Dec  1 16:33:27 2005//TJNOTIFY__0_5
+/.cdtproject/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+/.cvsignore/1.1/Wed Dec 14 11:57:48 2005//TJNOTIFY__0_5
+/.project/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+D/.settings////
+D/Debug////
+D/Debug_64////
+/Lock.cpp/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+/Lock.h/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+/Logger.cpp/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+/Logger.h/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+D/Release////
+D/Release_64////
+/WatchData.cpp/1.1/Thu Dec  1 13:21:40 2005//TJNOTIFY__0_5
+/WatchData.h/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+/Win32FSHook.cpp/1.2/Thu Dec  1 16:33:27 2005//TJNOTIFY__0_5
+/Win32FSHook.h/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5
+/build.properties/1.1/Wed Dec 14 11:46:59 2005//TJNOTIFY__0_5
+/build.xml/1.2/Wed Dec 14 11:57:48 2005//TJNOTIFY__0_5
+/net_contentobjects_jnotify_win32_JNotify_win32.cpp/-1.2/Thu Dec  1 15:44:57 2005//TJNOTIFY__0_5
+/net_contentobjects_jnotify_win32_JNotify_win32.h/1.1/Thu Dec  1 13:21:41 2005//TJNOTIFY__0_5

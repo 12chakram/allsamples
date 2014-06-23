@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <package name="tutorial" namespace="/" extends="struts-default">
+  
+
+
+<action name="login" class="com.ku.learn.struts2.bean.LoginAction" method="userLogin">
+<result name="done">loginsuccess.jsp</result>
+<result name="fail">loginfail.jsp</result>
+
+</action>
+
+
+
+</package>
+</struts>

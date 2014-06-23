@@ -1,0 +1,57 @@
+
+<!-- Employee.hbm.xml
+it is not mandatory to specifiy .hbm.xml extenstion, but is recommended to use-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+        
+<!-- the rootelement -->
+
+<hibernate-mapping>
+
+<class name ="com.st.hibernate.vo.Employee"  
+      table = "emp">
+
+	  <!-- configurating the identity/primary key-->
+	   
+	   <id name  = "empno"
+	        column = "eno"  >
+		<generator class = "assigned"/>
+		</id>
+
+<!-- the generatorclass specifies the identity generator to use for generating the primary key
+value for the new record. the 'assigned' describes to use the value assigned to the respective property as an identity -->
+
+<!-- configuring the identity p[roperty is mandatory for the persistent class-->
+
+<!-- configure the other properties-->
+<property name = "name" column ="ename"/>
+
+<property name = "sal"/>
+<property name = "deptno" insert="false"  update="false"/>
+
+<!-- inthe above two tags we dint mentioned column attribute, here it takes the property name as a column name-->
+
+<!-- NOte: we want to have set & get method for every property configured here-->
+
+<many-to-one name="deptDetails" class="com.st.hibernate.vo.Dept" column="deptno"></many-to-one>
+
+<!-- 
+
+<one-to-one name="pddetails" cascade="save-update"></one-to-one>
+
+ -->
+
+
+</class>
+</hibernate-mapping>
+
+
+
+
+
+

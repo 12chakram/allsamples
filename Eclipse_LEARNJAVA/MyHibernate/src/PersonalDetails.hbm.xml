@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- PersonalDetails.hbm.xml
+it is not mandatory to specifiy .hbm.xml extenstion, but is recommended to use-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+       <hibernate-mapping
+       
+       package="com.st.hibernate.vo">
+       
+       
+       <class name="PersonalDetails">
+       
+       <!-- table name defaults to class name -->
+       
+       <id name="empno">
+       <generator class="assigned"></generator>
+       </id>
+       
+       <property name = "fname"/>
+       <property name = "lname"/>
+       
+       <component name="addr"> 
+       
+       <parent name="pddetails"/>
+       
+       <!-- the addr here is property name in the personalDetailsclass  -->
+       
+       <property name="street"/>
+       <property name="city"/>
+       <property name="state"/>
+       <property name="pin"/>
+       
+       </component>
+       
+       
+       <!-- this tag maps the complex type in the persistent class to the table columns. here we describe the 
+       4 propertys of addr to the respective columns in the table -->
+       
+       
+       <one-to-one name="emp"></one-to-one>
+
+       </class>
+       
+       </hibernate-mapping>

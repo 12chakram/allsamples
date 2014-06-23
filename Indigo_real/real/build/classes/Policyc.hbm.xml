@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 22 Aug, 2011 4:37:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ku.real.hibernate.persist.Policyc" table="POLICY_DETAILS">
+        <id name="customerid" type="int">
+            <column name="C_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="policyno" type="int">
+            <column name="POLICY_NO" />
+        </property>
+        <property name="policyname" type="java.lang.String">
+            <column name="POLICY_NAME" />
+        </property>
+        <property name="policyamount" type="int">
+            <column name="POLICY_AMOUNT" />
+        </property>
+    </class>
+</hibernate-mapping>

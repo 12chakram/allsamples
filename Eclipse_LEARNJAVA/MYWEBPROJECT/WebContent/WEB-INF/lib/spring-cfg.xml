@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- application context-beans.xml 
+the name of the file is not  predifined and can be any one . In general using application context
+ with a suffix is conventional -->
+ 
+ 
+<beans xmlns = "http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+		xmlns:p="http://www.springframework.org/schema/p">
+		
+		<!-- Define a spring bean -->
+		
+		
+		<bean id = "ds" class = "org.appache.commons.dbcp.BasicDataSource"
+		p:driverClassName = "oracle.jdbc.driver.OracleDriver"
+		p:url = "jdbc:oracle:thin:@loclahost:1521:myorcl"
+		p:username="learn"
+		p:password = "learn" />
+		
+		<bean id = "jt" class = "org.springframework.jdbc.core.jdbcTemplate">
+		
+		<constructor-arg ref = "ds"/>
+		</bean>
+		
+		<bean id = "edao" class = "com.st.dao.jdbc.EmployeeDAO">
+		<constructor-arg ref = "jt"/>
+		</bean>
+		
+		<!--  EMPLOYEEBEAN -->
+		<bean id = "emp" class = "com.st.spring.bo.EmployeeBo"/>
+		
+		
+		
+		
+		<bean name = "/login.spring"
+		class = "com.st.spring.cnt.LoggingController"/>
+		
+		
+		
+		
+		
+		
+		
+		
+
+		</beans>
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

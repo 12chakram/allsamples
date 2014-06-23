@@ -1,0 +1,74 @@
+
+<!-- Employeeclass.hbm.xml
+it is not mandatory to specifiy .hbm.xml extenstion, but is recommended to use-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        
+        
+<!-- the rootelement -->
+
+<hibernate-mapping
+package="com.st.hibernate.vo">
+
+<class name ="EmployeeClass"  
+      table = "emp_details">
+
+	  <!-- configurating the identity/primary key-->
+	   
+	   <id name  = "empno"
+	        column = "empno"  >
+		<generator class = "assigned"/>
+		</id>
+
+
+<!-- the generatorclass specifies the identity generator to use for generating the primary key
+value for the new record. the 'assigned' describes to use the value assigned to the respective property as an identity -->
+
+<!-- configuring the identity p[roperty is mandatory for the persistent class-->
+
+
+<discriminator column="empType"/>
+
+<!-- THIS SPECIFIES THE DISCRIMINATOR COLUMN NAME IN THE TABLE -->
+
+<property name="name" ></property>
+
+
+<!-- DECLARE THE SUB CLASS -->
+
+
+<subclass name="SalariedEmployee"
+
+discriminator-value="salaried">
+<property name="sal"></property>
+
+</subclass>
+
+
+<!-- SIMILARLY DECLARE ALL OTHER SUB CLASSES -->
+
+<subclass name="HourlyEmployee"
+discriminator-value="hourly">
+
+<property name="ratePerHour" column="rate_per_her"/>
+
+<property name="maxHoursPerDay" column="max_hrs_per_day"></property>
+
+
+
+</subclass>
+
+
+
+</class>
+</hibernate-mapping>
+
+
+
+
+
+

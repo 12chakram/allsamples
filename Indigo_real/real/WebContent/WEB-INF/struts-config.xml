@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+      <form-beans>
+        
+        <form-bean name="loginbean" type="com.ku.real.forms.LoginForm"/>   
+        
+        <form-bean name="policyform" type = "com.ku.real.forms.PolicyForm"/> 
+      
+      <form-bean name = "form" type = "com.ku.real.forms.CustomerPolicyForm"/>
+      <form-bean name = "flightsearchform" type = "com.ku.real.forms.FlightSearchForm" />
+      
+    
+      </form-beans>
+
+
+
+  
+  <action-mappings>
+  
+  <action type="com.ku.real.actions.LoginAction"   path="/login"  name="loginbean"  input="login.jsp" validate="true">
+  
+  
+  
+  <forward name ="done" path = "/searchflights.jsp"/>
+  <forward name="fail" path = "/fail.jsp"/>
+  
+   </action>
+   
+   
+  <action type="com.ku.real.actions.GetAddress"   path="/getaddress"  name="loginbean" >
+  
+  
+  <forward name ="avilable" path = "/useraddress.jsp"/>
+  <forward name="noaddress" path = "/fail.jsp"/>
+  
+   </action>
+ 
+ 
+   
+   
+   <action type="com.ku.real.actions.PolicyAction" path="/policy" name="policyform" parameter="method">
+   
+  
+  <forward name = "created" path = "/showpolicy.jsp" />
+  <forward name = "policygot" path = "/showpolicydetails.jsp" />
+  <forward name = "policynull" path = "/home.jsp" />
+   
+  </action>
+   
+  
+  
+  <action type="com.ku.real.actions.PolicyBaseAction" path="/customerpolicy" name="form" parameter="method">
+   
+  
+  <forward name = "customercreated" path = "/customersucess.jsp" />
+  <forward name = "customer not created" path = "/fail.jsp" />
+   
+  
+  </action>
+  
+  <action type = "com.ku.real.actions.FlightSearchAction" path="/flightsearch" name="flightsearchform">
+  
+  <forward name = "avilableflights" path = "/avilableflights.jsp" />
+  <forward name = "flightsnotavilable" path = "/searchflights.jsp" />
+  
+  
+  </action>
+  
+ 
+  
+
+ 
+ </action-mappings>
+ 
+ 
+  <message-resources parameter="ApplicationResources"/>
+</struts-config>
+
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/c3p0-0.9.1.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/cglib-2.2.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/ehcache-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/hibernate-entitymanager.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/hibernate-validator.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/jboss-cache-1.4.1.GA.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/jbosscache-core-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/oscache-2.1.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/proxool-0.8.3.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/slf4j-log4j12-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/swarmcache-1.0RC2.jar"/>
+	<classpathentry kind="lib" path="/MyHibernate/library/javax.persistence.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

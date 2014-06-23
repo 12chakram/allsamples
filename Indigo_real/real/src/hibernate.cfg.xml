@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="connection.datasource">myorcldb</property>
+  <property name="show_sql">true</property>
+  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+  <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+  <property name="hibernate.session_factory_name">jboss/SessionFactory</property>
+  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+  <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>
+  <property name="hibernate.jndi.class">org.jboss.naming.NamingContextFactory</property>
+  <property name="hibernate.connection.autocommit">false</property>
+  <property name="hibernate.transaction.auto_close_session">false</property>
+  <property name="hibernate.transaction.flush_before_completion">true</property>
+  <property name="jta.UserTransaction">java:comp/UserTransaction</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+  
+  
+  
+  <mapping resource="User.hbm.xml"/>
+  
+  <mapping resource="Address.hbm.xml"/>
+  
+  <mapping resource="Policy.hbm.xml"/>
+  
+  
+  
+  <mapping resource = "PolicyCustomer.hbm.xml"/>
+  
+  <mapping resource = "Policyc.hbm.xml"/>
+  
+   <mapping resource="FlightRoutes.hbm.xml"/>
+   <mapping resource ="Flights.hbm.xml"/>
+  
+ </session-factory>
+</hibernate-configuration>
